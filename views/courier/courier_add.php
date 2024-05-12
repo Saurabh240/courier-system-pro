@@ -19,7 +19,7 @@
 // *                                                                       *
 // *************************************************************************
 
-
+// print_r("It is testing"); die();
 
 if ((!$user->cdp_is_Admin() && !$user->userlevel === 3))
     cdp_redirect_to("login.php");
@@ -416,7 +416,24 @@ $order_prefix = $settings->prefix;
                                     <h4 class="card-title"><i class="mdi mdi-book-multiple" style="color:#36bea6"></i> <?php echo $lang['add-title13'] ?></h4>
                                     <br>
                                     <div class="row">
-
+                                        <div class="form-group col-md-3">
+                                            <label for="inputEmail3" class="control-label col-form-label">Distance</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" name="distance" class="form-control" id="distance">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
+                                            <div class="input-group mb-3">
+                                                <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
+                                                    <option value="" selected>Select Delivery Type</option>
+                                                    <option value="Next day">Next day</option>
+                                                    <option value="Same day">Same day</option>
+                                                    <option value="Rush">Rush</option>
+                                                    <option value="Urgent">Urgent</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputEmail3" class="control-label col-form-label"><?php echo $lang['add-title20'] ?></label>
                                             <div class="input-group mb-3">
@@ -615,13 +632,13 @@ $order_prefix = $settings->prefix;
                                             </h4>
                                         </div>
                                         <!-- crear tarifa de envios si no existe-->
-                                        <div class="col-md-6 text-right">
+                                        <!-- <div class="col-md-6 text-right">
                                             <div align="">
                                                 <a href="shipping_tariffs_add.php" class="btn btn-default mb-2"> <span class="ti-shortcode"></span>
-                                                    <?php echo $lang['leftorder17712'] ?>
+                                                    <php echo $lang['leftorder17712'] ?>
                                                 </a>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
                                     </div>
 
@@ -899,6 +916,7 @@ $order_prefix = $settings->prefix;
                         </div>
                     </div>
             </form>
+            <!-- <php include('views/google_map/googlemapcode.php'); ?> -->
             <?php include('views/modals/modal_add_user_shipment.php'); ?>
             <?php include('views/modals/modal_add_recipient_shipment.php'); ?>
             <?php include('views/modals/modal_add_addresses_user.php'); ?>

@@ -1,0 +1,5 @@
+Deprixa Pro - Courier & Logistics System v8.2 is successfully installed.
+You can now login using your email or username:
+
+Usernameadmin
+Password 09731
