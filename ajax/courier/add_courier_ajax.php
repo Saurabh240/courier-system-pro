@@ -166,7 +166,7 @@ if (empty($errors)) {
     if ($shipment_id !== null) {
 
         if (isset($_POST["packages"])) {
-
+            // print_r($_POST["packages"]); die();
             $packages = json_decode($_POST['packages']);
 
             $sumador_total = 0;

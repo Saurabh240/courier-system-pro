@@ -491,7 +491,7 @@ function loadPackages() {
       item.fixed_value +
       '" onkeypress="return isNumberKey(event, this)"  name="fixed_value" id="fixedValue_' +
       index +
-      '" class="form-control input-sm number_only" data-toggle="tooltip" data-placement="bottom" title="' +
+      '" class="form-control input-sm number_only fixed_value" data-toggle="tooltip" data-placement="bottom" title="' +
       translate_charge +
       '"/>' +
       "</div>" +

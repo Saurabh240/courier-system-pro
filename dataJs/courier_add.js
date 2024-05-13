@@ -436,7 +436,7 @@ function loadPackages() {
       item.fixed_value +
       '" onkeypress="return isNumberKey(event, this)"  name="fixed_value" id="fixedValue_' +
       index +
-      '" class="form-control input-sm number_only" data-toggle="tooltip" data-placement="bottom" title="' +
+      '" class="form-control input-sm number_only fixed_value" data-toggle="tooltip" data-placement="bottom" title="' +
       translate_charge +
       '"/>' +
       "</div>" +
@@ -589,7 +589,10 @@ function calculateFinalTotal(element = null) {
     var length = parseFloat(item.length);
     var width = parseFloat(item.width);
     var height = parseFloat(item.height);
+    // var baseRate = localStorage.getItem('baseRate');
     var fixed_value = parseFloat(item.fixed_value);
+    // var fixed_value = parseFloat(baseRate);
+    
     var declared_value = parseFloat(item.declared_value);
 
     var total_metric = (length * width * height) / core_meter;
@@ -644,19 +647,27 @@ function calculateFinalTotal(element = null) {
     $("#discount_value").val(0);
     return false;
   }
+  var shipmentfee = localStorage.getItem('shipmentfee');
 
-  $("#subtotal").html(sumador_total.toFixed(2));
+  $("#subtotal").html(shipmentfee);
   $("#discount").html(total_descuento.toFixed(2));
   $("#impuesto").html(total_impuesto.toFixed(2));
   $("#declared_value_label").html(total_valor_declarado.toFixed(2));
-  $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
+  var baseRate = localStorage.getItem('baseRate');
+  // $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
+  $("#fixed_value_label").html(baseRate);
   $("#insurance").html(total_seguro.toFixed(2));
   $("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
-  $("#total_envio").html(total_envio.toFixed(2));
+  var shipmentfee = localStorage.getItem('shipmentfee');
+  // alert(parseFloat(shipmentfee));
+  // alert(parseFloat(total_envio.toFixed(2)));
+  // parseInt(shipmentfee.toFixed(2))
+  // var subTotal = parseFloat(shipmentfee) + parseFloat(total_envio.toFixed(2));
+  $("#total_envio").html(shipmentfee);
   $("#total_weight").html(sumador_libras.toFixed(2));
   $("#total_vol_weight").html(sumador_volumetric.toFixed(2));
   $("#total_fixed").html(max_fixed_charge.toFixed(2));
-  $("#total_declared").html(sumador_valor_declarado.toFixed(2));
+  $("#total_declared").html(shipmentfee);
 }
 
 $("#invoice_form").on("submit", function (event) {
@@ -2052,64 +2063,127 @@ function cdp_showSuccess(messages, shipment_id) {
 }
 
 $("#calculate_invoice").on("click", function (event) {
-  var recipient_id = $("#recipient_id").val();
-  var recipient_address_id = $("#recipient_address_id").val();
-  var sender_id = $("#sender_id").val();
-  var sender_address_id = $("#sender_address_id").val();
-  var packages = JSON.stringify(packagesItems);
+  
+  // // var recipient_id = $("#recipient_id").val();
+  // // var recipient_address_id = $("#recipient_address_id").val();
+  // // var sender_id = $("#sender_id").val();
+  // // var sender_address_id = $("#sender_address_id").val();
+  // // var packages = JSON.stringify(packagesItems);
 
-  var tariffs_value = $("#tariffs_value").val();
-  var declared_value_tax = $("#declared_value_tax").val();
-  var insurance_value = $("#insurance_value").val();
-  var tax_value = $("#tax_value").val();
-  var discount_value = $("#discount_value").val();
-  var reexpedicion_value = $("#reexpedicion_value").val();
-  var price_lb = $("#price_lb").val();
-  var insured_value = $("#insured_value").val();
+  // // var tariffs_value = $("#tariffs_value").val();
+  // // var declared_value_tax = $("#declared_value_tax").val();
+  // // var insurance_value = $("#insurance_value").val();
+  // // var tax_value = $("#tax_value").val();
+  // // var discount_value = $("#discount_value").val();
+  // // var reexpedicion_value = $("#reexpedicion_value").val();
+  // // var price_lb = $("#price_lb").val();
+  // // var insured_value = $("#insured_value").val();
 
-  reexpedicion_value = parseFloat(reexpedicion_value);
-  insured_value = parseFloat(insured_value);
-  price_lb = parseFloat(price_lb);
+  // // reexpedicion_value = parseFloat(reexpedicion_value);
+  // // insured_value = parseFloat(insured_value);
+  // // price_lb = parseFloat(price_lb);
 
-  var data = {
-    packages: packages,
-    sender_id: sender_id,
-    sender_address: sender_address_id,
-    recipient_address: recipient_address_id,
-    recipient_id: recipient_id,
-    tariffs_value: tariffs_value,
-    declared_value_tax: declared_value_tax,
-    insurance_value: insurance_value,
-    tax_value: tax_value,
-    discount_value: discount_value,
-    reexpedicion_value: reexpedicion_value,
-    price_lb: price_lb,
-    insured_value: insured_value,
-  };
+  // // var data = {
+  // //   packages: packages,
+  // //   sender_id: sender_id,
+  // //   sender_address: sender_address_id,
+  // //   recipient_address: recipient_address_id,
+  // //   recipient_id: recipient_id,
+  // //   tariffs_value: tariffs_value,
+  // //   declared_value_tax: declared_value_tax,
+  // //   insurance_value: insurance_value,
+  // //   tax_value: tax_value,
+  // //   discount_value: discount_value,
+  // //   reexpedicion_value: reexpedicion_value,
+  // //   price_lb: price_lb,
+  // //   insured_value: insured_value,
+  // };
 
-  $.ajax({
-    type: "POST",
-    data: data,
-    url: "ajax/courier/get_price_range_weight_tariffs_ajax.php",
-    dataType: "json",
-    beforeSend: function (objeto) {},
-    success: function (data) {
-      if (data.success) {
+  // $.ajax({
+  //   type: "POST",
+  //   data: data,
+  //   url: "ajax/courier/get_price_range_weight_tariffs_ajax.php",
+  //   dataType: "json",
+  //   beforeSend: function (objeto) {},
+  //   success: function (data) {
+  //     if (data.success) {
         $("#table-totals").removeClass("d-none");
         $("#create_invoice").attr("disabled", false);
-        $("#price_lb").val(data.data.price);
+  //       $("#price_lb").val(data.data.price);
         calculateFinalTotal();
-      } else {
-        $("#table-totals").addClass("d-none");
-        $("#create_invoice").attr("disabled", true);
-        Swal.fire({
-          title: "Error!",
-          text: data.error,
-          icon: "error",
-          confirmButtonText: "Ok",
-        });
-      }
-    },
-  });
+  //     } else {
+  //       $("#table-totals").addClass("d-none");
+  //       $("#create_invoice").attr("disabled", true);
+  //       Swal.fire({
+  //         title: "Error!",
+  //         text: data.error,
+  //         icon: "error",
+  //         confirmButtonText: "Ok",
+  //       });
+  //     }
+  //   },
+  // });
   event.preventDefault();
 });
+$(document).ready(function(){
+  var senderadd = "";
+  var receiveradd = "";
+  var deliveryType = "";
+  $('#sender_address_id').on('select2:select', function (e) {
+    // Get the selected data
+    var selectedData = e.params.data;
+    
+    // Get the selected value and text
+    // var selectedValue = selectedData.id;
+    senderadd = selectedData.text;
+
+    // Display the selected value and text
+    // console.log("Selected value:", selectedValue);
+
+     $('#recipient_address_id').on('select2:select', function (e) {
+    // Get the selected data
+    var selectedData = e.params.data;
+    
+    // Get the selected value and text
+    // var selectedValue = selectedData.id;
+    var receiveradd = selectedData.text;
+
+    // Display the selected value and text
+    $(document).on('change','#deliveryType',function(){
+      deliveryType =  $(this).val();
+      // alert(deliveryType);
+      calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
+    })
+    
+  });
+
+    
+  });
+  
+  // Function to calculate distance between two coordinates and update distance input
+  function calculateAndDisplayDistance(origin, destination, deliveryType) {
+    // AJAX request to calculate distance
+    $.ajax({
+        type: 'POST',
+        url: 'ajax/courier/calculate_distance.php', // Replace with your PHP script for calculating distance
+        data: { 'origin': origin, 'destination': destination, 'deliveryType':deliveryType },
+        dataType: 'json',
+        success: function(data) {
+            console.log("All",data);
+            // Update distance input with calculated distance
+            $('#distance').val(data.distance);
+            // $('.fixed_value').val(data.shipmentfee);
+            $('.fixed_value').val(data.baseRate);
+            localStorage.setItem('baseRate', data.baseRate)
+            localStorage.setItem('shipmentfee', data.shipmentfee)
+            
+            
+        },
+        error: function() {
+            // Handle error
+            alert('Error calculating distance.');
+        }
+    });
+  } 
+});
+
