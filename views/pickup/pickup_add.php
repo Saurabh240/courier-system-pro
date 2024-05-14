@@ -276,7 +276,19 @@ $userData = $user->cdp_getUserData();
                                                 </select>
                                             </div>
                                         </div>
-
+                                        
+                                        <div class="form-group col-md-3">
+                                            <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
+                                            <div class="input-group mb-3">
+                                                <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
+                                                    <option value="" selected>Select Delivery Type</option>
+                                                    <option value="Next day">Next day</option>
+                                                    <option value="Same day">Same day</option>
+                                                    <option value="Rush">Rush</option>
+                                                    <option value="Urgent">Urgent</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
                                         <div class="col-md-4" style="display: none;">
                                             <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['add-title1555'] ?></i></label>

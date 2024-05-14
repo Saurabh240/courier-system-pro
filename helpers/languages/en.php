@@ -611,7 +611,7 @@ $lang = array(
 	"left-menu-sidebar-0" => "branch",
 	"left-menu-sidebar-00" => "Locker",
 	"left-menu-sidebar-1" => "Create new shipment",
-	"left-menu-sidebar-2" => "Control Panel",
+	"left-menu-sidebar-2" => "Home",
 	"left-menu-sidebar-3" => "Application Management",
 	"left-menu-sidebar-4" => "All submissions",
 
@@ -635,7 +635,7 @@ $lang = array(
 
 	"left-menu-sidebar-18" => "Pickups",
 	"left-menu-sidebar-19" => "Collection Control Panel",
-	"left-menu-sidebar-20" => "Create Pickup",
+	"left-menu-sidebar-20" => "Order Now",
 	"left-menu-sidebar-21" => "Pickup List",
 
 
@@ -759,7 +759,7 @@ $lang = array(
 	"dash-general-33" => "Total pending accounts",
 	"dash-general-34" => "Virtual address for Locker packages",
 	"dash-general-35" => "Shipment Summary",
-	"dash-general-36" => "Pickup Summary",
+	"dash-general-36" => "Order Summary",
 	"dash-general-37" => "Total pending packets logged",
 	"dash-general-38" => "Line 1 Address",
 	"dash-general-39" => "Line 2 Address",

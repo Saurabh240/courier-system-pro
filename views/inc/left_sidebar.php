@@ -51,7 +51,7 @@
 					</li>
 
                     <!-- Module online shopping-->
-					<li class="sidebar-item">
+					<!-- <li class="sidebar-item">
 						<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 							<i class="mdi mdi-cart-outline"></i>
 							<span class="hide-menu"><?php echo $lang['left-menu-sidebar-5'] ?></span>
@@ -102,7 +102,7 @@
 							</li>
 
 						</ul>
-					</li>
+					</li> -->
 
 
 					<!-- Module shipment-->
@@ -968,8 +968,14 @@
 						</a>
 					</li>
 
-
 					<li class="sidebar-item">
+						<a class="sidebar-link waves-effect waves-dark" href="recipients_list.php" aria-expanded="false"><i class="fas fa-users"></i>
+							<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-62'] ?> </span>
+						</a>
+					</li>
+
+
+					<!-- <li class="sidebar-item">
 						<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-codepen"></i>
 							<span class="hide-menu"><?php echo $lang['left-menu-sidebar-5'] ?></span>
 						</a>
@@ -1003,7 +1009,7 @@
 
 
 						</ul>
-					</li>
+					</li> -->
 
 					<li class="sidebar-item">
 						<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-package"></i>
@@ -1087,7 +1093,7 @@
 
 
 							<!-- Module consolidate-->
-							<li class="sidebar-item">
+							<!-- <li class="sidebar-item">
 								<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 									<i class="fas fas fa-boxes"></i>
 									<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-2233333312'] ?></span>
@@ -1108,16 +1114,9 @@
 										</a>
 									</li>
 								</ul>
-							</li>
+							</li> -->
 						</ul>
 					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link waves-effect waves-dark" href="recipients_list.php" aria-expanded="false"><i class="fas fa-users"></i>
-							<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-62'] ?> </span>
-						</a>
-					</li>
-
 
 					<li class="sidebar-item">
 						<a class="sidebar-link waves-effect waves-dark" href="customers_profile_edit.php?user=<?php echo $userData->id; ?>" aria-expanded="false"><i class="mdi mdi-account"></i>

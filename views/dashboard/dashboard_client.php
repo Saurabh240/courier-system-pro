@@ -125,8 +125,7 @@ foreach ($data as $row) {
             <!-- ============================================================== -->
             <div class="container-fluid">
 
-                <div class="row">
-                    <!-- Earning Reports -->
+                <!-- <div class="row">
                     <div class="col-xl-4 col-md-4 mb-2">
                       <div class="card">
                         <div class="card-body pb-4">
@@ -226,7 +225,6 @@ foreach ($data as $row) {
                         </div>
                       </div>
                     </div>
-                    <!--/ Earning Reports -->
 
                      <div class="col-md-8 col-12 col-xl-12 mb-4">
                         <div class="card">
@@ -243,9 +241,7 @@ foreach ($data as $row) {
                                         <div><br></div>
                                         <div class="pb-0">
                                             <div class="row">
-                                                <!-- Primer grupo de 3 elementos -->
                                                 <div class="col-sm-6 col-md-6 col-lg-6">
-                                                    <!-- Primer elemento contador de envios -->
                                                     <div class="col-lg-12 col-md-12 mb-2">
                                                         <div class="d-flex align-items-center">
                                                             <div class="m-r-10">
@@ -269,7 +265,6 @@ foreach ($data as $row) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- Segundo elemento contador de recogida envio -->
                                                     <div class="col-lg-12 col-md-12 mb-2">
                                                         <div class="d-flex align-items-center">
                                                             <div class="m-r-10"><a href="pickup_list.php"><span class="text-cyan display-7"><i class="mdi mdi-star-circlemdi mdi-clock-fast"></i></span> </a>
@@ -288,7 +283,6 @@ foreach ($data as $row) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- Tercer elemento contador de consolidados de envios-->
                                                     <div class="col-lg-12 col-md-12 mb-2">
                                                         <div class="d-flex align-items-center">
                                                             <div class="m-r-10"><a href="consolidate_list.php"><span class="text-danger display-7"><i class="mdi mdi-gift"></i></span></a>
@@ -309,9 +303,7 @@ foreach ($data as $row) {
                                                     </div>
                                                 </div>
                                           
-                                                <!-- Segundo grupo de 3 elementos -->
                                                 <div class="col-sm-6 col-md-6 col-lg-6">
-                                                    <!-- Cuarto elemento contador de cuentas por cobrar -->
                                                     <div class="col-lg-12 col-md-12 mb-2">
                                                         <div class="d-flex align-items-center">
                                                             <div class="m-r-10"><a href="courier_list.php"><span class="text-success display-7"><i class="mdi mdi-package-down"></i></span></a>
@@ -330,7 +322,6 @@ foreach ($data as $row) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- Quinto elemento contador de pre alertas -->
                                                     <div class="col-lg-12 col-md-12 mb-2">
                                                         <div class="d-flex align-items-center">
                                                             <div class="m-r-10"><a href="prealert_list.php"><span class="text-warning display-7"><i class="mdi mdi-clock-alert"></i></span></a>
@@ -349,7 +340,6 @@ foreach ($data as $row) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- Sexto elemento de contador de paquetes -->
                                                     <div class="col-lg-12 col-md-12 mb-2">
                                                         <div class="d-flex align-items-center">
                                                             <div class="m-r-10"><a href="customer_packages_list.php"><span class="text-success display-7"><i class="fas fa-cube"></i></span></a>
@@ -371,7 +361,7 @@ foreach ($data as $row) {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
 
                                     <div class="col-sm-4 col-md-4 col-lg-4">
@@ -381,7 +371,7 @@ foreach ($data as $row) {
                                                 <small class="text-muted"><?php echo $lang['messagesform98'] ?></small>
                                             </div>
                                         </div>
-                                        <div><br></div>
+                                        <div><br></div> 
                                         <div class="pb-0">
                                             <ul class="p-0 m-0">
                                                 <li class="d-flex mb-2">
@@ -486,16 +476,16 @@ foreach ($data as $row) {
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    <!-- </div> 
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="card">
                             <div class="card-body">
@@ -534,7 +524,7 @@ foreach ($data as $row) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
             <?php include 'views/inc/footer.php'; ?>
