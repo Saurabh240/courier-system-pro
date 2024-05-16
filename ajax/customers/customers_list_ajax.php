@@ -85,7 +85,7 @@ if ($numrows > 0) { ?>
 			<tr>
 				<th><b><?php echo $lang['edit-clien38'] ?></b></th>
 				<th class="text-center"><b><?php echo $lang['edit-clien39'] ?></b></th>
-				<th class="text-center"><b><?php echo $lang['user-account21000'] ?></b></th>
+				<!-- <th class="text-center"><b><?php echo $lang['user-account21000'] ?></b></th> -->
 				<th class="text-center"><b><?php echo $lang['edit-clien40'] ?></b></th>
 				<th class="text-center"><b><?php echo $lang['edit-clien41'] ?></b></th>
 				<th class="text-center"><b><?php echo $lang['edit-clien42'] ?></b></th>

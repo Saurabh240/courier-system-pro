@@ -254,7 +254,7 @@ $userData = $user->cdp_getUserData();
                                     <br>
                                     <div class="row">
 
-                                        <div class="form-group col-md-6">
+                                        <!-- <div class="form-group col-md-6">
                                             <label for="inputlname" class="control-label col-form-label"><?php echo $lang['itemcategory'] ?></label>
                                             <div class="input-group">
                                                 <select class="custom-select col-12" id="order_item_category" name="order_item_category" required>
@@ -264,9 +264,9 @@ $userData = $user->cdp_getUserData();
                                                 </select>
                                             </div>
 
-                                        </div>
+                                        </div> -->
 
-                                        <div class="form-group col-md-6">
+                                        <!-- <div class="form-group col-md-6">
                                             <label for="inputlname" class="control-label col-form-label"><?php echo $lang['add-title17'] ?></label>
                                             <div class="input-group mb-3">
                                                 <select class="custom-select col-12" id="order_package" name="order_package">
@@ -275,17 +275,17 @@ $userData = $user->cdp_getUserData();
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
                                         <div class="form-group col-md-3">
                                             <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
                                             <div class="input-group mb-3">
                                                 <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
                                                     <option value="" selected>Select Delivery Type</option>
-                                                    <option value="Next day">Next day</option>
-                                                    <option value="Same day">Same day</option>
-                                                    <option value="Rush">Rush</option>
-                                                    <option value="Urgent">Urgent</option>
+                                                    <option value="Next day">Next day - (Delivered by 5 pm next day)</option>
+                                                    <option value="Same day">Same day - (Delivered by 5 pm)</option>
+                                                    <option value="Rush">Rush - (Delivered within 3 hours)</option>
+                                                    <option value="Urgent">Urgent - (Delivered within 90 minutes)</option>
                                                 </select>
                                             </div>
                                         </div>

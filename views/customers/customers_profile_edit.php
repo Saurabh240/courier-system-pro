@@ -150,9 +150,9 @@ $user_addreses = $db->cdp_registros();
                                     <h6 class="card-subtitle"><span><?php echo $lang['user_manage2'] ?> <i class="icon-double-angle-right"></i></span>
                                         <div class="badge badge-pill badge-light font-16"><span class="ti-user text-warning"></span> <?php echo $row->username; ?></div>
                                     </h6>
-                                    <h6 class="card-subtitle"><span><?php echo $lang['user-account21000'] ?> <i class="icon-double-angle-right"></i></span>
+                                    <!-- <h6 class="card-subtitle"><span><?php echo $lang['user-account21000'] ?> <i class="icon-double-angle-right"></i></span>
                                         <div class="badge badge-pill badge-light font-16"> <?php echo $row->locker; ?></div>
-                                    </h6>
+                                    </h6> -->
                                 </center>
                             </div>
                             <div>
