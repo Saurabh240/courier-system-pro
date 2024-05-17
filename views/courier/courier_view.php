@@ -125,6 +125,7 @@ if ($row_order->status_invoice == 1) {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html dir="<?php echo $direction_layout; ?>" lang="en">
 
@@ -145,6 +146,7 @@ if ($row_order->status_invoice == 1) {
 </head>
 
 <body>
+<!-- <php echo"<pre>"; print_r($row_order); die("it is here"); ?> -->
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -458,7 +460,7 @@ if ($row_order->status_invoice == 1) {
                                 $db->cdp_query("SELECT * FROM cdb_payments_gateway  where order_track ='" . $track_c . "'");
 
                                 $order_ = $db->cdp_registro();
-
+                                
                                 if ($order_) {
 
                                     if ($order_->status === 'COMPLETED' || $order_->status === 'succeeded' || $order_->status === 'success') {
@@ -1011,7 +1013,7 @@ if ($row_order->status_invoice == 1) {
                                                 $total_valor_declarado = 0;
 
                                                 foreach ($order_items as $row_order_item) {
-
+                                                    
                                                     $description_item = $row_order_item->order_item_description;
                                                     $weight_item =  (float) $row_order_item->order_item_weight;
                                                     $length_item =  (float) $row_order_item->order_item_length;
@@ -1063,7 +1065,7 @@ if ($row_order->status_invoice == 1) {
                                                 if ($sumador_valor_declarado > $core->min_cost_declared_tax) {
                                                     $total_valor_declarado = $sumador_valor_declarado * $row_order->declared_value / 100;
                                                 }
-
+                                                
                                                 $total_descuento = $sumador_total * $row_order->tax_discount / 100;
                                                 $total_peso = $sumador_libras + $sumador_volumetric;
                                                 $total_seguro = $row_order->tax_insurance_value * $row_order->total_insured_value / 100;
@@ -1095,7 +1097,7 @@ if ($row_order->status_invoice == 1) {
                                                 <td></td>
                                                 <td></td>
                                                 <td colspan="2" class="text-right"><b><?php echo $lang['leftorder2021'] ?></b></td>
-                                                <td class="text-center"><?php echo $sumador_total; ?></td>
+                                                <td class="text-center"><?php echo floatval($row_order->total_order); ?></td>
                                                 <td></td>
                                             </tr>
 
@@ -1170,7 +1172,7 @@ if ($row_order->status_invoice == 1) {
                                                 <td class="text-center" id="impuesto"><?php echo $total_valor_declarado; ?></td>
                                                 <td class="text-center" id="reexp"><?php echo $sumador_fixed_charge; ?></td>
                                                 <td class="text-center" id="reexp"><?php echo cdb_money_format($row_order->total_reexp); ?></td>
-                                                <td class="text-center" id="total_envio"><b><?php echo $total_envio; ?></b></td>
+                                                <td class="text-center" id="total_envio"><b><?php echo floatval($row_order->total_order); ?></b></td>
                                             </tr>
                             
                                         </tbody>

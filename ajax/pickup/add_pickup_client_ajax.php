@@ -32,7 +32,7 @@ $user = new User;
 $core = new Core;
 $errors = array();
 
-
+// echo "<pre>"; print_r($_POST); die();
 if (empty($_POST['sender_id']))
     $errors['sender_id'] = $lang['validate_field_ajax150'];
 
@@ -156,7 +156,7 @@ if (empty($errors)) {
                     'height' =>  $package->height,
                     'weight' =>  $package->weight,
                     'declared_value' =>  $package->declared_value,
-                    'fixed_value' =>  $package->fixed_value,
+                    'fixed_value' =>  $_POST["fixed_rate"],
                 );
 
                 cdp_insertCourierShipmentPackages($dataAddresses);
@@ -192,13 +192,13 @@ if (empty($errors)) {
             $total_peso = $sumador_libras + $sumador_volumetric;
             $total_seguro = $insured_value * $insurance_value / 100;
             $total_impuesto_aduanero = $total_peso * $tariffs_value;
-            $total_envio = ($sumador_total - $total_descuento) + $total_seguro + $total_impuesto + $total_impuesto_aduanero + $total_valor_declarado + $max_fixed_charge + $reexpedicion_value;
+            $total_envio = $_POST["pickuptotal"];
         }
 
         $dataShipmentUpdateTotals = array(
             'order_id' =>  $shipment_id,
             'value_weight' =>  floatval($price_lb),
-            'sub_total' =>  floatval($sumador_total),
+            'sub_total' =>  $_POST["pickuptotal"],
             'tax_discount' =>  floatval($discount_value),
             'total_insured_value' => floatval($insured_value),
             'tax_insurance_value' => floatval($insurance_value),
