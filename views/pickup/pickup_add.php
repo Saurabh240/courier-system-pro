@@ -280,10 +280,10 @@ $userData = $user->cdp_getUserData();
                                             <div class="input-group mb-3">
                                                 <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
                                                     <option value="" selected>Select Delivery Type</option>
-                                                    <option value="Next day">Next day</option>
-                                                    <option value="Same day">Same day</option>
-                                                    <option value="Rush">Rush</option>
-                                                    <option value="Urgent">Urgent</option>
+                                                    <option value="Next day">Next day - (Delivered by 5 pm next day)</option>
+                                                    <option value="Same day">Same day - (Delivered by 5 pm)</option>
+                                                    <option value="Rush">Rush - (Delivered within 3 hours)</option>
+                                                    <option value="Urgent">Urgent - (Delivered within 90 minutes)</option>
                                                 </select>
                                             </div>
                                         </div>
