@@ -10,22 +10,51 @@ if (isset($_POST["origin"]) && isset($_POST["destination"]) && isset($_POST["del
     $courier['distance'] = calculateDistance($origin, $destination, $apiKey);
     if ($courier['distance'] !== false) {
         // Calculate shipping price based on distance and delivery type
-        switch ($deliveryType) {
-            case 'Next day':
-                $baseRate = 5;
-                break;
-            case 'Same day':
-                $baseRate = 10;
-                break;
-            case 'Rush':
-                $baseRate = 20;
-                break;
-            case 'Urgent':
-                $baseRate = 25;
-                break;
-            default:
-                return "Invalid delivery type";
-        }
+            // Determine base rate and additional rate per kilometer based on delivery type
+    switch ($deliveryType) {
+        case 'SAME DAY (1PM to 4PM)':
+            $baseRate = 10.00;
+            $additionalRatePerKm = 0.55;
+            break;
+        case 'SAME DAY (BEFORE 5PM)':
+            $baseRate = 10.00;
+            $additionalRatePerKm = 0.50;
+            break;
+        case 'RUSH (4 HOURS)':
+            $baseRate = 10.00;
+            $additionalRatePerKm = 0.55;
+            break;
+        case 'RUSH (3 HOURS)':
+            $baseRate = 15.00;
+            $additionalRatePerKm = 0.70;
+            break;
+        case 'RUSH (2 HOURS)':
+            $baseRate = 20.00;
+            $additionalRatePerKm = 0.75;
+            break;
+        case 'URGENT (90 MINUTES)':
+            $baseRate = 25.00;
+            $additionalRatePerKm = 0.75;
+            break;
+        case 'NEXT DAY (BEFORE 5PM)':
+            $baseRate = 5.00;
+            $additionalRatePerKm = 0.55;
+            break;
+        case 'NEXT DAY (BEFORE 2PM)':
+            $baseRate = 7.00;
+            $additionalRatePerKm = 0.55;
+            break;
+        case 'NEXT DAY (BEFORE 11:30AM)':
+            $baseRate = 10.00;
+            $additionalRatePerKm = 0.75;
+            break;
+        case 'NEXT DAY (BEFORE 10:30AM)':
+            $baseRate = 15.00;
+            $additionalRatePerKm = 0.75;
+            break;
+        default:
+            return "Invalid delivery type";
+    }
         $courier['baseRate'] = $baseRate;
         $courier['shipmentfee'] = calculateShippingPrice($courier['distance'], $deliveryType);
         // print_r($courier); die();
@@ -59,21 +88,49 @@ function calculateDistance($origin, $destination, $apiKey) {
 // Function to calculate shipping price based on distance and delivery type
 function calculateShippingPrice($distance, $deliveryType) {
     $baseRate = 0;
-    $additionalRatePerKm = 0.75;
+    $additionalRatePerKm = 0;
 
-    // Determine base rate based on delivery type
+    // Determine base rate and additional rate per kilometer based on delivery type
     switch ($deliveryType) {
-        case 'Next day':
-            $baseRate = 5;
+        case 'SAME DAY (1PM to 4PM)':
+            $baseRate = 10.00;
+            $additionalRatePerKm = 0.55;
             break;
-        case 'Same day':
-            $baseRate = 10;
+        case 'SAME DAY (BEFORE 5PM)':
+            $baseRate = 10.00;
+            $additionalRatePerKm = 0.50;
             break;
-        case 'Rush':
-            $baseRate = 20;
+        case 'RUSH (4 HOURS)':
+            $baseRate = 10.00;
+            $additionalRatePerKm = 0.55;
             break;
-        case 'Urgent':
-            $baseRate = 25;
+        case 'RUSH (3 HOURS)':
+            $baseRate = 15.00;
+            $additionalRatePerKm = 0.70;
+            break;
+        case 'RUSH (2 HOURS)':
+            $baseRate = 20.00;
+            $additionalRatePerKm = 0.75;
+            break;
+        case 'URGENT (90 MINUTES)':
+            $baseRate = 25.00;
+            $additionalRatePerKm = 0.75;
+            break;
+        case 'NEXT DAY (BEFORE 5PM)':
+            $baseRate = 5.00;
+            $additionalRatePerKm = 0.55;
+            break;
+        case 'NEXT DAY (BEFORE 2PM)':
+            $baseRate = 7.00;
+            $additionalRatePerKm = 0.55;
+            break;
+        case 'NEXT DAY (BEFORE 11:30AM)':
+            $baseRate = 10.00;
+            $additionalRatePerKm = 0.75;
+            break;
+        case 'NEXT DAY (BEFORE 10:30AM)':
+            $baseRate = 15.00;
+            $additionalRatePerKm = 0.75;
             break;
         default:
             return "Invalid delivery type";
@@ -87,5 +144,4 @@ function calculateShippingPrice($distance, $deliveryType) {
     $totalPrice = $baseRate + $additionalCharge;
     return $totalPrice;
 }
-
 ?>

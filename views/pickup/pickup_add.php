@@ -189,7 +189,7 @@ $userData = $user->cdp_getUserData();
                                             <div class="row">
                                                  <div class="col-md-12">
                                                     <div class="input-group-append input-sm">
-                                                    <label><input type="checkbox" id="id_of_your_checkboxsender" style="margin-left: 12px; margin-top: 10px;"> Add More Address</label>
+                                                    <label><input type="checkbox" id="id_of_your_checkboxsender" style="margin-left: 12px; margin-top: 10px;"> Send to a different Address </label>
                                                  </div>
                                                 </div>
                                                 </div>
@@ -248,7 +248,7 @@ $userData = $user->cdp_getUserData();
                                                 <div class="row">
                                                  <div class="col-md-12">
                                                     <div class="input-group-append input-sm">
-                                                    <label><input type="checkbox" id="id_of_your_checkboxreceiver" style="margin-left: 12px; margin-top: 10px;"> Add More Address</label>
+                                                    <label><input type="checkbox" id="id_of_your_checkboxreceiver" style="margin-left: 12px; margin-top: 10px;"> Send to a different Address</label>
                                                  </div>
                                                 </div>
                                             </div>
@@ -280,15 +280,21 @@ $userData = $user->cdp_getUserData();
                                             <div class="input-group mb-3">
                                                 <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
                                                     <option value="" selected>Select Delivery Type</option>
-                                                    <option value="Next day">Next day - (Delivered by 5 pm next day)</option>
-                                                    <option value="Same day">Same day - (Delivered by 5 pm)</option>
-                                                    <option value="Rush">Rush - (Delivered within 3 hours)</option>
-                                                    <option value="Urgent">Urgent - (Delivered within 90 minutes)</option>
+                                                    <option value="SAME DAY (1PM to 4PM)">SAME DAY (1PM to 4PM)</option>
+                                                    <option value="SAME DAY (BEFORE 5PM)">SAME DAY (BEFORE 5PM)</option>
+                                                    <option value="RUSH (4 HOURS)">RUSH (4 HOURS)</option>
+                                                    <option value="RUSH (3 HOURS)">RUSH (3 HOURS)</option>
+                                                    <option value="RUSH (2 HOURS)">RUSH (2 HOURS)</option>
+                                                    <option value="URGENT (90 MINUTES)">URGENT (90 MINUTES)</option>
+                                                    <option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
+                                                    <option value="NEXT DAY (BEFORE 2PM)">NEXT DAY (BEFORE 2PM)</option>
+                                                    <option value="NEXT DAY (BEFORE 11:30AM)">NEXT DAY (BEFORE 11:30AM)</option>
+                                                    <option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option>
                                                 </select>
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-md-3">
+                                        <!-- <div class="form-group col-md-3">
                                             <label for="inputlname" class="control-label col-form-label"><?php echo $lang['itemcategory'] ?></label>
                                             <div class="input-group">
                                                 <select class="custom-select col-12" id="order_item_category" name="order_item_category" required>
@@ -309,7 +315,7 @@ $userData = $user->cdp_getUserData();
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
                                         
 
