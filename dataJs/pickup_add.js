@@ -603,7 +603,9 @@ function calculateFinalTotal(element = null) {
     var length = parseFloat(item.length);
     var width = parseFloat(item.width);
     var height = parseFloat(item.height);
+    // var baseRate = localStorage.getItem('baseRate');
     var fixed_value = parseFloat(item.fixed_value);
+    // var fixed_value = parseFloat(baseRate);
     var declared_value = parseFloat(item.declared_value);
 
     var total_metric = (length * width * height) / core_meter;
@@ -659,19 +661,29 @@ function calculateFinalTotal(element = null) {
     $("#discount_value").val(0);
     return false;
   }
+  var shipmentfee = localStorage.getItem('shipmentfee');
 
-  $("#subtotal").html(sumador_total.toFixed(2));
+  $("#subtotal").html(shipmentfee);
   $("#discount").html(total_descuento.toFixed(2));
   $("#impuesto").html(total_impuesto.toFixed(2));
   $("#declared_value_label").html(total_valor_declarado.toFixed(2));
-  $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
+  var baseRate = localStorage.getItem('baseRate');
+  // $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
+  $("#fixed_value_label").html(baseRate);
+  $("#fixed_value_ajax").html(baseRate);
   $("#insurance").html(total_seguro.toFixed(2));
   $("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
-  $("#total_envio").html(total_envio.toFixed(2));
+  var shipmentfee = localStorage.getItem('shipmentfee');
+  // alert(parseFloat(shipmentfee));
+  // alert(parseFloat(total_envio.toFixed(2)));
+  // parseInt(shipmentfee.toFixed(2))
+  // var subTotal = parseFloat(shipmentfee) + parseFloat(total_envio.toFixed(2));
+  $("#total_envio").html(shipmentfee);
+  $("#total_envio_ajax").html(shipmentfee);
   $("#total_weight").html(sumador_libras.toFixed(2));
   $("#total_vol_weight").html(sumador_volumetric.toFixed(2));
   $("#total_fixed").html(max_fixed_charge.toFixed(2));
-  $("#total_declared").html(sumador_valor_declarado.toFixed(2));
+  $("#total_declared").html(shipmentfee);
 }
 
 $("#invoice_form").on("submit", function (event) {
@@ -682,88 +694,88 @@ $("#invoice_form").on("submit", function (event) {
 
   // sweealert 2, alerta error informacion de paquetes
 
-  for (let [i, val] of packagesItems.entries()) {
-      if ($.trim($("#description_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_description,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#description_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#qty_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_quantity,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#qty_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#weight_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_weight,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#weight_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#length_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_length,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#length_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#width_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_width,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#width_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#height_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_height,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#height_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#fixedValue_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_charge,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#fixedValue_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#declaredValue_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_declared,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#declaredValue_" + i).focus();
-          return false;
-      }
-  }
+  // for (let [i, val] of packagesItems.entries()) {
+  //     if ($.trim($("#description_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_description,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#description_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#qty_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_quantity,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#qty_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#weight_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_weight,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#weight_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#length_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_length,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#length_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#width_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_width,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#width_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#height_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_height,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#height_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#fixedValue_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_charge,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#fixedValue_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#declaredValue_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_declared,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#declaredValue_" + i).focus();
+  //         return false;
+  //     }
+  // }
 
   var prefix_check = $("#prefix_check").val();
   var code_prefix = $("#code_prefix").val();
@@ -799,6 +811,8 @@ $("#invoice_form").on("submit", function (event) {
   var tax_value = $("#tax_value").val();
   var declared_value_tax = $("#declared_value_tax").val();
   var tariffs_value = $("#tariffs_value").val();
+  var baseRate = localStorage.getItem('baseRate');
+  var shipmentfee = localStorage.getItem('shipmentfee');
 
   var deleted_file_ids = $("#deleted_file_ids").val();
 
@@ -808,6 +822,12 @@ $("#invoice_form").on("submit", function (event) {
 
   if (prefix_check) {
     data.append("prefix_check", prefix_check);
+  }
+  if (baseRate) {
+    data.append("fixed_rate", baseRate);
+  }
+  if (shipmentfee) {
+    data.append("pickuptotal", shipmentfee);
   }
   if (code_prefix) {
     data.append("code_prefix", code_prefix);
@@ -2026,47 +2046,127 @@ function cdp_showSuccess(messages, shipment_id) {
 }
 
 function getTariffs() {
-  var recipient_id = $("#recipient_id").val();
-  var recipient_address_id = $("#recipient_address_id").val();
-  var sender_id = $("#sender_id_temp").val();
-  var sender_address_id = $("#sender_address_id").val();
-  var packages = JSON.stringify(packagesItems);
+  // var recipient_id = $("#recipient_id").val();
+  // var recipient_address_id = $("#recipient_address_id").val();
+  // var sender_id = $("#sender_id_temp").val();
+  // var sender_address_id = $("#sender_address_id").val();
+  // var packages = JSON.stringify(packagesItems);
 
-  var data = {
-    packages: packages,
-    sender_id: sender_id,
-    sender_address: sender_address_id,
-    recipient_address: recipient_address_id,
-    recipient_id: recipient_id,
-  };
+  // var data = {
+  //   packages: packages,
+  //   sender_id: sender_id,
+  //   sender_address: sender_address_id,
+  //   recipient_address: recipient_address_id,
+  //   recipient_id: recipient_id,
+  // };
 
-  $.ajax({
-    type: "POST",
-    data: data,
-    url: "ajax/courier/get_price_range_weight_tariffs_ajax.php",
-    dataType: "json",
-    beforeSend: function (objeto) {
-      $(".resultados_ajax").html("Loading...");
-    },
-    success: function (data) {
-      if (data.success) {
+  // $.ajax({
+  //   type: "POST",
+  //   data: data,
+  //   url: "ajax/courier/get_price_range_weight_tariffs_ajax.php",
+  //   dataType: "json",
+  //   beforeSend: function (objeto) {
+  //     $(".resultados_ajax").html("Loading...");
+  //   },
+  //   success: function (data) {
+  //     if (data.success) {
         $("#table-totals").removeClass("d-none");
         $("#create_invoice").attr("disabled", false);
-        $("#price_lb").val(data.data.price);
-        $("#price_lb_label").html(data.data.price);
+        // $("#price_lb").val(data.data.price);
+        // $("#price_lb_label").html(data.data.price);
         calculateFinalTotal();
-      } else {
-        $("#table-totals").addClass("d-none");
-        $("#create_invoice").attr("disabled", true);
-        Swal.fire({
-          title: "Error!",
-          text: data.error,
-          icon: "error",
-          confirmButtonText: "Ok",
-        });
-      }
-    },
-  });
+//       } else {
+//         $("#table-totals").addClass("d-none");
+//         $("#create_invoice").attr("disabled", true);
+//         Swal.fire({
+//           title: "Error!",
+//           text: data.error,
+//           icon: "error",
+//           confirmButtonText: "Ok",
+//         });
+//       }
+//     },
+//   });
 }
 
 $("#calculate_invoice").on("click", getTariffs);
+
+$(document).ready(function(){
+  var senderadd = "";
+  var receiveradd = "";
+  var deliveryType = "";
+  $('#sender_address_id').on('select2:select', function (e) {
+    // Get the selected data
+    var selectedData = e.params.data;
+    
+    // Get the selected value and text
+    // var selectedValue = selectedData.id;
+    senderadd = selectedData.text;
+
+    // Display the selected value and text
+    console.log("Selected sender value:", senderadd);
+
+     $('#recipient_address_id').on('select2:select', function (e) {
+    // Get the selected data
+    var selectedData = e.params.data;
+    
+    // Get the selected value and text
+    // var selectedValue = selectedData.id;
+    var receiveradd = selectedData.text;
+
+    console.log("Selected receiver value:", receiveradd);
+    // Display the selected value and text
+    $(document).on('change','#deliveryType',function(){
+      deliveryType =  $(this).val();
+      
+      console.log("Selected delivery value:", deliveryType);
+      
+      calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
+    })
+    
+  });
+
+    
+  });
+  
+  // Function to calculate distance between two coordinates and update distance input
+  function calculateAndDisplayDistance(origin, destination, deliveryType) {
+    // AJAX request to calculate distance
+    $.ajax({
+        type: 'POST',
+        url: 'ajax/courier/calculate_distance.php', // Replace with your PHP script for calculating distance
+        data: { 'origin': origin, 'destination': destination, 'deliveryType':deliveryType },
+        dataType: 'json',
+        success: function(data) {
+            console.log("All",data);
+            // Update distance input with calculated distance
+            $('#distance').val(data.distance);
+            // $('.fixed_value').val(data.shipmentfee);
+            $('.fixed_value').val(data.baseRate);
+            localStorage.setItem('baseRate', data.baseRate)
+            localStorage.setItem('shipmentfee', data.shipmentfee)
+            
+            
+        },
+        error: function() {
+            // Handle error
+            alert('Error calculating distance.');
+        }
+    });
+  } 
+
+  $('#id_of_your_checkboxreceiver').click(function() {
+    if ($(this).is(':checked')) {
+      $('#add_address_recipient').removeAttr('disabled');
+    } else {
+        $('#add_address_recipient').attr('disabled', 'disabled');
+    }
+  });
+  $('#id_of_your_checkboxsender').click(function() {
+    if ($(this).is(':checked')) {
+      $('#add_address_sender').removeAttr('disabled');
+    } else {
+        $('#add_address_sender').attr('disabled', 'disabled');
+    }
+  });
+});

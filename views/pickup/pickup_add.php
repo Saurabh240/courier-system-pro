@@ -145,7 +145,6 @@ $userData = $user->cdp_getUserData();
                                 <div class="card-body">
                                     <h4 class="card-title"><i class="mdi mdi-information-outline" style="color:#36bea6"></i><?php echo $lang['langs_010']; ?></h4>
                                     <hr>
-
                                     <div class="resultados_ajax_add_user_modal_sender"></div>
                                     <div class="row">
                                         <div class="col-md-12 ">
@@ -185,7 +184,16 @@ $userData = $user->cdp_getUserData();
                                                         <button id="add_address_sender" data-type_user="user_customer" data-toggle="modal" data-target="#myModalAddUserAddresses" type="button" class="btn btn-default"><i class="fa fa-plus"></i></button>
                                                     </div>
                                                 </div>
+                                                
                                             </div>
+                                            <div class="row">
+                                                 <div class="col-md-12">
+                                                    <div class="input-group-append input-sm">
+                                                    <label><input type="checkbox" id="id_of_your_checkboxsender" style="margin-left: 12px; margin-top: 10px;"> Add More Address</label>
+                                                 </div>
+                                                </div>
+                                                </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -217,6 +225,7 @@ $userData = $user->cdp_getUserData();
                                                     </div>
                                                 </div>
                                             </div>
+                                                
                                         </div>
 
                                         <div class="col-md-12">
@@ -236,6 +245,12 @@ $userData = $user->cdp_getUserData();
                                                         <button disabled id="add_address_recipient" type="button" data-type_user="user_recipient" data-toggle="modal" data-target="#myModalAddRecipientAddresses" class="btn btn-default"><i class="fa fa-plus"></i></button>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                 <div class="col-md-12">
+                                                    <div class="input-group-append input-sm">
+                                                    <label><input type="checkbox" id="id_of_your_checkboxreceiver" style="margin-left: 12px; margin-top: 10px;"> Add More Address</label>
+                                                 </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -253,30 +268,13 @@ $userData = $user->cdp_getUserData();
                                     <h4 class="card-title"><i class="mdi mdi-book-multiple" style="color:#36bea6"></i> <?php echo $lang['add-title13'] ?></h4>
                                     <br>
                                     <div class="row">
-
-                                        <!-- <div class="form-group col-md-6">
-                                            <label for="inputlname" class="control-label col-form-label"><?php echo $lang['itemcategory'] ?></label>
-                                            <div class="input-group">
-                                                <select class="custom-select col-12" id="order_item_category" name="order_item_category" required>
-                                                    <?php foreach ($categories as $row) : ?>
-                                                        <option value="<?php echo $row->id; ?>"><?php echo $row->name_item; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-
-                                        </div> -->
-
-                                        <!-- <div class="form-group col-md-6">
-                                            <label for="inputlname" class="control-label col-form-label"><?php echo $lang['add-title17'] ?></label>
+                                    <div class="form-group col-md-3">
+                                            <label for="inputEmail3" class="control-label col-form-label">Distance</label>
                                             <div class="input-group mb-3">
-                                                <select class="custom-select col-12" id="order_package" name="order_package">
-                                                    <?php foreach ($packrow as $row) : ?>
-                                                        <option value="<?php echo $row->id; ?>"><?php echo $row->name_pack; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
+                                                <input type="text" name="distance" class="form-control" id="distance">
                                             </div>
-                                        </div> -->
-                                        
+                                        </div>
+
                                         <div class="form-group col-md-3">
                                             <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
                                             <div class="input-group mb-3">
@@ -289,6 +287,31 @@ $userData = $user->cdp_getUserData();
                                                 </select>
                                             </div>
                                         </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="inputlname" class="control-label col-form-label"><?php echo $lang['itemcategory'] ?></label>
+                                            <div class="input-group">
+                                                <select class="custom-select col-12" id="order_item_category" name="order_item_category" required>
+                                                    <?php foreach ($categories as $row) : ?>
+                                                        <option value="<?php echo $row->id; ?>"><?php echo $row->name_item; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="inputlname" class="control-label col-form-label"><?php echo $lang['add-title17'] ?></label>
+                                            <div class="input-group mb-3">
+                                                <select class="custom-select col-12" id="order_package" name="order_package">
+                                                    <?php foreach ($packrow as $row) : ?>
+                                                        <option value="<?php echo $row->id; ?>"><?php echo $row->name_pack; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        
 
                                         <div class="col-md-4" style="display: none;">
                                             <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['add-title1555'] ?></i></label>
@@ -350,45 +373,42 @@ $userData = $user->cdp_getUserData();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-12" style="width: 1060px;">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-md-12">
-                                            <h4 class="card-title">
-                                                <i class="fas fas fa-boxes" style="color:#36bea6"></i>
-                                                <?php echo $lang['left212'] ?>
-                                            </h4>
+                                            
                                         </div>
-                                    </div>
+                                    </div>  -->
 
                                     <!-- Listas item caja -->
-                                    <div id="data_items"></div>
+                                    <!-- <div id="data_items"></div> -->
 
                                     <!-- Boton adicionar caja al listado -->
-                                    <div class="col-md-3 text-left">
-                                        <button type="button" onclick="addPackage()" name="add_rows" id="add_rows" class="btn btn-outline-dark"><span class="fa fa-plus"></span> <?php echo $lang['left231'] ?></button>
-                                    </div>
+                                    <!-- <div class="col-md-3 text-left"> -->
+                                        <!-- <button type="button"  name="add_rows" id="add_rows" class="btn btn-outline-dark"><span class="fa fa-plus"></span> <php echo $lang['left231'] ?></button> -->
+                                    <!-- </div> -->
 
-                                    <div><br></div>
+                                    <!-- <div><br></div>
 
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <span class="text-secondary text-left"><?php echo $lang['leftorder17713'] ?></span>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <span class="text-secondary text-center" id="total_weight">0.00</span>
-                                        </div>
-                                        <div class="col-md-1 offset-3">
-                                            <span class="text-secondary text-center" id="total_vol_weight">0.00</span>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <span class="text-secondary text-center" id="total_fixed">0.00</span>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <span class="text-secondary text-center" id="total_declared">0.00</span>
-                                        </div>
-                                    </div>
+                                        <div class="col-md-4"> -->
+                                            <!-- <span class="text-secondary text-left"><php echo $lang['leftorder17713'] ?></span> -->
+                                        <!-- </div>
+                                        <div class="col-md-1"> -->
+                                            <!-- <span class="text-secondary text-center" id="total_weight">0.00</span> -->
+                                        <!-- </div>
+                                        <div class="col-md-1 offset-3"> -->
+                                            <!-- <span class="text-secondary text-center" id="total_vol_weight">0.00</span> -->
+                                        <!-- </div>
+                                        <div class="col-md-1"> -->
+                                            <!-- <span class="text-secondary text-center" id="total_fixed">0.00</span> -->
+                                        <!-- </div>
+                                        <div class="col-md-1"> -->
+                                            <!-- <span class="text-secondary text-center" id="total_declared">0.00</span> -->
+                                        <!-- </div>
+                                    </div> -->
                                     <hr>
 
                                     <div class="row" style="margin-top: 20px;">
@@ -570,7 +590,7 @@ $userData = $user->cdp_getUserData();
                                                             }
                                                             ?>
                                                             <span id="fixed_value_label"> 0.00</span>
-                                                            
+                                                            <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
                                                          </div>
                                                     </div>
 
@@ -586,6 +606,7 @@ $userData = $user->cdp_getUserData();
                                                             }
                                                             ?>
                                                             <span id="total_envio" class="green-bold"> 0.00</span>
+                                                            <input type="hidden" name="total_envio_ajax" id="total_envio_ajax">
                                                             
                                                          </div>
                                                     </div>
