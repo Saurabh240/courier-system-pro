@@ -945,7 +945,7 @@
 								<a href="javascript:void(0)" class="" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<h5 class="m-b-0 user-name font-medium"><?php echo $mensaje; ?>,&nbsp;&nbsp;</h5>
 									<span class="op-5 user-email"><?php echo $userData->fname; ?></span>
-									<!-- <br><?php echo $lang['left-menu-sidebar-00'] ?> <b><?php echo $userData->locker; ?></b> -->
+									<br><?php echo $lang['left-menu-sidebar-00'] ?> <b><?php echo $userData->locker; ?></b>
 								</a>
 							</div>
 						</div>
@@ -1012,36 +1012,6 @@
 					</li> -->
 
 					<li class="sidebar-item">
-								<a href="pickup_list.php" class="sidebar-link"><i class="mdi mdi-adjust" style="color:#fc3f7"></i>
-									<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-21'] ?> </span>
-								</a>
-					</li>
-					<!-- <li class="sidebar-item">
-						<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-cube-send"></i>
-							<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-18'] ?></span>
-						</a>
-						<ul aria-expanded="false" class="collapse  first-level">
-
-							<li class="sidebar-item">
-								<a href="pickup_add.php" class="sidebar-link"><i class="mdi mdi-cube-send" style="color:#f62d51"></i>
-									<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-20'] ?> </span>
-								</a>
-							</li>
-
-
-							<li class="sidebar-item">
-								<a href="pickup_list.php" class="sidebar-link"><i class="mdi mdi-adjust" style="color:#fc3f7"></i>
-									<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-21'] ?> </span>
-								</a>
-							</li>
-						</ul>
-					</li> -->
-					<li class="sidebar-item">
-					    <a class="sidebar-link waves-effect waves-dark" href="payments_gateways_courier_list.php" aria-expanded="false"><i class="mdi mdi-adjust" style="color:#fc3f7"></i>
-									<span class="hide-menu"><?php echo $lang['left-menu-sidebar-12'] ?> </span>
-						</a>
-					</li>	
-						<!--
 						<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-package"></i>
 							<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-13'] ?></span>
 						</a>
@@ -1064,15 +1034,40 @@
 									<span class="hide-menu"><?php echo $lang['left-menu-sidebar-12'] ?> </span>
 								</a>
 							</li>
-						</ul> -->
+						</ul>
+					</li>
 
-					<!-- <li class="sidebar-item">
+
+					<li class="sidebar-item">
+						<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-cube-send"></i>
+							<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-18'] ?></span>
+						</a>
+						<ul aria-expanded="false" class="collapse  first-level">
+
+							<li class="sidebar-item">
+								<a href="pickup_add.php" class="sidebar-link"><i class="mdi mdi-cube-send" style="color:#f62d51"></i>
+									<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-20'] ?> </span>
+								</a>
+							</li>
+
+
+							<li class="sidebar-item">
+								<a href="pickup_list.php" class="sidebar-link"><i class="mdi mdi-adjust" style="color:#fc3f7"></i>
+									<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-21'] ?> </span>
+								</a>
+							</li>
+						</ul>
+					</li>
+
+
+					<li class="sidebar-item">
 						<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 							<i class="mdi mdi-widgets"></i>
 							<span class="hide-menu"><?php echo $lang['left-menu-sidebar-22'] ?></span>
 						</a>
 						<ul aria-expanded="false" class="collapse  first-level">
 
+							<!-- Module consolidate-->
 							<li class="sidebar-item">
 								<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 									<i class="fas fas fa-boxes"></i>
@@ -1097,7 +1092,8 @@
 							</li>
 
 
-							 <li class="sidebar-item">
+							<!-- Module consolidate-->
+							<!-- <li class="sidebar-item">
 								<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 									<i class="fas fas fa-boxes"></i>
 									<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-2233333312'] ?></span>
@@ -1118,9 +1114,9 @@
 										</a>
 									</li>
 								</ul>
-							</li> 
+							</li> -->
 						</ul>
-					</li> -->
+					</li>
 
 					<li class="sidebar-item">
 						<a class="sidebar-link waves-effect waves-dark" href="customers_profile_edit.php?user=<?php echo $userData->id; ?>" aria-expanded="false"><i class="mdi mdi-account"></i>
