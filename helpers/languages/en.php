@@ -623,7 +623,7 @@ $lang = array(
 	"left-menu-sidebar-9" => "register multiple packages",
 	"left-menu-sidebar-10" => "Create Pre Alert",
 	"left-menu-sidebar-11" => "List of packages",
-	"left-menu-sidebar-12" => "List of payments",
+	"left-menu-sidebar-12" => "Payment History",
 
 
 	"left-menu-sidebar-13" => "Shipping",
@@ -635,8 +635,8 @@ $lang = array(
 
 	"left-menu-sidebar-18" => "Pickups",
 	"left-menu-sidebar-19" => "Collection Control Panel",
-	"left-menu-sidebar-20" => "Order Now",
-	"left-menu-sidebar-21" => "Pickup List",
+	"left-menu-sidebar-20" => "Place Order",
+	"left-menu-sidebar-21" => "Order History",
 
 
 	"left-menu-sidebar-22" => "Consolidated",
@@ -701,7 +701,7 @@ $lang = array(
 
 
 	"left-menu-sidebar-61" => "Help",
-	"left-menu-sidebar-62" => "My recipients",
+	"left-menu-sidebar-62" => "My Recipients",
 	"left-menu-sidebar-63" => "View Profile",
 
 
@@ -1126,7 +1126,7 @@ $lang = array(
 	"left118" => "Password",
 	"left119" => "Forgot your password ?",
 	"left120" => "Remember me",
-	"left121" => "Enter",
+	"left121" => "Login",
 	"left122" => "Don't have an account ?",
 	"left123" => "Sign up",
 
@@ -1148,16 +1148,16 @@ $lang = array(
 	"left135" => "Tracking",
 	"left136" => "Sign up now!",
 	"left137" => "Let's set up your account in just a couple of steps.",
-	"left138" => "Name",
-	"left139" => "Full Name",
+	"left138" => "First Name",
+	"left139" => "Enter First Name",
 	"left140" => "Last Name",
-	"left141" => "Full Last Name",
-	"left142" => "Email",
-	"left143" => "Email",
+	"left141" => "Enter Last Name",
+	"left142" => "Email Address",
+	"left143" => "Enter Email Address",
 	"left144" => "Username",
-	"left145" => "Username",
+	"left145" => "Enter Username",
 	"left146" => "Password",
-	"left147" => "Password",
+	"left147" => "Enter Password",
 	"left148" => "Confirm Password",
 	"left149" => "Confirm Password",
 	"left150" => "Phone Code",
@@ -1172,7 +1172,7 @@ $lang = array(
 	"left161" => "Zip Code",
 	"left164" => "You agree",
 	"left165" => "terms and conditions",
-	"left166" => "Sign Up Free",
+	"left166" => "Create Account",
 	"left167" => "Already have an account?",
 	"left168" => "Login",
 
@@ -2156,7 +2156,7 @@ $lang = array(
 	"add-title10" => "Destination",
 	"add-title11" => "City",
 	"add-title12" => "Zip Code",
-	"add-title13" => "Shipping information:",
+	"add-title13" => "Delivery Details:",
 	"add-title14" => "Office of origin",
 	"add-title15" => "Estimated delivery date",
 	"add-title1555" => "Estimated pickup date",
@@ -3336,10 +3336,10 @@ $lang = array(
 	"add_address_recepient" => "Add another address",
 	"delete_address_recepient" => "Delete address",
 
-	"sender_search_title" => "Sender/Customer",
-	"sender_search_address_title" => "Sender/Customer Address",
-	"recipient_search_title" => "Recipient/Client",
-	"recipient_search_address_title" => "Recipient/Client Address",
+	"sender_search_title" => "Name of the Sender",
+	"sender_search_address_title" => "Pickup Address",
+	"recipient_search_title" => "Name of Recipient",
+	"recipient_search_address_title" => "Drop off Address",
 	"recipient_to_user" => "Register a user account for this client",
 
 

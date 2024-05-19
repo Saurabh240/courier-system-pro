@@ -220,7 +220,7 @@ if (isset($_POST['login'])) {
                     </div> <!-- end about detail -->
                 </div> <!-- end col -->
 
-                <div class="col-lg-7 offset-lg-5 padding-less img order-1" style="background-image:url('assets/css_main_deprixa/images/user/01.jpg')" data-jarallax='{"speed": 0.5}'></div><!-- end col -->
+                <div class="col-lg-7 offset-lg-5 padding-less img order-1" style="background-image:url('assets/css_main_deprixa/images/user/login.png')" data-jarallax='{"speed": 0.5}'></div><!-- end col -->
             </div>
             <!--end row-->
         </div>
