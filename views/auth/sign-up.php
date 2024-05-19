@@ -46,6 +46,9 @@
         .select2-selection__arrow {
             height: 34px !important;
         }
+        .cover-container{
+            max-width: 35em;
+        }
     </style>
 
 </head>
@@ -67,14 +70,9 @@
     
 
     <!-- Hero Start -->
-    <section class="cover-user bg-white">
-        <div class="container-fluid px-0">
-            <div class="row g-0 position-relative">
-                <div class="col-lg-5 cover-my-30 order-2">
-                    <div class="cover-user-img d-lg-flex align-items-center">
-                        <div class="row">
-                            <div id="resultados_ajax"></div>
-                            <div class="col-12">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column"> 
+        <main role="main" class="container">
+  
                                 <div class="card border-0" style="z-index: 1">
                                     <div class="card-body p-0">
                                         <div class="text-center">
@@ -326,21 +324,18 @@
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <!--end row-->
-                    </div> <!-- end about detail -->
-                </div> <!-- end col -->
+                            
 
-                <div class="col-lg-7 offset-lg-5 padding-less img order-1" style="background-image:url('assets/css_main_deprixa/images/user/login.png')" data-jarallax='{"speed": 0.5}'>
+               <!-- <div class="col-lg-7 offset-lg-5 padding-less img order-1" style="background-image:url('assets/css_main_deprixa/images/user/login.png')" data-jarallax='{"speed": 0.5}'>
 
+
+               
       
-                </div><!-- end col -->
-            </div>
+                </div> --><!-- end col -->
+                </main>
             <!--end row-->
-        </div>
-        <!--end container fluid-->
-    </section>
+        </div> 
+            
     <!--end section-->
     <!-- Hero End -->
 
