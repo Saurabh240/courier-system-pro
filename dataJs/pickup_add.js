@@ -668,22 +668,27 @@ function calculateFinalTotal(element = null) {
   $("#impuesto").html(total_impuesto.toFixed(2));
   $("#declared_value_label").html(total_valor_declarado.toFixed(2));
   var baseRate = localStorage.getItem('baseRate');
+
   // $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
   $("#fixed_value_label").html(baseRate);
   $("#fixed_value_ajax").html(baseRate);
-  $("#insurance").html(total_seguro.toFixed(2));
-  $("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
+  $("#total_distance").html($('#distance').val());
+  //$("#insurance").html(total_seguro.toFixed(2));
+  //$("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
   var shipmentfee = localStorage.getItem('shipmentfee');
+  $("#total_before_tax").html(Number(shipmentfee).toFixed(2));
+   var total_tax_value = parseFloat(parseFloat(shipmentfee) + (parseFloat(shipmentfee) * (13/100)));
+  $("#total_after_tax").html(total_tax_value.toFixed(2));
   // alert(parseFloat(shipmentfee));
   // alert(parseFloat(total_envio.toFixed(2)));
   // parseInt(shipmentfee.toFixed(2))
   // var subTotal = parseFloat(shipmentfee) + parseFloat(total_envio.toFixed(2));
-  $("#total_envio").html(shipmentfee);
-  $("#total_envio_ajax").html(shipmentfee);
-  $("#total_weight").html(sumador_libras.toFixed(2));
-  $("#total_vol_weight").html(sumador_volumetric.toFixed(2));
+  //$("#total_envio").html(shipmentfee);
+  //$("#total_envio_ajax").html(shipmentfee);
+ // $("#total_weight").html(sumador_libras.toFixed(2));
+  //$("#total_vol_weight").html(sumador_volumetric.toFixed(2));
   $("#total_fixed").html(max_fixed_charge.toFixed(2));
-  $("#total_declared").html(shipmentfee);
+  //$("#total_declared").html(shipmentfee);
 }
 
 $("#invoice_form").on("submit", function (event) {

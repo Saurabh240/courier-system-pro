@@ -23,6 +23,11 @@
 
 $userData = $user->cdp_getUserData();
 
+/*echo 'Current Date time=>'.time().'<br>';
+echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
+
+//echo 'Current Date time=>'.date('Y-m-d h:i:s a',time()).'<br>';
+//echo 'Fixed Time ->'.date('Y-m-d h:i:s a',strtotime("2:00 PM"));exit;
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +61,9 @@ $userData = $user->cdp_getUserData();
 
         .select2-selection__arrow {
             height: 34px !important;
+        }
+        .disabled-cls{
+            background:#EBEBE4;
         }
     </style>
 </head>
@@ -203,191 +211,181 @@ $userData = $user->cdp_getUserData();
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title"><i class="mdi mdi-information-outline" style="color:#36bea6"></i><?php echo $lang['left334']; ?></h4>
-                                    <hr>
-                                    <div class="resultados_ajax_add_user_modal_recipient"></div>
+                                     <h4 class="card-title"><i class="mdi mdi-information-outline" style="color:#36bea6"></i><?php echo $lang['left334']; ?></h4>
+				                      <hr>
+                                      <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['recipient_search_title'] ?></label>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['recipient_search_title'] ?></label>
-
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <div class="input-group">
-                                                        <select class="select2 form-control custom-select" id="recipient_id" name="recipient_id">
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2">
-                                                    <div class="input-group-append input-sm">
-                                                        <button id="add_recipient" type="button" data-type_user="user_recipient" data-toggle="modal" data-target="#myModalAddRecipient" class="btn btn-default"><i class="fa fa-plus"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                
-                                        </div>
-
-                                        <div class="col-md-12">
-
-                                            <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['recipient_search_address_title'] ?></label>
-
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <div class="input-group">
-                                                        <select class="select2 form-control" id="recipient_address_id" name="recipient_address_id" disabled="">
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2">
-                                                    <div class="input-group-append input-sm">
-                                                        <button disabled id="add_address_recipient" type="button" data-type_user="user_recipient" data-toggle="modal" data-target="#myModalAddRecipientAddresses" class="btn btn-default"><i class="fa fa-plus"></i></button>
-                                                    </div>
-                                                </div>
                                                 <div class="row">
-                                                 <div class="col-md-12">
-                                                    <div class="input-group-append input-sm">
-                                                    <label><input type="checkbox" id="id_of_your_checkboxreceiver" style="margin-left: 12px; margin-top: 10px;"> Send to a different Address</label>
-                                                 </div>
+                                                    <div class="col-md-10">
+                                                        <div class="input-group">
+                                                            <select class="select2 form-control custom-select" id="recipient_id" name="recipient_id">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="input-group-append input-sm">
+                                                            <button id="add_recipient" type="button" data-type_user="user_recipient" data-toggle="modal" data-target="#myModalAddRecipient" class="btn btn-default"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-md-12">
+
+                                                <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['recipient_search_address_title'] ?></label>
+
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <div class="input-group">
+                                                            <select class="select2 form-control" id="recipient_address_id" name="recipient_address_id" disabled="">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="input-group-append input-sm">
+                                                            <button disabled id="add_address_recipient" type="button" data-type_user="user_recipient" data-toggle="modal" data-target="#myModalAddRecipientAddresses" class="btn btn-default"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="input-group-append input-sm">
+                                                                <label><input type="checkbox" id="id_of_your_checkboxreceiver" style="margin-left: 12px; margin-top: 10px;"> Send to a different Address</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div>    
+  
+
                                 </div>
                             </div>
-                        </div>
+                        </div>        
                     </div>
                     <!-- Row -->
-
-
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
+                    <div class="col-lg-4 h-70"  >
+                            <div style="height: 26rem;" class=" card">
                                 <div class="card-body">
                                     <h4 class="card-title"><i class="mdi mdi-book-multiple" style="color:#36bea6"></i> <?php echo $lang['add-title13'] ?></h4>
                                     <br>
-                                    <div class="row">
-                                    <div class="form-group col-md-3">
-                                            <label for="inputEmail3" class="control-label col-form-label">Distance</label>
-                                            <div class="input-group mb-3">
-                                                <input type="text" name="distance" class="form-control" id="distance">
-                                            </div>
-                                        </div>
+                                        <div class="row">
+											<div class="form-group col-md-4">
+												<label for="inputEmail3" class="control-label col-form-label">Distance</label>
+												<div class="input-group mb-3">
+													<input type="text" name="distance" class="form-control" id="distance">
+												</div>
+											</div>
+                                            <?php date_default_timezone_set("Asia/Calcutta"); ?>
+											<div class="form-group col-md-7">
+												<label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
+												<div class="input-group mb-3">
+													<select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
+														<option value="" selected>Select Delivery Type</option>
+														<option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?>value="SAME DAY (1PM to 4PM)">SAME DAY (1PM to 4PM)</option>
+														<option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="SAME DAY (BEFORE 5PM)">SAME DAY (BEFORE 5PM)</option>
+														<option <?php if(time() > strtotime("1:30 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (4 HOURS)">RUSH (4 HOURS)</option>
+														<option <?php if(time() > strtotime("2:30 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (3 HOURS)">RUSH (3 HOURS)</option>
+														<option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (2 HOURS)">RUSH (2 HOURS)</option>
+														<option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="URGENT (90 MINUTES)">URGENT (90 MINUTES)</option>
+														<option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
+														<option value="NEXT DAY (BEFORE 2PM)">NEXT DAY (BEFORE 2PM)</option>
+														<option value="NEXT DAY (BEFORE 11:30AM)">NEXT DAY (BEFORE 11:30AM)</option>
+														<option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option>
+													</select>
+												</div>
+											</div>
 
-                                        <div class="form-group col-md-3">
-                                            <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
-                                            <div class="input-group mb-3">
-                                                <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
-                                                    <option value="" selected>Select Delivery Type</option>
-                                                    <option value="SAME DAY (1PM to 4PM)">SAME DAY (1PM to 4PM)</option>
-                                                    <option value="SAME DAY (BEFORE 5PM)">SAME DAY (BEFORE 5PM)</option>
-                                                    <option value="RUSH (4 HOURS)">RUSH (4 HOURS)</option>
-                                                    <option value="RUSH (3 HOURS)">RUSH (3 HOURS)</option>
-                                                    <option value="RUSH (2 HOURS)">RUSH (2 HOURS)</option>
-                                                    <option value="URGENT (90 MINUTES)">URGENT (90 MINUTES)</option>
-                                                    <option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
-                                                    <option value="NEXT DAY (BEFORE 2PM)">NEXT DAY (BEFORE 2PM)</option>
-                                                    <option value="NEXT DAY (BEFORE 11:30AM)">NEXT DAY (BEFORE 11:30AM)</option>
-                                                    <option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option>
-                                                </select>
-                                            </div>
-                                        </div>
+											<!-- <div class="form-group col-md-3">
+												<label for="inputlname" class="control-label col-form-label"><?php echo $lang['itemcategory'] ?></label>
+												<div class="input-group">
+													<select class="custom-select col-12" id="order_item_category" name="order_item_category" required>
+														<?php foreach ($categories as $row) : ?>
+															<option value="<?php echo $row->id; ?>"><?php echo $row->name_item; ?></option>
+														<?php endforeach; ?>
+													</select>
+												</div>
 
-                                        <!-- <div class="form-group col-md-3">
-                                            <label for="inputlname" class="control-label col-form-label"><?php echo $lang['itemcategory'] ?></label>
-                                            <div class="input-group">
-                                                <select class="custom-select col-12" id="order_item_category" name="order_item_category" required>
-                                                    <?php foreach ($categories as $row) : ?>
-                                                        <option value="<?php echo $row->id; ?>"><?php echo $row->name_item; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
+											</div>
 
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="inputlname" class="control-label col-form-label"><?php echo $lang['add-title17'] ?></label>
-                                            <div class="input-group mb-3">
-                                                <select class="custom-select col-12" id="order_package" name="order_package">
-                                                    <?php foreach ($packrow as $row) : ?>
-                                                        <option value="<?php echo $row->id; ?>"><?php echo $row->name_pack; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div> -->
+											<div class="form-group col-md-3">
+												<label for="inputlname" class="control-label col-form-label"><?php echo $lang['add-title17'] ?></label>
+												<div class="input-group mb-3">
+													<select class="custom-select col-12" id="order_package" name="order_package">
+														<?php foreach ($packrow as $row) : ?>
+															<option value="<?php echo $row->id; ?>"><?php echo $row->name_pack; ?></option>
+														<?php endforeach; ?>
+													</select>
+												</div>
+											</div> -->
                                         
                                         
 
-                                        <div class="col-md-4" style="display: none;">
-                                            <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['add-title1555'] ?></i></label>
-                                            <div class="input-group">
-                                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i style="color:#ff0000" class="fa fa-calendar"></i></div>
+											<div class="col-md-4" style="display: none;">
+												<label for="inputcontact" class="control-label col-form-label"><?php echo $lang['add-title1555'] ?></i></label>
+												<div class="input-group">
+													<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+														<div class="input-group-text"><i style="color:#ff0000" class="fa fa-calendar"></i></div>
+													</div>
+													<input type='text' class="form-control" name="order_date" id="order_date" placeholder="--<?php echo $lang['left206'] ?>--" data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['add-title1555'] ?>" readonly value="<?php echo date('Y-m-d'); ?>" />
+												</div>
+											</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div>
+                                                    <label class="control-label" id="selectItem"> <?php echo $lang['leftorder15']; ?></label>
                                                 </div>
-                                                <input type='text' class="form-control" name="order_date" id="order_date" placeholder="--<?php echo $lang['left206'] ?>--" data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['add-title1555'] ?>" readonly value="<?php echo date('Y-m-d'); ?>" />
+
+                                                <input class="custom-file-input" id="filesMultiple" name="filesMultiple[]" multiple="multiple" type="file" style="display: none;" onchange="cdp_validateZiseFiles(); cdp_preview_images();" />
+
+
+                                                <button type="button" id="openMultiFile" class="btn btn-default  pull-left  mb-4"> <i class='fa fa-paperclip' id="openMultiFile" style="font-size:18px; cursor:pointer;"></i> <?php echo $lang['leftorder16']; ?> </button>
+
+
                                             </div>
                                         </div>
-                                    </div>
 
+                                        <div class="col-md-12 row" id="image_preview"></div>
+                                        <div class="col-md-4 mt-4">
+                                            <div id="clean_files" class="hide">
+                                                <button type="button" id="clean_file_button" class="btn btn-danger ml-3">
+                                                    <i class='fa fa-trash' style="font-size:18px; cursor:pointer;"></i>
+                                                    <?php echo $lang['leftorder17']; ?>
+                                                </button>
 
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div>
-                                                <label class="control-label" id="selectItem"> <?php echo $lang['leftorder15']; ?></label>
                                             </div>
-
-                                            <input class="custom-file-input" id="filesMultiple" name="filesMultiple[]" multiple="multiple" type="file" style="display: none;" onchange="cdp_validateZiseFiles(); cdp_preview_images();" />
-
-
-                                            <button type="button" id="openMultiFile" class="btn btn-default  pull-left  mb-4"> <i class='fa fa-paperclip' id="openMultiFile" style="font-size:18px; cursor:pointer;"></i> <?php echo $lang['leftorder16']; ?> </button>
-
-
                                         </div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="resultados_file col-md-4 pull-right mt-4">
 
-                                    <div class="col-md-12 row" id="image_preview"></div>
 
-                                    <div class="col-md-4 mt-4">
-                                        <div id="clean_files" class="hide">
-                                            <button type="button" id="clean_file_button" class="btn btn-danger ml-3">
-                                                <i class='fa fa-trash' style="font-size:18px; cursor:pointer;"></i>
-                                                <?php echo $lang['leftorder17']; ?>
-                                            </button>
-
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="resultados_file col-md-4 pull-right mt-4">
 
 
+                                        <div class="row">
+
+                                            <div class="resultados_file col-md-4 pull-right mt-4">
+
+                                            </div>
                                         </div>
-                                    </div>
-
-
-                                    <div class="row">
-
-                                        <div class="resultados_file col-md-4 pull-right mt-4">
-
-                                        </div>
-                                    </div>
 
                                 </div>
-
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12" style="width: 1060px;">
+                    </div>    
+                     <div class="col-lg-8">
                             <div class="card">
                                 <div class="card-body">
-                                    <!-- <div class="row">
+                                     <!-- <div class="row">
                                         <div class="col-md-12">
                                             
                                         </div>
                                     </div>  -->
-
                                     <!-- Listas item caja -->
                                     <!-- <div id="data_items"></div> -->
 
@@ -397,7 +395,6 @@ $userData = $user->cdp_getUserData();
                                     <!-- </div> -->
 
                                     <!-- <div><br></div>
-
                                     <div class="row">
                                         <div class="col-md-4"> -->
                                             <!-- <span class="text-secondary text-left"><php echo $lang['leftorder17713'] ?></span> -->
@@ -416,7 +413,7 @@ $userData = $user->cdp_getUserData();
                                         <!-- </div>
                                     </div> -->
                                     <hr>
-
+                                    
                                     <div class="row" style="margin-top: 20px;">
                                         <div class="table-responsive d-none" id="table-totals">
                                             <table id="insvoice-item-table" class="table">
@@ -451,7 +448,67 @@ $userData = $user->cdp_getUserData();
                                                 </div>
                                                 <hr>
                                                 <div class="row row-shadow input-container"> 
-                                                  <div class="col-sm-12 col-md-6 col-lg-2">
+                                                <div class="col-sm-12 col-md-6 col-lg-2">
+                                                        <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder1879'] ?></label>
+                                                            <?php
+                                                            if ($core->for_symbol !== null) {
+                                                            ?>
+                                                                <b> <?php echo $core->for_symbol; ?> </b>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <span id="fixed_value_label"> 0.00</span>
+                                                            <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
+                                                         </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-sm-12 col-md-6 col-lg-2">
+                                                        <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder1880'] ?></label>
+                                                           
+                                                            <span id="total_distance"> 0.00</span>
+                                                          
+                                                         </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-6 col-lg-3">
+                                                     <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder1881'] ?>  </label>
+                                                               
+                                                                <?php
+                                                                if ($core->for_symbol !== null) {
+                                                                ?>
+                                                                    <b> <?php echo $core->for_symbol; ?> </b>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <span id="total_before_tax"> 0.00</span>
+                                                                
+                                                            </div>
+                                                 </div>
+
+                                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                                     <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder1882'] ?> (<?php echo '13%';//echo $core->tax; ?>)</label>
+                                                                
+                                                                
+                                                                <?php
+                                                                if ($core->for_symbol !== null) {
+                                                                ?>
+                                                                    <b> <?php echo $core->for_symbol; ?> </b>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <span id="total_after_tax"> 0.00</span>
+                                                                
+                                                            </div>
+                                                 </div>
+                                                
+                                                 
+                                                 
+                                                
+                                                  <!-- <div class="col-sm-12 col-md-6 col-lg-2">
                                                     <div class="form-group">
                                                         <label for="emailAddress1"><?php echo $lang['left905'] ?> &nbsp; <?php echo $core->weight_p; ?> </label>
                                                         <div class="input-group">
@@ -615,14 +672,13 @@ $userData = $user->cdp_getUserData();
                                                             <input type="hidden" name="total_envio_ajax" id="total_envio_ajax">
                                                             
                                                          </div>
-                                                    </div>
+                                                    </div> -->
 
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-actions">
@@ -636,6 +692,7 @@ $userData = $user->cdp_getUserData();
                                                                 <?php echo $lang['leftorder17714'] ?>
                                                             </span>
                                                         </button>
+                                                        &nbsp;
                                                         <button type="submit" name="create_invoice" id="create_invoice" class="btn btn-success" disabled>
                                                             <i class="fas fa-save"></i>
                                                             <span class="ml-1"><?php echo $lang['left1103'] ?></span>
@@ -647,21 +704,22 @@ $userData = $user->cdp_getUserData();
                                     </div>
                                 </div>
                             </div>
-
                             <input type="hidden" value="<?php echo $core->value_weight; ?>" name="price_lb" id="price_lb">
                             <input type="hidden" value="0" name="discount_value" id="discount_value">
                             <input type="hidden" value="100" name="insured_value" id="insured_value">
                             <input type="hidden" value="<?php echo $core->insurance; ?>" name="insurance_value" id="insurance_value">
                             <input type="hidden" value="<?php echo $core->c_tariffs; ?>" name="tariffs_value" id="tariffs_value">
-                            <input type="hidden" value="<?php echo $core->tax; ?>" name="tax_value" id="tax_value">
+                            <input type="hidden" value="<?php echo '13' ?>" name="tax_value" id="tax_value">
                             <input type="hidden" value="<?php echo $core->declared_tax; ?>" name="declared_value_tax" id="declared_value_tax">
                             <input type="hidden" value="0" name="reexpedicion_value" id="reexpedicion_value">
 
                             <input type="hidden" name="core_meter" id="core_meter" value="<?php echo $core->meter; ?>" />
                             <input type="hidden" name="core_min_cost_tax" id="core_min_cost_tax" value="<?php echo $core->min_cost_tax; ?>" />
                             <input type="hidden" name="core_min_cost_declared_tax" id="core_min_cost_declared_tax" value="<?php echo $core->min_cost_declared_tax; ?>" />
-                        </div>
-                    </div>
+
+                    </div> 
+                    </div>   
+                   
             </form>
 
             <?php include('views/modals/modal_add_user_shipment.php'); ?>
