@@ -408,7 +408,142 @@ function changePackage(e) {
   calculateFinalTotal();
   $("#create_invoice").attr("disabled", true);
 }
+
+
 function calculateFinalTotal(element = null) {
+  if (element) {
+    if (!element.value) {
+      $(element).val(0);
+    }
+  }
+
+  var sumador_total = 0;
+  var sumador_valor_declarado = 0;
+  var max_fixed_charge = 0;
+  var sumador_libras = 0;
+  var sumador_volumetric = 0;
+
+  var precio_total = 0;
+  var total_impuesto = 0;
+  var total_descuento = 0;
+  var total_seguro = 0;
+  var total_peso = 0;
+  var total_impuesto_aduanero = 0;
+  var total_valor_declarado = 0;
+
+  var tariffs_value = $("#tariffs_value").val();
+  var declared_value_tax = $("#declared_value_tax").val();
+  var insurance_value = $("#insurance_value").val();
+  var tax_value = $("#tax_value").val();
+  var discount_value = $("#discount_value").val();
+  var reexpedicion_value = $("#reexpedicion_value").val();
+  var price_lb = $("#price_lb").val();
+  var insured_value = $("#insured_value").val();
+
+  var core_meter = $("#core_meter").val();
+  var core_min_cost_tax = $("#core_min_cost_tax").val();
+  var core_min_cost_declared_tax = $("#core_min_cost_declared_tax").val();
+
+  reexpedicion_value = parseFloat(reexpedicion_value);
+  insured_value = parseFloat(insured_value);
+  price_lb = parseFloat(price_lb);
+
+  packagesItems.forEach(function (item, i) {
+    var quantity = parseFloat(item.qty);
+    var description = parseFloat(item.description);
+    var weight = parseFloat(item.weight);
+    var length = parseFloat(item.length);
+    var width = parseFloat(item.width);
+    var height = parseFloat(item.height);
+    // var baseRate = localStorage.getItem('baseRate');
+    var fixed_value = parseFloat(item.fixed_value);
+    // var fixed_value = parseFloat(baseRate);
+    var declared_value = parseFloat(item.declared_value);
+
+    var total_metric = (length * width * height) / core_meter;
+    total_metric = parseFloat(total_metric);
+
+    $("#weightVol_" + i).val(total_metric.toFixed(2));
+
+    if (weight > total_metric) {
+      var calculate_weight = weight;
+    } else {
+      var calculate_weight = total_metric;
+    }
+
+    sumador_libras += weight;
+    sumador_volumetric += total_metric;
+
+    sumador_valor_declarado += declared_value;
+    max_fixed_charge += fixed_value;
+  });
+
+  // precio_total = calculate_weight * price_lb;
+  sumador_total += price_lb;
+
+  if (sumador_total > core_min_cost_tax) {
+    total_impuesto = (sumador_total * tax_value) / 100;
+  }
+
+  if (sumador_valor_declarado > core_min_cost_declared_tax) {
+    total_valor_declarado =
+      (sumador_valor_declarado * declared_value_tax) / 100;
+  }
+
+  total_descuento = (sumador_total * discount_value) / 100;
+  total_peso = sumador_libras + sumador_volumetric;
+  total_seguro = (insured_value * insurance_value) / 100;
+  total_impuesto_aduanero = total_peso * tariffs_value;
+  var total_envio =
+    sumador_total -
+    total_descuento +
+    total_seguro +
+    total_impuesto +
+    total_impuesto_aduanero +
+    total_valor_declarado +
+    max_fixed_charge +
+    reexpedicion_value;
+
+  if (total_descuento > sumador_total) {
+    alert(validation_discount_1);
+    $("#discount_value").val(0);
+    return false;
+  } else if (discount_value < 0) {
+    alert(validation_discount_2);
+    $("#discount_value").val(0);
+    return false;
+  }
+  var shipmentfee = localStorage.getItem('shipmentfee');
+
+  $("#subtotal").html(shipmentfee);
+  $("#discount").html(total_descuento.toFixed(2));
+  $("#impuesto").html(total_impuesto.toFixed(2));
+  $("#declared_value_label").html(total_valor_declarado.toFixed(2));
+  var baseRate = localStorage.getItem('baseRate');
+
+  // $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
+  $("#fixed_value_label").html(baseRate);
+  $("#fixed_value_ajax").html(baseRate);
+  $("#total_distance").html($('#distance').val());
+  //$("#insurance").html(total_seguro.toFixed(2));
+  //$("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
+  var shipmentfee = localStorage.getItem('shipmentfee');
+  $("#total_before_tax").html(Number(shipmentfee).toFixed(2));
+   var total_tax_value = parseFloat(parseFloat(shipmentfee) + (parseFloat(shipmentfee) * (13/100)));
+  $("#total_after_tax").html(total_tax_value.toFixed(2));
+  // alert(parseFloat(shipmentfee));
+  // alert(parseFloat(total_envio.toFixed(2)));
+  // parseInt(shipmentfee.toFixed(2))
+  // var subTotal = parseFloat(shipmentfee) + parseFloat(total_envio.toFixed(2));
+  //$("#total_envio").html(shipmentfee);
+  //$("#total_envio_ajax").html(shipmentfee);
+ // $("#total_weight").html(sumador_libras.toFixed(2));
+  //$("#total_vol_weight").html(sumador_volumetric.toFixed(2));
+  $("#total_fixed").html(max_fixed_charge.toFixed(2));
+  //$("#total_declared").html(shipmentfee);
+}
+
+/*function calculateFinalTotal(element = null) {
   if (element) {
     if (!element.value) {
       $(element).val(0);
@@ -522,7 +657,7 @@ function calculateFinalTotal(element = null) {
   $("#total_vol_weight").html(sumador_volumetric.toFixed(2));
   $("#total_fixed").html(max_fixed_charge.toFixed(2));
   $("#total_declared").html(sumador_valor_declarado.toFixed(2));
-}
+}*/
 
 $("#invoice_form").on("submit", function (event) {
   if (cdp_validateZiseFiles() == true) {
@@ -813,6 +948,66 @@ $(function () {
   });
 });
 
+
+function getTariffs() {
+  // var recipient_id = $("#recipient_id").val();
+  // var recipient_address_id = $("#recipient_address_id").val();
+  // var sender_id = $("#sender_id_temp").val();
+  // var sender_address_id = $("#sender_address_id").val();
+  // var packages = JSON.stringify(packagesItems);
+
+  // var data = {
+  //   packages: packages,
+  //   sender_id: sender_id,
+  //   sender_address: sender_address_id,
+  //   recipient_address: recipient_address_id,
+  //   recipient_id: recipient_id,
+  // };
+
+  // $.ajax({
+  //   type: "POST",
+  //   data: data,
+  //   url: "ajax/courier/get_price_range_weight_tariffs_ajax.php",
+  //   dataType: "json",
+  //   beforeSend: function (objeto) {
+  //     $(".resultados_ajax").html("Loading...");
+  //   },
+  //   success: function (data) {
+  //     if (data.success) {
+          var recipient_id = $("#recipient_id").val();
+          var recipient_address_id = $("#recipient_address_id").val();
+          var sender_id = $("#sender_id").val();
+          var sender_address_id = $("#sender_address_id").val();
+         
+          if(recipient_address_id == null){
+            Swal.fire({
+              title: "Error!",
+              text: "Recipent Address Not Found",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+          }
+         $("#table-totals").removeClass("d-none");
+        $("#create_invoice").attr("disabled", false);
+        
+        // $("#price_lb").val(data.data.price);
+        // $("#price_lb_label").html(data.data.price);
+        calculateFinalTotal();
+//       } else {
+//         $("#table-totals").addClass("d-none");
+//         $("#create_invoice").attr("disabled", true);
+//         Swal.fire({
+//           title: "Error!",
+//           text: data.error,
+//           icon: "error",
+//           confirmButtonText: "Ok",
+//         });
+//       }
+//     },
+//   });
+}
+
+$("#calculate_invoice").on("click", getTariffs);
 function isNumberKey(evt, element) {
   var charCode = evt.which ? evt.which : event.keyCode;
   if (
@@ -1624,7 +1819,69 @@ $("#add_recipient_from_modal_shipments").on("submit", function (event) {
     }
 });
 
+var senderadd = "";
+  var receiveradd = "";
+  var deliveryType = "";
 
+$('#sender_address_id').on('select2:select', function (e) {
+  // Get the selected data
+  var selectedData = e.params.data;
+  
+  // Get the selected value and text
+  // var selectedValue = selectedData.id;
+  senderadd = selectedData.text;
+
+  // Display the selected value and text
+  console.log("Selected sender value:", senderadd);
+
+   $('#recipient_address_id').on('select2:select', function (e) {
+  // Get the selected data
+  var selectedData = e.params.data;
+  
+  // Get the selected value and text
+  // var selectedValue = selectedData.id;
+  var receiveradd = selectedData.text;
+
+  console.log("Selected receiver value:", receiveradd);
+  // Display the selected value and text
+  $(document).on('change','#deliveryType',function(){
+    deliveryType =  $(this).val();
+    
+    console.log("Selected delivery value:", deliveryType);
+    
+    calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
+  })
+  
+});
+
+  
+});
+
+//Function to calculate distance between two coordinates and update distance input
+  function calculateAndDisplayDistance(origin, destination, deliveryType) {
+    // AJAX request to calculate distance
+    $.ajax({
+        type: 'POST',
+        url: 'ajax/courier/calculate_distance.php', // Replace with your PHP script for calculating distance
+        data: { 'origin': origin, 'destination': destination, 'deliveryType':deliveryType },
+        dataType: 'json',
+        success: function(data) {
+            console.log("All",data);
+            // Update distance input with calculated distance
+            $('#distance').val(data.distance);
+            // $('.fixed_value').val(data.shipmentfee);
+            $('.fixed_value').val(data.baseRate);
+            localStorage.setItem('baseRate', data.baseRate)
+            localStorage.setItem('shipmentfee', data.shipmentfee)
+            
+            
+        },
+        error: function() {
+            // Handle error
+            alert('Error calculating distance.');
+        }
+    });
+  } 
 
 
 
@@ -2066,7 +2323,7 @@ function cdp_showSuccess(messages, shipment_id) {
   });
 }
 
-$("#calculate_invoice").on("click", function (event) {
+/*$("#calculate_invoice").on("click", function (event) {
   var recipient_id = $("#recipient_id").val();
   var recipient_address_id = $("#recipient_address_id").val();
   var sender_id = $("#sender_id").val();
@@ -2129,4 +2386,4 @@ $("#calculate_invoice").on("click", function (event) {
     },
   });
   event.preventDefault();
-});
+});*/

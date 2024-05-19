@@ -93,6 +93,7 @@ $order_prefix = $settings->prefix;
     <link href="assets/template/assets/libs/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
     <link href="assets/template/dist/css/custom_swicth.css" rel="stylesheet">
     <?php include 'views/inc/head_scripts.php'; ?>
+    
 </head>
 
 <style>
@@ -107,6 +108,9 @@ $order_prefix = $settings->prefix;
     .select2-selection__arrow {
         height: 34px !important;
     }
+    .disabled-cls{
+            background:#EBEBE4;
+        }
 </style>
 </head>
 
@@ -448,7 +452,7 @@ $order_prefix = $settings->prefix;
                                     <h4 class="card-title"><i class="mdi mdi-book-multiple" style="color:#36bea6"></i> <?php echo $lang['add-title13'] ?></h4>
                                     <br>
                                     <div class="row">
-                                        <div class="form-group col-md-3">
+                                        <!-- <div class="form-group col-md-3">
                                             <label for="inputlname" class="control-label col-form-label"><?php echo $lang['itemcategory'] ?></label>
                                             <div class="input-group mb-3">
                                                 <select class="select2 form-control custom-select" id="order_item_category" name="order_item_category" required style="width: 100%;">
@@ -458,9 +462,35 @@ $order_prefix = $settings->prefix;
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                         <div class="form-group col-md-3">
+												<label for="inputEmail3" class="control-label col-form-label">Distance</label>
+												<div class="input-group mb-3">
+													<input type="text" name="distance" class="form-control" id="distance">
+												</div>
+											</div>
+                                            <?php date_default_timezone_set("America/Montreal"); ?>
+											<div class="form-group col-md-3">
+                                                    <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
+                                                    <div class="input-group mb-3">
+                                                        <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
+                                                            <option value="" selected>Select Delivery Type</option>
+                                                            <option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?>value="SAME DAY (1PM to 4PM)">SAME DAY (1PM to 4PM)</option>
+                                                            <option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="SAME DAY (BEFORE 5PM)">SAME DAY (BEFORE 5PM)</option>
+                                                            <option <?php if(time() > strtotime("1:30 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (4 HOURS)">RUSH (4 HOURS)</option>
+                                                            <option <?php if(time() > strtotime("2:30 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (3 HOURS)">RUSH (3 HOURS)</option>
+                                                            <option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (2 HOURS)">RUSH (2 HOURS)</option>
+                                                            <option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="URGENT (90 MINUTES)">URGENT (90 MINUTES)</option>
+                                                            <option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
+                                                            <option value="NEXT DAY (BEFORE 2PM)">NEXT DAY (BEFORE 2PM)</option>
+                                                            <option value="NEXT DAY (BEFORE 11:30AM)">NEXT DAY (BEFORE 11:30AM)</option>
+                                                            <option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option>
+                                                        </select>
+                                                    </div>
+											</div>
+
+                                        <!--<div class="form-group col-md-3">
                                             <label for="inputlname" class="control-label col-form-label"><?php echo $lang['add-title17'] ?></label>
                                             <div class="input-group mb-3">
                                                 <select class="select2 form-control custom-select" id="order_package" name="order_package" required style="width: 100%;">
@@ -470,7 +500,7 @@ $order_prefix = $settings->prefix;
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group col-md-3">
                                             <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['add-title18'] ?></label>
@@ -631,7 +661,7 @@ $order_prefix = $settings->prefix;
                         </div>
                     </div>
 
-                    <div class="row">
+                   <!-- <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
@@ -642,9 +672,9 @@ $order_prefix = $settings->prefix;
                                                 <?php echo $lang['left212'] ?>
                                             </h4>
                                         </div>
-                                        <!-- crear tarifa de envios si no existe-->
+                                     
                                         <div class="col-md-6 text-right">
-                                            <div align="">
+                                            <div>
                                                 <a href="shipping_tariffs_add.php" class="btn btn-default mb-2"> <span class="ti-shortcode"></span>
                                                     <?php echo $lang['leftorder17712'] ?>
                                                 </a>
@@ -652,10 +682,10 @@ $order_prefix = $settings->prefix;
                                         </div>
                                     </div>
 
-                                    <!-- Listas item caja -->
+                                   
                                     <div id="data_items"></div>
 
-                                    <!-- Boton adicionar caja al listado -->
+                                   
                                     <div class="col-md-3 text-left">
                                         <button type="button" onclick="addPackage()" name="add_rows" id="add_rows" class="btn btn-outline-dark"><span class="fa fa-plus"></span> <?php echo $lang['left231'] ?></button>
                                     </div>
@@ -704,7 +734,7 @@ $order_prefix = $settings->prefix;
                                             </table>
 
 
-                                            <!-- Listado de impuestos-->
+                                           
 
                                             <div  class="card" id="row">
                                                 <div class="col-md-6">
@@ -908,7 +938,137 @@ $order_prefix = $settings->prefix;
                                         </div>
                                     </div>
                                 </div>
+                            </div> -->
+                            <div class="row">
+                              <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                
+                                    <hr>
+                                    
+                                    <div class="row" style="margin-top: 20px;">
+                                        <div class="table-responsive d-none" id="table-totals">
+                                            <table id="insvoice-item-table" class="table">
+                                                <tfoot>
+                                                    <tr class="card-hover">
+                                                        <td colspan="4" class="text-right"><b><?php echo $lang['leftorder2021'] ?></b></td>
+                                                        <td colspan="1"></td>
+                                                        <td class="text-right">
+                                                            <?php
+                                                            if ($core->for_symbol !== null) {
+                                                            ?>
+                                                                <b> <?php echo $core->for_symbol; ?> </b>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <span id="subtotal"> 0.00</span>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+
+
+                                            <!-- Listado de impuestos-->
+
+                                            <div  class="card" id="row">
+                                                <div class="col-md-6">
+                                                    <h4 class="card-title">
+                                                        <i class="ti ti-briefcase " style="color:#36bea6"></i>
+                                                        <?php echo $lang['messageerrorform30'] ?>
+                                                    </h4>
+                                                </div>
+                                                <hr>
+                                                <div class="row row-shadow input-container"> 
+                                                <div class="col-sm-12 col-md-6 col-lg-2">
+                                                        <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder1879'] ?></label>
+                                                            <?php
+                                                            if ($core->for_symbol !== null) {
+                                                            ?>
+                                                                <b> <?php echo $core->for_symbol; ?> </b>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <span id="fixed_value_label"> 0.00</span>
+                                                            <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
+                                                         </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-sm-12 col-md-6 col-lg-2">
+                                                        <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder1880'] ?></label>
+                                                           
+                                                            <span id="total_distance"> 0.00</span>
+                                                          
+                                                         </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-6 col-lg-3">
+                                                     <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder1881'] ?>  </label>
+                                                               
+                                                                <?php
+                                                                if ($core->for_symbol !== null) {
+                                                                ?>
+                                                                    <b> <?php echo $core->for_symbol; ?> </b>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <span id="total_before_tax"> 0.00</span>
+                                                                
+                                                            </div>
+                                                 </div>
+
+                                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                                     <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder1882'] ?> (<?php echo '13%';//echo $core->tax; ?>)</label>
+                                                                
+                                                                
+                                                                <?php
+                                                                if ($core->for_symbol !== null) {
+                                                                ?>
+                                                                    <b> <?php echo $core->for_symbol; ?> </b>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <span id="total_after_tax"> 0.00</span>
+                                                                
+                                                            </div>
+                                                 </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-actions">
+                                                <div class="card-body">
+                                                    <div class="text-right">
+                                                        <input type="hidden" name="total_item_files" id="total_item_files" value="0" />
+                                                        <input type="hidden" name="deleted_file_ids" id="deleted_file_ids" />
+                                                        <button type="button" name="calculate_invoice" id="calculate_invoice" class="btn btn-info">
+                                                            <i class="fas fa-calculator"></i>
+                                                            <span class="ml-1">
+                                                                <?php echo $lang['leftorder17714'] ?>
+                                                            </span>
+                                                        </button>
+                                                        &nbsp;
+                                                        <button type="submit" name="create_invoice" id="create_invoice" class="btn btn-success" disabled>
+                                                            <i class="fas fa-save"></i>
+                                                            <span class="ml-1"><?php echo $lang['left1103'] ?></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            
+                            </div> 
+                             </div>
                             <input type="hidden" name="core_meter" id="core_meter" value="<?php echo $core->meter; ?>" />
                             <input type="hidden" name="core_min_cost_tax" id="core_min_cost_tax" value="<?php echo $core->min_cost_tax; ?>" />
                             <input type="hidden" name="core_min_cost_declared_tax" id="core_min_cost_declared_tax" value="<?php echo $core->min_cost_declared_tax; ?>" />
