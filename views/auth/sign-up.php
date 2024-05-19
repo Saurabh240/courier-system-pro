@@ -72,8 +72,17 @@
     <!-- Hero Start -->
     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column"> 
         <main role="main" class="container">
+        
   
                                 <div class="card border-0" style="z-index: 1">
+                                <div class="card-title text-center">
+                                            <a class="logo" href="index.php">
+                                                <?php echo ($core->logo_web) ? '<img src="assets/' . $core->logo_web . '" alt="' . $core->site_name . '" width="' . $core->thumb_web . '" height="' . $core->thumb_hweb . '"/>' : $core->site_name; ?>
+
+
+                                            </a>
+                                        </div>
+                                        <div><br></div>
                                     <div class="card-body p-0">
                                         <div class="text-center">
                                             <h4 class="card-title text-center"><?php echo $lang['left136'] ?></h4>
