@@ -1837,7 +1837,9 @@ $('#sender_address_id').on('select2:select', function (e) {
   // Display the selected value and text
   console.log("Selected sender value:", senderadd);
 
-   $('#recipient_address_id').on('select2:select', function (e) {
+});
+
+$('#recipient_address_id').on('select2:select', function (e) {
   // Get the selected data
   var selectedData = e.params.data;
   
@@ -1854,9 +1856,6 @@ $('#sender_address_id').on('select2:select', function (e) {
     
     calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
   })
-  
-});
-
   
 });
 
