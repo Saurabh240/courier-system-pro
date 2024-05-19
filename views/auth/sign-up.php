@@ -230,6 +230,54 @@
                                                 <!--end col-->
                                             </div>
 
+<!-- Type of Account Radio Buttons -->
+<div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Type of Account <span class="text-danger">*</span></label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="account_type" id="personal_account" value="personal" required>
+                                                        <label class="form-check-label" for="personal_account">Personal Account</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="account_type" id="business_account" value="business" required>
+                                                        <label class="form-check-label" for="business_account">Business Account</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Type of Business Dropdown Menu -->
+                                            <div class="col-md-12" id="business_type_section" style="display: none;">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Type of Business <span class="text-danger">*</span></label>
+                                                    <div class="form-icon position-relative">
+                                                        <select class="custom-select form-control ps-5" id="business_type" name="business_type">
+                                                            <option value="law_office">Law Office</option>
+                                                            <option value="pharmacy">Pharmacy</option>
+                                                            <option value="flower_shop">Flower Shop</option>
+                                                            <option value="bakery">Bakery/Custom Cakes</option>
+                                                            <option value="warehouses">Warehouses</option>
+                                                            <option value="grocery_stores">Grocery Stores</option>
+                                                            <option value="other">Other (Include typing option)</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mt-2" id="other_business_type" style="display: none;">
+                                                        <input type="text" class="form-control ps-5" placeholder="Please specify" name="other_business" id="other_business">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Billing Choice Dropdown Menu -->
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Billing Choice <span class="text-danger">*</span></label>
+                                                    <div class="form-icon position-relative">
+                                                        <select class="custom-select form-control ps-5" id="billing_choice" name="billing_choice">
+                                                            <option value="weekly">Weekly Billing</option>
+                                                            <option value="monthly">Monthly Billing</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
 
@@ -390,6 +438,43 @@
     </script>
 
     <script src="dataJs/sign-up.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const businessAccountRadio = document.getElementById('business_account');
+        const personalAccountRadio = document.getElementById('personal_account');
+        const businessTypeSection = document.getElementById('business_type_section');
+        const businessTypeSelect = document.getElementById('business_type');
+        const otherBusinessType = document.getElementById('other_business_type');
+        const otherBusinessInput = document.getElementById('other_business');
+
+        // Show/hide business type section based on account type
+        businessAccountRadio.addEventListener('change', function () {
+            if (this.checked) {
+                businessTypeSection.style.display = 'block';
+            }
+        });
+
+        personalAccountRadio.addEventListener('change', function () {
+            if (this.checked) {
+                businessTypeSection.style.display = 'none';
+                otherBusinessType.style.display = 'none';
+                otherBusinessInput.value = '';
+            }
+        });
+
+        // Show/hide other business input based on selected business type
+        businessTypeSelect.addEventListener('change', function () {
+            if (this.value === 'other') {
+                otherBusinessType.style.display = 'block';
+            } else {
+                otherBusinessType.style.display = 'none';
+                otherBusinessInput.value = '';
+            }
+        });
+    });
+</script>
+
 
 </body>
 

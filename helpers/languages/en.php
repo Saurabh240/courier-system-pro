@@ -611,7 +611,7 @@ $lang = array(
 	"left-menu-sidebar-0" => "branch",
 	"left-menu-sidebar-00" => "Locker",
 	"left-menu-sidebar-1" => "Create new shipment",
-	"left-menu-sidebar-2" => "Control Panel",
+	"left-menu-sidebar-2" => "Home",
 	"left-menu-sidebar-3" => "Application Management",
 	"left-menu-sidebar-4" => "All submissions",
 
@@ -623,7 +623,7 @@ $lang = array(
 	"left-menu-sidebar-9" => "register multiple packages",
 	"left-menu-sidebar-10" => "Create Pre Alert",
 	"left-menu-sidebar-11" => "List of packages",
-	"left-menu-sidebar-12" => "List of payments",
+	"left-menu-sidebar-12" => "Payment History",
 
 
 	"left-menu-sidebar-13" => "Shipping",
@@ -635,8 +635,8 @@ $lang = array(
 
 	"left-menu-sidebar-18" => "Pickups",
 	"left-menu-sidebar-19" => "Collection Control Panel",
-	"left-menu-sidebar-20" => "Create Pickup",
-	"left-menu-sidebar-21" => "Pickup List",
+	"left-menu-sidebar-20" => "Place Order",
+	"left-menu-sidebar-21" => "Order History",
 
 
 	"left-menu-sidebar-22" => "Consolidated",
@@ -701,7 +701,7 @@ $lang = array(
 
 
 	"left-menu-sidebar-61" => "Help",
-	"left-menu-sidebar-62" => "My recipients",
+	"left-menu-sidebar-62" => "My Recipients",
 	"left-menu-sidebar-63" => "View Profile",
 
 
@@ -759,7 +759,7 @@ $lang = array(
 	"dash-general-33" => "Total pending accounts",
 	"dash-general-34" => "Virtual address for Locker packages",
 	"dash-general-35" => "Shipment Summary",
-	"dash-general-36" => "Pickup Summary",
+	"dash-general-36" => "Order Summary",
 	"dash-general-37" => "Total pending packets logged",
 	"dash-general-38" => "Line 1 Address",
 	"dash-general-39" => "Line 2 Address",
@@ -2160,7 +2160,7 @@ $lang = array(
 	"add-title10" => "Destination",
 	"add-title11" => "City",
 	"add-title12" => "Zip Code",
-	"add-title13" => "Shipping information:",
+	"add-title13" => "Delivery Details:",
 	"add-title14" => "Office of origin",
 	"add-title15" => "Estimated delivery date",
 	"add-title1555" => "Estimated pickup date",
@@ -3340,10 +3340,10 @@ $lang = array(
 	"add_address_recepient" => "Add another address",
 	"delete_address_recepient" => "Delete address",
 
-	"sender_search_title" => "Sender/Customer",
-	"sender_search_address_title" => "Sender/Customer Address",
-	"recipient_search_title" => "Recipient/Client",
-	"recipient_search_address_title" => "Recipient/Client Address",
+	"sender_search_title" => "Name of the Sender",
+	"sender_search_address_title" => "Pickup Address",
+	"recipient_search_title" => "Name of Recipient",
+	"recipient_search_address_title" => "Drop off Address",
 	"recipient_to_user" => "Register a user account for this client",
 
 
