@@ -2118,7 +2118,7 @@ function getTariffs() {
   //   },
   //   success: function (data) {
   //     if (data.success) {
-        // $("#table-totals").removeClass("d-none");
+         $("#table-totals").removeClass("d-none");
         $("#create_invoice").attr("disabled", false);
         // $("#price_lb").val(data.data.price);
         // $("#price_lb_label").html(data.data.price);
