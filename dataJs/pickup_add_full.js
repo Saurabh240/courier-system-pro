@@ -986,9 +986,12 @@ function getTariffs() {
               icon: "error",
               confirmButtonText: "Ok",
             });
+           
+          }else{
+            $("#table-totals").removeClass("d-none");
+            $("#create_invoice").attr("disabled", false);
           }
-         $("#table-totals").removeClass("d-none");
-        $("#create_invoice").attr("disabled", false);
+        
         
         // $("#price_lb").val(data.data.price);
         // $("#price_lb_label").html(data.data.price);

@@ -136,8 +136,6 @@ $order_prefix = $settings->prefix;
         <?php include 'views/inc/topbar.php'; ?>
 
         <!-- End Topbar header -->
-
-
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
 
         <?php include 'views/inc/left_sidebar.php'; ?>
