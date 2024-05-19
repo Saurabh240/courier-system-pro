@@ -19,8 +19,9 @@
 // *                                                                       *
 // *************************************************************************
 
-$userData = $user->cdp_getUserData();
 
+
+$userData = $user->cdp_getUserData();
 
 /*echo 'Current Date time=>'.time().'<br>';
 echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
@@ -279,9 +280,7 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
 													<input type="text" name="distance" class="form-control" id="distance">
 												</div>
 											</div>
-                                            <?php 
-                                            
-                                            date_default_timezone_set("America/Montreal"); ?>
+                                            <?php date_default_timezone_set("Americal/Montreal"); ?>
 											<div class="form-group col-md-7">
 												<label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
 												<div class="input-group mb-3">

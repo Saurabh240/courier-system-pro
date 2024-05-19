@@ -14,63 +14,7 @@ var packagesItems = [
     fixed_value: 0,
   },
 ];
-// $(document).ready(function(){
-  // if ($('#sender_address_id').length == 1) {
-    // alert($('#sender_address_id').length);
-   // Bind an event on Select2 open action
-  //  var vlh = $('#sender_address_id option:first').val();
-  //  alert(vlh);
 
-    // $('#sender_address_id').on('select2:open', function() {
-
-    //   var options = $('#sender_address_id').find('option');
-    //   if(options.length > 0 && !$('#sender_address_id').val()) {
-    //   // Prevent the default behavior
-    //   e.preventDefault();
-    //   // Automatically select the first value from the results
-    //   ;
-    //   }
-      // Timeout to wait for the search results to be displayed
-      // alert("it is happening");
-      // setTimeout(function() {
-      // var options = $('#sender_address_id').find('option');
-      // if(options.length == 1) {
-      // // If only one option, set it as selected
-      // $('#sender_address_id').val(options.val()).trigger('change');
-      // // Close the Select2 dropdown
-      // $('#sender_address_id').select2('close');
-      // }
-      // }, 1); // Timeout set to 1ms to allow the dropdown to populate
-      // });
-    // if ($('#sender_address_id').length  == 1) {
-    //   // Automatically select the only option
-    //   alert("true")
-    //   $("#sender_address_id").val($("#sender_address_id option:first").val()).trigger('change');
-    // }
-    // Automatically select the first (and only) option
-    // Get the value of the first option
-    // var options = $('#sender_address_id').find('option');
-    // console.log("these are options:",options.length);
-    // if(options.length == 1) {
-    // // If only one option, set it as selected
-    // $('#sender_address_id').val(options.val()).trigger('change');
-    // }
-    // $('#sender_address_id').on('select2:open', function() {
-    //   // Timeout to wait for the search results to be displayed
-    //   setTimeout(function() {
-    //   var options = $('#sender_address_id').find('option');
-    //   if(options.length == 1) {
-    //   // If only one option, set it as selected
-    //   $('#sender_address_id').val(options.val()).trigger('change');
-    //   // Close the Select2 dropdown
-    //   $('#sender_address_id').select2('close');
-    //   }
-    //   }, 1); // Timeout set to 1ms to allow the dropdown to populate
-    //   });
-    
-    // $('#sender_address_id').val(singleOption).trigger('change');
-  // }
-// });
 $(function () {
   loadPackages();
 
@@ -1099,7 +1043,7 @@ function cdp_select2_init_sender() {
       $("#recipient_id").val(null);
       $("#sender_address_id").val(null);
       $("#recipient_address_id").val(null);
-      // $("#table-totals").addClass("d-none");
+      $("#table-totals").addClass("d-none");
 
       if (sender_id != null) {
         $("#add_address_sender").attr("disabled", false);
@@ -1143,12 +1087,18 @@ function cdp_select2_init_sender_address() {
       // minimumInputLength: 2,
       placeholder: search_sender_address,
       allowClear: true,
+    })
+    .on("change", function (e) {
+      var sender_address_id = $("#sender_address_id").val();
+      var recipient_address_id = $("#recipient_address_id").val();
+      if (!recipient_address_id || !sender_address_id) {
+        $("#table-totals").addClass("d-none");
+      }
     });
 }
 
 function cdp_formatAdress(item) {
   if (item.loading) return item.text;
-  console.log("Items:",item.text);
   var markup = "<div class='select2-result-repository clearfix'>";
 
   markup +=
@@ -1215,7 +1165,7 @@ function cdp_select2_init_recipient() {
       $("#add_address_recipient").attr("disabled", true);
       $("#recipient_address_id").attr("disabled", true);
       $("#recipient_address_id").val(null);
-      // $("#table-totals").addClass("d-none");
+      $("#table-totals").addClass("d-none");
 
       if (recipient_id != null) {
         $("#recipient_address_id").attr("disabled", false);
@@ -1256,6 +1206,13 @@ function cdp_select2_init_recipient_address() {
       // minimumInputLength: 2,
       placeholder: search_recipient_address,
       allowClear: true,
+    })
+    .on("change", function (e) {
+      var recipient_address_id = $("#recipient_address_id").val();
+      var sender_address_id = $("#sender_address_id").val();
+      if (!recipient_address_id || !sender_address_id) {
+        $("#table-totals").addClass("d-none");
+      }
     });
 }
 
@@ -1786,7 +1743,7 @@ $("#add_address_users_from_modal_shipments").on("submit", function (event) {
                   };
 
                   var newOptionAddress = new Option(data_address.text, data_address.id, false, false);
-                 
+
                   $('#sender_address_id').append(newOptionAddress).trigger('change');
                   $('#sender_address_id').val(data_address.id).trigger('change');
 
@@ -2118,7 +2075,7 @@ function getTariffs() {
   //   },
   //   success: function (data) {
   //     if (data.success) {
-        // $("#table-totals").removeClass("d-none");
+        $("#table-totals").removeClass("d-none");
         $("#create_invoice").attr("disabled", false);
         // $("#price_lb").val(data.data.price);
         // $("#price_lb_label").html(data.data.price);
@@ -2140,98 +2097,9 @@ function getTariffs() {
 $("#calculate_invoice").on("click", getTariffs);
 
 $(document).ready(function(){
-
-  // $("#sender_address_id")
-  //   .select2({
-  //     ajax: {
-  //       url: "ajax/select2_sender_addresses.php?id=" + sender_id,
-  //       dataType: "json",
-  //       delay: 250,
-  //       data: function (params) {
-  //         return {
-  //           q: params.term, // search term
-  //         };
-  //       },
-  //       dataType: 'json',
-  //       success: function(data) {
-  //         console.log("sender data:",data);
-  //       }
-  //     }
-  //   });
-  var sender_id = $("#sender_id").val();
-  $.ajax({
-    type: 'POST',
-    url: "ajax/select2_sender_addresses.php?id=" + sender_id, // Replace with your PHP script for calculating distance
-    // data: { 'origin': origin, 'destination': destination, 'deliveryType':deliveryType },
-    data: function (params) {
-              return {
-                q: params.term, // search term
-              };
-    },
-    dataType: 'json',
-    success: function(data) {
-      // console.log("Data length:",$('#sender_address_id').length);
-      // console.log('sender detail:',data);
-      if (data.length == 1) {
-        // alert("True");
-        // Automatically select the first (and only) option
-        $('#select2-sender_address_id-container').text(data[0].text);
-      }
-      //  console.log('sender detail:',data);        
-        
-    },
-    error: function() {
-        // Handle error
-        alert('Error calculating distance.');
-    }
-});
-
-  $(document).on('change','#recipient_id',function(){
-    var recipient_id = $(this).val();
-    // alert(recipient_id);
-    $.ajax({
-      type: 'POST',
-      url: "ajax/select2_recipient_addresses.php?id=" + recipient_id, // Replace with your PHP script for calculating distance
-      // data: { 'origin': origin, 'destination': destination, 'deliveryType':deliveryType },
-      data: function (params) {
-        return {
-          q: params.term, // search term
-        };
-      },
-      dataType: 'json',
-      success: function(data) {
-        // console.log("Data length:",$('#sender_address_id').length);
-        // console.log('receiver detail:',data);
-        if (data.length == 1) {
-          // alert("True");
-          // Automatically select the first (and only) option
-          $('#select2-recipient_address_id-container').text(data[0].text);
-        }
-          //  console.log('sender detail:',data);        
-            
-        },
-        error: function() {
-            // Handle error
-            alert('Error calculating distance.');
-        }
-    });
-  });
-  // $('#sender_address_id select').trigger('change.select2');
-  // alert(recipient_id);
-  
-
   var senderadd = "";
   var receiveradd = "";
   var deliveryType = "";
-
-  // if ($('#recipient_address_id option').length == 1) {
-  //   // Automatically select the first (and only) option
-  //   var singleOption = $('#recipient_address_id option').first().val();
-  //   $('#recipient_address_id').val(singleOption).trigger('change');
-  // }
-
- 
-
   $('#sender_address_id').on('select2:select', function (e) {
     // Get the selected data
     var selectedData = e.params.data;
