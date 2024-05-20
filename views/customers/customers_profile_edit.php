@@ -55,7 +55,7 @@ $user_addreses = $db->cdp_registros();
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/<?php echo $core->favicon ?>">
-    <title><?php echo $lang['filter4'] ?> | <?php echo $core->site_name ?></title>
+    <title><?php echo $lang['left-menu-sidebar-63'] ?> | <?php echo $core->site_name ?></title>
 
     <link rel="stylesheet" href="assets/template/assets/libs/intlTelInput/intlTelInput.css">
     <link rel="stylesheet" type="text/css" href="assets/template/assets/libs/select2/dist/css/select2.min.css">
@@ -122,7 +122,7 @@ $user_addreses = $db->cdp_registros();
                             <div class="card-body">
                                 <div class="d-md-flex align-items-center">
                                     <div>
-                                        <h3 class="card-title"><span><?php echo $lang['filter4']; ?></span></h3>
+                                        <h3 class="card-title"><span><?php echo $lang['left-menu-sidebar-63']; ?></span></h3>
                                     </div>
                                 </div>
                                 <div><hr><br></div>
@@ -282,7 +282,7 @@ $user_addreses = $db->cdp_registros();
 
                                                 
                                                 <hr>
-                                                <h4><?php echo $lang['leftorder176'] ?></h4>
+                                                <!-- <h4><?php echo $lang['leftorder176'] ?></h4> -->
                                                 <br>
 
                                                 <div id="resultados_ajax"></div>
@@ -310,8 +310,9 @@ $user_addreses = $db->cdp_registros();
                                                             echo '<hr>';
                                                         } ?>
 
-                                                        <h4><?php echo $lang['laddress'];
-                                                            echo ' ' . $count; ?> </h4>
+                                                        <!-- <h4><?php echo $lang['laddress'];
+                                                            echo ' ' . $count; ?> </h4> -->
+                                                            <h4> My Address </h4>
 
 
 

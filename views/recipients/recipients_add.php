@@ -114,14 +114,14 @@ $userData = $user->cdp_getUserData();
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="emailAddress1"><?php echo $lang['user_manage6'] ?></label>
-                                                    <input type="text" class="form-control required" name="fname" id="fname" placeholder="<?php echo $lang['user_manage6'] ?>">
+                                                    <label for="emailAddress1"><?php echo $lang['user_manage55'] ?></label>
+                                                    <input type="text" class="form-control required" name="fname" id="fname" placeholder="<?php echo $lang['user_manage55'] ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="phoneNumber1"><?php echo $lang['user_manage7'] ?></label>
-                                                    <input type="text" class="form-control required" name="lname" id="lname" placeholder="<?php echo $lang['user_manage7'] ?>">
+                                                    <label for="phoneNumber1"><?php echo $lang['user_manage56'] ?></label>
+                                                    <input type="text" class="form-control required" name="lname" id="lname" placeholder="<?php echo $lang['user_manage56'] ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -148,10 +148,10 @@ $userData = $user->cdp_getUserData();
                                         <br>
 
                                         <hr>
-                                        <h4><?php echo $lang['leftorder176'] ?></h4>
+                                        <!-- <h4><?php echo $lang['leftorder176'] ?></h4> -->
                                         <br>
 
-                                        <h4><?php echo $lang['laddress'] ?> 1 </h4>
+                                        <h4> Recipient Address </h4>
 
                                         <div class="row">
 
@@ -197,11 +197,11 @@ $userData = $user->cdp_getUserData();
                                         <input type="hidden" name="total_address" id="total_address" value="1" />
                                         <input type="hidden" name="phone" id="phone" />
 
-                                        <div id="div_address_multiple"></div>
+                                        <!-- <div id="div_address_multiple"></div>
 
                                         <div align="left">
                                             <button type="button" name="add_row" id="add_row" class="btn btn-success mb-2"><span class="fa fa-plus"></span> <?php echo $lang['add_address_recepient'] ?></button>
-                                        </div>
+                                        </div> -->
 
                                         <hr>
                                     </section>

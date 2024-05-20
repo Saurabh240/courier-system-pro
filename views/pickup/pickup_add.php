@@ -194,13 +194,13 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                                 </div>
                                                 
                                             </div>
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                  <div class="col-md-12">
                                                     <div class="input-group-append input-sm">
                                                     <label><input type="checkbox" id="id_of_your_checkboxsender" style="margin-left: 12px; margin-top: 10px;"> Send to a different Address </label>
                                                  </div>
                                                 </div>
-                                                </div>
+                                                </div> -->
                                             
                                         </div>
                                     </div>
@@ -448,7 +448,7 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                                 </div>
                                                 <hr>
                                                 <div class="row row-shadow input-container"> 
-                                                <div class="col-sm-12 col-md-6 col-lg-2">
+                                                <!-- <div class="col-sm-12 col-md-6 col-lg-2">
                                                         <div class="form-group">
                                                             <label for="emailAddress1"><?php echo $lang['leftorder1879'] ?></label>
                                                             <?php
@@ -470,11 +470,11 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                                             <span id="total_distance"> 0.00</span>
                                                           
                                                          </div>
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="col-sm-12 col-md-6 col-lg-3">
                                                      <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['leftorder1881'] ?>  </label>
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder2021'] ?>  </label>
                                                                
                                                                 <?php
                                                                 if ($core->for_symbol !== null) {
@@ -491,7 +491,7 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
 
                                                 <div class="col-sm-12 col-md-6 col-lg-3">
                                                      <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['leftorder1882'] ?> (<?php echo '13%';//echo $core->tax; ?>)</label>
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder2020'] ?> (<?php echo '13%';//echo $core->tax; ?>)</label>
                                                                 
                                                                 
                                                                 <?php

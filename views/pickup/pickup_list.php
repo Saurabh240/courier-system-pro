@@ -98,7 +98,7 @@ $statusrow = $core->cdp_getStatus();
 
                                 <div class="row">
 
-                                    <div class="col-md-6 <?php if ($direction_layout === 'rtl') {
+                                    <!-- <div class="col-md-6 <?php if ($direction_layout === 'rtl') {
                                                                     echo 'pull-left';
                                                                 } else {
                                                                     echo 'pull-right';
@@ -119,7 +119,7 @@ $statusrow = $core->cdp_getStatus();
                                             </div>
                                         <?php } ?>
 
-                                    </div>
+                                    </div> -->
                                     
                                     <div class=" col-sm-6">
 
