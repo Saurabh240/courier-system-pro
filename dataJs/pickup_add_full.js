@@ -523,7 +523,7 @@ function calculateFinalTotal(element = null) {
 
   // $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
   $("#fixed_value_label").html(baseRate);
-  $("#fixed_value_ajax").html(baseRate);
+  $("#fixed_value_ajax").val(baseRate);
   $("#total_distance").html($('#distance').val());
   //$("#insurance").html(total_seguro.toFixed(2));
   //$("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
@@ -537,6 +537,8 @@ function calculateFinalTotal(element = null) {
   // var subTotal = parseFloat(shipmentfee) + parseFloat(total_envio.toFixed(2));
   //$("#total_envio").html(shipmentfee);
   //$("#total_envio_ajax").html(shipmentfee);
+ 
+  $("#total_envio_ajax").val(shipmentfee);
  // $("#total_weight").html(sumador_libras.toFixed(2));
   //$("#total_vol_weight").html(sumador_volumetric.toFixed(2));
   $("#total_fixed").html(max_fixed_charge.toFixed(2));
@@ -666,7 +668,7 @@ $("#invoice_form").on("submit", function (event) {
   }
   // sweealert 2, alerta error informacion de paquetes
 
-  for (let [i, val] of packagesItems.entries()) {
+  /* for (let [i, val] of packagesItems.entries()) {
       if ($.trim($("#description_" + i).val()).length == 0) {
           Swal.fire({
               type: 'Error!',
@@ -747,7 +749,7 @@ $("#invoice_form").on("submit", function (event) {
           $("#declaredValue_" + i).focus();
           return false;
       }
-  }
+  }*/
 
   var prefix_check = $("#prefix_check").val();
   var code_prefix = $("#code_prefix").val();
@@ -785,6 +787,8 @@ $("#invoice_form").on("submit", function (event) {
   var discount_value = $("#discount_value").val();
   var tax_value = $("#tax_value").val();
   var declared_value_tax = $("#declared_value_tax").val();
+  var total_envio = $("#total_envio_ajax").val();
+  var total_fixed_value = $("#fixed_value_ajax").val();
   var tariffs_value = $("#tariffs_value").val();
 
   var deleted_file_ids = $("#deleted_file_ids").val();
@@ -792,6 +796,9 @@ $("#invoice_form").on("submit", function (event) {
   var data = new FormData();
 
   data.append("packages", JSON.stringify(packagesItems));
+
+  data.append("total_envio", total_envio);
+  data.append("total_fixed_value", total_fixed_value);
 
   if (prefix_check) {
     data.append("prefix_check", prefix_check);
@@ -832,9 +839,9 @@ $("#invoice_form").on("submit", function (event) {
   if (order_service_options) {
     data.append("order_service_options", order_service_options);
   }
-  if (order_package) {
+  /*if (order_package) {
     data.append("order_package", order_package);
-  }
+  }*/
   if (order_date) {
     data.append("order_date", order_date);
   }

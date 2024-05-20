@@ -484,7 +484,8 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                                                 }
                                                                 ?>
                                                                 <span id="total_before_tax"> 0.00</span>
-                                                                
+                                                                <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
+                                                                 <input type="hidden" name="total_envio_ajax" id="total_envio_ajax">
                                                             </div>
                                                  </div>
 

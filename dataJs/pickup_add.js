@@ -727,7 +727,7 @@ function calculateFinalTotal(element = null) {
 
   // $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
   $("#fixed_value_label").html(baseRate);
-  $("#fixed_value_ajax").html(baseRate);
+  $("#fixed_value_ajax").val(baseRate);
   $("#total_distance").html($('#distance').val());
   //$("#insurance").html(total_seguro.toFixed(2));
   //$("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
@@ -740,7 +740,8 @@ function calculateFinalTotal(element = null) {
   // parseInt(shipmentfee.toFixed(2))
   // var subTotal = parseFloat(shipmentfee) + parseFloat(total_envio.toFixed(2));
   //$("#total_envio").html(shipmentfee);
-  //$("#total_envio_ajax").html(shipmentfee);
+  $("#total_envio_ajax").val(shipmentfee);
+ 
  // $("#total_weight").html(sumador_libras.toFixed(2));
   //$("#total_vol_weight").html(sumador_volumetric.toFixed(2));
   $("#total_fixed").html(max_fixed_charge.toFixed(2));
@@ -879,7 +880,7 @@ $("#invoice_form").on("submit", function (event) {
 
   var data = new FormData();
 
-  data.append("packages", JSON.stringify(packagesItems));
+ // data.append("packages", JSON.stringify(packagesItems));
 
   if (prefix_check) {
     data.append("prefix_check", prefix_check);
@@ -917,7 +918,7 @@ $("#invoice_form").on("submit", function (event) {
   if (recipient_address_id) {
     data.append("recipient_address_id", recipient_address_id);
   }
-  if (order_item_category) {
+  /*if (order_item_category) {
     data.append("order_item_category", order_item_category);
   }
   if (order_courier) {
@@ -928,7 +929,7 @@ $("#invoice_form").on("submit", function (event) {
   }
   if (order_package) {
     data.append("order_package", order_package);
-  }
+  }*/
   if (order_date) {
     data.append("order_date", order_date);
   }

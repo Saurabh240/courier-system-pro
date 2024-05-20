@@ -1067,6 +1067,20 @@ $order_prefix = $settings->prefix;
                             
                             </div> 
                              </div>
+
+                             <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
+                              <input type="hidden" name="total_envio_ajax" id="total_envio_ajax">
+
+
+                             <input type="hidden" value="<?php echo $core->value_weight; ?>" name="price_lb" id="price_lb">
+                            <input type="hidden" value="0" name="discount_value" id="discount_value">
+                            <input type="hidden" value="100" name="insured_value" id="insured_value">
+                            <input type="hidden" value="<?php echo $core->insurance; ?>" name="insurance_value" id="insurance_value">
+                            <input type="hidden" value="<?php echo $core->c_tariffs; ?>" name="tariffs_value" id="tariffs_value">
+                            <input type="hidden" value="<?php echo '13' ?>" name="tax_value" id="tax_value">
+                            <input type="hidden" value="<?php echo $core->declared_tax; ?>" name="declared_value_tax" id="declared_value_tax">
+                            <input type="hidden" value="0" name="reexpedicion_value" id="reexpedicion_value">
+
                             <input type="hidden" name="core_meter" id="core_meter" value="<?php echo $core->meter; ?>" />
                             <input type="hidden" name="core_min_cost_tax" id="core_min_cost_tax" value="<?php echo $core->min_cost_tax; ?>" />
                             <input type="hidden" name="core_min_cost_declared_tax" id="core_min_cost_declared_tax" value="<?php echo $core->min_cost_declared_tax; ?>" />

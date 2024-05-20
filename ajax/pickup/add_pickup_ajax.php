@@ -33,6 +33,8 @@ $user = new User;
 $core = new Core;
 $errors = array();
 
+//print_r($_POST);exit;
+
 if (empty($_POST['sender_id']))
 
     $errors['sender_id'] = $lang['validate_field_ajax150'];
@@ -61,13 +63,13 @@ if (empty($_POST['order_no']))
 
     $errors['order_no'] = $lang['validate_field_ajax150'];
 
-if (empty($_POST['order_item_category']))
+/*if (empty($_POST['order_item_category']))
 
     $errors['order_item_category'] = $lang['validate_field_ajax151'];
 
 if (empty($_POST['order_package']))
 
-    $errors['order_package'] = $lang['validate_field_ajax152'];
+    $errors['order_package'] = $lang['validate_field_ajax152'];*/
 
 if (empty($_POST['order_courier']))
 
@@ -193,6 +195,14 @@ if (empty($errors)) {
             $price_lb = $_POST["price_lb"];
             $insured_value = $_POST["insured_value"];
 
+            $total_envio = $_POST["total_envio"];
+
+            $total_fixed_value = $_POST["total_fixed_value"];
+
+
+
+            cdp_insertCourierShipmentPackages($dataAddresses);
+
             foreach ($packages as $package) {
 
                 $dataAddresses = array(
@@ -229,10 +239,10 @@ if (empty($errors)) {
             // $precio_total = $calculate_weight * $price_lb;
             $sumador_total += $price_lb;
 
-            if ($sumador_total > $min_cost_tax) {
+           /* if ($sumador_total > $min_cost_tax) {
                 $total_impuesto = $sumador_total * $tax_value / 100;
-            }
-
+            }*/
+            $total_impuesto = $total_envio * $tax_value / 100;
             if ($sumador_valor_declarado > $min_cost_declared_tax) {
                 $total_valor_declarado = $sumador_valor_declarado * $declared_value_tax / 100;
             }
@@ -241,13 +251,14 @@ if (empty($errors)) {
             $total_peso = $sumador_libras + $sumador_volumetric;
             $total_seguro = $insured_value * $insurance_value / 100;
             $total_impuesto_aduanero = $total_peso * $tariffs_value;
-            $total_envio = ($sumador_total - $total_descuento) + $total_seguro + $total_impuesto + $total_impuesto_aduanero + $total_valor_declarado + $max_fixed_charge + $reexpedicion_value;
+           // $total_envio = ($sumador_total - $total_descuento) + $total_seguro + $total_impuesto + $total_impuesto_aduanero + $total_valor_declarado + $max_fixed_charge + $reexpedicion_value;
+           $total_envio = $total_envio;
         }
 
         $dataShipmentUpdateTotals = array(
             'order_id' =>  $shipment_id,
             'value_weight' =>  floatval($price_lb),
-            'sub_total' =>  floatval($sumador_total),
+            'sub_total' =>  $total_envio,
             'tax_discount' =>  floatval($discount_value),
             'total_insured_value' => floatval($insured_value),
             'tax_insurance_value' => floatval($insurance_value),
@@ -256,7 +267,7 @@ if (empty($errors)) {
             'declared_value' =>  floatval($declared_value_tax),
             'total_reexp' =>  floatval($reexpedicion_value),
             'total_declared_value' =>  floatval($total_valor_declarado),
-            'total_fixed_value' =>  floatval($max_fixed_charge),
+            'total_fixed_value' =>  $total_fixed_value,
             'total_tax_discount' =>  floatval($total_descuento),
             'total_tax_insurance' =>  floatval($total_seguro),
             'total_tax_custom_tariffis' =>  floatval($total_impuesto_aduanero),

@@ -32,7 +32,7 @@ $user = new User;
 $core = new Core;
 $errors = array();
 
-// echo "<pre>"; print_r($_POST); die();
+ //echo "<pre>"; print_r($_POST); die();
 if (empty($_POST['sender_id']))
     $errors['sender_id'] = $lang['validate_field_ajax150'];
 
@@ -45,11 +45,11 @@ if (empty($_POST['recipient_id']))
 if (empty($_POST['recipient_address_id']))
     $errors['recipient_address_id'] = $lang['validate_field_ajax147'];
 
-if (empty($_POST['order_item_category']))
-    $errors['order_item_category'] = $lang['validate_field_ajax151'];
+/*if (empty($_POST['order_item_category']))
+    $errors['order_item_category'] = $lang['validate_field_ajax151'];*/
 
-if (empty($_POST['order_package']))
-    $errors['order_package'] = $lang['validate_field_ajax152'];
+/*if (empty($_POST['order_package']))
+    $errors['order_package'] = $lang['validate_field_ajax152'];*/
 
 
 
@@ -105,9 +105,9 @@ if (empty($errors)) {
         'sender_address_id' =>  cdp_sanitize(intval($_POST["sender_address_id"])),
         'recipient_address_id' =>  cdp_sanitize(intval($_POST["recipient_address_id"])),
         'order_date' =>  date("Y-m-d H:i:s"),
-        'order_package' =>  cdp_sanitize(intval($_POST["order_package"])),
-        'order_item_category' =>  cdp_sanitize(intval($_POST["order_item_category"])),
-        'order_service_options' =>  null,
+       // 'order_package' =>  cdp_sanitize(intval($_POST["order_package"])),
+       // 'order_item_category' =>  cdp_sanitize(intval($_POST["order_item_category"])),
+       'order_service_options' =>  null,
         'status_courier' =>  cdp_sanitize(intval($status)),
         'due_date' =>  $due_date,
         'status_invoice' =>  $status_invoice,
@@ -116,9 +116,34 @@ if (empty($errors)) {
 
     $shipment_id = cdp_insertCourierPickupFromCustomer($dataShipment);
 
+    $tariffs_value = $_POST["tariffs_value"];
+    $declared_value_tax = $_POST["declared_value_tax"];
+    $insurance_value = $_POST["insurance_value"];
+    $tax_value = $_POST["tax_value"];
+    $discount_value = $_POST["discount_value"];
+    $reexpedicion_value = $_POST["reexpedicion_value"];
+    $price_lb = $_POST["price_lb"];
+    $insured_value = $_POST["insured_value"];
+
+    $dataAddresses = array(
+        'order_id' =>  $shipment_id,
+        'qty' =>   1,
+        'description' =>  'package',
+        //'length' =>  $package->length,
+        //'width' =>  $package->width,
+        //'height' =>  $package->height,
+        //'weight' =>  $package->weight,
+        //'declared_value' =>  $package->declared_value,
+        'fixed_value' =>  $_POST["fixed_rate"],
+    );
+
+    cdp_insertCourierShipmentPackages($dataAddresses);
+
+    $total_envio = $_POST["pickuptotal"];
+
     if ($shipment_id !== null) {
 
-        if (isset($_POST["packages"])) {
+        /*if (isset($_POST["packages"])) {
 
             $packages = json_decode($_POST['packages']);
 
@@ -193,7 +218,7 @@ if (empty($errors)) {
             $total_seguro = $insured_value * $insurance_value / 100;
             $total_impuesto_aduanero = $total_peso * $tariffs_value;
             $total_envio = $_POST["pickuptotal"];
-        }
+        }*/
 
         $dataShipmentUpdateTotals = array(
             'order_id' =>  $shipment_id,
