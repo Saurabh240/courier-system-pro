@@ -102,6 +102,21 @@
                                             <form class="login-form mt-4" id="new_register" name="new_register" method="post">
                                                 <div class="row">
 
+                                                <!-- Type of Account Radio Buttons -->
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Type of Account <span class="text-danger">*</span></label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="account_type" id="personal_account" value="personal" required>
+                                                        <label class="form-check-label" for="personal_account">Personal Account</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="account_type" id="business_account" value="business" required>
+                                                        <label class="form-check-label" for="business_account">Business Account</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
                                                             <label class="form-label"><?php echo $lang['left138'] ?> <span class="text-danger">*</span></label>
@@ -237,21 +252,6 @@
                                                     </div>
                                                 </div>
                                                 <!--end col-->
-                                            </div>
-
-<!-- Type of Account Radio Buttons -->
-<div class="col-md-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Type of Account <span class="text-danger">*</span></label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="account_type" id="personal_account" value="personal" required>
-                                                        <label class="form-check-label" for="personal_account">Personal Account</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="account_type" id="business_account" value="business" required>
-                                                        <label class="form-check-label" for="business_account">Business Account</label>
-                                                    </div>
-                                                </div>
                                             </div>
 
                                             <!-- Type of Business Dropdown Menu -->

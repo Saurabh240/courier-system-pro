@@ -78,7 +78,7 @@ $userData = $user->cdp_getUserData();
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-5 align-self-center">
-                        <h4 class="page-title"> <i class="fas fa-cubes"></i> <?php echo $lang['count1'] ?> | <?php echo $lang['leftorder141'] ?></h4>
+                        <h4 class="page-title"> <i class="fas fa-cubes"></i> <?php echo $lang['left-menu-sidebar-12'] ?></h4>
 
                     </div>
                 </div>
