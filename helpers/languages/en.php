@@ -2981,6 +2981,7 @@ $lang = array(
 	"langs_04" => "Product code or name",
 	"langs_05" => "Item adding successfully",
 	"langs_06" => "Tracking",
+
 	"langs_07" => "Sender",
 	"langs_08" => "Description",
 	"langs_09" => "Weights",
@@ -3307,6 +3308,7 @@ $lang = array(
 	"langs_010132" => "Log in now",
 	"langs_010133" => "Sorry, we are not accepting any more registrations at this time",
 	"langs_010134" => "Sorry, the maximum number of registered users has been reached",
+	"langs_010135" => "Back To Home",
 
 
 
