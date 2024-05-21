@@ -1195,6 +1195,7 @@ $("input[type=file]").on("change", function () {
 });
 
 function cdp_select2_init_sender() {
+  
   $("#sender_id")
     .select2({
       ajax: {
@@ -1232,7 +1233,7 @@ function cdp_select2_init_sender() {
       $("#recipient_id").val(null);
       $("#sender_address_id").val(null);
       $("#recipient_address_id").val(null);
-      $("#table-totals").addClass("d-none");
+      //$("#table-totals").addClass("d-none");
 
       if (sender_id != null) {
         $("#add_address_sender").attr("disabled", false);

@@ -60,6 +60,13 @@ $db->cdp_query("SELECT * FROM cdb_styles where id= '" . $infoship->status_defaul
 $styles_status = $db->cdp_registro();
 
 
+$sql_user = "SELECT * FROM cdb_users WHERE userlevel = 1 LIMIT 1 ";
+$db->cdp_query($sql_user);
+$db->cdp_execute();
+$sender_user = $db->cdp_registro();
+
+
+
 //Prefix tracking   
 $sql = "SELECT * FROM cdb_settings";
 
@@ -333,7 +340,8 @@ $order_prefix = $settings->prefix;
                                                 <div class="col-md-10">
                                                     <div class="input-group">
                                                         <select class="select2 form-control custom-select" id="sender_id" name="sender_id">
-                                                        </select>
+                                                        <option value="<?php echo $sender_user->id; ?>" selected> <?php echo $sender_user->fname . ' ' . $sender_user->lname; ?></option>
+                                                    </select>
                                                     </div>
                                                 </div>
 
@@ -353,7 +361,7 @@ $order_prefix = $settings->prefix;
                                             <div class="row">
                                                 <div class="col-md-10">
                                                     <div class="input-group">
-                                                        <select class="select2 form-control" id="sender_address_id" name="sender_address_id" disabled="">
+                                                        <select class="select2 form-control" id="sender_address_id" name="sender_address_id" <?php if(!isset($sender_user->id)){?> disabled="" <?php }?>>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -406,7 +414,7 @@ $order_prefix = $settings->prefix;
                                             <div class="row">
                                                 <div class="col-md-10">
                                                     <div class="input-group">
-                                                        <select class="select2 form-control custom-select" id="recipient_id" name="recipient_id" disabled>
+                                                        <select class="select2 form-control custom-select" id="recipient_id" name="recipient_id" <?php if(!isset($sender_user->id)){?> disabled <?php }?>>
                                                         </select>
                                                     </div>
                                                 </div>
