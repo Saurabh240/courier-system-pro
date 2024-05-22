@@ -2277,30 +2277,35 @@ $(document).ready(function(){
     senderadd = selectedData.text;
 
     // Display the selected value and text
-    console.log("Selected sender value:", senderadd);
+    
 
-     $('#recipient_address_id').on('select2:select', function (e) {
+    calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
+  });
+
+  $('#recipient_address_id').on('select2:select', function (e) {
     // Get the selected data
     var selectedData = e.params.data;
     
     // Get the selected value and text
     // var selectedValue = selectedData.id;
-    var receiveradd = selectedData.text;
+    receiveradd = selectedData.text;
 
     console.log("Selected receiver value:", receiveradd);
     // Display the selected value and text
-    $(document).on('change','#deliveryType',function(){
-      deliveryType =  $(this).val();
-      
-      console.log("Selected delivery value:", deliveryType);
-      
-      calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
-    })
+    calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
     
   });
 
+
+  $('#deliveryType').on('change',function(){
+    deliveryType =  $(this).val();
+    console.log(senderadd)
+    console.log(receiveradd)
     
-  });
+    console.log("Selected delivery value:", deliveryType);
+    
+    calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
+  })
   
   // Function to calculate distance between two coordinates and update distance input
   function calculateAndDisplayDistance(origin, destination, deliveryType) {
@@ -2323,7 +2328,7 @@ $(document).ready(function(){
         },
         error: function() {
             // Handle error
-            alert('Error calculating distance.');
+            //alert('Error calculating distance.');
         }
     });
   } 
