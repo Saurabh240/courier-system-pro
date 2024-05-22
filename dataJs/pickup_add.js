@@ -875,6 +875,7 @@ $("#invoice_form").on("submit", function (event) {
   var tariffs_value = $("#tariffs_value").val();
   var baseRate = localStorage.getItem('baseRate');
   var shipmentfee = localStorage.getItem('shipmentfee');
+  var delivery_notes = $("#delivery_notes").val();
 
   var deleted_file_ids = $("#deleted_file_ids").val();
 
@@ -882,6 +883,9 @@ $("#invoice_form").on("submit", function (event) {
 
  // data.append("packages", JSON.stringify(packagesItems));
 
+ if (delivery_notes) {
+    data.append("notes", delivery_notes);
+}
   if (prefix_check) {
     data.append("prefix_check", prefix_check);
   }
@@ -2188,6 +2192,37 @@ $(document).ready(function(){
 });
 
   $(document).on('change','#recipient_id',function(){
+    var recipient_id = $(this).val();
+    // alert(recipient_id);
+    $.ajax({
+      type: 'POST',
+      url: "ajax/select2_recipient_addresses.php?id=" + recipient_id, // Replace with your PHP script for calculating distance
+      // data: { 'origin': origin, 'destination': destination, 'deliveryType':deliveryType },
+      data: function (params) {
+        return {
+          q: params.term, // search term
+        };
+      },
+      dataType: 'json',
+      success: function(data) {
+        // console.log("Data length:",$('#sender_address_id').length);
+        // console.log('receiver detail:',data);
+        if (data.length == 1) {
+          // alert("True");
+          // Automatically select the first (and only) option
+          $('#select2-recipient_address_id-container').text(data[0].text);
+        }
+          //  console.log('sender detail:',data);        
+            
+        },
+        error: function() {
+            // Handle error
+            alert('Error calculating distance.');
+        }
+    });
+  });
+
+  $(document).on('change','#recipient_address_id',function(){
     var recipient_id = $(this).val();
     // alert(recipient_id);
     $.ajax({

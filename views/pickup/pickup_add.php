@@ -336,6 +336,17 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
 											</div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-md-8">
+                                                <div>
+                                                    <label class="control-label" id="selectItem"> <?php echo $lang['left21552']; ?></label>
+                                                </div>
+                                                <textarea  class="form-control" name="delivery_notes" id="delivery_notes" rows="4" cols="50" placeholder="--<?php echo $lang['left21552'] ?>--"  ></textarea>
+
+                                               
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-4">
                                                 <div>
                                                     <label class="control-label" id="selectItem"> <?php echo $lang['leftorder15']; ?></label>
@@ -416,7 +427,7 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                     
                                     <div class="row" style="margin-top: 20px;">
                                         <div class="table-responsive d-none" id="table-totals">
-                                            <table id="insvoice-item-table" class="table">
+                                            <!-- <table id="insvoice-item-table" class="table">
                                                 <tfoot>
                                                     <tr class="card-hover">
                                                         <td colspan="4" class="text-right"><b><?php echo $lang['leftorder2021'] ?></b></td>
@@ -434,7 +445,7 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                                         <td></td>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
+                                            </table> -->
 
 
                                             <!-- Listado de impuestos-->

@@ -5243,6 +5243,7 @@ function cdp_insertCourierShipment($datos)
         is_pickup,
         due_date,
         status_invoice,
+        notes,
         order_incomplete                 
         )
     VALUES
@@ -5270,6 +5271,7 @@ function cdp_insertCourierShipment($datos)
         :is_pickup,
         :due_date,
         :status_invoice,
+        :notes,
         :order_incomplete         
 
         )
@@ -5298,6 +5300,7 @@ function cdp_insertCourierShipment($datos)
     $db->bind(':driver_id',  $datos["driver_id"]);
     $db->bind(':due_date',   $datos["due_date"]);
     $db->bind(':status_invoice',   $datos["status_invoice"]);
+    $db->bind(':notes',   $datos["notes"]);
     $db->bind(':volumetric_percentage',   $datos["volumetric_percentage"]);
 
     $db->cdp_execute();

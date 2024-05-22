@@ -140,30 +140,30 @@
                                                 </div>
                                                     <!--end col-->
                                                  <div class="row">
-                                                    <div class="col-md-6">
+                                                  <!-- <div class="col-md-6">
                                                         <div class="mb-3">
                                                            <label class="form-label"><?php echo $lang['leftorder164'] ?></label>
                                                            <div class="form-icon position-relative">
                                                             <i data-feather="list" class="fea icon-sm icons"></i>
                                                                 <select class="custom-select form-control ps-5" id="document_type" name="document_type">
-                                                                    <option value="DNI"><?php echo $lang['leftorder165'] ?></option>
-                                                                    <option value="RIC"><?php echo $lang['leftorder166'] ?></option>
-                                                                    <option value="CI"><?php echo $lang['leftorder167'] ?></option>
-                                                                    <option value="CIE"><?php echo $lang['leftorder168'] ?></option>
-                                                                    <option value="CIN"><?php echo $lang['leftorder169'] ?></option>
-                                                                    <option value="CIE"><?php echo $lang['leftorder170'] ?></option>
-                                                                    <option value="CC"><?php echo $lang['leftorder171'] ?></option>
-                                                                    <option value="TI"><?php echo $lang['leftorder172'] ?></option>
-                                                                    <option value="CE"><?php echo $lang['leftorder173'] ?></option>
-                                                                    <option value="PSP"><?php echo $lang['leftorder174'] ?></option>
-                                                                    <option value="NIT"><?php echo $lang['leftorder1745'] ?></option>
+                                                                    <option value="DNI"><?php //echo $lang['leftorder165'] ?></option>
+                                                                    <option value="RIC"><?php //echo $lang['leftorder166'] ?></option>
+                                                                    <option value="CI"><?php //echo $lang['leftorder167'] ?></option>
+                                                                    <option value="CIE"><?php //echo $lang['leftorder168'] ?></option>
+                                                                    <option value="CIN"><?php //echo $lang['leftorder169'] ?></option>
+                                                                    <option value="CIE"><?php //echo $lang['leftorder170'] ?></option>
+                                                                    <option value="CC"><?php //echo $lang['leftorder171'] ?></option>
+                                                                    <option value="TI"><?php //echo $lang['leftorder172'] ?></option>
+                                                                    <option value="CE"><?php //echo $lang['leftorder173'] ?></option>
+                                                                    <option value="PSP"><?php //echo $lang['leftorder174'] ?></option>
+                                                                    <option value="NIT"><?php //echo $lang['leftorder1745'] ?></option>
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
         
         
-                                                    <div class="col-md-6">
+                                                   <!--  <div class="col-md-6">
                                                         <div class="mb-3">
                                                             <label class="form-label"><?php echo $lang['leftorder175'] ?></label>
                                                             <div class="form-icon position-relative">
@@ -171,7 +171,7 @@
                                                                 <input type="text" class="form-control ps-5" id="document_number" name="document_number" placeholder="<?php echo $lang['leftorder175'] ?>">
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -254,6 +254,9 @@
                                                 <!--end col-->
                                             </div>
 
+
+                                            <!-- Type of Business Dropdown Menu -->
+                                            
                                             <!-- Type of Business Dropdown Menu -->
                                             <div class="col-md-12" id="business_type_section" style="display: none;">
                                                 <div class="mb-3">
@@ -272,6 +275,15 @@
                                                     <div class="mt-2" id="other_business_type" style="display: none;">
                                                         <input type="text" class="form-control ps-5" placeholder="Please specify" name="other_business" id="other_business">
                                                     </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Business Name <span class="text-danger">*</span></label>
+                                                    <div class="form-icon position-relative">
+                                                            
+                                                            <input type="text" class="form-control ps-5" placeholder="<?php echo $lang['user_manage57'] ?>" name="business_name" id="business_name">
+                                                        </div>
+                                                   
                                                 </div>
                                             </div>
 

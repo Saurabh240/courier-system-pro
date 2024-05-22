@@ -108,6 +108,7 @@ if (empty($errors)) {
        // 'order_package' =>  cdp_sanitize(intval($_POST["order_package"])),
        // 'order_item_category' =>  cdp_sanitize(intval($_POST["order_item_category"])),
        'order_service_options' =>  null,
+       'notes' =>  cdp_sanitize($_POST["notes"]),
         'status_courier' =>  cdp_sanitize(intval($status)),
         'due_date' =>  $due_date,
         'status_invoice' =>  $status_invoice,

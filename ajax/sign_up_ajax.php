@@ -32,9 +32,18 @@ $core = new Core;
 $db = new Conexion;
 
 $error = "";
+//print_r($_POST);exit;
 
 // Verificar campos obligatorios
-$requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'email', 'phone', 'fname', 'lname', 'document_number', 'document_type');
+//$requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'email', 'phone', 'fname', 'lname', 'document_number', 'document_type');
+$account_type= $_POST['account_type'];
+if($account_type == 'business'){
+    $requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'email', 'phone', 'fname', 'lname','business_name','business_type');
+
+}else{
+    $requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'email', 'phone', 'fname', 'lname');
+
+}
 foreach ($requiredFields as $field) {
     if (empty($_POST[$field])) {
         $error = 'Please enter ' . str_replace('_', ' ', $field);
@@ -52,10 +61,10 @@ if ($usernameExists) {
 }
 
 // Verificar disponibilidad de nuemuro de cedula
-$cedulaExists = $user->cdp_ccnumberExists($_POST['document_number']);
+/*$cedulaExists = $user->cdp_ccnumberExists($_POST['document_number']);
 if ($cedulaExists) {
     $error = $lang['messagesform82'];
-}
+}*/
 
 // Validar formato de correo electrónico
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
@@ -113,8 +122,12 @@ if (empty($error)) {
         'email' => cdp_sanitize($_POST['email']),
         'lname' => cdp_sanitize($_POST['lname']),
         'fname' => cdp_sanitize($_POST['fname']),
-        'document_number' => cdp_sanitize($_POST['document_number']),
-        'document_type' => cdp_sanitize($_POST['document_type']),
+        'account_type' => cdp_sanitize($_POST['account_type']),
+        'business_type' => cdp_sanitize($_POST['business_type']),
+        'business_name' => cdp_sanitize($_POST['business_name']),
+        'billing_choice' => cdp_sanitize($_POST['billing_choice']),
+       // 'document_number' => cdp_sanitize($_POST['document_number']),
+        //'document_type' => cdp_sanitize($_POST['document_type']),
         'locker' => cdp_sanitize($prefixlk . ' ' . $_POST['locker']),
         'phone' => cdp_sanitize($_POST['phone']),
         'userlevel' => 1,
@@ -136,7 +149,7 @@ if (empty($error)) {
     $datos['created'] = date("Y-m-d H:i:s");
 
     // Insertar datos en la base de datos
-    $db->cdp_query('INSERT INTO cdb_users
+    /*$db->cdp_query('INSERT INTO cdb_users
         (
             username,
             password,
@@ -168,6 +181,44 @@ if (empty($error)) {
             :phone,
             :active,
             :terms
+        )');*/
+
+        $db->cdp_query('INSERT INTO cdb_users
+        (
+            username,
+            password,
+            locker,
+            userlevel,
+            email,
+            fname,
+            lname,
+            account_type,
+            business_name,
+            business_type,
+            billing_choice,
+            created,
+            phone,
+            active,
+            terms
+            
+        )
+
+        VALUES (
+            :username,
+            :password,
+            :locker,
+            :userlevel,
+            :email,
+            :fname,
+            :lname,
+            :account_type,
+            :business_name,
+            :business_type,
+            :billing_choice,
+            :created,
+            :phone,
+            :active,
+            :terms
         )');
 
 
@@ -178,8 +229,12 @@ if (empty($error)) {
     $db->bind(':email', $datos['email']);
     $db->bind(':fname', $datos['fname']);
     $db->bind(':lname', $datos['lname']);
-    $db->bind(':document_number', $datos['document_number']);
-    $db->bind(':document_type', $datos['document_type']);
+    $db->bind(':account_type', $datos['account_type']);
+    $db->bind(':business_name', $datos['business_name']);
+    $db->bind(':business_type', $datos['business_type']);
+    $db->bind(':billing_choice', $datos['billing_choice']);
+    //$db->bind(':document_number', $datos['document_number']);
+    //$db->bind(':document_type', $datos['document_type']);
     $db->bind(':created', $datos['created']);
     $db->bind(':phone', $datos['phone']);
     $db->bind(':active', $datos['active']);

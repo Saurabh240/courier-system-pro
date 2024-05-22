@@ -197,7 +197,7 @@ if (isset($_POST['login'])) {
 
                                                     <div class="col-12 mt-3">
                                                         <div class="d-grid">
-                                                            <a href="index.php" class="btn btn-light"><?php echo $lang['langs_010135'] ?></a>
+                                                            <a href="https://huuneh.com" class="btn btn-light"><?php echo $lang['langs_010135'] ?></a>
                                                         </div>
                                                     </div>
                                                     <!--end col-->

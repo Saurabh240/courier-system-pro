@@ -954,7 +954,7 @@ $order_prefix = $settings->prefix;
                                     
                                     <div class="row" style="margin-top: 20px;">
                                         <div class="table-responsive d-none" id="table-totals">
-                                            <table id="insvoice-item-table" class="table">
+                                        <!--    <table id="insvoice-item-table" class="table">
                                                 <tfoot>
                                                     <tr class="card-hover">
                                                         <td colspan="4" class="text-right"><b><?php echo $lang['leftorder2021'] ?></b></td>
@@ -972,7 +972,7 @@ $order_prefix = $settings->prefix;
                                                         <td></td>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
+                                            </table> -->
 
 
                                             <!-- Listado de impuestos-->

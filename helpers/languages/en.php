@@ -419,7 +419,8 @@ $lang = array(
 	"message_ajax_error_send_email2" => "Some of the email newsletters could not be accessed!",
 	"message_ajax_error_send_email3" => "Could not access one of the email walls!",
 
-	"message_ajax_success_add_pickup" => "Pickup created successfully",
+	//"message_ajax_success_add_pickup" => "Pickup created successfully",
+	"message_ajax_success_add_pickup" => " Order has been successfully placed",
 	"message_ajax_success_add_shipment" => "Shipment created successfully",
 	"message_ajax_success_add_update" => "The delivery has been successfully updated",
 
@@ -1232,6 +1233,7 @@ $lang = array(
 	"left214" => "Amount",
 	"left21550" => "Update status",
 	"left21551" => "the tracking number",
+	"left21552" => "Delivery Notes",
 
 
 	"leftorder1" => "Additional charge",
@@ -1933,7 +1935,8 @@ $lang = array(
 	"left533020018" => "Payments",
 	"left533020019" => "Send email",
 	"left533020020" => "Accept pickup",
-	"left533020021" => "Reject pickup",
+	//"left533020021" => "Reject pickup",
+	"left533020021" => " Cancel Order",
 	"left533020022" => "Invoice Status",
 	"left533020023" => "Reason for cancellation",
 	"left533020024" => "Completed",
@@ -2358,6 +2361,7 @@ $lang = array(
 	"user_manage54" => "Office Group",
 	"user_manage55" => "Business Name",
 	"user_manage56" => "Full Name",
+	"user_manage57" => "Business Name",
 
 
 	/** ToolConfig **/
@@ -3074,7 +3078,8 @@ $lang = array(
 	"langs_07" => "Sender",
 	"langs_08" => "Description",
 	"langs_09" => "Weights",
-	"langs_010" => "Sender Information",
+	//"langs_010" => "Sender Information",
+	"langs_010" => "Pickup Details",
 	"langs_011" => "Customer Name",
 	"langs_012" => "Email Address",
 	"langs_013" => "Phone",

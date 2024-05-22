@@ -33,7 +33,7 @@ $user = new User;
 $core = new Core;
 $errors = array();
 
-//print_r($_POST);exit;
+
 
 if (empty($_POST['sender_id']))
 
@@ -158,6 +158,7 @@ if (empty($errors)) {
         'order_deli_time' =>  cdp_sanitize(intval($_POST["order_deli_time"])),
         'order_payment_method' =>  cdp_sanitize(intval($_POST["order_payment_method"])),
         'status_courier' =>  cdp_sanitize(intval($_POST["status_courier"])),
+        'notes' =>  cdp_sanitize($_POST["notes"]),
         'driver_id' =>  cdp_sanitize(intval($_POST["driver_id"])),
         'due_date' =>  $due_date,
         'status_invoice' =>  $status_invoice,
