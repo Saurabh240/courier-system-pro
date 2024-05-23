@@ -6,6 +6,66 @@ $(function () {
   cdp_load_cities();
 });
 
+
+var autocomplete;
+var address_field;
+var country_field;
+var country_field_label;
+
+
+
+function initAutocomplete() {
+
+  address_field = document.querySelector("#address");
+  //var country_array = ["AFG","ALB","DZA","AND","AGO","ATG","ARG","ARM","AUS","AUT","AZE","BHS","BHR","BGD","BRB","BLR","BEL","BLZ","BEN","BMU","BTN","BOL","BIH","BWA","BRA","BRN","BGR","BFA","BDI","KHM","CMR","CAN","CPV","CAF","TCD","CHL","CHN","COL","COM","COG","COD","CRI","CIV","HRV","CUB","CYP","CZE","DNK","DJI","DMA","DOM","TLS","ECU","EGY","SLV","GNQ","ERI","EST","ETH","FJI","FIN","FRA","GAB","GMB","GEO","DEU","GHA","GRC","GRD","GTM","GIN","GNB","GUY","HTI","HND","HKG","HUN","ISL","IND","IDN","IRN","IRQ","IRL","ISR","ITA","JAM","JPN","JOR","KAZ","KEN","KIR","PRK","KOR","KWT","KGZ","LAO","LVA","LBN","LSO","LBR","LBY","LIE","LTU","LUX","MKD","MDG","MWI","MYS","MDV","MLI","MLT","MHL","MRT","MUS","MEX","FSM","MDA","MCO","MNG","MNE","MAR","MOZ","MMR","NAM","NRU","NPL","BES","NLD","NZL","NIC","NER","NGA","NOR","OMN","PAK","PLW","PAN","PNG","PRY","PER","PHL","POL","PRT","PRI","QAT","ROU","RUS","RWA","KNA","LCA","VCT","WSM","SMR","STP","SAU","SEN","SRB","SYC","SLE","SGP","SVK","SVN","SLB","SOM","ZAF","SSD","ESP","LKA","SDN","SUR","SWZ","SWE","CHE","SYR","TWN","TJK","TZA","THA","TGO","TON","TTO","TUN","TUR","TKM","TUV","UGA","UKR","ARE","GBR","USA","URY","UZB","VUT","VEN","VNM","VIR","YEM","ZMB","ZWE","XKX","test","HA","ISM","MAR","YU","YU"];
+  
+   
+  // Create the autocomplete object, restricting the search predictions to
+  // addresses in the US and Canada.
+  autocomplete = new google.maps.places.Autocomplete(address_field, {
+   // componentRestrictions: { country: new_country_array },
+    fields: ["address_components", "geometry"],
+    types: ["address"],
+    strictBounds: false,
+  });
+  address_field.focus();
+  // When the user selects an address from the drop-down, populate the
+  // address fields in the form.
+  autocomplete.addListener("place_changed", fillInAddress);
+
+}
+
+function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    const place = autocomplete.getPlace();
+    let address1 = "";
+    let postcode = "";
+
+    // Get each component of the address from the place details,
+    // and then fill-in the corresponding field on the form.
+    // place.address_components are google.maps.GeocoderAddressComponent objects
+    // which are documented at http://goo.gle/3l5i5Mr
+    for (const component of place.address_components) {
+      // @ts-ignore remove once typings fixed
+      const componentType = component.types[0];
+
+      switch (componentType) {
+        case "street_number": {
+          address1 = `${component.long_name} ${address1}`;
+          break;
+        }
+
+        case "route": {
+          address1 += component.short_name;
+          break;
+        }
+  
+    }
+
+    address_field.value = address1;
+  }
+}
+
 function cdp_load_countries() {
   $("#country")
     .select2({

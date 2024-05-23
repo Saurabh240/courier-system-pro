@@ -457,7 +457,10 @@
 
 
     </script>
-
+     <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAP41rsfjKCKORsVRuSM_4ff6f7YGV7kQ&callback=initAutocomplete&libraries=places&v=weekly"
+      defer
+    ></script>
     <script src="dataJs/sign-up.js"></script>
 
     <script>

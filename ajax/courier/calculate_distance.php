@@ -1,4 +1,13 @@
 <?php
+require_once("../../loader.php");
+session_start();
+$db = new Conexion;
+$db->cdp_query('SELECT * FROM cdb_users WHERE username=:user OR email=:user');
+$db->bind(':user', $_SESSION['username']);
+$db->cdp_execute();
+$user = $db->cdp_registro();
+$business_type = $user->business_type;
+
 // Replace 'YOUR_GOOGLE_API_KEY' with your actual Google Maps API key
 $apiKey = 'AIzaSyCAP41rsfjKCKORsVRuSM_4ff6f7YGV7kQ';
 
@@ -53,8 +62,12 @@ if (isset($_POST["origin"]) && isset($_POST["destination"]) && isset($_POST["del
             $additionalRatePerKm = 0.75;
             break;
         default:
-            return "Invalid delivery type";
-    }
+             return "Invalid delivery type";
+      }
+
+        if($business_type == 'law_office' || $business_type == 'pharmacy'){
+            $baseRate = '5';
+        }
         $courier['baseRate'] = $baseRate;
         $courier['shipmentfee'] = calculateShippingPrice($courier['distance'], $deliveryType);
         // print_r($courier); die();
@@ -70,13 +83,18 @@ if (isset($_POST["origin"]) && isset($_POST["destination"]) && isset($_POST["del
 function calculateDistance($origin, $destination, $apiKey) {
     $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$origin&destinations=$destination&key=$apiKey";
     $response = file_get_contents($url);
-    // print_r($response); die();
+   
     $data = json_decode($response, true);
-
+   // print_r($data);exit;
     // Check if API request was successful
     if ($data['status'] == 'OK') {
         // Extract distance in meters
-        $distance = $data['rows'][0]['elements'][0]['distance']['value'];
+        if($distance = $data['rows'][0]['elements'][0]['status'] == 'ZERO_RESULTS'){
+            $distance = 0;
+        }else{
+            $distance = $data['rows'][0]['elements'][0]['distance']['value'];
+        }
+        
         // Convert meters to kilometers
         return $distance / 1000;
     } else {
