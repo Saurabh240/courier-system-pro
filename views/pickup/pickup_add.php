@@ -49,6 +49,7 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
     <link rel="stylesheet" type="text/css" href="assets/template/assets/libs/select2/dist/css/select2.min.css">
     <link href="assets/template/assets/libs/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
     <link href="assets/template/dist/css/custom_swicth.css" rel="stylesheet">
+    
     <?php include 'views/inc/head_scripts.php'; ?>
     <style>
         .select2-selection__rendered {
@@ -65,6 +66,9 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
         .disabled-cls{
             background:#EBEBE4;
         }
+        .pac-container {
+                     z-index: 10000 !important;
+            }
     </style>
 </head>
 
@@ -764,6 +768,10 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
     <script src="assets/template/assets/libs/intlTelInput/intlTelInput.js"></script>
     <script src="assets/template/dist/js/app-style-switcher.js"></script>
     <script src="assets/template/assets/libs/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAP41rsfjKCKORsVRuSM_4ff6f7YGV7kQ&callback=initAutocomplete&libraries=places&v=weekly"
+      defer
+    ></script>
     <script src="dataJs/pickup_add.js"></script>
 
 </body>

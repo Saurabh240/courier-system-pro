@@ -81,7 +81,7 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="phoneNumber1"><?php echo $lang['user_manage10'] ?></label>
-									<input type="text" class="form-control" name="address_modal_recipient" id="address_modal_recipient" placeholder="<?php echo $lang['user_manage10'] ?>">
+									<input type="text"  autocomplete="off" class="form-control" name="address_modal_recipient" id="address_modal_recipient" placeholder="<?php echo $lang['user_manage10'] ?>">
 								</div>
 							</div>
 						</div>
