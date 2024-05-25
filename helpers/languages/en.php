@@ -30,7 +30,7 @@ $lang = array(
 	// AJAXFORM
 	"validate_field_ajax1" => "Select destination country",
 	"validate_field_ajax2" => "Select destination city",
-	"validate_field_ajax3" => "Select target state",
+	"validate_field_ajax3" => "Select target province",
 	"validate_field_ajax4" => "Select country of origin",
 	"validate_field_ajax5" => "Enter starting weight range",
 	"validate_field_ajax6" => "Enter final weight range",
@@ -197,12 +197,12 @@ $lang = array(
 	"validate_field_ajax43" => "You cannot delete this country because it is linked to a state",
 
 	"validate_field_ajax44" => "Enter the country",
-	"validate_field_ajax45" => "The state name is already in use.",
+	"validate_field_ajax45" => "The province name is already in use.",
 	"validate_field_ajax46" => "Enter the state name",
 	"validate_field_ajax47" => "You cannot delete this state because it is linked to a city",
 
 	"validate_field_ajax48" => "Enter the country",
-	"validate_field_ajax49" => "Enter the state",
+	"validate_field_ajax49" => "Enter the province",
 	"validate_field_ajax50" => "The city name is already in use.",
 	"validate_field_ajax51" => "Enter the city",
 
@@ -275,17 +275,17 @@ $lang = array(
 	"validate_field_ajax100" => "Enter address",
 	"validate_field_ajax101" => "Enter phone number",
 	"validate_field_ajax102" => "Enter country",
-	"validate_field_ajax1022212" => "Enter state",
+	"validate_field_ajax1022212" => "Enter province",
 	"validate_field_ajax103" => "Enter city",
 	"validate_field_ajax104" => "Enter Postal Code",
 	"validate_field_ajax105" => "You cannot delete this courier because it is linked to a shipment",
 
-	"validate_field_ajax106" => "Enter the new state",
-	"validate_field_ajax107" => "The state is already in use.",
+	"validate_field_ajax106" => "Enter the new province",
+	"validate_field_ajax107" => "The province is already in use.",
 	"validate_field_ajax108" => "Enter observations",
 	"validate_field_ajax109" => "Enter color",
 	"validate_field_ajax110" => "The color is already in use",
-	"validate_field_ajax111" => "You cannot delete this state because it is linked to a shipment",
+	"validate_field_ajax111" => "You cannot delete this province because it is linked to a shipment",
 
 	"validate_field_ajax112" => "Enter service logistics",
 	"validate_field_ajax113" => "The logistics service is already in use",
@@ -391,7 +391,7 @@ $lang = array(
 	"message_exists_tracking" => "This shipment number is already tracked.",
 	"message_exists_locker" => "This locker number was assigned to another user.",
 	"message_title_login0" => "Login",
-	"message_title_login1" => "Log in to your account and start your adventure.",
+	"message_title_login1" => "Log in to your account and start ordering with us!",
 	"message_title_login2" => "Welcome to",
 
 	"message_title_register1" => "Hello In this demo choose the country that corresponds to the configured price list, so you can fill out the shipping and Pick up form.",
@@ -439,7 +439,7 @@ $lang = array(
 	"translate_search_destiny" => "Search destination country",
 
 	"translate_search_address_country" => "Country",
-	"translate_search_address_state" => "State",
+	"translate_search_address_state" => "Province",
 	"translate_search_address_city" => "City",
 	"translate_search_address_address" => "Address",
 	"translate_search_address_zip" => "Postcode",
@@ -697,7 +697,7 @@ $lang = array(
 
 	"left-menu-sidebar-57" => "Locations",
 	"left-menu-sidebar-58" => "Countries",
-	"left-menu-sidebar-59" => "States",
+	"left-menu-sidebar-59" => "Provinces",
 	"left-menu-sidebar-60" => "Cities",
 
 
@@ -1234,7 +1234,9 @@ $lang = array(
 	"left21550" => "Update status",
 	"left21551" => "the tracking number",
 	"left21552" => "Delivery Notes",
-
+	"left21553" => "-Unit and Buzzer (If applicable) 
+-Package Description 
+-Pickup and Drop off instructions",
 
 	"leftorder1" => "Additional charge",
 	"leftorder2" => "Value declared",
@@ -1554,7 +1556,7 @@ $lang = array(
 	"leftorder292" => "Rate Price",
 	"leftorder293" => "Destination country",
 	"leftorder294" => "Destination city",
-	"leftorder295" => "Destination state",
+	"leftorder295" => "Destination Province",
 	"leftorder296" => "Origin",
 	"leftorder297" => "Start Weight Range",
 	"leftorder298" => "Ending Weight Range",
@@ -1578,14 +1580,14 @@ $lang = array(
 	"leftorder315" => "Edit Country",
 	"leftorder316" => "Turn Country On",
 
-	"leftorder317" => "Find States",
+	"leftorder317" => "Find Provinces",
 	"leftorder318" => "Country",
 	"leftorder319" => "Province",
 	"leftorder320" => "City",
-	"leftorder321" => "List of states",
+	"leftorder321" => "List of Provinces",
 	"leftorder322" => "Add Status",
-	"leftorder323" => "State Name",
-	"leftorder324" => "Save state",
+	"leftorder323" => "Province Name",
+	"leftorder324" => "Save Province",
 	"leftorder325" => "Edit Status",
 
 	"leftorder326" => "Find cities",
@@ -1846,7 +1848,7 @@ $lang = array(
 	"left435" => "Concept and novelty type",
 	"left436" => "Remarks",
 	"left437" => "Registration Date",
-	"left438" => "State",
+	"left438" => "Province",
 	"left439" => "Manager",
 	"left440" => "Action",
 	"left441" => "Type Concept:",
@@ -1908,7 +1910,7 @@ $lang = array(
 	"left493" => "Origin",
 	"left494" => "Destination",
 	"left495" => "Reserve Date",
-	"left496" => "State",
+	"left496" => "Province",
 	"left497" => "Your shipment path",
 	"left498" => "Sender",
 	"left499" => "Recipient",
@@ -2020,7 +2022,7 @@ $lang = array(
 	"left1014" => "My Active Quotes",
 	"left1015" => "Product Price",
 	"left1016" => "Declared value",
-	"left1017" => "State",
+	"left1017" => "Province",
 	"left1018" => "Pending approval",
 	"left1019" => "View and Approve",
 	"left1020" => "Approved budget..",
@@ -2100,13 +2102,13 @@ $lang = array(
 	"left1092" => "Collected",
 	"left1093" => "Not collected",
 	"left1094" => "Pick up now!",
-	"left1095" => "Select State",
+	"left1095" => "Select Province",
 	"left1096" => "Delivery history",
 	"left1097" => "# Tracking",
 	"left1098" => "Customer Name",
 	"left1099" => "Send date and time",
 	"left1100" => "Name who receives",
-	"left1101" => "State",
+	"left1101" => "Province",
 	"left1102" => "History of delivered packages",
 	"left1103" => "Submit Order",
 	"left1104" => "CARD OWNER",
@@ -2362,6 +2364,8 @@ $lang = array(
 	"user_manage55" => "Business Name",
 	"user_manage56" => "Full Name",
 	"user_manage57" => "Business Name",
+	"user_manage58" => "Address Line 2",
+	"user_manage59" => "Unit Number / Apartment Number",
 
 
 	/** ToolConfig **/
@@ -3109,7 +3113,7 @@ $lang = array(
 	"langs_037" => "Code Office",
 	"langs_038" => "Select Code Office",
 	"langs_039" => "Consolidate State",
-	"langs_040" => "Select state",
+	"langs_040" => "Select province",
 	"langs_041" => "Additional comments for the consolidation",
 	"langs_042" => "Comments",
 	"langs_043" => "Select Payment",

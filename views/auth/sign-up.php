@@ -251,6 +251,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label"><?php echo $lang['user_manage58'] ?> <span class="text-danger">*</span></label>
+                                                        <div class="form-icon position-relative">
+                                                            <i data-feather="map-pin" class="fea icon-sm icons"></i>
+                                                            <input type="text" class="form-control ps-5" placeholder="<?php echo $lang['user_manage59'] ?>" name="address2" id="address2">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <!--end col-->
                                             </div>
 
@@ -285,20 +295,21 @@
                                                         </div>
                                                    
                                                 </div>
-                                            </div>
-
-                                            <!-- Billing Choice Dropdown Menu -->
-                                            <div class="col-md-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Billing Choice <span class="text-danger">*</span></label>
-                                                    <div class="form-icon position-relative">
-                                                        <select class="custom-select form-control ps-5" id="billing_choice" name="billing_choice">
-                                                            <option value="weekly">Weekly Billing</option>
-                                                            <option value="monthly">Monthly Billing</option>
-                                                        </select>
+                                                <!-- Billing Choice Dropdown Menu -->
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Billing Choice <span class="text-danger">*</span></label>
+                                                        <div class="form-icon position-relative">
+                                                            <select class="custom-select form-control ps-5" id="billing_choice" name="billing_choice">
+                                                                <option value="weekly">Weekly Billing</option>
+                                                                <option value="monthly">Monthly Billing</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            
 
 
 

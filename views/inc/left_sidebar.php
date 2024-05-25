@@ -34,12 +34,41 @@
 						</div>
 					</li>
 
-					<li class="p-15 m-t-10">
+					<!-- <li class="p-15 m-t-10">
 						<a href="courier_add.php" class="btn btn-block create-btn text-white no-block d-flex align-items-center">
 							<i class="ti-package"></i>
 							<span class="hide-menu m-l-5"> <?php echo $lang['left-menu-sidebar-1'] ?> </span>
 						</a>
+					</li> -->
+
+					<?php if ($userData->userlevel == 9 || $userData->userlevel == 3) { ?>
+
+					<!-- <li class="sidebar-item">
+						<a href="pickup_add_full.php" class="sidebar-link">
+							<i class="mdi mdi-adjust" style="color:#fc3f7"></i>
+							<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-20'] ?> </span>
+						</a>
+					</li> -->
+					<li class="p-15 m-t-10">
+						<a href="pickup_add_full.php" class="btn btn-block create-btn text-white no-block d-flex align-items-center">
+							<i class="ti-package"></i>
+							<span class="hide-menu m-l-5"> <?php echo $lang['left-menu-sidebar-20'] ?> </span>
+						</a>
 					</li>
+					<?php
+
+					} else { ?>
+
+					<li class="p-15 m-t-10">
+						<a href="pickup_add.php" class="btn btn-block create-btn text-white no-block d-flex align-items-center">
+							<i class="ti-package"></i>
+							<span class="hide-menu m-l-5"> <?php echo $lang['left-menu-sidebar-20'] ?> </span>
+						</a>
+					</li>
+
+					<?php
+					}
+					?>
 
 					<li class="nav-small-cap"> <span class="hide-menu"></span></li>
 
@@ -106,7 +135,7 @@
 
 
 					<!-- Module shipment-->
-					<li class="sidebar-item">
+					<!-- <li class="sidebar-item">
 						<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 							<i class="mdi mdi-package-variant"></i>
 							<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-13'] ?></span>
@@ -149,7 +178,7 @@
 							</li>
 
 						</ul>
-					</li>
+					</li> -->
 
 					<!-- Module pickup-->
 					<li class="sidebar-item">
@@ -200,14 +229,13 @@
 
 
 					<!-- CONSOLIDATE -->
-					<li class="sidebar-item">
+					<!-- <li class="sidebar-item">
 						<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 							<i class="mdi mdi-widgets"></i>
 							<span class="hide-menu"><?php echo $lang['left-menu-sidebar-22'] ?></span>
 						</a>
 						<ul aria-expanded="false" class="collapse  first-level">
 
-							<!-- Module consolidate-->
 							<li class="sidebar-item">
 								<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 									<i class="fas fas fa-boxes"></i>
@@ -245,7 +273,6 @@
 							</li>
 
 
-							<!-- Module consolidate-->
 							<li class="sidebar-item">
 								<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 									<i class="fas fas fa-boxes"></i>
@@ -282,7 +309,7 @@
 								</ul>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 
 					<li class="sidebar-item">
 						<a class="sidebar-link waves-effect waves-dark" href="reports.php" aria-expanded="false">
@@ -562,12 +589,12 @@
 				
 
 
-				<li class="sidebar-item">
+				<!-- <li class="sidebar-item">
 					<a class="sidebar-link waves-effect waves-dark" href="verify_update.php" aria-expanded="false">
 						<i class="ti-info-alt"></i>
 						<span class="hide-menu"> <?php echo $lang['left-menu-sidebar-61'] ?></span>
 					</a>
-				</li>
+				</li> -->
 
 				</ul>
 
@@ -605,7 +632,7 @@
 						</div>
 						<!-- End User Profile-->
 					</li>
-
+					
 
 					<li class="p-15 m-t-10">
 						<a href="courier_add.php" class="btn btn-block create-btn text-white no-block d-flex align-items-center">

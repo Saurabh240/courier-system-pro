@@ -344,7 +344,7 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                                 <div>
                                                     <label class="control-label" id="selectItem"> <?php echo $lang['left21552']; ?></label>
                                                 </div>
-                                                <textarea  class="form-control" name="delivery_notes" id="delivery_notes" rows="4" cols="50" placeholder="--<?php echo $lang['left21552'] ?>--"  ></textarea>
+                                                <textarea  class="form-control" name="delivery_notes" id="delivery_notes" rows="4" cols="50" placeholder="<?php echo $lang['left21553'] ?>"  ></textarea>
 
                                                
 
