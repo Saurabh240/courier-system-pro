@@ -733,91 +733,92 @@ $("#invoice_form").on("submit", function (event) {
 
   // sweealert 2, alerta error informacion de paquetes
 
-  for (let [i, val] of packagesItems.entries()) {
-      if ($.trim($("#description_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_description,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#description_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#qty_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_quantity,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#qty_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#weight_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_weight,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#weight_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#length_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_length,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#length_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#width_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_width,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#width_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#height_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_height,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#height_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#fixedValue_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_charge,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#fixedValue_" + i).focus();
-          return false;
-      }
-      if ($.trim($("#declaredValue_" + i).val()).length == 0) {
-          Swal.fire({
-              type: 'Error!',
-              text: validation_declared,
-              icon: 'error',
-              confirmButtonText: 'Ok'
-          });
-          $("#declaredValue_" + i).focus();
-          return false;
-      }
-  }
+  // for (let [i, val] of packagesItems.entries()) {
+  //     if ($.trim($("#description_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_description,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#description_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#qty_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_quantity,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#qty_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#weight_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_weight,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#weight_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#length_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_length,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#length_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#width_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_width,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#width_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#height_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_height,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#height_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#fixedValue_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_charge,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#fixedValue_" + i).focus();
+  //         return false;
+  //     }
+  //     if ($.trim($("#declaredValue_" + i).val()).length == 0) {
+  //         Swal.fire({
+  //             type: 'Error!',
+  //             text: validation_declared,
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //         });
+  //         $("#declaredValue_" + i).focus();
+  //         return false;
+  //     }
+  // }
 
   var prefix_check = $("#prefix_check").val();
-  var core_meter = $("#core_meter").val();
+  var code_prefix = $("#code_prefix").val();
+  var code_prefix2 = $("#code_prefix2").val();
   var notify_whatsapp_sender = $(
     "input:checkbox[name=notify_whatsapp_sender]:checked"
   ).val();
@@ -825,11 +826,13 @@ $("#invoice_form").on("submit", function (event) {
   var notify_whatsapp_receiver = $(
     "input:checkbox[name=notify_whatsapp_receiver]:checked"
   ).val();
-
   var order_no = $("#order_no").val();
   var agency = $("#agency").val();
   var origin_off = $("#origin_off").val();
-  var sender_id = $("#sender_id").val();
+  var sender_id = $("#sender_id_temp").val();
+  if(!sender_id){
+    sender_id = $("#sender_id_temp").val();
+  }
   var sender_address_id = $("#sender_address_id").val();
   var recipient_id = $("#recipient_id").val();
   var recipient_address_id = $("#recipient_address_id").val();
@@ -838,11 +841,9 @@ $("#invoice_form").on("submit", function (event) {
   var order_service_options = $("#order_service_options").val();
   var order_package = $("#order_package").val();
   var order_date = $("#order_date").val();
-  var order_deli_time = $("#order_deli_time").val();
-  var order_payment_method = $("#order_payment_method").val();
   var status_courier = $("#status_courier").val();
+
   var driver_id = $("#driver_id").val();
-  var order_id = $("#order_id").val();
 
   var price_lb = $("#price_lb").val();
   var insured_value = $("#insured_value").val();
@@ -852,21 +853,44 @@ $("#invoice_form").on("submit", function (event) {
   var tax_value = $("#tax_value").val();
   var declared_value_tax = $("#declared_value_tax").val();
   var tariffs_value = $("#tariffs_value").val();
-
+  var baseRate = localStorage.getItem('baseRate');
+  var shipmentfee = localStorage.getItem('shipmentfee');
+  var delivery_notes = $("#delivery_notes").val();
+  var payment_method = $("#order_payment_method").val();
+  var order_id = $("#order_id").val();
   var deleted_file_ids = $("#deleted_file_ids").val();
 
   var data = new FormData();
 
-  data.append("packages", JSON.stringify(packagesItems));
+  console.log(data);
+ // data.append("packages", JSON.stringify(packagesItems));
+ if(order_id){
+  data.append("order_id", order_id);
+ }
+  if(order_service_options){
+    data.append("order_service_options", order_service_options);
+  }
+  if(payment_method){
+    data.append("order_payment_method", payment_method);
+  }
 
-  if (core_meter) {
-    data.append("meter", core_meter);
+  if (delivery_notes) {
+    data.append("notes", delivery_notes);
   }
   if (prefix_check) {
     data.append("prefix_check", prefix_check);
   }
-  if (order_id) {
-    data.append("order_id", order_id);
+  if (baseRate) {
+    data.append("fixed_rate", baseRate);
+  }
+  if (shipmentfee) {
+    data.append("pickuptotal", shipmentfee);
+  }
+  if (code_prefix) {
+    data.append("code_prefix", code_prefix);
+  }
+  if (code_prefix2) {
+    data.append("code_prefix2", code_prefix2);
   }
   if (order_no) {
     data.append("order_no", order_no);
@@ -874,9 +898,9 @@ $("#invoice_form").on("submit", function (event) {
   if (agency) {
     data.append("agency", agency);
   }
-  if (origin_off) {
-    data.append("origin_off", origin_off);
-  }
+  // if (origin_off) {
+  //   data.append("origin_off", origin_off);
+  // }
   if (sender_id) {
     data.append("sender_id", sender_id);
   }
@@ -889,7 +913,7 @@ $("#invoice_form").on("submit", function (event) {
   if (recipient_address_id) {
     data.append("recipient_address_id", recipient_address_id);
   }
-  if (order_item_category) {
+  /*if (order_item_category) {
     data.append("order_item_category", order_item_category);
   }
   if (order_courier) {
@@ -900,54 +924,49 @@ $("#invoice_form").on("submit", function (event) {
   }
   if (order_package) {
     data.append("order_package", order_package);
-  }
+  }*/
   if (order_date) {
     data.append("order_date", order_date);
   }
-  if (order_deli_time) {
-    data.append("order_deli_time", order_deli_time);
-  }
-  if (order_payment_method) {
-    data.append("order_payment_method", order_payment_method);
-  }
+
   if (status_courier) {
     data.append("status_courier", status_courier);
   }
   if (driver_id) {
     data.append("driver_id", driver_id);
   }
-  if (price_lb) {
-    data.append("price_lb", price_lb);
-  }
-  if (insured_value) {
-    data.append("insured_value", insured_value);
-  }
-  if (reexpedicion_value) {
-    data.append("reexpedicion_value", reexpedicion_value);
-  }
-  if (discount_value) {
-    data.append("discount_value", discount_value);
-  }
-  if (tax_value) {
-    data.append("tax_value", tax_value);
-  }
-  if (declared_value_tax) {
-    data.append("declared_value_tax", declared_value_tax);
-  }
+  // if (price_lb) {
+  //   data.append("price_lb", price_lb);
+  // }
+  // if (insured_value) {
+  //   data.append("insured_value", insured_value);
+  // }
+  // if (reexpedicion_value) {
+  //   data.append("reexpedicion_value", reexpedicion_value);
+  // }
+  // if (discount_value) {
+  //   data.append("discount_value", discount_value);
+  // }
+  // if (tax_value) {
+  //   data.append("tax_value", tax_value);
+  // }
+  // if (declared_value_tax) {
+  //   data.append("declared_value_tax", declared_value_tax);
+  // }
   if (tariffs_value) {
     data.append("tariffs_value", tariffs_value);
   }
-  if (insurance_value) {
-    data.append("insurance_value", insurance_value);
-  }
+  // if (insurance_value) {
+  //   data.append("insurance_value", insurance_value);
+  // }
 
-  if (notify_whatsapp_sender) {
-    data.append("notify_whatsapp_sender", notify_whatsapp_sender);
-  }
+  // if (notify_whatsapp_sender) {
+  //   data.append("notify_whatsapp_sender", notify_whatsapp_sender);
+  // }
 
-  if (notify_whatsapp_receiver) {
-    data.append("notify_whatsapp_receiver", notify_whatsapp_receiver);
-  }
+  // if (notify_whatsapp_receiver) {
+  //   data.append("notify_whatsapp_receiver", notify_whatsapp_receiver);
+  // }
 
   if (deleted_file_ids) {
     data.append("deleted_file_ids", deleted_file_ids);
@@ -2059,66 +2078,66 @@ function cdp_showSuccess(messages, shipment_id) {
 }
 
 $("#calculate_invoice").on("click", function (event) {
-  var recipient_id = $("#recipient_id").val();
-  var recipient_address_id = $("#recipient_address_id").val();
-  var sender_id = $("#sender_id").val();
-  var sender_address_id = $("#sender_address_id").val();
-  var packages = JSON.stringify(packagesItems);
+  
+  // // var recipient_id = $("#recipient_id").val();
+  // // var recipient_address_id = $("#recipient_address_id").val();
+  // // var sender_id = $("#sender_id").val();
+  // // var sender_address_id = $("#sender_address_id").val();
+  // // var packages = JSON.stringify(packagesItems);
 
-  var tariffs_value = $("#tariffs_value").val();
-  var declared_value_tax = $("#declared_value_tax").val();
-  var insurance_value = $("#insurance_value").val();
-  var tax_value = $("#tax_value").val();
-  var discount_value = $("#discount_value").val();
-  var reexpedicion_value = $("#reexpedicion_value").val();
-  var price_lb = $("#price_lb").val();
-  var insured_value = $("#insured_value").val();
+  // // var tariffs_value = $("#tariffs_value").val();
+  // // var declared_value_tax = $("#declared_value_tax").val();
+  // // var insurance_value = $("#insurance_value").val();
+  // // var tax_value = $("#tax_value").val();
+  // // var discount_value = $("#discount_value").val();
+  // // var reexpedicion_value = $("#reexpedicion_value").val();
+  // // var price_lb = $("#price_lb").val();
+  // // var insured_value = $("#insured_value").val();
 
-  reexpedicion_value = parseFloat(reexpedicion_value);
-  insured_value = parseFloat(insured_value);
-  price_lb = parseFloat(price_lb);
+  // // reexpedicion_value = parseFloat(reexpedicion_value);
+  // // insured_value = parseFloat(insured_value);
+  // // price_lb = parseFloat(price_lb);
 
-  var data = {
-    packages: packages,
-    sender_id: sender_id,
-    sender_address: sender_address_id,
-    recipient_address: recipient_address_id,
-    recipient_id: recipient_id,
-    tariffs_value: tariffs_value,
-    declared_value_tax: declared_value_tax,
-    insurance_value: insurance_value,
-    tax_value: tax_value,
-    discount_value: discount_value,
-    reexpedicion_value: reexpedicion_value,
-    price_lb: price_lb,
-    insured_value: insured_value,
-  };
+  // // var data = {
+  // //   packages: packages,
+  // //   sender_id: sender_id,
+  // //   sender_address: sender_address_id,
+  // //   recipient_address: recipient_address_id,
+  // //   recipient_id: recipient_id,
+  // //   tariffs_value: tariffs_value,
+  // //   declared_value_tax: declared_value_tax,
+  // //   insurance_value: insurance_value,
+  // //   tax_value: tax_value,
+  // //   discount_value: discount_value,
+  // //   reexpedicion_value: reexpedicion_value,
+  // //   price_lb: price_lb,
+  // //   insured_value: insured_value,
+  // };
 
-  $.ajax({
-    type: "POST",
-    data: data,
-    url: "ajax/courier/get_price_range_weight_tariffs_ajax.php",
-    dataType: "json",
-    beforeSend: function (objeto) {
-      $(".resultados_ajax").html("Mensaje: loading...");
-    },
-    success: function (data) {
-      if (data.success) {
+  // $.ajax({
+  //   type: "POST",
+  //   data: data,
+  //   url: "ajax/courier/get_price_range_weight_tariffs_ajax.php",
+  //   dataType: "json",
+  //   beforeSend: function (objeto) {},
+  //   success: function (data) {
+  //     if (data.success) {
         $("#table-totals").removeClass("d-none");
         $("#create_invoice").attr("disabled", false);
-        $("#price_lb").val(data.data.price);
+  //       $("#price_lb").val(data.data.price);
+
         calculateFinalTotal();
-      } else {
-        $("#table-totals").addClass("d-none");
-        $("#create_invoice").attr("disabled", true);
-        Swal.fire({
-          title: "Error!",
-          text: data.error,
-          icon: "error",
-          confirmButtonText: "Ok",
-        });
-      }
-    },
-  });
+  //     } else {
+  //       $("#table-totals").addClass("d-none");
+  //       $("#create_invoice").attr("disabled", true);
+  //       Swal.fire({
+  //         title: "Error!",
+  //         text: data.error,
+  //         icon: "error",
+  //         confirmButtonText: "Ok",
+  //       });
+  //     }
+  //   },
+  // });
   event.preventDefault();
 });

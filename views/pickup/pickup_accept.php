@@ -347,7 +347,7 @@ $address_order = $db->cdp_registro();
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title"><i class="mdi mdi-book-multiple" style="color:#36bea6"></i> <?php echo $lang['add-title13'] ?></h4>
+                                    <h4 class="card-title"><i class="mdi mdi-book-multiple" style="color:#36bea6"></i> <?php echo "Delivery Details"; ?></h4>
                                     <br>
                                     <div class="row">
                                         <!-- <div class="form-group col-md-4">
@@ -398,7 +398,7 @@ $address_order = $db->cdp_registro();
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-md-3">
+                                        <div class="form-group col-md-4">
                                             <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
                                             <div class="input-group mb-3">
                                                 <select class="custom-select col-12 pre" id="order_service_options" name="order_service_options" required>
@@ -412,7 +412,7 @@ $address_order = $db->cdp_registro();
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-md-3">
+                                        <div class="form-group col-md-4">
                                             <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['add-title19'] ?> <i style="color:#ff0000" class="fas fa-shipping-fast"></i></label>
                                             <div class="input-group mb-3">
                                                 <select class="custom-select col-12 pre" id="status_courier" name="status_courier" required>
@@ -445,7 +445,8 @@ $address_order = $db->cdp_registro();
                                             </div>
                                         </div> -->
                                         <input type="hidden" name="order_courier" value="1" />
-
+                                        
+                                        
                                       
 
 
@@ -480,6 +481,25 @@ $address_order = $db->cdp_registro();
                                     </div>
 
                                     <div class="row">
+											
+                                            <div class="form-group col-md-4">
+												<label for="inputEmail3" class="control-label col-form-label">Distance</label>
+												<div class="input-group mb-3">
+													<input type="text" name="distance" class="form-control" id="distance">
+												</div>
+											</div>
+                                        
+										
+                                            <div class="col-md-8">
+                                                <div>
+                                                    <label class="control-label" id="selectItem"> Delivery Notes</label>
+                                                </div>
+                                                <textarea class="form-control" name="delivery_notes" id="delivery_notes" rows="4" cols="50" placeholder="-Unit and Buzzer (If applicable) -Package Description -Pickup and Drop off instructions"></textarea>
+                                            </div>
+
+                                    </div>
+
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div>
                                                 <label class="control-label" id="selectItem"> <?php echo $lang['leftorder15']; ?></label>
@@ -489,10 +509,11 @@ $address_order = $db->cdp_registro();
                                                 <i class='fa fa-paperclip' id="openMultiFile" style="font-size:18px; cursor:pointer;">
                                                 </i> <?php echo $lang['leftorder16']; ?> </button>
                                         </div>
+                            
                                         <?php
                                             if ($userData->userlevel == 3) { ?>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label for="inputname" class="control-label col-form-label"><?php echo $lang['left208'] ?></label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -659,108 +680,115 @@ $address_order = $db->cdp_registro();
                                     <hr> -->
 
                                     <div class="row" style="margin-top: 20px;">
-                                        <div class="table-responsive" id="table-totals">
-                                            
+                                        <div class="table-responsive d-none" id="table-totals">
+                                                <!-- <table id="insvoice-item-table" class="table">
+                                                    <tfoot>
+                                                        <tr class="card-hover">
+                                                            <td colspan="4" class="text-right"><b><?php echo $lang['leftorder2021'] ?></b></td>
+                                                            <td colspan="1"></td>
+                                                            <td class="text-right">
+                                                                <?php
+                                                                if ($core->for_symbol !== null) {
+                                                                ?>
+                                                                    <b> <?php echo $core->for_symbol; ?> </b>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <span id="subtotal"> 0.00</span>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table> -->
 
 
-                                            <!-- Listado de impuestos-->
+                                                <!-- Listado de impuestos-->
 
-                                            <div  class="card" id="row">
-                                                <div class="col-md-6">
-                                                    <h4 class="card-title">
-                                                        <i class="ti ti-briefcase " style="color:#36bea6"></i>
-                                                        <?php echo $lang['messageerrorform30'] ?>
-                                                    </h4>
-                                                </div>
-                                                <hr>
-                                                <!-- <div class="row row-shadow input-container"> 
-                                                  <div class="col-sm-12 col-md-6 col-lg-2">
-                                                    <div class="form-group">
-                                                        <label for="emailAddress1"><?php echo $lang['left905'] ?> &nbsp; <?php echo $core->weight_p; ?> </label>
-                                                        <div class="input-group">
-                                                          <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event, this)" class="form-control form-control-sm" value="<?php echo $core->value_weight; ?>" name="price_lb" id="price_lb" style="border: 1px solid red;" readonly>
-                                                        </div>
-                                                     </div>
-                                                  </div>
-
-
-                                                  <div class="col-sm-12 col-md-6 col-lg-2">
-                                                    <div class="form-group">
-                                                        <label for="emailAddress1"><?php echo $lang['leftorder21'] ?> <?php echo $lang['leftorder222221'] ?> </label>
-                                                        <div class="input-group">
-                                                          <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event)" value="<?php echo $row_order->tax_discount; ?>" name="discount_value" id="discount_value" class="form-control form-control-sm">
-                                                        </div>
-                                                        
-                                                        <?php
-                                                        if ($core->for_symbol !== null) {
-                                                        ?>
-                                                            <b> <?php echo $core->for_symbol; ?> </b>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                        <span id="discount"> 0.00</span>
-                                                        
-                                                     </div>
-                                                  </div>
-
-                                                  <div class="col-sm-12 col-md-6 col-lg-2">
-                                                    <div class="form-group">
-                                                        <label for="emailAddress1"><?php echo $lang['leftorder22'] ?> </label>
-                                                        <div class="input-group">
-                                                          <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event)" class="form-control form-control-sm" value="<?php echo $row_order->total_insured_value; ?>" name="insured_value" id="insured_value" style="border: 1px solid darkorange;">
+                                                <div  class="card" id="row">
+                                                    <div class="col-md-6">
+                                                        <h4 class="card-title">
+                                                            <i class="ti ti-briefcase " style="color:#36bea6"></i>
+                                                            <?php echo $lang['messageerrorform30'] ?>
+                                                        </h4>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row row-shadow input-container"> 
+                                                    <!-- <div class="col-sm-12 col-md-6 col-lg-2">
+                                                            <div class="form-group">
+                                                                <label for="emailAddress1"><?php echo $lang['leftorder1879'] ?></label>
+                                                                <?php
+                                                                if ($core->for_symbol !== null) {
+                                                                ?>
+                                                                    <b> <?php echo $core->for_symbol; ?> </b>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <span id="fixed_value_label"> 0.00</span>
+                                                                <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
+                                                            </div>
                                                         </div>
                                                         
-                                                        <td class="text-center" id="insured_label"></td>
-                                                        
-                                                     </div>
-                                                  </div> 
+                                                        <div class="col-sm-12 col-md-6 col-lg-2">
+                                                            <div class="form-group">
+                                                                <label for="emailAddress1"><?php echo $lang['leftorder1880'] ?></label>
+                                                            
+                                                                <span id="total_distance"> 0.00</span>
+                                                            
+                                                            </div>
+                                                        </div> -->
 
+                                                        <div class="col-sm-12 col-md-6 col-lg-3">
+                                                        <div class="form-group">
+                                                                <label for="emailAddress1"><?php echo $lang['leftorder2021'] ?>  </label>
+                                                                
+                                                                    <?php
+                                                                    if ($core->for_symbol !== null) {
+                                                                    ?>
+                                                                        <b> <?php echo $core->for_symbol; ?> </b>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                    <span id="total_before_tax"> 0.00</span>
+                                                                    <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
+                                                                    <input type="hidden" name="total_envio_ajax" id="total_envio_ajax">
+                                                                </div>
+                                                    </div>
 
-                                                  <div class="col-sm-12 col-md-6 col-lg-2">
-                                                    <div class="form-group">
-                                                        <label for="emailAddress1"><?php echo $lang['leftorder24'] ?> <?php echo $lang['leftorder222221'] ?> </label>
-                                                        <div class="input-group">
-                                                            <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event)" class="form-control form-control-sm" value="<?php echo $row_order->tax_insurance_value; ?>" name="insurance_value" id="insurance_value" style="border: 1px solid darkorange;">
+                                                    <div class="col-sm-12 col-md-6 col-lg-3">
+                                                        <div class="form-group">
+                                                                <label for="emailAddress1"><?php echo $lang['leftorder2020'] ?> (<?php echo '13%';//echo $core->tax; ?>)</label>
+                                                                    
+                                                                    
+                                                                    <?php
+                                                                    if ($core->for_symbol !== null) {
+                                                                    ?>
+                                                                        <b> <?php echo $core->for_symbol; ?> </b>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                    <span id="total_after_tax"> 0.00</span>
+                                                                    
+                                                                </div>
+                                                    </div>
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    <!-- <div class="col-sm-12 col-md-6 col-lg-2">
+                                                        <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo $lang['left905'] ?> &nbsp; <?php echo $core->weight_p; ?> </label>
+                                                            <div class="input-group">
+                                                            <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event, this)" class="form-control form-control-sm" value="<?php echo $core->value_weight; ?>" name="price_lb" id="price_lb" style="border: 1px solid red;" readonly>
+                                                            </div>
                                                         </div>
-                                                        
-                                                        <?php
-                                                        if ($core->for_symbol !== null) {
-                                                        ?>
-                                                            <b> <?php echo $core->for_symbol; ?> </b>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                        <span id="insurance"> 0.00</span>
-                                                        
-                                                     </div>
-                                                  </div>
-
-
-                                                  <div class="col-sm-12 col-md-6 col-lg-2">
-                                                    <div class="form-group">
-                                                        <label for="emailAddress1"><?php echo $lang['leftorder25'] ?> <?php echo $lang['leftorder222221'] ?> </label>
-                                                        <div class="input-group">
-                                                            <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event)" class="form-control form-control-sm" value="<?php echo $row_order->tax_custom_tariffis_value; ?>" name="tariffs_value" id="tariffs_value">
-                                                        </div>
-                                                        
-                                                        <?php
-                                                        if ($core->for_symbol !== null) {
-                                                        ?>
-                                                            <b> <?php echo $core->for_symbol; ?> </b>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                        <span id="total_impuesto_aduanero"> 0.00</span>
-                                                        
-                                                     </div>
-                                                  </div>
+                                                    </div>
 
 
                                                     <div class="col-sm-12 col-md-6 col-lg-2">
                                                         <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['leftorder67'] ?> <?php echo $lang['leftorder222221'] ?> </label>
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder21'] ?> <?php echo $lang['leftorder222221'] ?> </label>
                                                             <div class="input-group">
-                                                              <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event)" class="form-control form-control-sm" value="<?php echo $row_order->tax_value; ?>" name="tax_value" id="tax_value">
+                                                            <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event, this)" value="0" name="discount_value" id="discount_value" class="form-control form-control-sm" readonly>
                                                             </div>
                                                             
                                                             <?php
@@ -770,16 +798,29 @@ $address_order = $db->cdp_registro();
                                                             <?php
                                                             }
                                                             ?>
-                                                            <span id="impuesto"> 0.00</span>
+                                                            <span id="discount"> 0.00</span>
                                                             
-                                                         </div>
+                                                        </div>
                                                     </div>
-                                                
+
                                                     <div class="col-sm-12 col-md-6 col-lg-2">
                                                         <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['leftorder19'] ?> <?php echo $lang['leftorder222221'] ?> </label>
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder22'] ?> </label>
                                                             <div class="input-group">
-                                                                <input type="text" onchange="calculateFinalTotal(this);" value="<?php echo $row_order->declared_value; ?>" onkeypress="return isNumberKey(event)" class="form-control form-control-sm" name="declared_value_tax" id="declared_value_tax">
+                                                            <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event, this)" class="form-control form-control-sm" value="100" name="insured_value" id="insured_value" style="border: 1px solid darkorange;" readonly>
+                                                            </div>
+                                                            
+                                                            <td class="text-center" id="insured_label"></td>
+                                                            
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-sm-12 col-md-6 col-lg-2">
+                                                        <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder24'] ?> <?php echo $lang['leftorder222221'] ?> </label>
+                                                            <div class="input-group">
+                                                            <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event, this)" class="form-control form-control-sm" value="<?php echo $core->insurance; ?>" name="insurance_value" id="insurance_value" style="border: 1px solid darkorange;" readonly>
                                                             </div>
                                                             
                                                             <?php
@@ -789,99 +830,141 @@ $address_order = $db->cdp_registro();
                                                             <?php
                                                             }
                                                             ?>
-                                                            <span id="declared_value_label"> 0.00</span>
+                                                            <span id="insurance"> 0.00</span>
                                                             
                                                         </div>
                                                     </div>
 
+
                                                     <div class="col-sm-12 col-md-6 col-lg-2">
                                                         <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['langs_048'] ?> </label>
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder25'] ?> <?php echo $lang['leftorder222221'] ?> </label>
                                                             <div class="input-group">
-                                                                <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event)" class="form-control form-control-sm" value="<?php echo $row_order->total_reexp; ?>" name="reexpedicion_value" id="reexpedicion_value">
+                                                            <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event, this)" class="form-control form-control-sm" value="<?php echo $core->c_tariffs; ?>" name="tariffs_value" id="tariffs_value" readonly>
                                                             </div>
                                                             
-                                                            <td class="text-right" id="reexpedicion_label"></td>
+                                                            <?php
+                                                            if ($core->for_symbol !== null) {
+                                                            ?>
+                                                                <b> <?php echo $core->for_symbol; ?> </b>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <span id="total_impuesto_aduanero"> 0.00</span>
                                                             
                                                         </div>
                                                     </div>
 
 
+                                                        <div class="col-sm-12 col-md-6 col-lg-2">
+                                                            <div class="form-group">
+                                                                <label for="emailAddress1"><?php echo $lang['leftorder67'] ?> <?php echo $lang['leftorder222221'] ?> </label>
+                                                                <div class="input-group">
+                                                                <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event, this)" class="form-control form-control-sm" value="<?php echo $core->tax; ?>" name="tax_value" id="tax_value" readonly>
+                                                                </div>
+                                                                
+                                                                <?php
+                                                                if ($core->for_symbol !== null) {
+                                                                ?>
+                                                                    <b> <?php echo $core->for_symbol; ?> </b>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <span id="impuesto"> 0.00</span>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    
+                                                        <div class="col-sm-12 col-md-6 col-lg-2">
+                                                            <div class="form-group">
+                                                                <label for="emailAddress1"><?php echo $lang['leftorder19'] ?> <?php echo $lang['leftorder222221'] ?> </label>
+                                                                <div class="input-group">
+                                                                <input type="text" onchange="calculateFinalTotal(this);" value="<?php echo $core->declared_tax; ?>" onkeypress="return isNumberKey(event, this)" class="form-control form-control-sm" name="declared_value_tax" id="declared_value_tax" readonly>
+                                                                </div>
+                                                                
+                                                                <?php
+                                                                if ($core->for_symbol !== null) {
+                                                                ?>
+                                                                    <b> <?php echo $core->for_symbol; ?> </b>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <span id="declared_value_label"> 0.00</span>
+                                                                
+                                                            </div>
+                                                        </div>
 
-                                                    <div class="col-sm-12 col-md-6 col-lg-2">
-                                                        <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['leftorder1878'] ?></label>
-                                                            <?php
-                                                            if ($core->for_symbol !== null) {
-                                                            ?>
-                                                                <b> <?php echo $core->for_symbol; ?> </b>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            <span id="fixed_value_label"> 0.00</span>
-                                                            
-                                                         </div>
-                                                    </div> -->
-                                           
-                                               
-                                              
-                                                <div class="row row-shadow input-container"> 
+                                                        <div class="col-sm-12 col-md-6 col-lg-2">
+                                                            <div class="form-group">
+                                                                <label for="emailAddress1"><?php echo $lang['langs_048'] ?> </label>
+                                                                <div class="input-group">
+                                                                <input type="text" onchange="calculateFinalTotal(this);" onkeypress="return isNumberKey(event, this)" class="form-control form-control-sm" value="0" name="reexpedicion_value" id="reexpedicion_value" readonly>
+                                                                </div>
+                                                                
+                                                                <td class="text-right" id="reexpedicion_label"></td>
+                                                                
+                                                            </div>
+                                                        </div>
 
-                                                    <div class="col-sm-12 col-md-6 col-lg-2">
-                                                        <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['leftorder2021'] ?></label>
-                                                            <?php
-                                                            if ($core->for_symbol !== null) {
-                                                            ?>
-                                                                <b> <?php echo $core->for_symbol; ?> </b>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            <span id="subtotal" class="green-bold"> 0.00</span>
-                                                            
-                                                         </div>
+
+
+                                                        <div class="col-sm-12 col-md-6 col-lg-2">
+                                                            <div class="form-group">
+                                                                <label for="emailAddress1"><?php echo $lang['leftorder1878'] ?></label>
+                                                                <?php
+                                                                if ($core->for_symbol !== null) {
+                                                                ?>
+                                                                    <b> <?php echo $core->for_symbol; ?> </b>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <span id="fixed_value_label"> 0.00</span>
+                                                                <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-sm-12 col-md-6 col-lg-2">
+                                                            <div class="form-group">
+                                                                <label for="emailAddress1"><?php echo $lang['leftorder2020'] ?></label>
+                                                                <?php
+                                                                if ($core->for_symbol !== null) {
+                                                                ?>
+                                                                    <b> <?php echo $core->for_symbol; ?> </b>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <span id="total_envio" class="green-bold"> 0.00</span>
+                                                                <input type="hidden" name="total_envio_ajax" id="total_envio_ajax">
+                                                                
+                                                            </div>
+                                                        </div> -->
+
                                                     </div>
-
-                                                    <div class="col-sm-12 col-md-6 col-lg-2">
-                                                        <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['leftorder2020'] ?></label>
-                                                            <?php
-                                                            if ($core->for_symbol !== null) {
-                                                            ?>
-                                                                <b> <?php echo $core->for_symbol; ?> </b>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            <span id="total_envio" class="green-bold"> 0.00</span>           
-                                                         </div>
-                                                    </div>
-
                                                 </div>
 
-                                                </div>
                                             </div>
-                                           
-                                        </div>
-                                    </div>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-actions">
-                                                <div class="card-body">
-                                                    <div class="text-right">
-                                                        <input type="hidden" name="total_item_files" id="total_item_files" value="0" />
-                                                        <input type="hidden" name="deleted_file_ids" id="deleted_file_ids" />
-                                                        <button type="button" name="calculate_invoice" id="calculate_invoice" class="btn btn-info">
-                                                            <i class="fas fa-calculator"></i>
-                                                            <span class="ml-1">
-                                                                <?php echo $lang['leftorder17714'] ?>
-                                                            </span>
-                                                        </button>
-                                                        <button type="submit" name="create_invoice" id="create_invoice" class="btn btn-success">
-                                                            <i class="fas fa-save"></i>
-                                                            <span class="ml-1"><?php echo $lang['left1103'] ?></span>
+                                        
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-actions">
+                                                    <div class="card-body">
+                                                        <div class="text-right">
+                                                            <input type="hidden" name="total_item_files" id="total_item_files" value="0" />
+                                                            <input type="hidden" name="deleted_file_ids" id="deleted_file_ids" />
+                                                            <button type="button" name="calculate_invoice" id="calculate_invoice" class="btn btn-info">
+                                                                <i class="fas fa-calculator"></i>
+                                                                <span class="ml-1">
+                                                                    <?php echo $lang['leftorder17714'] ?>
+                                                                </span>
+                                                            </button>
+                                                            <button type="submit" name="create_invoice" id="create_invoice" class="btn btn-success">
+                                                                <i class="fas fa-save"></i>
+                                                                <span class="ml-1"><?php echo $lang['left1103'] ?></span>
 
-                                                        </button>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -893,10 +976,24 @@ $address_order = $db->cdp_registro();
                         </div>
                     </div>
 
-                    <input type="hidden" name="order_id" id="order_id" value="<?php echo $row_order->order_id; ?>" />
-                    <input type="hidden" name="core_meter" id="core_meter" value="<?php echo $row_order->volumetric_percentage; ?>" />
+                    <input type="hidden" name="order_id" id="order_id" value="<?php echo @$_GET['id']; ?>" />
+                    <input type="hidden" name="core_meter" id="core_meter" value="<?php echo @$row_order->volumetric_percentage; ?>" />
                     <input type="hidden" name="core_min_cost_tax" id="core_min_cost_tax" value="<?php echo $core->min_cost_tax; ?>" />
                     <input type="hidden" name="core_min_cost_declared_tax" id="core_min_cost_declared_tax" value="<?php echo $core->min_cost_declared_tax; ?>" />
+
+                    
+                    <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
+                    <input type="hidden" name="total_envio_ajax" id="total_envio_ajax">
+
+
+                    <input type="hidden" value="<?php echo $core->value_weight; ?>" name="price_lb" id="price_lb">
+                    <input type="hidden" value="0" name="discount_value" id="discount_value">
+                    <input type="hidden" value="100" name="insured_value" id="insured_value">
+                    <input type="hidden" value="<?php echo $core->insurance; ?>" name="insurance_value" id="insurance_value">
+                    <input type="hidden" value="<?php echo $core->c_tariffs; ?>" name="tariffs_value" id="tariffs_value">
+                    <input type="hidden" value="<?php echo '13' ?>" name="tax_value" id="tax_value">
+                    <input type="hidden" value="<?php echo $core->declared_tax; ?>" name="declared_value_tax" id="declared_value_tax">
+                    <input type="hidden" value="0" name="reexpedicion_value" id="reexpedicion_value">
             </form>
             <?php include('views/modals/modal_add_user_shipment.php'); ?>
             <?php include('views/modals/modal_add_recipient_shipment.php'); ?>

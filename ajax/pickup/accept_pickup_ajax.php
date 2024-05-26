@@ -32,52 +32,45 @@ $user = new User;
 $core = new Core;
 $errors = array();
 
-
-if (empty($_POST['sender_id']))
-
-    $errors['sender_id'] = $lang['validate_field_ajax150'];
+// if (empty($_POST['sender_id']))
+//     $errors['sender_id'] = $lang['validate_field_ajax150'];
 
 if (empty($_POST['sender_address_id']))
 
     $errors['sender_address_id'] = $lang['validate_field_ajax145'];
 
-if (empty($_POST['recipient_id']))
-
-    $errors['recipient_id'] = $lang['validate_field_ajax146'];
+// if (empty($_POST['recipient_id']))
+//     $errors['recipient_id'] = $lang['validate_field_ajax146'];
 
 if (empty($_POST['recipient_address_id']))
 
     $errors['recipient_address_id'] = $lang['validate_field_ajax147'];
 
-if (empty($_POST['agency']))
+// if (empty($_POST['agency']))
 
-    $errors['agency'] = $lang['validate_field_ajax148'];
+//     $errors['agency'] = $lang['validate_field_ajax148'];
 
-if (empty($_POST['origin_off']))
-
-    $errors['origin_off'] = $lang['validate_field_ajax149'];
+// if (empty($_POST['origin_off']))
+    // $errors['origin_off'] = $lang['validate_field_ajax149'];
 
 if (empty($_POST['order_no']))
-
     $errors['order_no'] = $lang['validate_field_ajax150'];
 
-if (empty($_POST['order_item_category']))
+// if (empty($_POST['order_item_category']))
 
-    $errors['order_item_category'] = $lang['validate_field_ajax151'];
+//     $errors['order_item_category'] = $lang['validate_field_ajax151'];
 
-if (empty($_POST['order_package']))
+// if (empty($_POST['order_package']))
+    // $errors['order_package'] = $lang['validate_field_ajax152'];
 
-    $errors['order_package'] = $lang['validate_field_ajax152'];
-
-if (empty($_POST['order_courier']))
-
-    $errors['order_courier'] = $lang['validate_field_ajax153'];
+// if (empty($_POST['order_courier']))
+    // $errors['order_courier'] = $lang['validate_field_ajax153'];
 
 if (empty($_POST['order_service_options']))
-    $errors['order_service_options'] = $lang['validate_field_ajax154'];
+    $errors['order_service_options'] = "Please select delivery type";
 
-if (empty($_POST['order_deli_time']))
-    $errors['order_deli_time'] = $lang['validate_field_ajax155'];
+// if (empty($_POST['order_deli_time']))
+//     $errors['order_deli_time'] = $lang['validate_field_ajax155'];
 
 
 if (empty($_POST['status_courier']))
@@ -112,14 +105,14 @@ if (empty($errors)) {
         'recipient_id' =>  cdp_sanitize(intval($_POST["recipient_id"])),
         'sender_address_id' =>  cdp_sanitize(intval($_POST["sender_address_id"])),
         'recipient_address_id' =>  cdp_sanitize(intval($_POST["recipient_address_id"])),
-        'agency' =>  cdp_sanitize(intval($_POST["agency"])),
-        'origin_off' =>  cdp_sanitize(intval($_POST["origin_off"])),
-        'order_package' =>  cdp_sanitize(intval($_POST["order_package"])),
+        // 'agency' =>  cdp_sanitize(intval($_POST["agency"])),
+        // 'origin_off' =>  cdp_sanitize(intval($_POST["origin_off"])),
+        // 'order_package' =>  cdp_sanitize(intval($_POST["order_package"])),
         'driver_id' =>  cdp_sanitize(intval($_POST["driver_id"])),
-        'order_item_category' =>  cdp_sanitize(intval($_POST["order_item_category"])),
-        'order_courier' =>  cdp_sanitize(intval($_POST["order_courier"])),
+        // 'order_item_category' =>  cdp_sanitize(intval($_POST["order_item_category"])),
+        // 'order_courier' =>  cdp_sanitize(intval($_POST["order_courier"])),
         'order_service_options' =>  cdp_sanitize(intval($_POST["order_service_options"])),
-        'order_deli_time' =>  cdp_sanitize(intval($_POST["order_deli_time"])),
+        // 'order_deli_time' =>  cdp_sanitize(intval($_POST["order_deli_time"])),
         'order_payment_method' =>  cdp_sanitize(intval($_POST["order_payment_method"])),
         'status_courier' =>  cdp_sanitize(intval($_POST["status_courier"])),
         'due_date' =>  $due_date,
