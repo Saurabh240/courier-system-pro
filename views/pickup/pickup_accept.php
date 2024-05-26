@@ -177,7 +177,7 @@ $address_order = $db->cdp_registro();
 
                                         </div>
 
-                                        <div class="form-group col-md-4">
+                                        <!-- <div class="form-group col-md-4">
                                             <label for="inputlname" class="control-label col-form-label"><?php echo $lang['left201'] ?> </label>
                                             <div class="input-group mb-3">
                                                 <select class="custom-select col-12" id="agency" name="agency">
@@ -190,11 +190,11 @@ $address_order = $db->cdp_registro();
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <?php if ($user->access_level = 'Admin') { ?>
 
-                                            <div class="form-group col-md-4">
+                                            <!-- <div class="form-group col-md-4">
                                                 <label for="inputname" class="control-label col-form-label"><?php echo $lang['add-title14'] ?></label>
                                                 <div class="input-group mb-3">
                                                     <select class="custom-select col-12" id="origin_off" name="origin_off">
@@ -208,7 +208,7 @@ $address_order = $db->cdp_registro();
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                         <?php } ?>
 
@@ -350,7 +350,7 @@ $address_order = $db->cdp_registro();
                                     <h4 class="card-title"><i class="mdi mdi-book-multiple" style="color:#36bea6"></i> <?php echo $lang['add-title13'] ?></h4>
                                     <br>
                                     <div class="row">
-                                        <div class="form-group col-md-4">
+                                        <!-- <div class="form-group col-md-4">
                                             <label for="inputlname" class="control-label col-form-label"><?php echo $lang['itemcategory'] ?></label>
                                             <div class="input-group">
                                                 <select class="custom-select col-12" id="order_item_category" name="order_item_category" required>
@@ -365,9 +365,10 @@ $address_order = $db->cdp_registro();
                                                 </select>
                                             </div>
 
-                                        </div>
+                                        </div> -->
+                                        <input type="hidden" name="order_item_category" value="1" />
 
-                                        <div class="form-group col-md-4">
+                                        <!-- <div class="form-group col-md-4">
                                             <label for="inputlname" class="control-label col-form-label"><?php echo $lang['add-title17'] ?></label>
                                             <div class="input-group mb-3">
                                                 <select class="custom-select col-12" id="order_package" name="order_package" required>
@@ -380,7 +381,9 @@ $address_order = $db->cdp_registro();
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
+                                        <input type="hidden" name="order_package" value="1" />
+
 
                                         <div class="form-group col-md-4">
                                             <label for="inputEmail3" class="control-label col-form-label"><?php echo $lang['payment_methods'] ?></label>
@@ -394,59 +397,16 @@ $address_order = $db->cdp_registro();
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-md-3">
-                                            <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['add-title18'] ?></label>
-                                            <div class="input-group mb-3">
-                                                <select class="custom-select col-12 pre" id="order_courier" name="order_courier" required>
-                                                    <option value="0">--<?php echo $lang['left204'] ?>--</option>
-                                                    <?php foreach ($courierrow as $row) : ?>
-                                                        <option value="<?php echo $row->id; ?>" <?php if ($row_order->order_courier == $row->id) {
-                                                                                                    echo 'selected';
-                                                                                                } ?>><?php echo $row->name_com; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
 
                                         <div class="form-group col-md-3">
-                                            <label for="inputEmail3" class="control-label col-form-label"><?php echo $lang['add-title22'] ?></label>
+                                            <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
                                             <div class="input-group mb-3">
                                                 <select class="custom-select col-12 pre" id="order_service_options" name="order_service_options" required>
-                                                    <option value="0">--<?php echo $lang['left205'] ?>--</option>
+                                                    <option value="0">--Select Delivery Type--</option>
                                                     <?php foreach ($moderow as $row) : ?>
                                                         <option value="<?php echo $row->id; ?>" <?php if ($row_order->order_service_options == $row->id) {
                                                                                                     echo 'selected';
                                                                                                 } ?>><?php echo $row->ship_mode; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-4" style="display:none;">
-                                            <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['add-title15'] ?></i></label>
-                                            <div class="input-group">
-                                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i style="color:#ff0000" class="fa fa-calendar"></i></div>
-                                                </div>
-                                                <input type='text' class="form-control" name="order_date" id="order_date" placeholder="--<?php echo $lang['left206'] ?>--" data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['add-title16'] ?>" value="<?php echo date("Y/m/d", strtotime($row_order->order_datetime)); ?>" readonly />
-                                            </div>
-                                        </div>
-
-                                        
-
-                                        <div class="form-group col-md-3">
-                                            <label for="inputEmail3" class="control-label col-form-label"><?php echo $lang['add-title20'] ?></label>
-                                            <div class="input-group mb-3">
-                                                <select class="custom-select col-12 pre" id="order_deli_time" name="order_deli_time" required>
-                                                    <option value="0">--<?php echo $lang['left207'] ?>--</option>
-                                                    <?php foreach ($delitimerow as $row) : ?>
-                                                        <option value="<?php echo $row->id; ?>" <?php if ($row_order->order_deli_time == $row->id) {
-                                                                                                    echo 'selected';
-                                                                                                } ?>><?php echo $row->delitime; ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -467,6 +427,56 @@ $address_order = $db->cdp_registro();
                                                 </select>
                                             </div>
                                         </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- <div class="form-group col-md-3">
+                                            <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['add-title18'] ?></label>
+                                            <div class="input-group mb-3">
+                                                <select class="custom-select col-12 pre" id="order_courier" name="order_courier" required>
+                                                    <option value="0">--<?php echo $lang['left204'] ?>--</option>
+                                                    <?php foreach ($courierrow as $row) : ?>
+                                                        <option value="<?php echo $row->id; ?>" <?php if ($row_order->order_courier == $row->id) {
+                                                                                                    echo 'selected';
+                                                                                                } ?>><?php echo $row->name_com; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div> -->
+                                        <input type="hidden" name="order_courier" value="1" />
+
+                                      
+
+
+                                        <!-- <div class="col-md-4" style="display:none;">
+                                            <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['add-title15'] ?></i></label>
+                                            <div class="input-group">
+                                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i style="color:#ff0000" class="fa fa-calendar"></i></div>
+                                                </div>
+                                                <input type='text' class="form-control" name="order_date" id="order_date" placeholder="--<?php echo $lang['left206'] ?>--" data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['add-title16'] ?>" value="<?php echo date("Y/m/d", strtotime($row_order->order_datetime)); ?>" readonly />
+                                            </div>
+                                        </div> -->
+
+                                        
+
+                                        <!-- <div class="form-group col-md-3">
+                                            <label for="inputEmail3" class="control-label col-form-label"><?php echo $lang['add-title20'] ?></label>
+                                            <div class="input-group mb-3">
+                                                <select class="custom-select col-12 pre" id="order_deli_time" name="order_deli_time" required>
+                                                    <option value="0">--<?php echo $lang['left207'] ?>--</option>
+                                                    <?php foreach ($delitimerow as $row) : ?>
+                                                        <option value="<?php echo $row->id; ?>" <?php if ($row_order->order_deli_time == $row->id) {
+                                                                                                    echo 'selected';
+                                                                                                } ?>><?php echo $row->delitime; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div> -->
+                                        <input type="hidden" id="order_deli_time" name="order_deli_time" value="1" />
+
+                                       
                                     </div>
 
                                     <div class="row">
@@ -609,27 +619,27 @@ $address_order = $db->cdp_registro();
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-md-12">
                                             <h4 class="card-title">
                                                 <i class="fas fas fa-boxes" style="color:#36bea6"></i>
                                                 <?php echo $lang['left212'] ?>
                                             </h4>
                                         </div>
-                                    </div>
+                                    </div> -->
 
 
                                     <!-- Listas item caja -->
-                                    <div id="data_items"></div>
+                                    <!-- <div id="data_items"></div> -->
 
                                     <!-- Boton adicionar caja al listado -->
-                                    <div class="col-md-3 text-left">
+                                    <!-- <div class="col-md-3 text-left">
                                         <button type="button" onclick="addPackage()" name="add_rows" id="add_rows" class="btn btn-outline-dark"><span class="fa fa-plus"></span> <?php echo $lang['left231'] ?></button>
-                                    </div>
+                                    </div> -->
 
                                     <div><br></div>
 
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-md-4">
                                             <span class="text-secondary text-left"><?php echo $lang['leftorder17713'] ?></span>
                                         </div>
@@ -646,29 +656,11 @@ $address_order = $db->cdp_registro();
                                             <span class="text-secondary text-center" id="total_declared">0.00</span>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <hr> -->
 
                                     <div class="row" style="margin-top: 20px;">
                                         <div class="table-responsive" id="table-totals">
-                                            <table id="insvoice-item-table" class="table">
-                                                <tfoot>
-                                                    <tr class="card-hover">
-                                                        <td colspan="4" class="text-right"><b><?php echo $lang['leftorder2021'] ?></b></td>
-                                                        <td colspan="1"></td>
-                                                        <td class="text-right">
-                                                            <?php
-                                                            if ($core->for_symbol !== null) {
-                                                            ?>
-                                                                <b> <?php echo $core->for_symbol; ?> </b>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            <span id="subtotal"> 0.00</span>
-                                                        </td>
-                                                        <td></td>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                                            
 
 
                                             <!-- Listado de impuestos-->
@@ -681,7 +673,7 @@ $address_order = $db->cdp_registro();
                                                     </h4>
                                                 </div>
                                                 <hr>
-                                                <div class="row row-shadow input-container"> 
+                                                <!-- <div class="row row-shadow input-container"> 
                                                   <div class="col-sm-12 col-md-6 col-lg-2">
                                                     <div class="form-group">
                                                         <label for="emailAddress1"><?php echo $lang['left905'] ?> &nbsp; <?php echo $core->weight_p; ?> </label>
@@ -721,7 +713,7 @@ $address_order = $db->cdp_registro();
                                                         <td class="text-center" id="insured_label"></td>
                                                         
                                                      </div>
-                                                  </div>
+                                                  </div> 
 
 
                                                   <div class="col-sm-12 col-md-6 col-lg-2">
@@ -829,8 +821,26 @@ $address_order = $db->cdp_registro();
                                                             <span id="fixed_value_label"> 0.00</span>
                                                             
                                                          </div>
-                                                    </div>
+                                                    </div> -->
+                                           
+                                               
+                                              
+                                                <div class="row row-shadow input-container"> 
 
+                                                    <div class="col-sm-12 col-md-6 col-lg-2">
+                                                        <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder2021'] ?></label>
+                                                            <?php
+                                                            if ($core->for_symbol !== null) {
+                                                            ?>
+                                                                <b> <?php echo $core->for_symbol; ?> </b>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <span id="subtotal" class="green-bold"> 0.00</span>
+                                                            
+                                                         </div>
+                                                    </div>
 
                                                     <div class="col-sm-12 col-md-6 col-lg-2">
                                                         <div class="form-group">
@@ -842,10 +852,11 @@ $address_order = $db->cdp_registro();
                                                             <?php
                                                             }
                                                             ?>
-                                                            <span id="total_envio" class="green-bold"> 0.00</span>
-                                                            
+                                                            <span id="total_envio" class="green-bold"> 0.00</span>           
                                                          </div>
                                                     </div>
+
+                                                </div>
 
                                                 </div>
                                             </div>

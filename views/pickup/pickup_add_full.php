@@ -265,7 +265,7 @@ $order_prefix = $settings->prefix;
                         </div>
 
 
-                        <div class="col-lg-6">
+                        <!-- <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-row">
@@ -296,7 +296,7 @@ $order_prefix = $settings->prefix;
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- Row -->
 
@@ -469,6 +469,7 @@ $order_prefix = $settings->prefix;
                                                 </select>
                                             </div>
                                         </div>-->
+                                        <input type="hidden" name="order_item_category" value="1" />
 
                                         <div class="form-group col-md-3">
 												<label for="inputEmail3" class="control-label col-form-label">Distance</label>
@@ -480,7 +481,7 @@ $order_prefix = $settings->prefix;
 											<div class="form-group col-md-3">
                                                     <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
                                                     <div class="input-group mb-3">
-                                                        <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
+                                                        <select class="form-control custom-select" id="order_service_options" name="order_service_options" required style="width: 100%;">
                                                             <option value="" selected>Select Delivery Type</option>
                                                             <option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?>value="SAME DAY (1PM to 4PM)">SAME DAY (1PM to 4PM)</option>
                                                             <option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="SAME DAY (BEFORE 5PM)">SAME DAY (BEFORE 5PM)</option>
@@ -488,10 +489,13 @@ $order_prefix = $settings->prefix;
                                                             <option <?php if(time() > strtotime("2:30 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (3 HOURS)">RUSH (3 HOURS)</option>
                                                             <option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (2 HOURS)">RUSH (2 HOURS)</option>
                                                             <option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="URGENT (90 MINUTES)">URGENT (90 MINUTES)</option>
-                                                            <option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
+                                                            <!-- <option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
                                                             <option value="NEXT DAY (BEFORE 2PM)">NEXT DAY (BEFORE 2PM)</option>
                                                             <option value="NEXT DAY (BEFORE 11:30AM)">NEXT DAY (BEFORE 11:30AM)</option>
-                                                            <option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option>
+                                                            <option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option> -->
+                                                            <?php foreach ($moderow as $mode) : ?>
+                                                                <option value="<?php echo $mode->id; ?>"><?php echo $mode->ship_mode; ?></option>
+                                                            <?php endforeach; ?>
                                                         </select>
                                                     </div>
 											</div>
@@ -507,8 +511,9 @@ $order_prefix = $settings->prefix;
                                                 </select>
                                             </div>
                                         </div> -->
+                                        <input type="hidden" name="order_package" value="1" />
 
-                                        <div class="form-group col-md-3">
+                                        <!-- <div class="form-group col-md-3">
                                             <label for="inputcontact" class="control-label col-form-label"><?php echo $lang['add-title18'] ?></label>
                                             <div class="input-group mb-3">
                                                 <select class="select2 form-control custom-select" id="order_courier" name="order_courier" required style="width: 100%;">
@@ -518,9 +523,10 @@ $order_prefix = $settings->prefix;
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
+                                        <input type="hidden" name="order_courier" value="1" />
 
-                                        <div class="form-group col-md-3">
+                                        <!-- <div class="form-group col-md-3">
                                             <label for="inputEmail3" class="control-label col-form-label"><?php echo $lang['add-title22'] ?></label>
                                             <div class="input-group mb-3">
                                                 <select class="select2 form-control custom-select" id="order_service_options" name="order_service_options" required style="width: 100%;">
@@ -530,7 +536,7 @@ $order_prefix = $settings->prefix;
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                     <div class="row">
@@ -545,7 +551,7 @@ $order_prefix = $settings->prefix;
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-md-3">
+                                        <!-- <div class="form-group col-md-3">
                                             <label for="inputEmail3" class="control-label col-form-label"><?php echo $lang['add-title20'] ?></label>
                                             <div class="input-group mb-3">
                                                 <select class="select2 form-control custom-select" id="order_deli_time" name="order_deli_time" required style="width: 100%;">
@@ -555,7 +561,8 @@ $order_prefix = $settings->prefix;
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
+                                        <input type="hidden" name="order_deli_time" value="1" />
                                         <!--/span-->
 
 

@@ -169,7 +169,7 @@ if ($numrows > 0) { ?>
 							<td class="text-center"><?php echo $address_order->sender_address; ?></td>
 							<td class="text-center"><?php echo $address_order->recipient_address; ?></td>
 
-							<td class="text-center">?</td>
+							<td class="text-center"><?php echo $row->order_service_options ?></td>
 
 							<!-- <td class="text-left">
 								<?php if ($row->status_courier != 14) { ?>

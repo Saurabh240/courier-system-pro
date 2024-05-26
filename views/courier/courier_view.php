@@ -123,6 +123,9 @@ if ($row_order->status_invoice == 1) {
     $label_class = "label-info";
 }
 
+// These are  basically delivery types.
+$moderow = $core->cdp_getShipmode(); 
+
 ?>
 
 <!DOCTYPE html>
@@ -420,13 +423,13 @@ if ($row_order->status_invoice == 1) {
                                     <div class=" col-sm-12 col-md-4 mb-2">
                                         <div class="">
                                             <!-- Delivery Type added -->
-                                              <h5> &nbsp;<b><?php  echo $lang['track-shipment37'] ?></b></h5>
+                                              <h5> &nbsp;<b>Delivery Type</b></h5>
 
                                             <!-- <p class="text-muted  m-l-5"> -->
                                             <?php date_default_timezone_set("America/Montreal"); ?>
 											<div>
                                                     <div class="">
-                                                        <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
+                                                        <select class="form-control custom-select" id="order_service_options" name="order_service_options" required style="width: 100%;">
                                                             <option value="" selected>Select Delivery Type</option>
                                                             <option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?>value="SAME DAY (1PM to 4PM)">SAME DAY (1PM to 4PM)</option>
                                                             <option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="SAME DAY (BEFORE 5PM)">SAME DAY (BEFORE 5PM)</option>
@@ -434,10 +437,15 @@ if ($row_order->status_invoice == 1) {
                                                             <option <?php if(time() > strtotime("2:30 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (3 HOURS)">RUSH (3 HOURS)</option>
                                                             <option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (2 HOURS)">RUSH (2 HOURS)</option>
                                                             <option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="URGENT (90 MINUTES)">URGENT (90 MINUTES)</option>
-                                                            <option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
+                                                            <!-- <option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
                                                             <option value="NEXT DAY (BEFORE 2PM)">NEXT DAY (BEFORE 2PM)</option>
                                                             <option value="NEXT DAY (BEFORE 11:30AM)">NEXT DAY (BEFORE 11:30AM)</option>
-                                                            <option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option>
+                                                            <option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option> -->
+                                                            <?php foreach ($moderow as $row) : ?>
+                                                                <option value="<?php echo $row->id; ?>" <?php if ($row_order->order_service_options == $row->id) {
+                                                                                                            echo 'selected';
+                                                                                                        } ?>><?php echo $row->ship_mode; ?></option>
+                                                            <?php endforeach; ?>
                                                         </select>
                                                     </div>
 											</div>                                            

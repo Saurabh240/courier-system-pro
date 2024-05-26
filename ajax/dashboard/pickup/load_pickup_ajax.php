@@ -164,9 +164,7 @@ if ($numrows > 0) { ?>
 								}
 								?>
 							</td>
-							<td class="text-center"><?php if ($met_payment != null) {
-														echo $met_payment->name_pay;
-													} ?></td>
+							<td class="text-center"><?php echo cdb_money_format($row->total_order); ?></td>
 
 
 						</tr>
