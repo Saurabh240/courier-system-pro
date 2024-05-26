@@ -49,7 +49,6 @@ if (isset($_GET['id_notification'])) {
 
 
 
-
 $row_order = $data['data'];
 $db->cdp_query("SELECT * FROM cdb_styles where id= '" . $row_order->status_courier . "'");
 $status_courier = $db->cdp_registro();
@@ -1098,7 +1097,7 @@ $moderow = $core->cdp_getShipmode();
 
                                                 <?php
                                                 foreach ($courier_track_items as $track_item) {
-
+                                                    
                                                     $date_update = date("Y-m-d", strtotime($track_item->t_date));
                                                     $time_update = date("h:i A", strtotime($track_item->t_date));
 
@@ -1108,11 +1107,11 @@ $moderow = $core->cdp_getShipmode();
                                                     <tr class="card-hover">
                                                         <td><?php echo $date_update; ?></td>
                                                         <td><?php echo $time_update; ?></td>
-                                                        <!-- <td><?php echo $track_item->t_dest; ?> /<br> -->
-                                                            <?php echo $track_item->t_city; ?></td>
+                                                        <!-- <td><?php echo $track_item->t_dest; ?> /<br> 
+                                                            <?php echo $track_item->t_city; ?></td> -->
                                                         <td>
-                                                            <span class="label" style="background-color: <?php echo $status_courier_item->color; ?>"><?php echo $status_courier_item->mod_style; ?>
-                                                            </span>
+                                                        <span class="label" style="background-color: <?php echo $status_courier->color; ?>"><?php echo $status_courier->mod_style; ?>
+                                    
                                                         </td>
                                                         <td><?php echo $track_item->comments; ?></td>
                                                     </tr>
