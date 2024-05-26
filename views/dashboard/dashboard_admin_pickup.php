@@ -113,7 +113,7 @@ $monthName = obtenerNombreMes($currentMonth);
                                 <div><br></div>
 
                                 <div class="col-lg-12 col-md-12">
-                                    <!-- Primer elemento contador de envios -->
+                                    <!-- Pick ups/ Total Orders -->
                                     <div class="col-lg-12 col-md-12 mb-2">
                                         <div class="d-flex align-items-center">
                                             <div class="m-r-10">
@@ -127,13 +127,13 @@ $monthName = obtenerNombreMes($currentMonth);
                                             <div class="card-info-statics">
                                               <h5 class="mb-0">
                                                 <?php
-                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_add_order WHERE  is_pickup=1');
+                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_add_order');
                                                     $db->cdp_execute();
                                                     $count = $db->cdp_registro();
                                                     echo $count->total;
                                                     ?>            
                                               </h5>
-                                              <small><?php echo $lang['dash-general-2'] ?></small>
+                                              <small>Total Orders</small>
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@ $monthName = obtenerNombreMes($currentMonth);
 
                                 <div class="col-md-12 col-lg-12">
 
-                                    <!-- Segundo elemento contador de envios -->
+                                    <!-- Rejected orders -->
                                     <div class="col-lg-12 col-md-12 mb-2">
                                         <div class="d-flex align-items-center">
                                             <div class="m-r-10">
@@ -155,20 +155,20 @@ $monthName = obtenerNombreMes($currentMonth);
                                             <div class="card-info-statics">
                                               <h5 class="mb-0">
                                                 <?php
-                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_add_order WHERE  is_pickup=1 and status_courier=12');
+                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_add_order WHERE status_courier=8');
                                                     $db->cdp_execute();
                                                     $count = $db->cdp_registro();
                                                     echo $count->total;
                                                     ?>            
                                               </h5>
-                                              <small><?php echo $lang['dash-general-221'] ?></small>
+                                              <small>Total Delivered</small>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12 col-lg-12">
-                                    <!-- Tercero elemento contador de envios -->
+                                    <!-- Cancelled Orders -->
                                     <div class="col-lg-12 col-md-12 mb-2">
                                         <div class="d-flex align-items-center">
                                             <div class="m-r-10">
@@ -182,13 +182,13 @@ $monthName = obtenerNombreMes($currentMonth);
                                             <div class="card-info-statics">
                                               <h5 class="mb-0">
                                                 <?php
-                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_add_order WHERE  is_pickup=1 and status_courier=21');
+                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_add_order WHERE status_courier=12');
                                                     $db->cdp_execute();
                                                     $count = $db->cdp_registro();
                                                     echo $count->total;
                                                     ?>            
                                               </h5>
-                                              <small><?php echo $lang['dash-general-222'] ?></small>
+                                              <small>Total Rejected</small>
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +196,7 @@ $monthName = obtenerNombreMes($currentMonth);
 
 
                                 <div class="col-md-12 col-lg-12">
-                                    <!-- Tercero elemento contador de envios -->
+                                    <!-- Delivered Orders -->
                                     <div class="col-lg-12 col-md-12 mb-2">
                                         <div class="d-flex align-items-center">
                                             <div class="m-r-10">
@@ -210,13 +210,13 @@ $monthName = obtenerNombreMes($currentMonth);
                                             <div class="card-info-statics">
                                               <h5 class="mb-0">
                                                 <?php
-                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_add_order WHERE  status_courier=8 and  is_pickup=1');
+                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_add_order WHERE  status_courier=21 ');
                                                     $db->cdp_execute();
                                                     $count = $db->cdp_registro();
                                                     echo $count->total;
                                                     ?>            
                                               </h5>
-                                              <small><?php echo $lang['dash-general-220'] ?></small>
+                                              <small>Total Canceled</small>
                                             </div>
                                         </div>
                                     </div>

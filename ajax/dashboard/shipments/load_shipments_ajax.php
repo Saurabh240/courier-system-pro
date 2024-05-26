@@ -87,13 +87,14 @@ if ($numrows > 0) { ?>
 				<tr>
 					<th><b><?php echo $lang['ltracking'] ?></b></th>
 					<th class="text-center"><b><?php echo $lang['ddate'] ?></b></th>
-					<th class="text-center"><b><?php echo $lang['left499'] ?></b></th>
-					<th class="text-center"><b><?php echo $lang['ldestination'] ?></b></th>
-					<th class="text-center"><b><?php echo $lang['lpayment'] ?></b></th>
+					<th class="text-center"><b>Sender</b></th>
+					<th class="text-center"><b>Pick up Address</b></th>
+					<th class="text-center"><b>Drop off Address</b></th>
+					<th class="text-center"><b>Delivery Type</b></th>
+					<th class="text-center"><b><?php echo $lang['lstatusshipment'] ?></b></th>
 					<th class=""><b><?php echo $lang['ship-all5'] ?></b></th>
 					<th class="text-center"></th>
-					<th class="text-center"><b><?php echo $lang['lstatusshipment'] ?></b></th>
-					<th class="text-center"><b><?php echo $lang['global-3'] ?></b></th>
+					<!-- <th class="text-center"><b><?php echo $lang['global-3'] ?></b></th> -->
 				</tr>
 			</thead>
 			<tbody id="projects-tbl">
@@ -162,17 +163,15 @@ if ($numrows > 0) { ?>
 							</td>
 
 							<td class="text-center">
-								<?php echo $receiver_data->fname; ?> <?php echo $receiver_data->lname; ?>
+								<?php echo $sender_data->fname . " " . $sender_data->lname; ?>
 							</td>
 
-							<td class="text-center"><?php echo $address_order->recipient_country; ?>-<?php echo $address_order->recipient_city; ?></td>
-							<td class="text-center"><?php echo $met_payment->name_pay; ?></td>
+							<td class="text-center"><?php echo $address_order->sender_address; ?></td>
+							<td class="text-center"><?php echo $address_order->recipient_address; ?></td>
 
-							<td class="text-center">
-								<?php echo cdb_money_format($row->total_order); ?>
-							</td>
+							<td class="text-center">?</td>
 
-							<td class="text-center">
+							<!-- <td class="text-left">
 								<?php if ($row->status_courier != 14) { ?>
 									<?php if ($row->status_invoice == 2) { ?>
 										<?php if ($userData->userlevel == 1) { ?>
@@ -184,9 +183,12 @@ if ($numrows > 0) { ?>
 										<?php } ?>
 									<?php } ?>
 								<?php } ?>
-							</td>
+							</td> -->
 
-							<td class="">
+
+							
+							
+							<td class="text-center">
 
 								<span style="background: <?php echo $row->color; ?>;" class="label label-large"><?php echo $row->mod_style; ?></span>
 								<br>
@@ -194,7 +196,7 @@ if ($numrows > 0) { ?>
 								<?php
 								if ($row->is_pickup == true) { ?>
 
-									<span style="background: <?php echo $status_style_pickup->color; ?>;" class="label label-large"><?php echo $status_style_pickup->mod_style; ?></span>
+									<!-- <span style="background: <?php echo $status_style_pickup->color; ?>;" class="label label-large"><?php echo $status_style_pickup->mod_style; ?></span> -->
 								<?php
 								}
 								?>
@@ -202,7 +204,7 @@ if ($numrows > 0) { ?>
 								<?php
 								if ($row->is_consolidate == true) { ?>
 
-									<span style="background: <?php echo $status_style_consolidate->color; ?>;" class="label label-large"><?php echo $status_style_consolidate->mod_style; ?></span>
+									<!-- <span style="background: <?php echo $status_style_consolidate->color; ?>;" class="label label-large"><?php echo $status_style_consolidate->mod_style; ?></span> -->
 								<?php
 								}
 								?>
@@ -235,8 +237,13 @@ if ($numrows > 0) { ?>
 								<?php } ?>
 							</td>
 
-							<td>
-								<span class="label label-large <?php echo $label_class; ?>"><?php echo $text_status; ?></span>
+							<td class="text-center">
+								<?php echo cdb_money_format($row->total_order); ?>
+							</td>
+
+							<!-- <td>
+								<span class="text-right label label-large <?php echo $label_class; ?>"><?php echo $text_status; ?></span>
+											</td> -->
 						</tr>
 					<?php $count++;
 					} ?>

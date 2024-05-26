@@ -54,7 +54,7 @@ $adjacents  = 4; //gap between pages after number of adjacents
 $offset = ($page - 1) * $per_page;
 
 
-$sql = "SELECT  a.is_consolidate, a.order_incomplete, a.status_invoice, a.is_pickup, a.total_order, a.order_id, a.order_prefix, a.order_no, a.order_date, a.sender_id, a.receiver_id, a.order_courier, a.order_pay_mode, a.status_courier, a.driver_id, a.order_service_options,  b.mod_style, b.color FROM
+$sql = "SELECT  a.is_consolidate, a.order_incomplete, a.status_invoice, a.is_pickup, a.total_order, a.order_id, a.order_prefix, a.order_no, a.order_date, a.sender_id, a.receiver_id, a.order_courier, a.order_pay_mode, a.status_courier, a.driver_id, a.order_service_options, a.total_order,  b.mod_style, b.color FROM
 			 cdb_add_order as a
 			 INNER JOIN cdb_styles as b ON a.status_courier = b.id
 			 $sWhere and a.is_pickup=1 
@@ -86,7 +86,7 @@ if ($numrows > 0) { ?>
 					<th class="text-center"><b><?php echo $lang['lorigin'] ?></b></th>
 					<th class="text-center"><b><?php echo $lang['ldestination'] ?></b></th>
 					<th class="text-center"><b><?php echo $lang['lstatusshipment'] ?></b></th>
-					<th class="text-center"><b><?php echo $lang['lpayment'] ?></b></th>
+					<th class="text-center"><b>Total Cost</b></th>
 
 					<th></th>
 					<?php if ($userData->userlevel != 1) { ?>
@@ -150,11 +150,11 @@ if ($numrows > 0) { ?>
 								<?php echo $receiver_data->fname; ?> <?php echo $receiver_data->lname; ?>
 							</td>
 
-							<td class="text-center"><?php echo $address_order->sender_country; ?>-<?php echo $address_order->sender_city; ?></td>
-							<td class="text-center"><?php echo $address_order->recipient_country; ?>-<?php echo $address_order->recipient_city; ?></td>
+							<td class="text-center"><?php echo $address_order->sender_address; ?></td>
+							<td class="text-center"><?php echo $address_order->recipient_address; ?></td>
 							<td class="text-center">
 
-								<span style="background: <?php echo $status_style_pickup->color; ?>;" class="label label-large"><?php echo $status_style_pickup->mod_style; ?></span>
+								<!-- <span style="background: <?php echo $status_style_pickup->color; ?>;" class="label label-large"><?php echo $status_style_pickup->mod_style; ?></span> -->
 
 								<br>
 								<?php if ($row->is_pickup != 0) { ?>
@@ -172,7 +172,7 @@ if ($numrows > 0) { ?>
 								}
 								?>
 							</td>
-							<td class="text-center"><?php echo $met_payment->name_pay; ?></td>
+							<td class="text-center"><?php echo cdb_money_format($row->total_order); ?></td>
 
 
 							<td align='center'>

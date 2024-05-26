@@ -88,7 +88,6 @@ $offices = $db->cdp_registro();
 $db->cdp_query("SELECT * FROM cdb_add_order_item WHERE order_id='" . $_GET['id'] . "'");
 $order_items = $db->cdp_registros();
 
-
 $dias_ = array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
 $meses_ = array(
     '01' => $lang['translate_graphic_0'],
@@ -374,33 +373,33 @@ if ($row_order->status_invoice == 1) {
                                 <br>
 
                                 <div class="row">
-                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                    <!-- <div class=" col-sm-12 col-md-4 mb-2">
                                         <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['tools-branchOffice4'] ?></b></h5>
+                                            <h5> &nbsp;<b><?php // echo $lang['tools-branchOffice4'] ?></b></h5>
                                             <p class="text-muted  m-l-5">
-                                                <?php if ($branchoffices != null) {
-                                                    echo $branchoffices->name_branch;
-                                                } ?></p>
+                                                <?php // if ($branchoffices != null) {
+                                                   // echo $branchoffices->name_branch;
+                                                //} ?></p>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['tools-office1'] ?></b></h5>
+                                        <!-- <div class="">
+                                            <h5> &nbsp;<b><?php //echo $lang['tools-office1'] ?></b></h5>
                                             <p class="text-muted  m-l-5">
-                                                <?php if ($offices != null) {
-                                                    echo $offices->name_off;
-                                                } ?></p>
-                                        </div>
+                                                <?php //if ($offices != null) {
+                                                  //  echo $offices->name_off;
+                                               // } ?></p>
+                                        </div> -->
                                     </div>
 
 
-                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                    <!-- <div class=" col-sm-12 col-md-4 mb-2">
                                         <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['itemcategory'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $category->name_item; ?></p>
+                                            <h5> &nbsp;<b><?php // echo $lang['itemcategory'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php //echo $category->name_item; ?></p>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
 
 
@@ -410,25 +409,52 @@ if ($row_order->status_invoice == 1) {
                                             <h5> &nbsp;<b><?php echo $lang['track-shipment19'] ?></b></h5>
                                             <p class="text-muted  m-l-5"><?php echo $meses_[$mes] . ' ' . $dia . ', ' . $anio; ?></p>
 
-                                            <h5> &nbsp;<b><?php echo $lang['langs_034'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php if ($delivery_time != null) {
-                                                                                echo $delivery_time->delitime;
-                                                                            } ?></p>
+                                            <!-- <h5> &nbsp;<b><?php // echo $lang['langs_034'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php  if ($delivery_time != null) {
+                                                                                 echo $delivery_time->delitime;
+                                                                            } ?></p> -->
                                         </div>
 
                                     </div>
 
                                     <div class=" col-sm-12 col-md-4 mb-2">
                                         <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['tools-courier1'] ?></b></h5>
+                                            <!-- Delivery Type added -->
+                                              <h5> &nbsp;<b><?php  echo $lang['track-shipment37'] ?></b></h5>
 
-                                            <p class="text-muted  m-l-5"><?php if ($courier_com != null) {
+                                            <!-- <p class="text-muted  m-l-5"> -->
+                                            <?php date_default_timezone_set("America/Montreal"); ?>
+											<div>
+                                                    <div class="">
+                                                        <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
+                                                            <option value="" selected>Select Delivery Type</option>
+                                                            <option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?>value="SAME DAY (1PM to 4PM)">SAME DAY (1PM to 4PM)</option>
+                                                            <option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="SAME DAY (BEFORE 5PM)">SAME DAY (BEFORE 5PM)</option>
+                                                            <option <?php if(time() > strtotime("1:30 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (4 HOURS)">RUSH (4 HOURS)</option>
+                                                            <option <?php if(time() > strtotime("2:30 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (3 HOURS)">RUSH (3 HOURS)</option>
+                                                            <option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (2 HOURS)">RUSH (2 HOURS)</option>
+                                                            <option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="URGENT (90 MINUTES)">URGENT (90 MINUTES)</option>
+                                                            <option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
+                                                            <option value="NEXT DAY (BEFORE 2PM)">NEXT DAY (BEFORE 2PM)</option>
+                                                            <option value="NEXT DAY (BEFORE 11:30AM)">NEXT DAY (BEFORE 11:30AM)</option>
+                                                            <option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option>
+                                                        </select>
+                                                    </div>
+											</div>                                            
+
+                                            </p>
+                                                                        
+                                            
+
+                                            <!-- <h5> &nbsp;<b><?php  echo $lang['tools-courier1'] ?></b></h5>
+
+                                            <p class="text-muted  m-l-5"><?php  if ($courier_com != null) {
                                                                                 echo $courier_com->name_com;
-                                                                            } ?></p>
-                                            <h5> &nbsp;<b><?php echo $lang['tools-shipmode1'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php if ($order_service_options != null) {
+                                                                            } ?></p> -->
+                                            <!-- <h5> &nbsp;<b><?php  echo $lang['tools-shipmode1'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php  if ($order_service_options != null) {
                                                                                 echo $order_service_options->ship_mode;
-                                                                            } ?></p>
+                                                                            } ?></p> -->
                                         </div>
                                     </div>
 
@@ -802,66 +828,7 @@ if ($row_order->status_invoice == 1) {
                 $db->cdp_query("SELECT * FROM cdb_courier_track where order_track='" . $row_order->order_prefix . $row_order->order_no . "' ORDER BY t_date");
                 $courier_track_items = $db->cdp_registros();
                 $numrows = $db->cdp_rowCount();
-
-
-                if ($numrows > 0) {
                 ?>
-                    <div class="row">
-                        <div class="col-lg-12 col-xl-12 col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-md-flex align-items-center">
-                                        <div>
-                                            <h3 class="card-title"><span><?php echo $lang['left502'] ?></span></h3>
-                                        </div>
-                                    </div>
-                                    <div><hr></div>
-
-                                    <div class="table-responsive">
-                                        <table id="zero_config" class="table table-striped">
-                                            <thead class="bg-inverse text-white">
-                                                <tr class="text-white">
-                                                    <th><?php echo $lang['left503'] ?></th>
-                                                    <th><?php echo $lang['left504'] ?></th>
-                                                    <th><?php echo $lang['left505'] ?></th>
-                                                    <th><?php echo $lang['left506'] ?></th>
-                                                    <th><?php echo $lang['left507'] ?></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="projects-tbl">
-
-                                                <?php
-                                                foreach ($courier_track_items as $track_item) {
-
-                                                    $date_update = date("Y-m-d", strtotime($track_item->t_date));
-                                                    $time_update = date("h:i A", strtotime($track_item->t_date));
-
-                                                    $db->cdp_query("SELECT * FROM cdb_styles where id= '" . $track_item->status_courier . "'");
-                                                    $status_courier_item = $db->cdp_registro();
-                                                ?>
-                                                    <tr class="card-hover">
-                                                        <td><?php echo $date_update; ?></td>
-                                                        <td><?php echo $time_update; ?></td>
-                                                        <td><?php echo $track_item->t_dest; ?> /<br>
-                                                            <?php echo $track_item->t_city; ?></td>
-                                                        <td>
-                                                            <span class="label" style="background-color: <?php echo $status_courier_item->color; ?>"><?php echo $status_courier_item->mod_style; ?>
-                                                            </span>
-                                                        </td>
-                                                        <td><?php echo $track_item->comments; ?></td>
-                                                    </tr>
-                                                <?php
-                                                } ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                } ?>
-
 
                 <?php
                 if ($user->cdp_is_Admin()) {
@@ -874,7 +841,7 @@ if ($row_order->status_invoice == 1) {
 
                     if ($numrows > 0) {
                 ?>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-lg-12 col-xl-12 col-md-12">
                                 <div class="card">
                                     <div class="card-body">
@@ -958,18 +925,207 @@ if ($row_order->status_invoice == 1) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                 <?php
                     }
                 } ?>
 
 
-                <!-- Row -->
+                <!-- Row SENDER DETAILS -->
                 <div class="row">
                     <div class="col-lg-12 col-xl-12 col-md-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-md-flex align-items-center">
+                                    <div>
+                                        <h3 class="card-title"><span><?php echo $lang['left533020010'] ?></span></h3>
+                                    </div>
+                                </div>
+                                <div><hr></div>
+
+                                <div class="row">
+
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien6'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $sender_data->fname . ' ' . $sender_data->lname; ?></p>
+
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien5'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $sender_data->email; ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien9'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $sender_data->phone; ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien10'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $address_order->sender_address; ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien12'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $address_order->sender_country; ?></p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien13'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $address_order->sender_city; ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row -->
+                
+                <!-- RECEIPIENT DETAILS -->
+                <div class="row">
+                    <div class="col-lg-12 col-xl-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-md-flex align-items-center">
+                                    <div>
+                                        <h3 class="card-title"><span><?php echo $lang['left533020011'] ?></span></h3>
+                                    </div>
+                                </div>
+                                <div><hr></div>
+                                <div class="row">
+
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien6'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $receiver_data->fname . ' ' . $receiver_data->lname; ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien5'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $receiver_data->email; ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien9'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $receiver_data->phone; ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien10'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $address_order->recipient_address; ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien12'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $address_order->recipient_country; ?></p>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class=" col-sm-12 col-md-4 mb-2">
+                                        <div class="">
+                                            <h5> &nbsp;<b><?php echo $lang['edit-clien13'] ?></b></h5>
+                                            <p class="text-muted  m-l-5"><?php echo $address_order->recipient_city; ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <?php if ($numrows > 0) {
+                ?>
+                    <div class="row">
+                        <div class="col-lg-12 col-xl-12 col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-md-flex align-items-center">
+                                        <div>
+                                            <h3 class="card-title"><span><?php echo $lang['left502'] ?></span></h3>
+                                        </div>
+                                    </div>
+                                    <div><hr></div>
+
+                                    <div class="table-responsive">
+                                        <table id="zero_config" class="table table-striped">
+                                            <thead class="bg-inverse text-white">
+                                                <tr class="text-white">
+                                                    <th><?php echo $lang['left503'] ?></th>
+                                                    <th><?php echo $lang['left504'] ?></th>
+                                                    <!-- <th><?php echo $lang['left505'] ?></th> -->
+                                                    <th><?php echo $lang['left506'] ?></th>
+                                                    <th><?php echo $lang['left507'] ?></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="projects-tbl">
+
+                                                <?php
+                                                foreach ($courier_track_items as $track_item) {
+
+                                                    $date_update = date("Y-m-d", strtotime($track_item->t_date));
+                                                    $time_update = date("h:i A", strtotime($track_item->t_date));
+
+                                                    $db->cdp_query("SELECT * FROM cdb_styles where id= '" . $track_item->status_courier . "'");
+                                                    $status_courier_item = $db->cdp_registro();
+                                                ?>
+                                                    <tr class="card-hover">
+                                                        <td><?php echo $date_update; ?></td>
+                                                        <td><?php echo $time_update; ?></td>
+                                                        <!-- <td><?php echo $track_item->t_dest; ?> /<br> -->
+                                                            <?php echo $track_item->t_city; ?></td>
+                                                        <td>
+                                                            <span class="label" style="background-color: <?php echo $status_courier_item->color; ?>"><?php echo $status_courier_item->mod_style; ?>
+                                                            </span>
+                                                        </td>
+                                                        <td><?php echo $track_item->comments; ?></td>
+                                                    </tr>
+                                                <?php
+                                                } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                } ?>
+
+                  <!-- Row Total Cost with commented shipping details  -->
+                  <div class="row">
+                    <div class="col-lg-12 col-xl-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- <div class="d-md-flex align-items-center">
                                     <div>
                                         <h3 class="card-title"><span><?php echo $lang['left533020009'] ?></span></h3>
                                     </div>
@@ -1140,7 +1296,7 @@ if ($row_order->status_invoice == 1) {
                                     </table>
                                 </div>
 
-                                <div><br></div>
+                                <div><br></div> -->
                                 <div class="d-md-flex align-items-center">
                                     <div>
                                         <h3 class="card-title"><span><?php echo $lang['messageerrorform30'] ?></span></h3>
@@ -1151,28 +1307,28 @@ if ($row_order->status_invoice == 1) {
                                     <table class="table table-hover" id="tabla">
                                         <thead class="bg-inverse text-white">
                                             <tr>
-                                                <th><b><?php echo $lang['leftorder22'] ?></b></th>
+                                                <!-- <th><b><?php echo $lang['leftorder22'] ?></b></th>
                                                 <th><b><?php echo $lang['leftorder25'] ?> <?php echo $row_order->tax_custom_tariffis_value; ?> <?php echo $lang['leftorder222221'] ?></b></th>
-                                                <th><b><?php echo $lang['leftorder23'] ?></b></b></th>
+                                                <th><b><?php echo $lang['leftorder23'] ?></b></b></th> -->
                                                 <th><b><?php echo $lang['leftorder67'] ?> <?php echo $row_order->tax_value; ?> <?php echo $lang['leftorder222221'] ?></b></th>
                                                 <th><b><?php echo $lang['leftorder19'] ?> <?php echo $row_order->declared_value; ?> <?php echo $lang['leftorder222221'] ?></b></th>
-                                                <th><b><?php echo $lang['leftorder1878'] ?></b></th>
-                                                <th><b><?php echo $lang['langs_048'] ?></b></th>
-
+                                                <!-- <th><b><?php echo $lang['leftorder1878'] ?></b></th>
+                                                <th><b><?php echo $lang['langs_048'] ?></b></th> -->
+                                                <th><b><?php echo $lang['left240'] ?></th>
                                                 <th><b><?php echo $lang['leftorder2020'] ?> &nbsp; <?php echo $core->currency; ?></b></th>
                                             </tr>
                                         </thead>
                                         <tbody id="projects-tbl">
-                              
                                             <tr class="card-hover">
-                                                <td class="text-center" id="insurance"><?php echo $row_order->total_insured_value; ?></td>
+                                                <!-- <td class="text-center" id="insurance"><?php echo $row_order->total_insured_value; ?></td>
                                                 <td class="text-center" id="total_impuesto_aduanero"><?php echo $total_impuesto_aduanero; ?></td>
-                                                <td><?php echo $sumador_valor_declarado; ?></td>
-                                                <td class="text-center" id="impuesto"><?php echo $total_impuesto; ?></td>
-                                                <td class="text-center" id="impuesto"><?php echo $total_valor_declarado; ?></td>
-                                                <td class="text-center" id="reexp"><?php echo $sumador_fixed_charge; ?></td>
-                                                <td class="text-center" id="reexp"><?php echo cdb_money_format($row_order->total_reexp); ?></td>
-                                                <td class="text-center" id="total_envio"><b><?php echo floatval($row_order->total_order); ?></b></td>
+                                                <td><?php echo $sumador_valor_declarado; ?></td> -->
+                                                <td class="text-left" id="impuesto"><?php echo $total_impuesto; ?></td>
+                                                <td class="text-left" id="impuesto"><?php echo $total_valor_declarado; ?></td>
+                                                <!-- <td class="text-center" id="reexp"><?php echo $sumador_fixed_charge; ?></td>
+                                                <td class="text-center" id="reexp"><?php echo cdb_money_format($row_order->total_reexp); ?></td> -->
+                                                <td class="text-left" id="total_envio"><b><?php echo cdb_money_format_bar(floatval($row_order->sub_total)); ?></b></td>
+                                                <td class="text-left" id="total_envio"><b><?php echo cdb_money_format_bar(floatval($row_order->total_order)); ?></b></td>
                                             </tr>
                             
                                         </tbody>
@@ -1182,137 +1338,8 @@ if ($row_order->status_invoice == 1) {
                         </div>
                     </div>
                 </div>
- 
-
-                <!-- Row -->
-                <div class="row">
-                    <div class="col-lg-12 col-xl-12 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-md-flex align-items-center">
-                                    <div>
-                                        <h3 class="card-title"><span><?php echo $lang['left533020010'] ?></span></h3>
-                                    </div>
-                                </div>
-                                <div><hr></div>
-
-                                <div class="row">
-
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien6'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $sender_data->fname . ' ' . $sender_data->lname; ?></p>
-
-                                        </div>
-                                    </div>
-
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien5'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $sender_data->email; ?></p>
-                                        </div>
-                                    </div>
-
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien9'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $sender_data->phone; ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien10'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $address_order->sender_address; ?></p>
-                                        </div>
-                                    </div>
-
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien12'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $address_order->sender_country; ?></p>
-                                        </div>
-                                    </div>
-
-
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien13'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $address_order->sender_city; ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Row -->
-
-                <div class="row">
-                    <div class="col-lg-12 col-xl-12 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-md-flex align-items-center">
-                                    <div>
-                                        <h3 class="card-title"><span><?php echo $lang['left533020011'] ?></span></h3>
-                                    </div>
-                                </div>
-                                <div><hr></div>
-                                <div class="row">
-
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien6'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $receiver_data->fname . ' ' . $receiver_data->lname; ?></p>
-                                        </div>
-                                    </div>
-
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien5'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $receiver_data->email; ?></p>
-                                        </div>
-                                    </div>
-
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien9'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $receiver_data->phone; ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien10'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $address_order->recipient_address; ?></p>
-                                        </div>
-                                    </div>
-
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien12'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $address_order->recipient_country; ?></p>
-
-                                        </div>
-                                    </div>
-
-
-                                    <div class=" col-sm-12 col-md-4 mb-2">
-                                        <div class="">
-                                            <h5> &nbsp;<b><?php echo $lang['edit-clien13'] ?></b></h5>
-                                            <p class="text-muted  m-l-5"><?php echo $address_order->recipient_city; ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            
+                
             </div>
             <?php include('views/modals/modal_send_email.php'); ?>
             <?php include('views/modals/modal_update_driver.php'); ?>

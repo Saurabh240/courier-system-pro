@@ -83,7 +83,7 @@ if ($numrows > 0) { ?>
 					<th class="text-center"><b><?php echo $lang['lorigin'] ?></b></th>
 					<th class="text-center"><b><?php echo $lang['ldestination'] ?></b></th>
 					<th class="text-center"><b><?php echo $lang['lstatusshipment'] ?></b></th>
-					<th class="text-center"><b><?php echo $lang['lpayment'] ?></b></th>
+					<th class="text-center"><b>Total Cost</b></th>
 
 
 				</tr>
@@ -142,12 +142,12 @@ if ($numrows > 0) { ?>
 								<?php echo $receiver_data->fname; ?> <?php echo $receiver_data->lname; ?>
 							</td>
 
-							<td class="text-center"><?php echo $address_order->sender_country; ?>-<?php echo $address_order->sender_city; ?></td>
-							<td class="text-center"><?php echo $address_order->recipient_country; ?>-<?php echo $address_order->recipient_city; ?></td>
+							<td class="text-center"><?php echo $address_order->sender_address; ?></td>
+							<td class="text-center"><?php echo $address_order->recipient_address; ?></td>
 
 							<td class="text-center">
 
-								<span style="background: <?php echo $status_style_pickup->color; ?>;" class="label label-large"><?php echo $status_style_pickup->mod_style; ?></span>
+								<!-- <span style="background: <?php echo $status_style_pickup->color; ?>;" class="label label-large"><?php echo $status_style_pickup->mod_style; ?></span> -->
 								<br>
 								<?php if ($row->is_pickup != 0) { ?>
 									<?php if ($row->status_courier == 14) { ?>

@@ -88,9 +88,9 @@ $lang = array(
 	"messagesform40" 			=> "Select file with your package purchase invoice",
 	"messagesform41" 			=> "Please attach a file.",
 	"messagesform42" 			=> "Please complete all fields.",
-	"messagesform43_3" 			=> "An error occurred while verifying the tracking number.",
-	"messagesform43" 			=> "Tracking number is already in use.",
-	"messagesform44" 			=> "Tracking number is required.",
+	"messagesform43_3" 			=> "An error occurred while verifying invoice number.",
+	"messagesform43" 			=> "Invoice number is already in use.",
+	"messagesform44" 			=> "Invoice number is required.",
 	"messagesform45" 			=> "Enter email",
 	"messagesform46" 			=> "The email you entered is not valid.",
 	"messagesform47" 			=> "The email address you entered is already in use.",
@@ -135,7 +135,7 @@ $lang = array(
 	"messagesform85" 			=> "Total packages",
 	"messagesform89" 			=> "Logistics Summary: Shipments, Pickups, and Packages",
 	"messagesform90" 			=> "Comprehensive Monthly Logistics Summary",
-	"messagesform91" 			=> "Historical Logistics Record",
+	"messagesform91" 			=> "Delivery Summary",
 	"messagesform92" 			=> "Shipments, Pickups, Pre-alerts, and Consolidations",
 	"messagesform93" 			=> "Package consolidations",
 	"messagesform94" 			=> "Shipment consolidations",
@@ -358,7 +358,7 @@ $lang = array(
 	"validate_field_ajax169" => "The amount to be charged must be less than the total balance.",
 
 	"validate_field_ajax170" => "Enter purchase tracking",
-	"validate_field_ajax171" => "Sorry, this tracking number is not valid",
+	"validate_field_ajax171" => "Sorry, this invoice number is not valid",
 	"validate_field_ajax172" => "Enter Store/Supplier",
 	"validate_field_ajax173" => "Enter the courier company",
 	"validate_field_ajax174" => "Enter the purchase price",
@@ -500,7 +500,7 @@ $lang = array(
 	"notification_shipment3" => "*Tracking # ",
 	"notification_shipment4" => " *to your package by entering the following link and you will have detailed information on the status of your packages ",
 	"notification_shipment5" => "New shipment registered successfully",
-	"notification_shipment6" => "tracking number ",
+	"notification_shipment6" => "invoice number ",
 	"notification_shipment7" => "Updated shipment",
 	"notification_shipment8" => "Shipment created",
 	"notification_shipment088" => "Shipment accepted",
@@ -706,7 +706,10 @@ $lang = array(
 	"left-menu-sidebar-63" => "My Profile",
 
 
-
+	"dash-pending-orders" => "Pending Orders",
+	"dash-confirmed-orders" => "Confirmed Orders",
+	"dash-picked-up-orders" => "Picked up Orders",
+	"dash-delivered-orders" => "Delivered Orders",
 
 	"dash-general-1" => "shipments",
 	"dash-general-2" => "Pickups",
@@ -734,7 +737,7 @@ $lang = array(
 
 
 	"dash-general-13" => "Users",
-	"dash-general-14" => "Seper Admin",
+	"dash-general-14" => "Super Admin",
 	"dash-general-15" => "Managers",
 	"dash-general-16" => "Drivers",
 	"dash-general-17" => "Customers",
@@ -984,7 +987,7 @@ $lang = array(
 	"chartsales" => "shipping sales",
 	"chartcurrent" => "Current month",
 	"shipearrin" => "List all shipments",
-	"ltracking" => "Tracking",
+	"ltracking" => "Invoice",
 	"receiver" => "Receiver",
 	"qquantity" => "Quantity",
 	"dasha" => "A",
@@ -1232,7 +1235,7 @@ $lang = array(
 	"left213" => "Description",
 	"left214" => "Amount",
 	"left21550" => "Update status",
-	"left21551" => "the tracking number",
+	"left21551" => "invoice number",
 	"left21552" => "Delivery Notes",
 	"left21553" => "-Unit and Buzzer (If applicable) 
 -Package Description 
@@ -1420,7 +1423,7 @@ $lang = array(
 	"leftorder152" => "Create Consolidation",
 	"leftorder153" => "View consolidated",
 	"leftorder154" => "Add payment to invoice",
-	"leftorder155" => "Package Status",
+	"leftorder155" => "Delivery Status",
 	"leftorder156" => "Package Type",
 	"leftorder157" => "Payment date",
 	"leftorder158" => "I attach proof of payment",
@@ -1523,7 +1526,7 @@ $lang = array(
 	"leftorder257" => "Select payment type",
 	"leftorder258" => "All notifications",
 	"leftorder259" => "Mark all as read",
-	"leftorder260" => "Search Tracking Number",
+	"leftorder260" => "Search Invoice Number",
 	"leftorder261" => "Consolidated payment, invoice #",
 	"leftorder262" => "Payment added successfully!",
 	"leftorder263" => "Payment confirmed successfully!",
@@ -1533,9 +1536,9 @@ $lang = array(
 	"leftorder267" => "Unconsolidate",
 	"leftorder268" => "Invoice payment",
 	"leftorder269" => "Backup deleted successfully!",
-	"leftorder270" => "Monitor shipments by tracking number or reference",
+	"leftorder270" => "Monitor shipments by invoice number or reference",
 	"leftorder271" => "Shipping Details",
-	"leftorder272" => "Enter tracking number",
+	"leftorder272" => "Enter invoice number",
 	"leftorder273" => "Track and Trace",
 	"leftorder274" => "Track now!",
 	"leftorder275" => "Best Software",
@@ -1763,7 +1766,7 @@ $lang = array(
 
 	"left355" => "Customs News",
 	"left356" => "Search Customs news",
-	"left357" => "Find tracking number",
+	"left357" => "Find invoice number",
 	"left358" => "Find Guide #",
 	"left359" => "Enter Guide #",
 	"left360" => "You searched for the keyword:",
@@ -1961,7 +1964,7 @@ $lang = array(
 	"left503" => "Date updated",
 	"left504" => "Time update",
 	"left505" => "New location",
-	"left506" => "Package Status",
+	"left506" => "Delivery Status",
 	"left507" => "Remarks",
 	"left508" => "Advanced Search",
 
@@ -2167,7 +2170,7 @@ $lang = array(
 	"add-title12" => "Postal Code",
 	"add-title13" => "Delivery Details:",
 	"add-title14" => "Office of origin",
-	"add-title15" => "Estimated delivery date",
+	"add-title15" => "Delivery Date",
 	"add-title1555" => "Estimated pickup date",
 	"add-title16" => "Add ship date",
 	"add-title17" => "Type of packaging",
@@ -2465,7 +2468,7 @@ $lang = array(
 	"tools-config87" => "Pound",
 
 	"tools-config88" => "Number of random digits",
-	"tools-config89" => "Tracking number type",
+	"tools-config89" => "Invoice number type",
 	"tools-config90" => "Auto-increment",
 	"tools-config91" => "Currency format",
 	"tools-config92" => "Decimal point",
@@ -2921,7 +2924,7 @@ $lang = array(
 
 
 	/** Track Shipment **/
-	"track-shipment1" => "Tracking number not found",
+	"track-shipment1" => "Invoice number not found",
 	"track-shipment2" => "Verify the number or contact us",
 	"track-shipment3" => "Return to Home",
 	"track-shipment4" => "Shipment Tracking",
@@ -2938,10 +2941,11 @@ $lang = array(
 	"track-shipment16" => "Delivery city",
 	"track-shipment17" => "Destination city",
 	"track-shipment18" => "Date of shipment",
-	"track-shipment19" => "Estimated delivery date",
+	"track-shipment19" => "Delivery Date",
 	"track-shipment20" => "Contact Name",
 	"track-shipment21" => "Contact Address",
 	"track-shipment22" => "Shipping History",
+	"track-shipment37" => "Delivery Type",
 
 
 	/** Deliver Shipment **/
@@ -3410,7 +3414,7 @@ $lang = array(
 	"ws-add_text4" => "This parameter represents the full name of the client to whom the notification is directed.
 	The system will replace it with the corresponding customer name, providing precise personalization in each message.",
 
-	"ws-add_text5" => "This parameter is used to insert the tracking number of a package.
+	"ws-add_text5" => "This parameter is used to insert invoice number of a package.
 	It is designed to be used in interactions related to tracking and delivering packages.
 	Outside of these contexts, it will not be visible.",
 
