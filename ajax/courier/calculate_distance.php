@@ -85,11 +85,11 @@ function calculateDistance($origin, $destination, $apiKey) {
     $response = file_get_contents($url);
    
     $data = json_decode($response, true);
-   // print_r($data);exit;
+    //print_r($data);exit;
     // Check if API request was successful
     if ($data['status'] == 'OK') {
         // Extract distance in meters
-        if($distance = $data['rows'][0]['elements'][0]['status'] == 'ZERO_RESULTS'){
+        if($data['rows'][0]['elements'][0]['status'] == 'ZERO_RESULTS' ){
             $distance = 0;
         }else{
             $distance = $data['rows'][0]['elements'][0]['distance']['value'];
@@ -99,7 +99,9 @@ function calculateDistance($origin, $destination, $apiKey) {
         return $distance / 1000;
     } else {
         // Handle API error
-        return false;
+        //return false;
+        $distance = 0;
+        return $distance;
     }
 }
 
