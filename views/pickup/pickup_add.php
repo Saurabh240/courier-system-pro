@@ -300,9 +300,7 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
 														<option value="NEXT DAY (BEFORE 2PM)">NEXT DAY (BEFORE 2PM)</option>
 														<option value="NEXT DAY (BEFORE 11:30AM)">NEXT DAY (BEFORE 11:30AM)</option>
 														<option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option> -->
-                                                        <?php foreach ($moderow as $mode) : ?>
-                                                                <option value="<?php echo $mode->id; ?>"><?php echo $mode->ship_mode; ?></option>
-                                                            <?php endforeach; ?>
+                                                      
 													</select>
 												</div>
 											</div>

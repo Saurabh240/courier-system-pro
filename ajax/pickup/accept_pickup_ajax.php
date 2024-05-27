@@ -32,26 +32,27 @@ $user = new User;
 $core = new Core;
 $errors = array();
 
-// if (empty($_POST['sender_id']))
-//     $errors['sender_id'] = $lang['validate_field_ajax150'];
+if (empty($_POST['sender_id']))
+    $errors['sender_id'] = $lang['validate_field_ajax150'];
 
 if (empty($_POST['sender_address_id']))
 
     $errors['sender_address_id'] = $lang['validate_field_ajax145'];
 
-// if (empty($_POST['recipient_id']))
-//     $errors['recipient_id'] = $lang['validate_field_ajax146'];
+if (empty($_POST['recipient_id']))
+    $errors['recipient_id'] = $lang['validate_field_ajax146'];
 
 if (empty($_POST['recipient_address_id']))
 
     $errors['recipient_address_id'] = $lang['validate_field_ajax147'];
 
+// $_POST['agency'] = "n/a";
 // if (empty($_POST['agency']))
 
 //     $errors['agency'] = $lang['validate_field_ajax148'];
 
 // if (empty($_POST['origin_off']))
-    // $errors['origin_off'] = $lang['validate_field_ajax149'];
+//     $errors['origin_off'] = $lang['validate_field_ajax149'];
 
 if (empty($_POST['order_no']))
     $errors['order_no'] = $lang['validate_field_ajax150'];
@@ -62,12 +63,17 @@ if (empty($_POST['order_no']))
 
 // if (empty($_POST['order_package']))
     // $errors['order_package'] = $lang['validate_field_ajax152'];
-
+    
 // if (empty($_POST['order_courier']))
-    // $errors['order_courier'] = $lang['validate_field_ajax153'];
+//     $errors['order_courier'] = $lang['validate_field_ajax153'];
 
-if (empty($_POST['order_service_options']))
-    $errors['order_service_options'] = "Please select delivery type";
+
+// if (empty($_POST['order_service_options']))
+//     $errors['order_service_options'] = "Please select delivery type";
+
+if (empty($_POST['delivery_type']))
+    $errors['delivery_type'] = "Please select delivery type";
+
 
 // if (empty($_POST['order_deli_time']))
 //     $errors['order_deli_time'] = $lang['validate_field_ajax155'];
@@ -80,6 +86,24 @@ if (empty($_POST['order_payment_method']))
     $errors['order_payment_method'] = $lang['validate_field_ajax158'];
 
 if (empty($errors)) {
+
+    $settings = cdp_getSettingsCourier();
+
+    $site_email = $settings->email_address;
+    $check_mail = $settings->mailer;
+    $names_info = $settings->smtp_names;
+    $mlogo = $settings->logo;
+    $msite_url = $settings->site_url;
+    $msnames = $settings->site_name;
+    //SMTP
+    $smtphoste = $settings->smtp_host;
+    $smtpuser = $settings->smtp_user;
+    $smtppass = $settings->smtp_password;
+    $smtpport = $settings->smtp_port;
+    $smtpsecure = $settings->smtp_secure;
+    $value_weight = $settings->value_weight;
+    $meter = $settings->meter;
+
 
     $min_cost_tax = $core->min_cost_tax;
     $min_cost_declared_tax = $core->min_cost_declared_tax;
@@ -98,33 +122,35 @@ if (empty($errors)) {
 
     $sender_data = cdp_getSenderCourier(intval($_POST["sender_id"]));
     $receiver_data = cdp_getRecipientCourier(intval($_POST["recipient_id"]));
-
+    
     $dataShipment = array(
         'order_id' =>  cdp_sanitize(intval($_POST["order_id"])),
         'sender_id' =>  cdp_sanitize(intval($_POST["sender_id"])),
         'recipient_id' =>  cdp_sanitize(intval($_POST["recipient_id"])),
         'sender_address_id' =>  cdp_sanitize(intval($_POST["sender_address_id"])),
         'recipient_address_id' =>  cdp_sanitize(intval($_POST["recipient_address_id"])),
-        // 'agency' =>  cdp_sanitize(intval($_POST["agency"])),
-        // 'origin_off' =>  cdp_sanitize(intval($_POST["origin_off"])),
-        // 'order_package' =>  cdp_sanitize(intval($_POST["order_package"])),
+        'agency' =>  cdp_sanitize(intval($_POST["agency"])),
+        'origin_off' =>  cdp_sanitize(intval($_POST["origin_off"])),
+        'order_package' =>  cdp_sanitize(intval($_POST["order_package"])),
         'driver_id' =>  cdp_sanitize(intval($_POST["driver_id"])),
-        // 'order_item_category' =>  cdp_sanitize(intval($_POST["order_item_category"])),
-        // 'order_courier' =>  cdp_sanitize(intval($_POST["order_courier"])),
+        'order_item_category' =>  cdp_sanitize(intval($_POST["order_item_category"])),
+        'order_courier' =>  cdp_sanitize(intval($_POST["order_courier"])),
         'order_service_options' =>  cdp_sanitize(intval($_POST["order_service_options"])),
-        // 'order_deli_time' =>  cdp_sanitize(intval($_POST["order_deli_time"])),
+        'delivery_type' => $_POST['delivery_type'],
+        'order_deli_time' =>  cdp_sanitize(intval($_POST["order_deli_time"])),
         'order_payment_method' =>  cdp_sanitize(intval($_POST["order_payment_method"])),
         'status_courier' =>  cdp_sanitize(intval($_POST["status_courier"])),
         'due_date' =>  $due_date,
         'status_invoice' =>  $status_invoice,
         'order_incomplete' => '1',
+        'notes' => cdp_sanitize($_POST['notes'])
     );
 
     $updateShip = cdp_updateCourierShipmentFromCustomer($dataShipment);
 
     $shipment_id =  cdp_sanitize(intval($_POST["order_id"]));
 
-    if ($updateShip) {
+    if ($updateShip != null) {
 
         if (isset($_POST["packages"])) {
 
@@ -154,6 +180,10 @@ if (empty($errors)) {
             $reexpedicion_value = $_POST["reexpedicion_value"];
             $price_lb = $_POST["price_lb"];
             $insured_value = $_POST["insured_value"];
+
+            $total_envio = $_POST["total_envio"];
+
+            $total_fixed_value = $_POST["total_fixed_value"];
 
             foreach ($packages as $package) {
 
@@ -191,9 +221,10 @@ if (empty($errors)) {
             // $precio_total = $calculate_weight * $price_lb;
             $sumador_total += $price_lb;
 
-            if ($sumador_total > $min_cost_tax) {
-                $total_impuesto = $sumador_total * $tax_value / 100;
-            }
+            // if ($sumador_total > $min_cost_tax) {
+            //     $total_impuesto = $sumador_total * $tax_value / 100;
+            // }
+            $total_impuesto = $total_envio * $tax_value / 100;
 
             if ($sumador_valor_declarado > $min_cost_declared_tax) {
                 $total_valor_declarado = $sumador_valor_declarado * $declared_value_tax / 100;
@@ -203,13 +234,47 @@ if (empty($errors)) {
             $total_peso = $sumador_libras + $sumador_volumetric;
             $total_seguro = $insured_value * $insurance_value / 100;
             $total_impuesto_aduanero = $total_peso * $tariffs_value;
-            $total_envio = ($sumador_total - $total_descuento) + $total_seguro + $total_impuesto + $total_impuesto_aduanero + $total_valor_declarado + $max_fixed_charge + $reexpedicion_value;
+            // $total_envio = ($sumador_total - $total_descuento) + $total_seguro + $total_impuesto + $total_impuesto_aduanero + $total_valor_declarado + $max_fixed_charge + $reexpedicion_value;
+            $total_envio = $total_envio;
         }
+
+            $sumador_total = 0;
+            $sumador_valor_declarado = 0;
+            $max_fixed_charge = 0;
+            $sumador_libras = 0;
+            $sumador_volumetric = 0;
+
+            $precio_total = 0;
+            $total_impuesto = 0;
+            $total_descuento = 0;
+            $total_seguro = 0;
+            $total_peso = 0;
+            $total_impuesto_aduanero = 0;
+            $total_valor_declarado = 0;
+
+            $tariffs_value = $_POST["tariffs_value"];
+            $declared_value_tax = $_POST["declared_value_tax"];
+            $insurance_value = $_POST["insurance_value"];
+            $tax_value = $_POST["tax_value"];
+            $discount_value = $_POST["discount_value"];
+            $reexpedicion_value = $_POST["reexpedicion_value"];
+            $price_lb = $_POST["price_lb"];
+            $insured_value = $_POST["insured_value"];
+
+            $total_envio = $_POST["total_envio"];
+
+            $total_fixed_value = $_POST["total_fixed_value"];
+            $total_descuento = $sumador_total * $discount_value / 100;
+            $total_peso = $sumador_libras + $sumador_volumetric;
+            $total_seguro = $insured_value * $insurance_value / 100;
+            $total_impuesto_aduanero = $total_peso * $tariffs_value;
+            // $total_envio = ($sumador_total - $total_descuento) + $total_seguro + $total_impuesto + $total_impuesto_aduanero + $total_valor_declarado + $max_fixed_charge + $reexpedicion_value;
+            $total_envio = $total_envio;
 
         $dataShipmentUpdateTotals = array(
             'order_id' =>  $shipment_id,
             'value_weight' =>  floatval($price_lb),
-            'sub_total' =>  floatval($sumador_total),
+            'sub_total' =>  floatval($_POST['sub_total']),
             'tax_discount' =>  floatval($discount_value),
             'total_insured_value' => floatval($insured_value),
             'tax_insurance_value' => floatval($insurance_value),
@@ -224,12 +289,13 @@ if (empty($errors)) {
             'total_tax_custom_tariffis' =>  floatval($total_impuesto_aduanero),
             'total_tax' =>  floatval($total_impuesto),
             'total_weight' =>  floatval($total_peso),
-            'total_order' =>  floatval($total_envio),
+            'total_order' =>  floatval($_POST['total_order']),
         );
 
         $update = cdp_updateCourierShipmentTotals($dataShipmentUpdateTotals);
         $shipment = cdp_getCourier($shipment_id);
-        $order_track =  $shipment->order_prefix . $shipment->order_no;
+        // $order_track =  $shipment->order_prefix . $shipment->order_no;
+        $order_track =  $_POST['order_no'];
 
         if (isset($_FILES['filesMultiple']) && count($_FILES['filesMultiple']['name']) > 0 && $_FILES['filesMultiple']['tmp_name'][0] != '') {
 
@@ -275,7 +341,8 @@ if (empty($errors)) {
             'order_id' =>  $shipment_id,
             'action' =>  $lang['notification_shipment088']. ' ' . $accept_data->fname . ' ' . $accept_data->lname,
             'date_history' =>  cdp_sanitize(date("Y-m-d H:i:s")),
-            'order_track' => $order_track
+            'order_track' => $order_track,
+            'comments' =>  $_POST['notes']
         );
 
         //INSERT HISTORY USER
