@@ -50,6 +50,7 @@ if (isset($_GET['id_notification'])) {
 
 
 $row_order = $data['data'];
+
 $db->cdp_query("SELECT * FROM cdb_styles where id= '" . $row_order->status_courier . "'");
 $status_courier = $db->cdp_registro();
 
@@ -340,11 +341,16 @@ $moderow = $core->cdp_getShipmode();
                                                             <?php if ($row_order->status_courier == 14) { ?>
                                                                 <a class="dropdown-item" href="pickup_accept.php?id=<?php echo $row_order->order_id; ?>"> <i style="color:#36bea6" class="fas fa-check-circle"></i>&nbsp; <?php echo $lang['left533020020'] ?></a>
                                                             <?php
-                                                            }
+                                                            }else{
                                                             ?>
+
+                                                            <?php } ?>
                                                             <a class="dropdown-item" data-id="<?php echo $row_order->order_id; ?>" href="#" data-toggle="modal" data-target="#myModalCancel"><i style="color:#f62d51" class="fas fa-times-circle"></i>&nbsp; <?php echo $lang['left533020021'] ?></a>
                                                         <?php
-                                                        }
+                                                        }else{ ?>
+                                                                <span class="label" style="background-color: <?php echo $status_courier->color; ?>"><?php echo $status_courier->mod_style; ?>
+                                        
+                                                        <?php }
                                                         ?>
                                                     </div>
                                                 </div>
@@ -362,23 +368,28 @@ $moderow = $core->cdp_getShipmode();
                                     <div class=" col-sm-12 col-md-6 mb-2">
                                         <b class=""><?php echo $lang['left506'] ?></b>
                                         
-                                        <!-- <span class="label" style="background-color: <?php echo $status_courier->color; ?>"><?php echo $status_courier->mod_style; ?> -->
-                                        </span>
+                                        
 
                                         <?php if ($row_order->is_pickup != 0) { ?>
-                                        <?php if ($row_order->status_courier == 14) { ?>
-                                            <span style="background: #5BE472;" class="label label-large"><?php echo $lang['left533020020']; ?></span>
+                                            <?php if ($row_order->status_courier == 14) { ?>
+                                                <span style="background: #5BE472;" class="label label-large"><?php echo $lang['left533020020']; ?></span>
 
+                                            <?php }else{ ?>
+                                                
+                                                <?php
+                                                    if ($row_order->status_courier == 12 || $row_order->status_courier == 21 || $row_order->status_courier == 8) { ?>
+
+                                                        <span style="background: <?php echo $status_courier->color; ?>;" class="label label-large"><?php echo $status_courier->mod_style; ?></span>
+                                                    <?php
+                                                    }else{
+                                                ?>
+
+                                                    <span class="label" style="background-color: <?php echo $status_courier->color; ?>"><?php echo $status_courier->mod_style; ?>
+                                                    </span>
+                                                    <?php } ?>
+                                                <?php } ?>
                                         <?php } ?>
-                                        <?php } ?>
-
-                                        <?php
-                                        if ($row_order->status_courier == 12 || $row_order->status_courier == 21 || $row_order->status_courier == 8) { ?>
-
-                                            <span style="background: <?php echo $status_courier->color; ?>;" class="label label-large"><?php echo $status_courier->mod_style; ?></span>
-                                        <?php
-                                        }
-                                        ?>
+                                       
 
                                     </div>
 
@@ -1152,15 +1163,13 @@ $moderow = $core->cdp_getShipmode();
                                                             <?php if ($row_order->status_courier == 14) { ?>
                                                                 <span style="background: #5BE472;" class="label label-large"><?php echo $lang['left533020020']; ?></span>
 
-                                                            <?php } ?>
-                                                            <?php } ?>
-
-                                                            <?php
-                                                            if ($row_order->status_courier == 12 || $row_order->status_courier == 21 || $row_order->status_courier == 8) { ?>
+                                                            <?php } else{ ?>
                                                                 <span style="background: <?php echo $status_courier->color; ?>;" class="label label-large"><?php echo $status_courier->mod_style; ?></span>
-                                                            <?php   
-                                                            }
+                                                                <?php
+                                                                }
                                                             ?>
+
+                                                        <?php } ?>
                                                         </td>
                                                         <td><?php echo $track_item->comments; ?></td>
                                                     </tr>

@@ -185,17 +185,13 @@ if ($numrows > 0) { ?>
 									<?php if ($row->status_courier == 14) { ?>
 										<span style="background: #5BE472;" class="label label-large"><?php echo $lang['left533020020']; ?></span>
 
-									<?php } ?>
-								<?php } ?>
+									<?php } else{ ?>
+										<span style="background: <?php echo $row->color; ?>;" class="label label-large"><?php echo $row->mod_style; ?></span>
+										<?php
+										}
+									?>
 
-								<?php
-								if ($row->status_courier == 12 || $row->status_courier == 21 || $row->status_courier == 8) { ?>
-
-									<span style="background: <?php echo $row->color; ?>;" class="label label-large"><?php echo $row->mod_style; ?></span>
-								<?php
-								}
-								?>
-							</td>
+								<?php } ?>							</td>
 
 							<td><?php echo @$row->notes; ?></td>
 							
