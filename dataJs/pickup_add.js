@@ -854,6 +854,9 @@ $("#invoice_form").on("submit", function (event) {
   var origin_off = $("#origin_off").val();
   var sender_id = $("#sender_id_temp").val();
   var sender_address_id = $("#sender_address_id").val();
+  if(!sender_address_id){
+    sender_address_id = $("#select2-sender_address_id-container").text();
+  }
   var recipient_id = $("#recipient_id").val();
   var recipient_address_id = $("#recipient_address_id").val();
   var order_item_category = $("#order_item_category").val();
@@ -990,6 +993,9 @@ $("#invoice_form").on("submit", function (event) {
   var distance = $("#distance").val();
   data.append("distance",distance);
 
+  var sub_total = $("#total_before_tax").text();
+  data.append("sub_total", sub_total);
+
   var total_file = document.getElementById("filesMultiple").files.length;
 
   for (var i = 0; i < total_file; i++) {
@@ -1121,7 +1127,6 @@ function cdp_select2_init_sender() {
         $("#recipient_id").attr("disabled", false);
         $("#add_recipient").attr("disabled", false);
       }
-      cdp_select2_init_sender();
       cdp_select2_init_sender_address();
       cdp_select2_init_recipient_address();
       cdp_select2_init_recipient();
@@ -1158,6 +1163,13 @@ function cdp_select2_init_sender_address() {
       // minimumInputLength: 2,
       placeholder: search_sender_address,
       allowClear: true,
+    })
+    .on("change", function (e) {
+      var sender_address_id = $("#sender_address_id").val();
+      var recipient_address_id = $("#recipient_address_id").val();
+      if (!recipient_address_id || !sender_address_id) {
+        $("#table-totals").addClass("d-none");
+      }
     });
 }
 
@@ -2171,6 +2183,9 @@ function getTariffs() {
   var recipient_address_id = $("#recipient_address_id").val();
   var sender_id = $("#sender_id").val();
   var sender_address_id = $("#sender_address_id").val();
+  if(!sender_address_id){
+    sender_address_id = $("#select2-sender_address_id-container").text();
+  }
   var deliveryType = $("#deliveryType").val();
   // var packages = JSON.stringify(packagesItems);
   if(!recipient_id || !recipient_address_id || !sender_id || !sender_address_id || !deliveryType){
@@ -2220,10 +2235,9 @@ function getTariffs() {
 //   });
 }
 
-$("#calculate_invoice").on("click", getTariffs);
 
 $(document).ready(function(){
-
+  
   // $("#sender_address_id")
   //   .select2({
   //     ajax: {
@@ -2267,7 +2281,12 @@ $(document).ready(function(){
         // Handle error
         alert('Error calculating distance.');
     }
+
+  
 });
+
+$("#calculate_invoice").on("click", getTariffs);
+  
 
   $(document).on('change','#recipient_id',function(){
     var recipient_id = $(this).val();
@@ -2391,6 +2410,9 @@ $(document).ready(function(){
     
     if(!origin){
       origin = $('#sender_address_id option:selected').text();
+      if(!origin){
+        origin = $("#select2-sender_address_id-container").text()
+      }
     }
     if(!destination){
       destination =   $('#recipient_address_id option:selected').text();

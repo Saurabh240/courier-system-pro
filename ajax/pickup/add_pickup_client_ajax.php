@@ -245,7 +245,7 @@ if (empty($errors)) {
             'total_tax_custom_tariffis' =>  floatval($total_impuesto_aduanero),
             'total_tax' =>  floatval($total_impuesto),
             'total_weight' =>  floatval($total_peso),
-            'total_order' =>  floatval($total_envio),
+            'total_order' =>  floatval($_POST["total_order"]),
             'delivery_type' => $_POST['delivery_type'],
             'distance' => $_POST['distance']
         );
