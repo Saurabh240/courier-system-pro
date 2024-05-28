@@ -32,9 +32,15 @@ $user = new User;
 $core = new Core;
 $errors = array();
 
- //echo "<pre>"; print_r($_POST); die();
 if (empty($_POST['sender_id']))
     $errors['sender_id'] = $lang['validate_field_ajax150'];
+
+if (empty($_POST['delivery_type']))
+    $errors['delivery_type'] = $lang['Delivery type is required'];
+
+    
+if (empty($_POST['distance']))
+$errors['distance'] = $lang['Distance is required'];
 
 if (empty($_POST['sender_address_id']))
     $errors['sender_address_id'] = $lang['validate_field_ajax145'];
@@ -50,7 +56,6 @@ if (empty($_POST['recipient_address_id']))
 
 /*if (empty($_POST['order_package']))
     $errors['order_package'] = $lang['validate_field_ajax152'];*/
-
 
 
 if (empty($errors)) {
@@ -220,6 +225,7 @@ if (empty($errors)) {
             $total_impuesto_aduanero = $total_peso * $tariffs_value;
             $total_envio = $_POST["pickuptotal"];
         }*/
+        $total_envio = $_POST['total_order'];
 
         $dataShipmentUpdateTotals = array(
             'order_id' =>  $shipment_id,
@@ -240,6 +246,8 @@ if (empty($errors)) {
             'total_tax' =>  floatval($total_impuesto),
             'total_weight' =>  floatval($total_peso),
             'total_order' =>  floatval($total_envio),
+            'delivery_type' => $_POST['delivery_type'],
+            'distance' => $_POST['distance']
         );
 
         $update = cdp_updateCourierShipmentTotals($dataShipmentUpdateTotals);

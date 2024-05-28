@@ -143,7 +143,8 @@ if (empty($errors)) {
         'due_date' =>  $due_date,
         'status_invoice' =>  $status_invoice,
         'order_incomplete' => '1',
-        'notes' => cdp_sanitize($_POST['notes'])
+        'notes' => cdp_sanitize($_POST['notes']),
+        'distance' => $_POST['distance']
     );
 
     $updateShip = cdp_updateCourierShipmentFromCustomer($dataShipment);
@@ -290,6 +291,8 @@ if (empty($errors)) {
             'total_tax' =>  floatval($total_impuesto),
             'total_weight' =>  floatval($total_peso),
             'total_order' =>  floatval($_POST['total_order']),
+            'delivery_type' => $_POST['delivery_type'],
+            'distance' => $_POST['distance']
         );
 
         $update = cdp_updateCourierShipmentTotals($dataShipmentUpdateTotals);

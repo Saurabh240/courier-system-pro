@@ -5403,7 +5403,8 @@ function cdp_updateCourierShipmentFromCustomer($datos)
         due_date=:due_date,
         status_invoice=:status_invoice,
         order_incomplete=:order_incomplete,
-        notes=:notes
+        notes=:notes,
+        distance =:distance
 
         WHERE
         order_id=:order_id
@@ -5429,6 +5430,7 @@ function cdp_updateCourierShipmentFromCustomer($datos)
     $db->bind(':due_date',   $datos["due_date"]);
     $db->bind(':status_invoice',   $datos["status_invoice"]);
     $db->bind(':notes',   $datos["notes"]);
+    $db->bind(':distance',   $datos["distance"]);
 
     return $db->cdp_execute();
 }
@@ -5505,7 +5507,9 @@ function cdp_updateCourierShipmentTotals($datos)
     total_fixed_value=:total_fixed_value,
     total_tax_discount=:total_tax_discount,
     total_reexp=:total_reexp,
-    total_order=:total_order        
+    total_order=:total_order,
+    delivery_type=:delivery_type,
+    distance=:distance 
 
         where order_id  = :order_id
     ');
@@ -5528,6 +5532,8 @@ function cdp_updateCourierShipmentTotals($datos)
     $db->bind(':total_tax', $datos['total_tax']);
     $db->bind(':total_weight', $datos['total_weight']);
     $db->bind(':total_order', $datos['total_order']);
+    $db->bind(':delivery_type', $datos['delivery_type']);
+    $db->bind(':distance', $datos['distance']);
 
     return $db->cdp_execute();
 }

@@ -996,6 +996,10 @@ $("#invoice_form").on("submit", function (event) {
     data.append("deleted_file_ids", deleted_file_ids);
   }
 
+  var distance = $("#distance").val();
+
+  data.append("distance",distance);
+
   var total_file = document.getElementById("filesMultiple").files.length;
 
   for (var i = 0; i < total_file; i++) {
@@ -2130,11 +2134,18 @@ function getTariffs() {
   //   },
   //   success: function (data) {
   //     if (data.success) {
-        //  $("#table-totals").removeClass("d-none");
-        // $("#create_invoice").attr("disabled", false);
+         $("#table-totals").removeClass("d-none");
+        $("#create_invoice").attr("disabled", false);
+        var deliveryType = document.getElementById('deliveryType').value;
+  
         // $("#price_lb").val(data.data.price);
         // $("#price_lb_label").html(data.data.price);
         calculateFinalTotal();
+        if(!deliveryType){
+          $("#total_before_tax").text("0.0");
+          $("#total_after_tax").text("0.0");
+          return;
+        }
 //       } else {
 //         $("#table-totals").addClass("d-none");
 //         $("#create_invoice").attr("disabled", true);
@@ -2161,13 +2172,16 @@ function getTariffs() {
     var selectedData = e.params.data;
     destination = selectedData.text;
   });
-  origin = $('#sender_address_id option:selected').attr('data-address');
-  destination =   $('#recipient_address_id option:selected').attr('data-address');
+  origin = $('#sender_address_id option:selected').text();
+  destination =   $('#recipient_address_id option:selected').text();
   // google api accepts information like given below.
   // origin = "Seattle,Washington";
   // destination = "San+Francisco,California";
+
   
-  var deliveryType = document.getElementById('deliveryType').value;
+  if(!deliveryType){
+    return;
+  }
   
   $.ajax({
     type: 'POST',
@@ -2200,7 +2214,3 @@ function getTariffs() {
 $("#calculate_invoice").on("click", getTariffs);
 
 $("#deliveryType").on('change', getTariffs);
-
-$(document).ready(function(){
-  $("#calculate_invoice").trigger("click");
-});

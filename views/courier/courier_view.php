@@ -184,10 +184,10 @@ $moderow = $core->cdp_getShipmode();
         <div class="page-wrapper">
 
 
-            <div class="container-fluid">
+            <div class="">
                 <div class="row">
                     <div class="col-lg-12 col-xl-12 col-md-12">
-                        <div class="card" style=" padding-bottom: 40px">
+                        <div class="card" >
                             <div class="card-body">
 
                                 <div class="mb-3" id="resultados_ajax_cancel"></div>

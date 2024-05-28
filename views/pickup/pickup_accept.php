@@ -500,7 +500,7 @@ $address_order = $db->cdp_registro();
                                             <div class="form-group col-md-7">
                                             <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
 												<div class="input-group mb-3">
-													<select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
+													<!-- <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
 														<option value="" selected>Select Delivery Type</option>
 														<option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?>value="SAME DAY (1PM to 4PM)"
                                                         <?php if($row_order->delivery_type == "SAME DAY (1PM to 4PM)") { ?> selected <?php } ?>
@@ -520,7 +520,7 @@ $address_order = $db->cdp_registro();
 														<option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="URGENT (90 MINUTES)"
                                                         <?php if($row_order->delivery_type == "URGENT (90 MINUTES)") { ?> selected <?php } ?>
                                                         >URGENT (90 MINUTES)</option>
-														<!-- <option value="NEXT DAY (BEFORE 5PM)"
+														<option value="NEXT DAY (BEFORE 5PM)"
                                                         <?php if($row_order->delivery_type == "NEXT DAY (BEFORE 5PM)") { ?> selected <?php } ?>
                                                         >NEXT DAY (BEFORE 5PM)</option>
 														<option value="NEXT DAY (BEFORE 2PM)"
@@ -531,7 +531,22 @@ $address_order = $db->cdp_registro();
                                                         >NEXT DAY (BEFORE 11:30AM)</option>
 														<option value="NEXT DAY (BEFORE 10:30AM)"
                                                         <?php if($row_order->delivery_type == "NEXT DAY (BEFORE 10:30AM)") { ?> selected <?php } ?>
-                                                        >NEXT DAY (BEFORE 10:30AM)</option> -->
+                                                        >NEXT DAY (BEFORE 10:30AM)</option>
+                                                      
+													</select> -->
+
+                                                    <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
+														<option value="" selected>Select Delivery Type</option>
+														<option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?>value="SAME DAY (1PM to 4PM)">SAME DAY (1PM to 4PM)</option>
+														<option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="SAME DAY (BEFORE 5PM)">SAME DAY (BEFORE 5PM)</option>
+														<option <?php if(time() > strtotime("1:30 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (4 HOURS)">RUSH (4 HOURS)</option>
+														<option <?php if(time() > strtotime("2:30 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (3 HOURS)">RUSH (3 HOURS)</option>
+														<option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (2 HOURS)">RUSH (2 HOURS)</option>
+														<option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="URGENT (90 MINUTES)">URGENT (90 MINUTES)</option>
+														<option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
+														<option value="NEXT DAY (BEFORE 2PM)">NEXT DAY (BEFORE 2PM)</option>
+														<option value="NEXT DAY (BEFORE 11:30AM)">NEXT DAY (BEFORE 11:30AM)</option>
+														<option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option>
                                                       
 													</select>
 												</div>
@@ -639,7 +654,7 @@ $address_order = $db->cdp_registro();
                                     <hr>
                                     
                                     <div class="row" style="margin-top: 20px;">
-                                        <div class="table-responsive" id="table-totals">
+                                        <div class="table-responsive d-none" id="table-totals">
                                             <!-- <table id="insvoice-item-table" class="table">
                                                 <tfoot>
                                                     <tr class="card-hover">
@@ -850,9 +865,9 @@ $address_order = $db->cdp_registro();
                                                                 Calculate                                                            </span>
                                                         </button>
                                                         &nbsp;
-                                                        <button type="submit" name="create_invoice" id="create_invoice" class="btn btn-success">
+                                                        <button disabled type="submit" name="create_invoice" id="create_invoice" class="btn btn-success">
                                                             <i class="fas fa-save"></i>
-                                                            <span class="ml-1" disabled>Submit Order</span>
+                                                            <span class="ml-1" >Submit Order</span>
                                                         </button>
                                                     </div>
                                                 </div>

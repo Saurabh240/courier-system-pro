@@ -52,7 +52,7 @@ $adjacents  = 4; //gap between pages after number of adjacents
 $offset = ($page - 1) * $per_page;
 
 
-$sql = "SELECT  a.is_consolidate,a.sub_total,a.notes, a.order_incomplete, a.status_invoice, a.is_pickup, a.total_order, a.order_id, a.order_prefix, a.order_no, a.order_date, a.sender_id, a.receiver_id, a.order_courier, a.order_pay_mode, a.status_courier, a.driver_id, a.order_service_options, a.total_order,  b.mod_style, b.color, 
+$sql = "SELECT  a.is_consolidate,a.sub_total,a.notes,a.delivery_type,a.distance, a.order_incomplete, a.status_invoice, a.is_pickup, a.total_order, a.order_id, a.order_prefix, a.order_no, a.order_date, a.sender_id, a.receiver_id, a.order_courier, a.order_pay_mode, a.status_courier, a.driver_id, a.order_service_options, a.total_order,  b.mod_style, b.color, 
 			 u.username, u.fname, u.lname FROM
 			 cdb_add_order as a
 			 LEFT JOIN cdb_users as u ON a.sender_id = u.id
@@ -148,7 +148,7 @@ if ($numrows > 0) { ?>
 							<td class="text-center">
 					
 								<?php
-									echo $row->order_service_options
+									echo $row->delivery_type
 								?>
 							</td>
 
@@ -166,7 +166,7 @@ if ($numrows > 0) { ?>
 							<td class="text-center"><?php echo $address_order->recipient_address; ?></td>
 
 							<td class="text-center">
-								<?php echo "N/A"; ?>
+								<?php echo $row->distance; ?>
 							</td>
 
 							<td class="text-center">

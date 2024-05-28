@@ -981,6 +981,15 @@ $("#invoice_form").on("submit", function (event) {
     data.append("deleted_file_ids", deleted_file_ids);
   }
 
+  var total_order = $("#total_after_tax").text();
+  data.append('total_order', total_order);
+
+  var delivery_type = $("#deliveryType").val();
+  data.append("delivery_type",delivery_type);
+
+  var distance = $("#distance").val();
+  data.append("distance",distance);
+
   var total_file = document.getElementById("filesMultiple").files.length;
 
   for (var i = 0; i < total_file; i++) {
