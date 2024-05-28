@@ -340,7 +340,7 @@ $order_prefix = $settings->prefix;
                                                 <div class="col-md-10">
                                                     <div class="input-group">
                                                         <select class="select2 form-control custom-select" id="sender_id" name="sender_id">
-                                                        <option value="<?php echo $sender_user->id; ?>" selected> <?php echo $sender_user->fname . ' ' . $sender_user->lname; ?></option>
+                                                        <!-- <option value="<?php echo $sender_user->id; ?>" selected> <?php echo $sender_user->fname . ' ' . $sender_user->lname; ?></option> -->
                                                     </select>
                                                     </div>
                                                 </div>
@@ -481,7 +481,7 @@ $order_prefix = $settings->prefix;
 											<div class="form-group col-md-3">
                                                     <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
                                                     <div class="input-group mb-3">
-                                                        <select class="form-control custom-select" id="order_service_options" name="order_service_options" required style="width: 100%;">
+                                                        <select class="form-control custom-select" id="deliveryType" name="delivery_type" required style="width: 100%;">
                                                             <option value="" selected>Select Delivery Type</option>
                                                             <option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?>value="SAME DAY (1PM to 4PM)">SAME DAY (1PM to 4PM)</option>
                                                             <option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="SAME DAY (BEFORE 5PM)">SAME DAY (BEFORE 5PM)</option>
@@ -489,13 +489,11 @@ $order_prefix = $settings->prefix;
                                                             <option <?php if(time() > strtotime("2:30 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (3 HOURS)">RUSH (3 HOURS)</option>
                                                             <option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="RUSH (2 HOURS)">RUSH (2 HOURS)</option>
                                                             <option <?php if(time() > strtotime("9:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="URGENT (90 MINUTES)">URGENT (90 MINUTES)</option>
-                                                            <!-- <option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
+                                                            <option value="NEXT DAY (BEFORE 5PM)">NEXT DAY (BEFORE 5PM)</option>
                                                             <option value="NEXT DAY (BEFORE 2PM)">NEXT DAY (BEFORE 2PM)</option>
                                                             <option value="NEXT DAY (BEFORE 11:30AM)">NEXT DAY (BEFORE 11:30AM)</option>
-                                                            <option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option> -->
-                                                            <?php foreach ($moderow as $mode) : ?>
-                                                                <option value="<?php echo $mode->id; ?>"><?php echo $mode->ship_mode; ?></option>
-                                                            <?php endforeach; ?>
+                                                            <option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option>
+                                                           
                                                         </select>
                                                     </div>
 											</div>
@@ -994,7 +992,7 @@ $order_prefix = $settings->prefix;
                                                 <hr>
                                                 <div class="row row-shadow input-container"> 
                                                 <div class="col-sm-12 col-md-6 col-lg-2">
-                                                        <div class="form-group">
+                                                        <div class="form-group" hidden>
                                                             <label for="emailAddress1"><?php echo $lang['leftorder1879'] ?></label>
                                                             <?php
                                                             if ($core->for_symbol !== null) {
@@ -1003,8 +1001,8 @@ $order_prefix = $settings->prefix;
                                                             <?php
                                                             }
                                                             ?>
-                                                            <span id="fixed_value_label"> 0.00</span>
-                                                            <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
+                                                            <!-- <span id="fixed_value_label"> 0.00</span> -->
+                                                            <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax" value="0">
                                                          </div>
                                                     </div>
                                                     
@@ -1083,7 +1081,7 @@ $order_prefix = $settings->prefix;
                             </div> 
                              </div>
 
-                             <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
+                             <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax" value="0">
                               <input type="hidden" name="total_envio_ajax" id="total_envio_ajax">
 
 

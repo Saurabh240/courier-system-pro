@@ -494,13 +494,13 @@ $address_order = $db->cdp_registro();
 											<div class="form-group col-md-4">
 												<label for="inputEmail3" class="control-label col-form-label">Distance</label>
 												<div class="input-group mb-3">
-													<input type="text" name="distance" class="form-control" id="distance">
+													<input type="text" name="distance" class="form-control" id="distance" value="<?php echo $row_order->distance; ?>">
 												</div>
 											</div>
                                             <div class="form-group col-md-7">
                                             <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
 												<div class="input-group mb-3">
-													<!-- <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
+													<select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
 														<option value="" selected>Select Delivery Type</option>
 														<option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?>value="SAME DAY (1PM to 4PM)"
                                                         <?php if($row_order->delivery_type == "SAME DAY (1PM to 4PM)") { ?> selected <?php } ?>
@@ -533,9 +533,9 @@ $address_order = $db->cdp_registro();
                                                         <?php if($row_order->delivery_type == "NEXT DAY (BEFORE 10:30AM)") { ?> selected <?php } ?>
                                                         >NEXT DAY (BEFORE 10:30AM)</option>
                                                       
-													</select> -->
+													</select>
 
-                                                    <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
+                                                    <!-- <select class="form-control custom-select" id="deliveryType" name="deliveryType" required style="width: 100%;">
 														<option value="" selected>Select Delivery Type</option>
 														<option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?>value="SAME DAY (1PM to 4PM)">SAME DAY (1PM to 4PM)</option>
 														<option <?php if(time() > strtotime("12:00 PM")) { echo "disabled='disabled' class='disabled-cls'"; }?> value="SAME DAY (BEFORE 5PM)">SAME DAY (BEFORE 5PM)</option>
@@ -548,7 +548,7 @@ $address_order = $db->cdp_registro();
 														<option value="NEXT DAY (BEFORE 11:30AM)">NEXT DAY (BEFORE 11:30AM)</option>
 														<option value="NEXT DAY (BEFORE 10:30AM)">NEXT DAY (BEFORE 10:30AM)</option>
                                                       
-													</select>
+													</select> -->
 												</div>
 											</div>
 

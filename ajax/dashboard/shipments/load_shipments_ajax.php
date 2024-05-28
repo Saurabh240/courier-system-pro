@@ -59,7 +59,7 @@ $adjacents  = 4; //gap between pages after number of adjacents
 $offset = ($page - 1) * $per_page;
 
 
-$sql = "SELECT a.status_invoice,  a.order_incomplete,  a.is_consolidate, a.is_pickup,  a.total_order, a.order_id, a.order_prefix, a.order_no, a.order_date, a.sender_id, a.receiver_id, a.order_courier, a.order_pay_mode, a.status_courier, a.driver_id, a.order_service_options,  b.mod_style, b.color FROM
+$sql = "SELECT a.status_invoice, a.delivery_type,  a.order_incomplete,  a.is_consolidate, a.is_pickup,  a.total_order, a.order_id, a.order_prefix, a.order_no, a.order_date, a.sender_id, a.receiver_id, a.order_courier, a.order_pay_mode, a.status_courier, a.driver_id, a.order_service_options,  b.mod_style, b.color FROM
 			 cdb_add_order as a
 			 INNER JOIN cdb_styles as b ON a.status_courier = b.id
 			 and a.status_courier!=14
@@ -169,7 +169,7 @@ if ($numrows > 0) { ?>
 							<td class="text-center"><?php echo $address_order->sender_address; ?></td>
 							<td class="text-center"><?php echo $address_order->recipient_address; ?></td>
 
-							<td class="text-center"><?php echo $row->order_service_options ?></td>
+							<td class="text-center"><?php echo $row->delivery_type ?></td>
 
 							<!-- <td class="text-left">
 								<?php if ($row->status_courier != 14) { ?>

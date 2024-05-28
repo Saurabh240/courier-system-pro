@@ -36,62 +36,36 @@ $errors = array();
 
 
 if (empty($_POST['sender_id']))
-
     $errors['sender_id'] = $lang['validate_field_ajax150'];
 
-if (empty($_POST['sender_address_id']))
+if (empty($_POST['delivery_type']))
+    $errors['delivery_type'] = $lang['Delivery type is required'];
 
+    
+if (empty($_POST['distance']))
+$errors['distance'] = $lang['Distance is required'];
+
+if (empty($_POST['sender_address_id']))
     $errors['sender_address_id'] = $lang['validate_field_ajax145'];
 
 if (empty($_POST['recipient_id']))
-
     $errors['recipient_id'] = $lang['validate_field_ajax146'];
 
 if (empty($_POST['recipient_address_id']))
-
     $errors['recipient_address_id'] = $lang['validate_field_ajax147'];
 
-if (empty($_POST['agency']))
-
-    $errors['agency'] = $lang['validate_field_ajax148'];
-
-if (empty($_POST['origin_off']))
-
-    $errors['origin_off'] = $lang['validate_field_ajax149'];
-
-if (empty($_POST['order_no']))
-
-    $errors['order_no'] = $lang['validate_field_ajax150'];
-
 /*if (empty($_POST['order_item_category']))
+    $errors['order_item_category'] = $lang['validate_field_ajax151'];*/
 
-    $errors['order_item_category'] = $lang['validate_field_ajax151'];
-
-if (empty($_POST['order_package']))
-
+/*if (empty($_POST['order_package']))
     $errors['order_package'] = $lang['validate_field_ajax152'];*/
-
-if (empty($_POST['order_courier']))
-
-    $errors['order_courier'] = $lang['validate_field_ajax153'];
-
-if (empty($_POST['order_service_options']))
-    $errors['order_service_options'] = $lang['validate_field_ajax154'];
-
-if (empty($_POST['order_deli_time']))
-    $errors['order_deli_time'] = $lang['validate_field_ajax155'];
-
-if (empty($_POST['status_courier']))
-    $errors['status_courier'] = $lang['validate_field_ajax157'];
-
-if (empty($_POST['order_payment_method']))
-    $errors['order_payment_method'] = $lang['validate_field_ajax158'];
 
 
 if (empty($errors)) {
 
     $settings = cdp_getSettingsCourier();
 
+    $order_prefix = $settings->prefix;
     $site_email = $settings->email_address;
     $check_mail = $settings->mailer;
     $names_info = $settings->smtp_names;
@@ -115,61 +89,70 @@ if (empty($errors)) {
     $date = date('Y-m-d', strtotime(cdp_sanitize($_POST["order_date"])));
     $time = date("H:i:s");
     $date = $date . ' ' . $time;
-    $sale_date   = date("Y-m-d H:i:s");
 
-    $payment_methods = cdp_getPaymentMethodCourier($_POST["order_payment_method"]);
-    $days = $payment_methods->days;
-    $days = intval($days);
-    $due_date = cdp_sumardias($sale_date, $days);
-    $order_incomplete = 1;
-
-    if ($days == 0) {
-        $status_invoice = 1;
-    } else {
-        $status_invoice = 2;
-    }
-
-    if (isset($_POST["prefix_check"]) && intval($_POST["prefix_check"]) == 1) {
-        $code_prefix = cdp_sanitize($_POST["code_prefix2"]);
-    } else {
-        $code_prefix = cdp_sanitize($_POST["code_prefix"]);
-    }
-
+    $status = 14;
     $is_pickup = true;
+    $order_incomplete = 0;
+    $days = 0;
+
+    $days = intval($days);
+
+    $sale_date   = date("Y-m-d H:i:s");
+    $due_date = cdp_sumardias($sale_date, $days);
+    $status_invoice = 2;
 
     $dataShipment = array(
         'user_id' =>  $_SESSION['userid'],
-        'order_prefix' =>  $code_prefix,
+        'order_prefix' =>  $order_prefix,
         'order_incomplete' =>  $order_incomplete,
         'is_pickup' =>  $is_pickup,
-        'order_no' => cdp_sanitize($_POST["order_no"]),
+        'order_no' => cdp_sanitize($next_order),
         'order_datetime' =>  cdp_sanitize($date),
         'sender_id' =>  cdp_sanitize(intval($_POST["sender_id"])),
         'recipient_id' =>  cdp_sanitize(intval($_POST["recipient_id"])),
         'sender_address_id' =>  cdp_sanitize(intval($_POST["sender_address_id"])),
         'recipient_address_id' =>  cdp_sanitize(intval($_POST["recipient_address_id"])),
         'order_date' =>  date("Y-m-d H:i:s"),
-        'agency' =>  cdp_sanitize(intval($_POST["agency"])),
-        'origin_off' =>  cdp_sanitize(intval($_POST["origin_off"])),
-        'order_package' =>  cdp_sanitize(intval($_POST["order_package"])),
-        'order_item_category' =>  cdp_sanitize(intval($_POST["order_item_category"])),
-        'order_courier' =>  cdp_sanitize(intval($_POST["order_courier"])),
-        'order_service_options' =>  cdp_sanitize(intval($_POST["order_service_options"])),
-        'order_deli_time' =>  cdp_sanitize(intval($_POST["order_deli_time"])),
-        'order_payment_method' =>  cdp_sanitize(intval($_POST["order_payment_method"])),
-        'status_courier' =>  cdp_sanitize(intval($_POST["status_courier"])),
-        'notes' =>  cdp_sanitize($_POST["notes"]),
-        'driver_id' =>  cdp_sanitize(intval($_POST["driver_id"])),
+       // 'order_package' =>  cdp_sanitize(intval($_POST["order_package"])),
+       // 'order_item_category' =>  cdp_sanitize(intval($_POST["order_item_category"])),
+       'order_service_options' =>  null,
+       'notes' =>  cdp_sanitize($_POST["notes"]),
+        'status_courier' =>  cdp_sanitize(intval($status)),
         'due_date' =>  $due_date,
         'status_invoice' =>  $status_invoice,
         'volumetric_percentage' =>  $meter
     );
 
-    $shipment_id = cdp_insertCourierShipment($dataShipment);
+    $shipment_id = cdp_insertCourierPickupFromCustomer($dataShipment);
+
+    $tariffs_value = $_POST["tariffs_value"];
+    $declared_value_tax = $_POST["declared_value_tax"];
+    $insurance_value = $_POST["insurance_value"];
+    $tax_value = $_POST["tax_value"];
+    $discount_value = $_POST["discount_value"];
+    $reexpedicion_value = $_POST["reexpedicion_value"];
+    $price_lb = $_POST["price_lb"];
+    $insured_value = $_POST["insured_value"];
+
+    $dataAddresses = array(
+        'order_id' =>  $shipment_id,
+        'qty' =>   1,
+        'description' =>  'package',
+        //'length' =>  $package->length,
+        //'width' =>  $package->width,
+        //'height' =>  $package->height,
+        //'weight' =>  $package->weight,
+        //'declared_value' =>  $package->declared_value,
+        'fixed_value' =>  $_POST["fixed_rate"],
+    );
+
+    cdp_insertCourierShipmentPackages($dataAddresses);
+
+    $total_envio = $_POST["pickuptotal"];
 
     if ($shipment_id !== null) {
 
-        if (isset($_POST["packages"])) {
+        /*if (isset($_POST["packages"])) {
 
             $packages = json_decode($_POST['packages']);
 
@@ -196,14 +179,6 @@ if (empty($errors)) {
             $price_lb = $_POST["price_lb"];
             $insured_value = $_POST["insured_value"];
 
-            $total_envio = $_POST["total_envio"];
-
-            $total_fixed_value = $_POST["total_fixed_value"];
-
-
-
-            cdp_insertCourierShipmentPackages($dataAddresses);
-
             foreach ($packages as $package) {
 
                 $dataAddresses = array(
@@ -215,7 +190,7 @@ if (empty($errors)) {
                     'height' =>  $package->height,
                     'weight' =>  $package->weight,
                     'declared_value' =>  $package->declared_value,
-                    'fixed_value' =>  $package->fixed_value,
+                    'fixed_value' =>  $_POST["fixed_rate"],
                 );
 
                 cdp_insertCourierShipmentPackages($dataAddresses);
@@ -236,14 +211,13 @@ if (empty($errors)) {
                 $sumador_valor_declarado += $package->declared_value;
                 $max_fixed_charge += $package->fixed_value;
             }
-
             // $precio_total = $calculate_weight * $price_lb;
             $sumador_total += $price_lb;
 
-           /* if ($sumador_total > $min_cost_tax) {
+            if ($sumador_total > $min_cost_tax) {
                 $total_impuesto = $sumador_total * $tax_value / 100;
-            }*/
-            $total_impuesto = $total_envio * $tax_value / 100;
+            }
+
             if ($sumador_valor_declarado > $min_cost_declared_tax) {
                 $total_valor_declarado = $sumador_valor_declarado * $declared_value_tax / 100;
             }
@@ -252,14 +226,14 @@ if (empty($errors)) {
             $total_peso = $sumador_libras + $sumador_volumetric;
             $total_seguro = $insured_value * $insurance_value / 100;
             $total_impuesto_aduanero = $total_peso * $tariffs_value;
-           // $total_envio = ($sumador_total - $total_descuento) + $total_seguro + $total_impuesto + $total_impuesto_aduanero + $total_valor_declarado + $max_fixed_charge + $reexpedicion_value;
-           $total_envio = $total_envio;
-        }
+            $total_envio = $_POST["pickuptotal"];
+        }*/
+        $total_envio = $_POST['total_order'];
 
         $dataShipmentUpdateTotals = array(
             'order_id' =>  $shipment_id,
             'value_weight' =>  floatval($price_lb),
-            'sub_total' =>  $total_envio,
+            'sub_total' =>  $_POST["sub_total"],
             'tax_discount' =>  floatval($discount_value),
             'total_insured_value' => floatval($insured_value),
             'tax_insurance_value' => floatval($insurance_value),
@@ -268,18 +242,19 @@ if (empty($errors)) {
             'declared_value' =>  floatval($declared_value_tax),
             'total_reexp' =>  floatval($reexpedicion_value),
             'total_declared_value' =>  floatval($total_valor_declarado),
-            'total_fixed_value' =>  $total_fixed_value,
+            'total_fixed_value' =>  floatval($max_fixed_charge),
             'total_tax_discount' =>  floatval($total_descuento),
             'total_tax_insurance' =>  floatval($total_seguro),
             'total_tax_custom_tariffis' =>  floatval($total_impuesto_aduanero),
             'total_tax' =>  floatval($total_impuesto),
             'total_weight' =>  floatval($total_peso),
             'total_order' =>  floatval($total_envio),
+            'delivery_type' => $_POST['delivery_type'],
+            'distance' => $_POST['distance']
         );
 
         $update = cdp_updateCourierShipmentTotals($dataShipmentUpdateTotals);
-        $order_track = $code_prefix . $_POST["order_no"];
-
+        $order_track = $order_prefix . $next_order;
 
         if (isset($_FILES['filesMultiple']) && count($_FILES['filesMultiple']['name']) > 0 && $_FILES['filesMultiple']['tmp_name'][0] != '') {
 
@@ -308,24 +283,25 @@ if (empty($errors)) {
                 }
             }
         }
+        $sender_data = cdp_getSenderCourier(intval($_POST["sender_id"]));
 
         $dataTrack = array(
             'user_id' =>  $_SESSION['userid'],
             'order_id' =>  $shipment_id,
             'order_track' =>  $order_track,
             't_date' =>  date("Y-m-d H:i:s"),
-            'status_courier' =>  cdp_sanitize(intval($_POST["status_courier"])),
-            'comments' =>  $lang['messagesform34'],
-            'office' => cdp_sanitize(intval($_POST["origin_off"]))
-        );
+            'status_courier' =>  cdp_sanitize(intval($status)),
+            'comments' => $lang['messagesform39'] . ' ' . $sender_data->fname . ' ' . $sender_data->lname,
+            'office' =>  null,
+        ); 
 
         cdp_insertCourierShipmentTrack($dataTrack);
 
-        $sender_data = cdp_getSenderCourier(intval($_POST["sender_id"]));
+        
         $receiver_data = cdp_getRecipientCourier(intval($_POST["recipient_id"]));
 
-        $fullshipment = $code_prefix . $_POST["order_no"];
-        $add_status =   intval($_POST["status_courier"]);
+        $fullshipment = $order_prefix . $next_order;
+        $add_status =   intval($status);
         $date_ship   = date("Y-m-d H:i:s a");
 
         $app_url = $settings->site_url . 'track.php?order_track=' . $fullshipment;
@@ -419,10 +395,11 @@ if (empty($errors)) {
             }
         }
 
+
         $dataHistory = array(
             'user_id' =>  $_SESSION['userid'],
             'order_id' =>  $shipment_id,
-            'action' =>  $lang['messagesform32'],
+            'action' =>  $lang['notification_shipment8'],
             'date_history' =>  cdp_sanitize(date("Y-m-d H:i:s")),
             'order_track' =>  $order_track,
         );
@@ -435,7 +412,7 @@ if (empty($errors)) {
         $dataNotification = array(
             'user_id' =>  $_SESSION['userid'],
             'order_id' =>  $shipment_id,
-            'notification_description' => $lang['messagesform33'],
+            'notification_description' => $lang['notification_shipment'],
             'shipping_type' => '1',
             'notification_date' =>  cdp_sanitize(date("Y-m-d H:i:s")),
         );
@@ -446,8 +423,6 @@ if (empty($errors)) {
 
         $notification_id = $db->dbh->lastInsertId();
 
-        //NOTIFICATION TO DRIVER
-        cdp_insertNotificationsUsers($notification_id, intval($_POST["driver_id"]));
         //NOTIFICATION TO ADMIN AND EMPLOYEES
         $users_employees = cdp_getUsersAdminEmployees();
 
@@ -508,17 +483,6 @@ if (empty($errors)) {
         );
 
         cdp_insertCourierShipmentAddresses($dataAddresses);
-
-        //NOTIFY WHATSAPP API
-
-        if (isset($_POST['notify_whatsapp_sender']) && $_POST['notify_whatsapp_sender'] == 1) {
-            sendNotificationWhatsAppWithPDF($sender_data, $shipment_id, 3);
-        }
-
-        if (isset($_POST['notify_whatsapp_receiver']) && $_POST['notify_whatsapp_receiver'] == 1) {
-            sendNotificationWhatsAppWithPDF($receiver_data, $shipment_id, 3);
-        }
-
 
         $messages[] = $lang['message_ajax_success_add_pickup'];
     } else {

@@ -1121,6 +1121,7 @@ function cdp_select2_init_sender() {
         $("#recipient_id").attr("disabled", false);
         $("#add_recipient").attr("disabled", false);
       }
+      cdp_select2_init_sender();
       cdp_select2_init_sender_address();
       cdp_select2_init_recipient_address();
       cdp_select2_init_recipient();
@@ -2166,11 +2167,21 @@ function cdp_showSuccess(messages, shipment_id) {
 }
 
 function getTariffs() {
-  // var recipient_id = $("#recipient_id").val();
-  // var recipient_address_id = $("#recipient_address_id").val();
-  // var sender_id = $("#sender_id_temp").val();
-  // var sender_address_id = $("#sender_address_id").val();
+  var recipient_id = $("#recipient_id").val();
+  var recipient_address_id = $("#recipient_address_id").val();
+  var sender_id = $("#sender_id").val();
+  var sender_address_id = $("#sender_address_id").val();
+  var deliveryType = $("#deliveryType").val();
   // var packages = JSON.stringify(packagesItems);
+  if(!recipient_id || !recipient_address_id || !sender_id || !sender_address_id || !deliveryType){
+    Swal.fire({
+                title: "Error!",
+                text: "Please enter required fields",
+                icon: "error",
+                confirmButtonText: "Ok",
+              });
+    return;
+  }
 
   // var data = {
   //   packages: packages,
@@ -2190,7 +2201,7 @@ function getTariffs() {
   //   },
   //   success: function (data) {
   //     if (data.success) {
-         $("#table-totals").removeClass("d-none");
+        $("#table-totals").removeClass("d-none");
         $("#create_invoice").attr("disabled", false);
         // $("#price_lb").val(data.data.price);
         // $("#price_lb_label").html(data.data.price);
@@ -2377,6 +2388,16 @@ $(document).ready(function(){
   // Function to calculate distance between two coordinates and update distance input
   function calculateAndDisplayDistance(origin, destination, deliveryType) {
     // AJAX request to calculate distance
+    
+    if(!origin){
+      origin = $('#sender_address_id option:selected').text();
+    }
+    if(!destination){
+      destination =   $('#recipient_address_id option:selected').text();
+    }
+    if(!deliveryType){
+      deliveryType = document.getElementById('deliveryType').value;
+    }
     $.ajax({
         type: 'POST',
         url: 'ajax/courier/calculate_distance.php', // Replace with your PHP script for calculating distance

@@ -789,11 +789,23 @@ $("#invoice_form").on("submit", function (event) {
   var declared_value_tax = $("#declared_value_tax").val();
   var total_envio = $("#total_envio_ajax").val();
   var total_fixed_value = $("#fixed_value_ajax").val();
+  var total_fixed_value = 0;
   var tariffs_value = $("#tariffs_value").val();
 
   var deleted_file_ids = $("#deleted_file_ids").val();
 
   var data = new FormData();
+
+  
+  sender_address_id = $('#sender_address_id').val();
+  
+  recipient_address_id=   $('#recipient_address_id').val();
+  
+  deliveryType = document.getElementById('deliveryType').value;
+  distance = window.distance;
+
+  data.append('delivery_type', deliveryType);
+  data.append('distance', distance);
 
   data.append("packages", JSON.stringify(packagesItems));
 
@@ -892,7 +904,12 @@ $("#invoice_form").on("submit", function (event) {
 
   if (deleted_file_ids) {
     data.append("deleted_file_ids", deleted_file_ids);
-  }
+  }add_pickup_ajax.php
+
+  var total_order = $("#total_after_tax").text();
+  data.append('total_order', total_order);
+  var sub_total = $("#total_before_tax").text();
+  data.append('sub_total', sub_total);
 
   var total_file = document.getElementById("filesMultiple").files.length;
 
@@ -1873,6 +1890,15 @@ $('#deliveryType').on('change',function(){
 
 //Function to calculate distance between two coordinates and update distance input
   function calculateAndDisplayDistance(origin, destination, deliveryType) {
+    if(!origin){
+      origin = $('#sender_address_id option:selected').text();
+    }
+    if(!destination){
+      destination =   $('#recipient_address_id option:selected').text();
+    }
+    if(!deliveryType){
+      deliveryType = document.getElementById('deliveryType').value;
+    }
     // AJAX request to calculate distance
     $.ajax({
         type: 'POST',
@@ -1885,6 +1911,7 @@ $('#deliveryType').on('change',function(){
             $('#distance').val(data.distance);
             // $('.fixed_value').val(data.shipmentfee);
             $('.fixed_value').val(data.baseRate);
+            window.distance = data.distance;
             localStorage.setItem('baseRate', data.baseRate)
             localStorage.setItem('shipmentfee', data.shipmentfee)
             
@@ -2401,3 +2428,7 @@ function cdp_showSuccess(messages, shipment_id) {
   });
   event.preventDefault();
 });*/
+
+$("#deliveryType").on('change', function(){
+  calculateAndDisplayDistance();
+})

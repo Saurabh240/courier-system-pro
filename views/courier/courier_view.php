@@ -361,8 +361,25 @@ $moderow = $core->cdp_getShipmode();
 
                                     <div class=" col-sm-12 col-md-6 mb-2">
                                         <b class=""><?php echo $lang['left506'] ?></b>
-                                        <span class="label" style="background-color: <?php echo $status_courier->color; ?>"><?php echo $status_courier->mod_style; ?>
+                                        
+                                        <!-- <span class="label" style="background-color: <?php echo $status_courier->color; ?>"><?php echo $status_courier->mod_style; ?> -->
                                         </span>
+
+                                        <?php if ($row_order->is_pickup != 0) { ?>
+                                        <?php if ($row_order->status_courier == 14) { ?>
+                                            <span style="background: #5BE472;" class="label label-large"><?php echo $lang['left533020020']; ?></span>
+
+                                        <?php } ?>
+                                        <?php } ?>
+
+                                        <?php
+                                        if ($row_order->status_courier == 12 || $row_order->status_courier == 21 || $row_order->status_courier == 8) { ?>
+
+                                            <span style="background: <?php echo $status_courier->color; ?>;" class="label label-large"><?php echo $status_courier->mod_style; ?></span>
+                                        <?php
+                                        }
+                                        ?>
+
                                     </div>
 
                                     <div class=" col-sm-12 col-md-6 mb-2">
@@ -1130,8 +1147,20 @@ $moderow = $core->cdp_getShipmode();
                                                         <!-- <td><?php echo $track_item->t_dest; ?> /<br> 
                                                             <?php echo $track_item->t_city; ?></td> -->
                                                         <td>
-                                                        <span class="label" style="background-color: <?php echo $status_courier->color; ?>"><?php echo $status_courier->mod_style; ?>
-                                    
+                                                        <!-- <span class="label" style="background-color: <?php echo $status_courier->color; ?>"><?php echo $status_courier->mod_style; ?> -->
+                                                        <?php if ($row_order->is_pickup != 0) { ?>
+                                                            <?php if ($row_order->status_courier == 14) { ?>
+                                                                <span style="background: #5BE472;" class="label label-large"><?php echo $lang['left533020020']; ?></span>
+
+                                                            <?php } ?>
+                                                            <?php } ?>
+
+                                                            <?php
+                                                            if ($row_order->status_courier == 12 || $row_order->status_courier == 21 || $row_order->status_courier == 8) { ?>
+                                                                <span style="background: <?php echo $status_courier->color; ?>;" class="label label-large"><?php echo $status_courier->mod_style; ?></span>
+                                                            <?php   
+                                                            }
+                                                            ?>
                                                         </td>
                                                         <td><?php echo $track_item->comments; ?></td>
                                                     </tr>
@@ -1338,7 +1367,7 @@ $moderow = $core->cdp_getShipmode();
                                                 <th><b><?php echo $lang['leftorder25'] ?> <?php echo $row_order->tax_custom_tariffis_value; ?> <?php echo $lang['leftorder222221'] ?></b></th>
                                                 <th><b><?php echo $lang['leftorder23'] ?></b></b></th> -->
                                                 <th><b><?php echo $lang['leftorder67'] ?> <?php echo $row_order->tax_value; ?> <?php echo $lang['leftorder222221'] ?></b></th>
-                                                <th><b><?php echo $lang['leftorder19'] ?> <?php echo $row_order->declared_value; ?> <?php echo $lang['leftorder222221'] ?></b></th>
+                                                <th><b>Distance</b></th>
                                                 <!-- <th><b><?php echo $lang['leftorder1878'] ?></b></th>
                                                 <th><b><?php echo $lang['langs_048'] ?></b></th> -->
                                                 <th><b><?php echo $lang['left240'] ?></th>
@@ -1350,8 +1379,15 @@ $moderow = $core->cdp_getShipmode();
                                                 <!-- <td class="text-center" id="insurance"><?php echo $row_order->total_insured_value; ?></td>
                                                 <td class="text-center" id="total_impuesto_aduanero"><?php echo $total_impuesto_aduanero; ?></td>
                                                 <td><?php echo $sumador_valor_declarado; ?></td> -->
-                                                <td class="text-left" id="impuesto"><?php echo $total_impuesto; ?></td>
-                                                <td class="text-left" id="impuesto"><?php echo $total_valor_declarado; ?></td>
+                                                <td class="text-left" id="impuesto"><?php 
+                                                    if (floatval($row_order->total_order) && floatval($row_order->total_order) > floatval($row_order->sub_total)) {
+                                                        $tax = floatval($row_order->total_order) - floatval($row_order->sub_total);
+                                                        echo cdb_money_format_bar($tax);
+                                                    } else {
+                                                        echo "$ 0.00";
+                                                    }
+                                                ?></td>
+                                                <td class="text-left" id="impuesto"><?php echo $row_order->distance ?></td>
                                                 <!-- <td class="text-center" id="reexp"><?php echo $sumador_fixed_charge; ?></td>
                                                 <td class="text-center" id="reexp"><?php echo cdb_money_format($row_order->total_reexp); ?></td> -->
                                                 <td class="text-left" id="total_envio"><b><?php echo cdb_money_format_bar(floatval($row_order->sub_total)); ?></b></td>

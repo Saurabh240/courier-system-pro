@@ -166,8 +166,8 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                             <div class="row">
                                                 <div class="col-md-10">
                                                     <div class="input-group">
-                                                        <select class="select2 form-control custom-select" id="sender_id" name="sender_id" disabled="">
-                                                            <option value="<?php echo $userData->id; ?>" selected> <?php echo $userData->fname . ' ' . $userData->lname; ?></option>
+                                                        <select class="select2 form-control custom-select" id="sender_id" name="sender_id">
+                                                            <!-- <option value="<?php echo $userData->id; ?>" selected> <?php echo $userData->fname . ' ' . $userData->lname; ?></option> -->
                                                         </select>
                                                     </div>
                                                 </div>
