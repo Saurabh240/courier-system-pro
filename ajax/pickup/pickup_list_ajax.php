@@ -57,7 +57,7 @@ $offset = ($page - 1) * $per_page;
 $sql = "SELECT  a.is_consolidate, a.delivery_type, a.order_incomplete, a.status_invoice, a.is_pickup, a.total_order, a.order_id, a.order_prefix, a.order_no, a.order_date, a.sender_id, a.receiver_id, a.order_courier, a.order_pay_mode, a.status_courier, a.driver_id, a.order_service_options, a.total_order,  b.mod_style, b.color FROM
 			 cdb_add_order as a
 			 INNER JOIN cdb_styles as b ON a.status_courier = b.id
-			 $sWhere and a.is_pickup=1 
+			 $sWhere
 			 order by order_id desc
 			 ";
 

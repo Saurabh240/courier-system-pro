@@ -854,9 +854,7 @@ $("#invoice_form").on("submit", function (event) {
   var origin_off = $("#origin_off").val();
   var sender_id = $("#sender_id_temp").val();
   var sender_address_id = $("#sender_address_id").val();
-  if(!sender_address_id){
-    sender_address_id = $("#select2-sender_address_id-container").text();
-  }
+  
   var recipient_id = $("#recipient_id").val();
   var recipient_address_id = $("#recipient_address_id").val();
   var order_item_category = $("#order_item_category").val();
@@ -922,8 +920,11 @@ $("#invoice_form").on("submit", function (event) {
   if (recipient_id) {
     data.append("recipient_id", recipient_id);
   }
+  if(!recipient_address_id){
+    recipient_address_id = $("#recipient_address_id"). val();
+  }
   if (recipient_address_id) {
-    data.append("recipient_address_id", recipient_address_id);
+    data.append("recipient_address_id", recipient_address_id); 
   }
   /*if (order_item_category) {
     data.append("order_item_category", order_item_category);
@@ -2181,11 +2182,10 @@ function cdp_showSuccess(messages, shipment_id) {
 function getTariffs() {
   var recipient_id = $("#recipient_id").val();
   var recipient_address_id = $("#recipient_address_id").val();
+
   var sender_id = $("#sender_id").val();
   var sender_address_id = $("#sender_address_id").val();
-  if(!sender_address_id){
-    sender_address_id = $("#select2-sender_address_id-container").text();
-  }
+  
   var deliveryType = $("#deliveryType").val();
   // var packages = JSON.stringify(packagesItems);
   if(!recipient_id || !recipient_address_id || !sender_id || !sender_address_id || !deliveryType){
@@ -2272,9 +2272,10 @@ $(document).ready(function(){
       if (data.length == 1) {
         // alert("True");
         // Automatically select the first (and only) option
-        $('#select2-sender_address_id-container').text(data[0].text);
+        // $('#select2-sender_address_id-container').text(data[0].text);
+        // $("#sender_address_id").val(data[0].id);
+        $('#sender_address_id').empty().append('<option value="' + data[0].id + '">' + data[0].text + '</option>').trigger('change');
       }
-      //  console.log('sender detail:',data);        
         
     },
     error: function() {
@@ -2307,7 +2308,10 @@ $("#calculate_invoice").on("click", getTariffs);
         if (data.length == 1) {
           // alert("True");
           // Automatically select the first (and only) option
-          $('#select2-recipient_address_id-container').text(data[0].text);
+          // $('#select2-recipient_address_id-container').text(data[0].text);
+          // $("#recipient_address_id").val(data[0].id)
+          $('#recipient_address_id').empty().append('<option value="' + data[0].id + '">' + data[0].text + '</option>').trigger('change');
+      
         }
           //  console.log('sender detail:',data);        
             
@@ -2338,7 +2342,10 @@ $("#calculate_invoice").on("click", getTariffs);
         if (data.length == 1) {
           // alert("True");
           // Automatically select the first (and only) option
-          $('#select2-recipient_address_id-container').text(data[0].text);
+          // $('#select2-recipient_address_id-container').text(data[0].text);
+          // $("#recipient_address_id").val(data[0].id)
+          $('#recipient_address_id').empty().append('<option value="' + data[0].id + '">' + data[0].text + '</option>').trigger('change');
+      
         }
           //  console.log('sender detail:',data);        
             
@@ -2407,7 +2414,6 @@ $("#calculate_invoice").on("click", getTariffs);
   // Function to calculate distance between two coordinates and update distance input
   function calculateAndDisplayDistance(origin, destination, deliveryType) {
     // AJAX request to calculate distance
-    
     if(!origin){
       origin = $('#sender_address_id option:selected').text();
       if(!origin){
@@ -2416,6 +2422,9 @@ $("#calculate_invoice").on("click", getTariffs);
     }
     if(!destination){
       destination =   $('#recipient_address_id option:selected').text();
+      if(!destination){
+        destination = $("#select2-recipient_address_id-container").text();
+      }
     }
     if(!deliveryType){
       deliveryType = document.getElementById('deliveryType').value;

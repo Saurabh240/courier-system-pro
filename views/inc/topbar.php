@@ -43,7 +43,8 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<?php if ($core->language == "en") { ?>
-								<img src="assets/template/assets/icon-flag/us.png" width="34" />
+								<!-- <img src="assets/template/assets/icon-flag/us.png" width="34" /> -->
+								<img src="assets/template/assets/icon-flag/ca.png" width="34" />
 							<?php } else if ($core->language == "es") { ?>
 								<img src="assets/template/assets/icon-flag/es.png" width="34" />
 							<?php } else if ($core->language == "ar") { ?>
