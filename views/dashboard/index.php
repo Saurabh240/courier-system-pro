@@ -19,9 +19,20 @@
 // *                                                                       *
 // *************************************************************************
 
-
 $userData = $user->cdp_getUserData();
 $db = new Conexion;
+
+$sWhere = "";
+
+if ($userData->userlevel == 3) {
+
+	$sWhere .= " and  a.driver_id = '" . $_SESSION['userid'] . "'";
+} else if ($userData->userlevel == 1) {
+
+	$sWhere .= " and  a.sender_id = '" . $_SESSION['userid'] . "'";
+} else {
+	$sWhere .= "";
+}
 
 // Obtener el mes y el año actual
 $month = date('m');
@@ -133,7 +144,9 @@ $monthName = obtenerNombreMes($currentMonth);
                                                             <div class="card-info-statics">
                                                               <h5 class="mb-0">
                                                                 <?php
-                                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_styles WHERE  id=11');
+                                                                
+                                                                    $sql = 'SELECT COUNT(*) as total FROM cdb_add_order WHERE  status_courier=11' . $sWhere;
+                                                                    $db->cdp_query($sql);
                                                                     $db->cdp_execute();
                                                                     $count = $db->cdp_registro();
                                                                     echo $count->total;
@@ -152,7 +165,8 @@ $monthName = obtenerNombreMes($currentMonth);
                                                             <div class="card-info-statics">
                                                               <h5 class="mb-0">
                                                                 <?php
-                                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_styles WHERE id = 14');
+                                                                 $sql = 'SELECT COUNT(*) as total FROM cdb_add_order WHERE  status_courier=14' . $sWhere;
+                                                                    $db->cdp_query($sql);
                                                                     $db->cdp_execute();
                                                                     $count = $db->cdp_registro();
                                                                     echo $count->total;
@@ -171,7 +185,8 @@ $monthName = obtenerNombreMes($currentMonth);
                                                             <div class="card-info-statics">
                                                               <h5 class="mb-0">
                                                                 <?php
-                                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_styles  WHERE id = 10');
+                                                                    $sql = 'SELECT COUNT(*) as total FROM cdb_add_order WHERE  status_courier=10' . $sWhere;
+                                                                    $db->cdp_query($sql);
                                                                     $db->cdp_execute();
                                                                     $count = $db->cdp_registro();
                                                                     echo $count->total;
@@ -195,7 +210,8 @@ $monthName = obtenerNombreMes($currentMonth);
                                                             <div class="card-info-statics">
                                                               <h5 class="mb-0">
                                                                 <?php
-                                                                    $db->cdp_query('SELECT COUNT(*) as total FROM cdb_styles WHERE id = 8');
+                                                                    $sql = 'SELECT COUNT(*) as total FROM cdb_add_order WHERE  status_courier=8' . $sWhere;
+                                                                    $db->cdp_query($sql);
                                                                     $db->cdp_execute();
                                                                     $count = $db->cdp_registro();
                                                                     echo $count->total;

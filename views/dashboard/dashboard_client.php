@@ -388,7 +388,7 @@ foreach ($data as $row) {
                                                           <div class="d-flex align-items-center gap-1">
                                                             <small class="text-muted">
                                                                 <?php
-                                                                $db->cdp_query("SELECT COUNT(*) as total FROM cdb_add_order WHERE is_pickup=1 and order_incomplete=1 and sender_id='" . $_SESSION['userid'] . "' ");
+                                                                $db->cdp_query("SELECT COUNT(*) as total FROM cdb_add_order WHERE status_courier=14 and sender_id='" . $_SESSION['userid'] . "' ");
                                                                     $db->cdp_execute();
                                                                     $count = $db->cdp_registro();
                                                                     echo $count->total;
@@ -413,7 +413,7 @@ foreach ($data as $row) {
                                                           <div class="d-flex align-items-center gap-1">
                                                             <small class="text-muted">
                                                                 <?php
-                                                                $db->cdp_query("SELECT COUNT(*) as total FROM cdb_add_order WHERE is_pickup=1 and status_courier=12 and sender_id='" . $_SESSION['userid'] . "'");
+                                                                $db->cdp_query("SELECT COUNT(*) as total FROM cdb_add_order WHERE status_courier=12 and sender_id='" . $_SESSION['userid'] . "'");
                                                                     $db->cdp_execute();
                                                                     $count = $db->cdp_registro();
                                                                     echo $count->total;
@@ -439,7 +439,7 @@ foreach ($data as $row) {
                                                           <div class="d-flex align-items-center gap-1">
                                                             <small class="text-muted">
                                                                 <?php
-                                                                $db->cdp_query("SELECT COUNT(*) as total FROM cdb_add_order WHERE is_pickup=1 and status_courier=21 and sender_id='" . $_SESSION['userid'] . "'");
+                                                                $db->cdp_query("SELECT COUNT(*) as total FROM cdb_add_order WHERE status_courier=21 and sender_id='" . $_SESSION['userid'] . "'");
                                                                     $db->cdp_execute();
                                                                     $count = $db->cdp_registro();
                                                                     echo $count->total;
@@ -464,7 +464,7 @@ foreach ($data as $row) {
                                                           <div class="d-flex align-items-center gap-1">
                                                             <small class="text-muted">
                                                                 <?php
-                                                                $db->cdp_query("SELECT COUNT(*) as total FROM cdb_add_order WHERE status_courier=8 and  is_pickup=1 and sender_id='" . $_SESSION['userid'] . "'");
+                                                                $db->cdp_query("SELECT COUNT(*) as total FROM cdb_add_order WHERE status_courier=8 and sender_id='" . $_SESSION['userid'] . "'");
                                                                     $db->cdp_execute();
                                                                     $count = $db->cdp_registro();
                                                                     echo $count->total;
