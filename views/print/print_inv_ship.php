@@ -310,22 +310,22 @@ $address_order = $db->cdp_registro();
 
         <table id="items" >
             <tr>
-                <th colspan="2" style="color:white;" align="center"><b><?php echo $lang['leftorder21'] ?> <?php echo $row->tax_discount; ?> <?php echo $lang['leftorder222221'] ?> </b></th>
+                <!-- <th colspan="2" style="color:white;" align="center"><b><?php echo $lang['leftorder21'] ?> <?php echo $row->tax_discount; ?> <?php echo $lang['leftorder222221'] ?> </b></th>
                 <th colspan="2" style="color:white;" align="center"><b><?php echo $lang['leftorder24'] ?> <?php echo $row->tax_insurance_value; ?> <?php echo $lang['leftorder222221'] ?> </b></th>
                 <th colspan="2" style="color:white;" align="center"><b><?php echo $lang['leftorder25'] ?> <?php echo $row->tax_custom_tariffis_value; ?> <?php echo $lang['leftorder222221'] ?></b></th>
                 <th colspan="2" style="color:white;" align="center"><b><?php echo $lang['leftorder67'] ?> <?php echo $row->tax_value; ?> <?php echo $lang['leftorder222221'] ?> </b></th>
                 <th colspan="2" style="color:white;" align="center"><b><?php echo $lang['leftorder23'] ?></b> </th>
-                <th colspan="2" style="color:white;" align="center"><b><?php echo $lang['leftorder19'] ?> <?php echo $row->declared_value; ?> <?php echo $lang['leftorder222221'] ?> </b></th>
-                <td colspan="2" bgcolor="#6c757d" style="color:white;" align="center"><b>Total</b></th>
+                <th colspan="2" style="color:white;" align="center"><b><?php echo $lang['leftorder19'] ?> <?php echo $row->declared_value; ?> <?php echo $lang['leftorder222221'] ?> </b></th> -->
+                <td colspan="" bgcolor="#6c757d" style="color:white;" align="center"><b>Total</b></th>
             </tr>
             <tr class="card-hover">
-                <td colspan="2" align="center"><?php echo $total_descuento; ?></td>
+                <!-- <td colspan="2" align="center"><?php echo $total_descuento; ?></td>
                 <td colspan="2" align="center" id="insurance"><?php echo $total_seguro; ?></td>
                 <td colspan="2" align="center" id="total_impuesto_aduanero"><?php echo $total_impuesto_aduanero; ?></td>
                 <td colspan="2" align="center" id="impuesto"><?php echo $total_impuesto; ?></td>
                 <td colspan="2" align="center"><?php echo $sumador_valor_declarado; ?></td>
-                <td colspan="2" align="center"><?php echo $total_valor_declarado; ?></td>
-                <td colspan="2" align="center" class="ancho-td"><?php echo $core->currency; ?> &nbsp; <?php echo $row->total_order; ?></td>
+                <td colspan="2" align="center"><?php echo $total_valor_declarado; ?></td> -->
+                <td colspan="" align="center" class="ancho-td"><?php echo $core->currency; ?> &nbsp; <?php echo $row->total_order; ?></td>
 
 
             </tr>
