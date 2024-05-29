@@ -178,7 +178,7 @@ $address_order = $db->cdp_registro();
                 </tr>
             </table>
         </div>
-        <table id="items">
+        <!-- <table id="items" style="display:none">
             <tr>
                 <th style="color:white;" width="5%"><b><?php echo $lang['left214'] ?></b></th>
                 <th style="color:white;" width="31%"><b><?php echo $lang['left213'] ?></b></th>
@@ -281,12 +281,12 @@ $address_order = $db->cdp_registro();
 
             ?>
 
-        </table>
+        </table> -->
 
         
         <div><br></div>
 
-        <table align="left" width="45%" class="separador">
+        <!-- <table align="left" width="45%" class="separador">
             <tr class="card-hover">
                 <td colspan="2"><b><?php echo $lang['left905'] ?> &nbsp; <?php echo $core->weight_p; ?>:</b> <?php echo $row->value_weight; ?></td>
                 <td colspan="3"><b><?php echo $lang['left232'] ?>:</b> <span id="total_libras"><?php echo $sumador_librass; ?></span></td>
@@ -298,13 +298,13 @@ $address_order = $db->cdp_registro();
                 <td colspan="3"><b><?php echo $lang['left236'] ?></b>: <span id="total_peso"><?php echo $total_peso; ?></span></td>
             </tr>
 
-        </table>
+        </table> -->
 
         <table align="right" width="45%" class="separador">
 
             <tr class="card-hover">
                 <td colspan="3" align="center"><b><?php echo $lang['leftorder2021'] ?></b></td>
-                <td colspan="3" align="center"><?php echo $sumador_total; ?></td>
+                <td colspan="3" align="center"><?php echo $row->sub_total; ?></td>
             </tr>
         </table>
 
@@ -316,7 +316,7 @@ $address_order = $db->cdp_registro();
                 <th colspan="2" style="color:white;" align="center"><b><?php echo $lang['leftorder67'] ?> <?php echo $row->tax_value; ?> <?php echo $lang['leftorder222221'] ?> </b></th>
                 <th colspan="2" style="color:white;" align="center"><b><?php echo $lang['leftorder23'] ?></b> </th>
                 <th colspan="2" style="color:white;" align="center"><b><?php echo $lang['leftorder19'] ?> <?php echo $row->declared_value; ?> <?php echo $lang['leftorder222221'] ?> </b></th>
-                <td colspan="2" bgcolor="#6c757d" style="color:white;" align="center"><b>Total envío</b></th>
+                <td colspan="2" bgcolor="#6c757d" style="color:white;" align="center"><b>Total</b></th>
             </tr>
             <tr class="card-hover">
                 <td colspan="2" align="center"><?php echo $total_descuento; ?></td>
@@ -325,7 +325,7 @@ $address_order = $db->cdp_registro();
                 <td colspan="2" align="center" id="impuesto"><?php echo $total_impuesto; ?></td>
                 <td colspan="2" align="center"><?php echo $sumador_valor_declarado; ?></td>
                 <td colspan="2" align="center"><?php echo $total_valor_declarado; ?></td>
-                <td colspan="2" align="center" class="ancho-td"><?php echo $core->currency; ?> &nbsp; <?php echo $total_envio; ?></td>
+                <td colspan="2" align="center" class="ancho-td"><?php echo $core->currency; ?> &nbsp; <?php echo $row->total_order; ?></td>
 
 
             </tr>
