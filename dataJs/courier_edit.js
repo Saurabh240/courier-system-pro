@@ -654,7 +654,7 @@ function calculateFinalTotal(element = null) {
   //$("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
   var shipmentfee = localStorage.getItem('shipmentfee');
   $("#total_before_tax").html(Number(shipmentfee).toFixed(2));
-   var total_tax_value = parseFloat(parseFloat(shipmentfee) + (parseFloat(shipmentfee) * (13/100)));
+  var total_tax_value = parseFloat(parseFloat(shipmentfee) + (parseFloat(shipmentfee) * (13/100)));
   $("#total_after_tax").html(total_tax_value.toFixed(2));
   // alert(parseFloat(shipmentfee));
   // alert(parseFloat(total_envio.toFixed(2)));
@@ -667,6 +667,10 @@ function calculateFinalTotal(element = null) {
   //$("#total_vol_weight").html(sumador_volumetric.toFixed(2));
   $("#total_fixed").html(max_fixed_charge.toFixed(2));
   //$("#total_declared").html(shipmentfee);
+  var tax = 0.00;
+  tax = parseFloat(total_tax_value) - parseFloat(shipmentfee);
+  $("#tax_13").html(tax.toFixed(2));
+  
 }
 
 $("#invoice_form").on('submit', function (event) {

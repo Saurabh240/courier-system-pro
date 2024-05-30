@@ -489,7 +489,7 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                                     </div> -->
                                                 <div class="col-sm-12 col-md-4 col-lg-3">
                                                     <div class="form-group">
-                                                        <label for="emailAddress1">Total Distance</label>
+                                                        <label for="emailAddress1">Distance(In KM)</label>
                                                             
                                                             
                                        
@@ -515,9 +515,26 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                                     </div>
                                                  </div>
 
+                                                 <div class="col-sm-12 col-md-4 col-lg-3">
+                                                     <div class="form-group">
+                                                            <label for="emailAddress1"><?php echo "Tax" ;?> (<?php echo '13%';//echo $core->tax; ?>)</label>
+                                                                
+                                                                
+                                                                <?php
+                                                                if ($core->for_symbol !== null) {
+                                                                ?>
+                                                                    <b> <?php echo $core->for_symbol; ?> </b>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <span id="tax_13"> 0.00</span>
+                                                                
+                                                        </div>
+                                                 </div>
+
                                                 <div class="col-sm-12 col-md-4 col-lg-3">
                                                      <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['leftorder2020'] ?> (<?php echo '13%';//echo $core->tax; ?>)</label>
+                                                            <label for="emailAddress1"><?php echo $lang['leftorder2020'] ?></label>
                                                                 
                                                                 
                                                                 <?php

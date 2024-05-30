@@ -673,7 +673,7 @@ $address_order = $db->cdp_registro();
 
                                                 <div class="col-sm-12 col-md-4 col-lg-3">
                                                     <div class="form-group">
-                                                        <label for="emailAddress1">Total Distance</label>
+                                                        <label for="emailAddress1">Distance(In KM)</label>
                                                             
                                                             
                                                             <span id="total_distance"> 0.00</span>
@@ -694,11 +694,19 @@ $address_order = $db->cdp_registro();
 
                                                     <div class="col-sm-12 col-md-4 col-lg-3">
                                                         <div class="form-group">
-                                                                <label for="emailAddress1">TOTAL (13%)</label>
+                                                                <label for="emailAddress1">Tax (13%)</label>
+                                                                        <b> $ </b>
+                                                                    <span id="tax_13">NaN</span>
                                                                     
-                                                                    
-                                                                                                                                        <b> $ </b>
-                                                                                                                                    <span id="total_after_tax">NaN</span>
+                                                                </div>
+                                                    </div>
+                                                    
+
+                                                    <div class="col-sm-12 col-md-4 col-lg-3">
+                                                        <div class="form-group">
+                                                                <label for="emailAddress1">TOTAL</label>
+                                                                        <b> $ </b>
+                                                                    <span id="total_after_tax">NaN</span>
                                                                     
                                                                 </div>
                                                     </div>

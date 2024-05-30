@@ -14,6 +14,8 @@ var packagesItems = [
     fixed_value: 0,
   },
 ];
+
+
 // $(document).ready(function(){
   // if ($('#sender_address_id').length == 1) {
     // alert($('#sender_address_id').length);
@@ -46,7 +48,49 @@ var packagesItems = [
     //   // Automatically select the only option
     //   alert("true")
     //   $("#sender_address_id").val($("#sender_address_id option:first").val()).trigger('change');
-    // }
+
+
+  // Function to calculate distance between two coordinates and update distance input
+  function calculateAndDisplayDistance(origin, destination, deliveryType) {
+    // AJAX request to calculate distance
+    if(!origin){
+      origin = $('#sender_address_id option:selected').text();
+      if(!origin){
+        origin = $("#select2-sender_address_id-container").text()
+      }
+    }
+    if(!destination){
+      destination =   $('#recipient_address_id option:selected').text();
+      if(!destination){
+        destination = $("#select2-recipient_address_id-container").text();
+      }
+    }
+    if(!deliveryType){
+      deliveryType = document.getElementById('deliveryType').value;
+    }
+    $.ajax({
+        type: 'POST',
+        url: 'ajax/courier/calculate_distance.php', // Replace with your PHP script for calculating distance
+        data: { 'origin': origin, 'destination': destination, 'deliveryType':deliveryType },
+        dataType: 'json',
+        success: function(data) {
+            console.log("All",data);
+            // Update distance input with calculated distance
+            $('#distance').val(data.distance);
+            // $('.fixed_value').val(data.shipmentfee);
+            $('.fixed_value').val(data.baseRate);
+            localStorage.setItem('baseRate', data.baseRate)
+            localStorage.setItem('shipmentfee', data.shipmentfee)
+            debugger;
+            calculateFinalTotal();
+            
+        },
+        error: function() {
+            // Handle error
+            //alert('Error calculating distance.');
+        }
+    });
+  }     // }
     // Automatically select the first (and only) option
     // Get the value of the first option
     // var options = $('#sender_address_id').find('option');
@@ -614,6 +658,16 @@ function changePackage(e) {
   $("#create_invoice").attr("disabled", true);
 }
 
+function loading_calculation()
+{
+  $("#total_distance").html('0.00');
+  $("#total_before_tax").html('0.00');
+  $("#tax_13").html('0.00');
+  $("#total_after_tax").html('0.00');
+  $("#create_invoice").attr("disabled", true);
+  $("#calculate_invoice").attr("disabled", true);
+}
+
 function calculateFinalTotal(element = null) {
   if (element) {
     if (!element.value) {
@@ -734,8 +788,11 @@ function calculateFinalTotal(element = null) {
   //$("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
   var shipmentfee = localStorage.getItem('shipmentfee');
   $("#total_before_tax").html(Number(shipmentfee).toFixed(2));
-   var total_tax_value = parseFloat(parseFloat(shipmentfee) + (parseFloat(shipmentfee) * (13/100)));
+  var total_tax_value = parseFloat(parseFloat(shipmentfee) + (parseFloat(shipmentfee) * (13/100)));
   $("#total_after_tax").html(total_tax_value.toFixed(2));
+  var tax = 0.00;
+  tax = parseFloat(total_tax_value) - parseFloat(shipmentfee);
+  $("#tax_13").html(tax.toFixed(2));
   // alert(parseFloat(shipmentfee));
   // alert(parseFloat(total_envio.toFixed(2)));
   // parseInt(shipmentfee.toFixed(2))
@@ -747,6 +804,8 @@ function calculateFinalTotal(element = null) {
   //$("#total_vol_weight").html(sumador_volumetric.toFixed(2));
   $("#total_fixed").html(max_fixed_charge.toFixed(2));
   //$("#total_declared").html(shipmentfee);
+  $("#create_invoice").attr("disabled", false);
+  $("#calculate_invoice").attr("disabled", false);
 }
 
 $("#invoice_form").on("submit", function (event) {
@@ -2181,6 +2240,7 @@ function cdp_showSuccess(messages, shipment_id) {
 }
 
 function getTariffs() {
+
   var recipient_id = $("#recipient_id").val();
   var recipient_address_id = $("#recipient_address_id").val();
 
@@ -2217,10 +2277,12 @@ function getTariffs() {
   //   success: function (data) {
   //     if (data.success) {
         $("#table-totals").removeClass("d-none");
-        $("#create_invoice").attr("disabled", false);
+      
+        loading_calculation();
         // $("#price_lb").val(data.data.price);
         // $("#price_lb_label").html(data.data.price);
-        calculateFinalTotal();
+        calculateAndDisplayDistance(null,null,null);
+        
 //       } else {
 //         $("#table-totals").addClass("d-none");
 //         $("#create_invoice").attr("disabled", true);
@@ -2401,59 +2463,20 @@ $("#calculate_invoice").on("click", getTariffs);
   });
 
 
-  $('#deliveryType').on('change',function(){
+  // $('#deliveryType').on('change',function(){
 
-    // deliveryType =  $(this).val();
-    console.log(senderadd)
-    console.log(receiveradd)
+  //   // deliveryType =  $(this).val();
+  //   console.log(senderadd)
+  //   console.log(receiveradd)
     
-    console.log("Selected delivery value:", deliveryType);
-    $("#calculate_invoice").attr("disabled", true);
+  //   console.log("Selected delivery value:", deliveryType);
+  //   $("#calculate_invoice").attr("disabled", true);
     
-    calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
-    $("#calculate_invoice").attr("disabled", false);
-  })
+  //   calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
+  //   $("#calculate_invoice").attr("disabled", false);
+  // })
   
-  // Function to calculate distance between two coordinates and update distance input
-  function calculateAndDisplayDistance(origin, destination, deliveryType) {
-    // AJAX request to calculate distance
-    if(!origin){
-      origin = $('#sender_address_id option:selected').text();
-      if(!origin){
-        origin = $("#select2-sender_address_id-container").text()
-      }
-    }
-    if(!destination){
-      destination =   $('#recipient_address_id option:selected').text();
-      if(!destination){
-        destination = $("#select2-recipient_address_id-container").text();
-      }
-    }
-    if(!deliveryType){
-      deliveryType = document.getElementById('deliveryType').value;
-    }
-    $.ajax({
-        type: 'POST',
-        url: 'ajax/courier/calculate_distance.php', // Replace with your PHP script for calculating distance
-        data: { 'origin': origin, 'destination': destination, 'deliveryType':deliveryType },
-        dataType: 'json',
-        success: function(data) {
-            console.log("All",data);
-            // Update distance input with calculated distance
-            $('#distance').val(data.distance);
-            // $('.fixed_value').val(data.shipmentfee);
-            $('.fixed_value').val(data.baseRate);
-            localStorage.setItem('baseRate', data.baseRate)
-            localStorage.setItem('shipmentfee', data.shipmentfee)
-            
-            
-        },
-        error: function() {
-            // Handle error
-            //alert('Error calculating distance.');
-        }
-    });
-  } 
+
 
   $('#id_of_your_checkboxreceiver').click(function() {
     if ($(this).is(':checked')) {

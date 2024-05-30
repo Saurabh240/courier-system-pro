@@ -1375,12 +1375,12 @@ $moderow = $core->cdp_getShipmode();
                                                 <!-- <th><b><?php echo $lang['leftorder22'] ?></b></th>
                                                 <th><b><?php echo $lang['leftorder25'] ?> <?php echo $row_order->tax_custom_tariffis_value; ?> <?php echo $lang['leftorder222221'] ?></b></th>
                                                 <th><b><?php echo $lang['leftorder23'] ?></b></b></th> -->
-                                                <th><b><?php echo $lang['leftorder67'] ?> <?php echo $row_order->tax_value; ?> <?php echo $lang['leftorder222221'] ?></b></th>
-                                                <th><b>Distance</b></th>
+                                                <th><b>Distance(In KM)</b></th>
                                                 <!-- <th><b><?php echo $lang['leftorder1878'] ?></b></th>
                                                 <th><b><?php echo $lang['langs_048'] ?></b></th> -->
                                                 <th><b><?php echo $lang['left240'] ?></th>
-                                                <th><b><?php echo $lang['leftorder2020'] ?> &nbsp; <?php echo $core->currency; ?></b></th>
+                                                <th><b><?php echo $lang['leftorder67'] ?> (13%) </b></th>
+                                                <th><b><?php echo $lang['leftorder2020'] ?></b></th>
                                             </tr>
                                         </thead>
                                         <tbody id="projects-tbl">
@@ -1388,19 +1388,20 @@ $moderow = $core->cdp_getShipmode();
                                                 <!-- <td class="text-center" id="insurance"><?php echo $row_order->total_insured_value; ?></td>
                                                 <td class="text-center" id="total_impuesto_aduanero"><?php echo $total_impuesto_aduanero; ?></td>
                                                 <td><?php echo $sumador_valor_declarado; ?></td> -->
+                                                
+                                                <td class="text-left" id="impuesto"><?php echo $row_order->distance ?></td>
+                                                <!-- <td class="text-center" id="reexp"><?php echo $sumador_fixed_charge; ?></td>
+                                                <td class="text-center" id="reexp"><?php echo "$ " . cdb_money_format($row_order->total_reexp); ?></td> -->
+                                                <td class="text-left" id="total_envio"><b><?php echo "$ " . cdb_money_format_bar(floatval($row_order->sub_total)); ?></b></td>
                                                 <td class="text-left" id="impuesto"><?php 
                                                     if (floatval($row_order->total_order) && floatval($row_order->total_order) > floatval($row_order->sub_total)) {
                                                         $tax = floatval($row_order->total_order) - floatval($row_order->sub_total);
-                                                        echo cdb_money_format_bar($tax);
+                                                        echo "$ " . cdb_money_format_bar($tax);
                                                     } else {
                                                         echo "$ 0.00";
                                                     }
                                                 ?></td>
-                                                <td class="text-left" id="impuesto"><?php echo $row_order->distance ?></td>
-                                                <!-- <td class="text-center" id="reexp"><?php echo $sumador_fixed_charge; ?></td>
-                                                <td class="text-center" id="reexp"><?php echo cdb_money_format($row_order->total_reexp); ?></td> -->
-                                                <td class="text-left" id="total_envio"><b><?php echo cdb_money_format_bar(floatval($row_order->sub_total)); ?></b></td>
-                                                <td class="text-left" id="total_envio"><b><?php echo cdb_money_format_bar(floatval($row_order->total_order)); ?></b></td>
+                                                <td class="text-left" id="total_envio"><b><?php echo "$ " . cdb_money_format_bar(floatval($row_order->total_order)); ?></b></td>
                                             </tr>
                             
                                         </tbody>

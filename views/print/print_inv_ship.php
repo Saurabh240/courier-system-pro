@@ -306,6 +306,18 @@ $address_order = $db->cdp_registro();
                 <td colspan="3" align="center"><b><?php echo $lang['leftorder2021'] ?></b></td>
                 <td colspan="3" align="center"><?php echo $row->sub_total; ?></td>
             </tr>
+            <tr class="card-hover">
+                <td colspan="3" align="center"><b><?php echo "Tax (13%)" ?></b></td>
+                <td colspan="3" align="center"><?php 
+                     if (floatval($row->total_order) && floatval($row->total_order) > floatval($row->sub_total)) {
+                        $tax = floatval($row->total_order) - floatval($row->sub_total);
+                        echo "" . cdb_money_format_bar($tax);
+                    } else {
+                        echo "$ 0.00";
+                    }
+                
+                ?></td>
+            </tr>
         </table>
 
         <table id="items" >

@@ -723,7 +723,7 @@ function calculateFinalTotal(element = null) {
   // $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
   $("#fixed_value_label").html(baseRate);
   $("#fixed_value_ajax").val(baseRate);
-    var distanceHtml = parseFloat($('#distance').val()).toFixed(2)
+  var distanceHtml = parseFloat($('#distance').val()).toFixed(2)
   $("#total_distance").html(distanceHtml);
   //$("#insurance").html(total_seguro.toFixed(2));
   //$("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
@@ -742,6 +742,10 @@ function calculateFinalTotal(element = null) {
   //$("#total_vol_weight").html(sumador_volumetric.toFixed(2));
   $("#total_fixed").html(max_fixed_charge.toFixed(2));
   //$("#total_declared").html(shipmentfee);
+  var tax = 0.00;
+  tax = parseFloat(total_tax_value) - parseFloat(shipmentfee);
+  $("#tax_13").html(tax.toFixed(2));
+  
 }
 
 $("#invoice_form").on("submit", function (event) {
