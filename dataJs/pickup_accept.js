@@ -723,7 +723,8 @@ function calculateFinalTotal(element = null) {
   // $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
   $("#fixed_value_label").html(baseRate);
   $("#fixed_value_ajax").val(baseRate);
-  $("#total_distance").html($('#distance').val());
+    var distanceHtml = parseFloat($('#distance').val()).toFixed(2)
+  $("#total_distance").html(distanceHtml);
   //$("#insurance").html(total_seguro.toFixed(2));
   //$("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
   var shipmentfee = localStorage.getItem('shipmentfee');
@@ -1194,12 +1195,12 @@ function cdp_formatAdressSelection(repo) {
 }
 
 function cdp_select2_init_recipient() {
-  var sender_id = $("#sender_id").val();
-
+  var recipient_id = $("#recipient_id").val();
+  
   $("#recipient_id")
     .select2({
       ajax: {
-        url: "ajax/select2_recipient.php?id=" + sender_id,
+        url: "ajax/select2_recipient.php?id=" + recipient_id,
         dataType: "json",
 
         delay: 250,

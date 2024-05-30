@@ -471,12 +471,12 @@ $order_prefix = $settings->prefix;
                                         </div>-->
                                         <input type="hidden" name="order_item_category" value="1" />
 
-                                        <div class="form-group col-md-3">
+                                        <!-- <div class="form-group col-md-3">
 												<label for="inputEmail3" class="control-label col-form-label">Distance</label>
 												<div class="input-group mb-3">
-													<input type="text" name="distance" class="form-control" id="distance">
-												</div>
-											</div>
+                                                    </div>
+                                                </div> -->
+                                            <input type="hidden" name="distance" class="form-control" id="distance">
                                             <?php date_default_timezone_set("America/Montreal"); ?>
 											<div class="form-group col-md-3">
                                                     <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
@@ -1006,46 +1006,46 @@ $order_prefix = $settings->prefix;
                                                          </div>
                                                     </div>
                                                     
-                                                    <div class="col-sm-12 col-md-6 col-lg-2">
-                                                        <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['leftorder1880'] ?></label>
-                                                           
+                                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="emailAddress1">Total Distance</label>
+                                                            
                                                             <span id="total_distance"> 0.00</span>
-                                                          
-                                                         </div>
+                                                            
                                                     </div>
-
-                                                    <div class="col-sm-12 col-md-6 col-lg-3">
-                                                     <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['leftorder1881'] ?>  </label>
-                                                               
-                                                                <?php
-                                                                if ($core->for_symbol !== null) {
-                                                                ?>
-                                                                    <b> <?php echo $core->for_symbol; ?> </b>
-                                                                <?php
-                                                                }
-                                                                ?>
-                                                                <span id="total_before_tax"> 0.00</span>
-                                                                
-                                                            </div>
                                                  </div>
 
-                                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                                <div class="col-sm-12 col-md-4 col-lg-3">
                                                      <div class="form-group">
-                                                            <label for="emailAddress1"><?php echo $lang['leftorder1882'] ?> (<?php echo '13%';//echo $core->tax; ?>)</label>
-                                                                
-                                                                
-                                                                <?php
-                                                                if ($core->for_symbol !== null) {
-                                                                ?>
-                                                                    <b> <?php echo $core->for_symbol; ?> </b>
-                                                                <?php
-                                                                }
-                                                                ?>
-                                                                <span id="total_after_tax"> 0.00</span>
-                                                                
-                                                            </div>
+                                                        <label for="emailAddress1"><?php echo $lang['leftorder1881'] ?>  </label>
+                                                            
+                                                            <?php
+                                                            if ($core->for_symbol !== null) {
+                                                            ?>
+                                                                <b> <?php echo $core->for_symbol; ?> </b>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <span id="total_before_tax"> 0.00</span>
+                                                            
+                                                        </div>
+                                                </div>
+
+                                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="emailAddress1"><?php echo $lang['leftorder1882'] ?> (<?php echo '13%';//echo $core->tax; ?>)</label>
+                                                            
+                                                            
+                                                            <?php
+                                                            if ($core->for_symbol !== null) {
+                                                            ?>
+                                                                <b> <?php echo $core->for_symbol; ?> </b>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <span id="total_after_tax"> 0.00</span>
+                                                            
+                                                    </div>
                                                  </div>
                                                 </div>
                                             </div>

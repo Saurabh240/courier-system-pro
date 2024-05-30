@@ -648,7 +648,8 @@ function calculateFinalTotal(element = null) {
   // $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
   $("#fixed_value_label").html(baseRate);
   $("#fixed_value_ajax").val(baseRate);
-  $("#total_distance").html($('#distance').val());
+    var distanceHtml = parseFloat($('#distance').val()).toFixed(2)
+  $("#total_distance").html(distanceHtml);
   //$("#insurance").html(total_seguro.toFixed(2));
   //$("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
   var shipmentfee = localStorage.getItem('shipmentfee');

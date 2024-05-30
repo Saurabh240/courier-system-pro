@@ -464,12 +464,12 @@ $address_order = $db->cdp_registro();
                                         <h4 class="card-title"><i class="mdi mdi-book-multiple" style="color:#36bea6"></i> Delivery Details:</h4>
                                         <br>
                                             <div class="row">
-                                                <div class="form-group col-md-4">
+                                                <!-- <div class="form-group col-md-4">
                                                     <label for="inputEmail3" class="control-label col-form-label">Distance</label>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" name="distance" class="form-control" id="distance" value="<?php echo $row_order->distance; ?>">
-                                                    </div>
-                                                </div>
+                                                        </div>
+                                                    </div> -->
+                                                <input type="hidden" name="distance" class="form-control" id="distance" value="<?php echo $row_order->distance; ?>">
                                                 <div class="form-group col-md-7">
                                                 <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
                                                     <div class="input-group mb-3">
@@ -671,7 +671,17 @@ $address_order = $db->cdp_registro();
                                                             </div>
                                                         </div> -->
 
-                                                        <div class="col-sm-12 col-md-6 col-lg-3">
+                                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="emailAddress1">Total Distance</label>
+                                                            
+                                                            
+                                                            <span id="total_distance"> 0.00</span>
+                                                            
+                                                    </div>
+                                                 </div>
+
+                                                    <div class="col-sm-12 col-md-4 col-lg-3">
                                                         <div class="form-group">
                                                                 <label for="emailAddress1">Subtotal  </label>
                                                                 
@@ -682,7 +692,7 @@ $address_order = $db->cdp_registro();
                                                                 </div>
                                                     </div>
 
-                                                    <div class="col-sm-12 col-md-6 col-lg-3">
+                                                    <div class="col-sm-12 col-md-4 col-lg-3">
                                                         <div class="form-group">
                                                                 <label for="emailAddress1">TOTAL (13%)</label>
                                                                     

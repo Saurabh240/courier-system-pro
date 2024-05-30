@@ -278,12 +278,12 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                     <h4 class="card-title"><i class="mdi mdi-book-multiple" style="color:#36bea6"></i> <?php echo $lang['add-title13'] ?></h4>
                                     <br>
                                         <div class="row">
-											<div class="form-group col-md-4">
+											<!-- <div class="form-group col-md-4">
 												<label for="inputEmail3" class="control-label col-form-label">Distance</label>
 												<div class="input-group mb-3">
-													<input type="text" name="distance" class="form-control" id="distance">
-												</div>
-											</div>
+                                                    </div>
+                                                </div> -->
+                                            <input type="hidden" name="distance" class="form-control" id="distance">
                                             <?php date_default_timezone_set("Americal/Montreal"); ?>
 											<div class="form-group col-md-7">
 												<label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
@@ -487,11 +487,21 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                                           
                                                          </div>
                                                     </div> -->
+                                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="emailAddress1">Total Distance</label>
+                                                            
+                                                            
+                                       
+                                                            <span id="total_distance"> 0.00</span>
+                                                            
+                                                    </div>
+                                                 </div>
 
-                                                    <div class="col-sm-12 col-md-6 col-lg-3">
-                                                     <div class="form-group">
+                                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                                    <div class="form-group">
                                                             <label for="emailAddress1"><?php echo $lang['leftorder2021'] ?>  </label>
-                                                               
+                                                            
                                                                 <?php
                                                                 if ($core->for_symbol !== null) {
                                                                 ?>
@@ -499,13 +509,13 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                                                 <?php
                                                                 }
                                                                 ?>
-                                                                <span id="total_before_tax"> 0.00</span>
-                                                                <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
-                                                                 <input type="hidden" name="total_envio_ajax" id="total_envio_ajax">
-                                                            </div>
+                                                            <span id="total_before_tax"> 0.00</span>
+                                                            <input type="hidden" name="fixed_value_ajax" id="fixed_value_ajax">
+                                                            <input type="hidden" name="total_envio_ajax" id="total_envio_ajax">
+                                                    </div>
                                                  </div>
 
-                                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                                <div class="col-sm-12 col-md-4 col-lg-3">
                                                      <div class="form-group">
                                                             <label for="emailAddress1"><?php echo $lang['leftorder2020'] ?> (<?php echo '13%';//echo $core->tax; ?>)</label>
                                                                 
@@ -519,7 +529,7 @@ echo 'Fixed Time ->'.strtotime("2:00 PM");exit;*/
                                                                 ?>
                                                                 <span id="total_after_tax"> 0.00</span>
                                                                 
-                                                            </div>
+                                                        </div>
                                                  </div>
                                                 
                                                  

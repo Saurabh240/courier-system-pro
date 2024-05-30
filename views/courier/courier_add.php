@@ -416,12 +416,13 @@ $order_prefix = $settings->prefix;
                                     <h4 class="card-title"><i class="mdi mdi-book-multiple" style="color:#36bea6"></i> <?php echo $lang['add-title13'] ?></h4>
                                     <br>
                                     <div class="row">
-                                        <div class="form-group col-md-3">
+                                        <!-- <div class="form-group col-md-3">
                                             <label for="inputEmail3" class="control-label col-form-label">Distance</label>
                                             <div class="input-group mb-3">
-                                                <input type="text" name="distance" class="form-control" id="distance">
                                             </div>
-                                        </div>
+                                        </div> -->
+                                        <input type="hidden" name="distance" class="form-control" id="distance">
+                                            
                                         <div class="form-group col-md-3">
                                             <label for="inputEmail3" class="control-label col-form-label">Delivery Type</label>
                                             <div class="input-group mb-3">
