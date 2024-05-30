@@ -48,35 +48,38 @@ if (empty($_POST['recipient_address_id']))
 
     $errors['recipient_address_id'] = $lang['validate_field_ajax147'];
 
-if (empty($_POST['agency']))
+// if (empty($_POST['agency']))
 
-    $errors['agency'] = $lang['validate_field_ajax148'];
+//     $errors['agency'] = $lang['validate_field_ajax148'];
 
-if (empty($_POST['origin_off']))
+// if (empty($_POST['origin_off']))
 
-    $errors['origin_off'] = $lang['validate_field_ajax149'];
+//     $errors['origin_off'] = $lang['validate_field_ajax149'];
 
 if (empty($_POST['order_no']))
 
     $errors['order_no'] = $lang['validate_field_ajax150'];
 
-if (empty($_POST['order_item_category']))
+// if (empty($_POST['order_item_category']))
 
-    $errors['order_item_category'] = $lang['validate_field_ajax151'];
+//     $errors['order_item_category'] = $lang['validate_field_ajax151'];
 
-if (empty($_POST['order_package']))
+// if (empty($_POST['order_package']))
 
-    $errors['order_package'] = $lang['validate_field_ajax152'];
+//     $errors['order_package'] = $lang['validate_field_ajax152'];
 
-if (empty($_POST['order_courier']))
+// if (empty($_POST['order_courier']))
 
-    $errors['order_courier'] = $lang['validate_field_ajax153'];
+//     $errors['order_courier'] = $lang['validate_field_ajax153'];
 
-if (empty($_POST['order_service_options']))
-    $errors['order_service_options'] = $lang['validate_field_ajax154'];
+// if (empty($_POST['order_service_options']))
+//     $errors['order_service_options'] = $lang['validate_field_ajax154'];
 
-if (empty($_POST['order_deli_time']))
-    $errors['order_deli_time'] = $lang['validate_field_ajax155'];
+// if (empty($_POST['order_deli_time']))
+//     $errors['order_deli_time'] = $lang['validate_field_ajax155'];
+if (empty($_POST['delivery_type']))
+    $errors['delivery_type'] = "Please select delivery type";
+
 
 if (empty($_POST['status_courier']))
     $errors['status_courier'] = $lang['validate_field_ajax157'];
@@ -119,6 +122,9 @@ if (empty($errors)) {
         'status_courier' =>  cdp_sanitize(intval($_POST["status_courier"])),
         'due_date' =>  $due_date,
         'status_invoice' =>  $status_invoice,
+        'delivery_type' => $_POST['delivery_type'],
+        'notes' => cdp_sanitize($_POST['notes']),
+        'distance' => $_POST['distance']
     );
 
     $updateShip = cdp_updateCourierShipment($dataShipment);
@@ -210,7 +216,7 @@ if (empty($errors)) {
         $dataShipmentUpdateTotals = array(
             'order_id' =>  $shipment_id,
             'value_weight' =>  floatval($price_lb),
-            'sub_total' =>  floatval($sumador_total),
+            'sub_total' =>  floatval($_POST['sub_total']),
             'tax_discount' =>  floatval($discount_value),
             'total_insured_value' => floatval($insured_value),
             'tax_insurance_value' => floatval($insurance_value),
@@ -225,7 +231,9 @@ if (empty($errors)) {
             'total_tax_custom_tariffis' =>  floatval($total_impuesto_aduanero),
             'total_tax' =>  floatval($total_impuesto),
             'total_weight' =>  floatval($total_peso),
-            'total_order' =>  floatval($total_envio),
+            'total_order' =>  floatval($_POST['total_order']),
+            'delivery_type' => $_POST['delivery_type'],
+            'distance' => $_POST['distance']
         );
 
         $update = cdp_updateCourierShipmentTotals($dataShipmentUpdateTotals);

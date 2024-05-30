@@ -5456,8 +5456,11 @@ function cdp_updateCourierShipment($datos)
         order_deli_time =:order_deli_time,                   
         order_payment_method =:order_payment_method,
         status_courier =:status_courier,
+        delivery_type =:delivery_type,
         due_date=:due_date,
-        status_invoice=:status_invoice
+        status_invoice=:status_invoice,
+        notes=:notes,
+        distance =:distance
 
         WHERE
         order_id=:order_id
@@ -5476,10 +5479,13 @@ function cdp_updateCourierShipment($datos)
     $db->bind(':order_courier',  $datos["order_courier"]);
     $db->bind(':order_service_options',  $datos["order_service_options"]);
     $db->bind(':order_deli_time',  $datos["order_deli_time"]);
+    $db->bind(':delivery_type',  $datos["delivery_type"]);
     $db->bind(':order_payment_method',  $datos["order_payment_method"]);
     $db->bind(':status_courier',  $datos["status_courier"]);
     $db->bind(':due_date',   $datos["due_date"]);
     $db->bind(':status_invoice',   $datos["status_invoice"]);
+    $db->bind(':notes',   $datos["notes"]);
+    $db->bind(':distance',   $datos["distance"]);
 
     return $db->cdp_execute();
 }
