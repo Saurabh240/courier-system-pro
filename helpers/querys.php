@@ -5311,6 +5311,7 @@ function cdp_insertCourierShipment($datos)
 function cdp_insertCourierPickupFromCustomer($datos)
 {
     $db = new Conexion;
+    //print_R($datos);exit;
 
     $db->cdp_query("
     INSERT INTO cdb_add_order 
@@ -5330,6 +5331,7 @@ function cdp_insertCourierPickupFromCustomer($datos)
         status_courier,
         is_pickup,
         due_date,
+        notes,
         status_invoice,
         order_incomplete                 
         )
@@ -5350,11 +5352,14 @@ function cdp_insertCourierPickupFromCustomer($datos)
         :status_courier,
         :is_pickup,
         :due_date,
+        :notes,
         :status_invoice,
         :order_incomplete         
 
         )
 ");
+
+
 
     $db->bind(':user_id',  $datos['user_id']);
     $db->bind(':order_prefix',  $datos['order_prefix']);
@@ -5373,8 +5378,10 @@ function cdp_insertCourierPickupFromCustomer($datos)
     $db->bind(':due_date',   $datos["due_date"]);
     $db->bind(':status_invoice',   $datos["status_invoice"]);
     $db->bind(':volumetric_percentage',   $datos["volumetric_percentage"]);
+    $db->bind(':notes',   $datos["notes"]);
 
     $db->cdp_execute();
+    
     return $db->dbh->lastInsertId();
 }
 
