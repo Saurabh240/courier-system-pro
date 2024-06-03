@@ -663,6 +663,7 @@ function calculateFinalTotal(element = null) {
 }*/
 
 $("#invoice_form").on("submit", function (event) {
+  event.preventDefault();
   if (cdp_validateZiseFiles() == true) {
     alert("error files");
     return false;
@@ -798,15 +799,26 @@ $("#invoice_form").on("submit", function (event) {
   var data = new FormData();
 
   
-  sender_address_id = $('#sender_address_id').val();
+  sender_address_id = $('#sender_address_id ').val();
   
   recipient_address_id=   $('#recipient_address_id').val();
+
+  if(!sender_address_id){
+    sender_address_id = $('#sender_address_id option:selected').text();
+  }
+  if(!recipient_address_id){
+    recipient_address_id =   $('#recipient_address_id option:selected').text();
+  }
   
   deliveryType = document.getElementById('deliveryType').value;
   distance = window.distance;
 
+  var notes = $("#delivery_notes").val();
+
   data.append('delivery_type', deliveryType);
   data.append('distance', distance);
+
+  data.append("notes", notes);
 
   data.append("packages", JSON.stringify(packagesItems));
 
@@ -905,7 +917,7 @@ $("#invoice_form").on("submit", function (event) {
 
   if (deleted_file_ids) {
     data.append("deleted_file_ids", deleted_file_ids);
-  }add_pickup_ajax.php
+  }
 
   var total_order = $("#total_after_tax").text();
   data.append('total_order', total_order);

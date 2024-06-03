@@ -636,6 +636,18 @@ $order_prefix = $settings->prefix;
 
                                     </div>
 
+                                    <div class="row">
+                                            <div class="col-md-8">
+                                                <div>
+                                                    <label class="control-label" id="selectItem"> <?php echo $lang['left21552']; ?></label>
+                                                </div>
+                                                <textarea  class="form-control" name="delivery_notes" id="delivery_notes" rows="4" cols="50" placeholder="<?php echo $lang['left21553'] ?>"  ></textarea>
+
+                                               
+
+                                            </div>
+                                    </div>
+
                                     <!--/row-->
                                     <div class="row">
                                         <div class="col-md-4">
