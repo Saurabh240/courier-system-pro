@@ -19,59 +19,18 @@ if (isset($_POST["origin"]) && isset($_POST["destination"]) && isset($_POST["del
     $courier['distance'] = calculateDistance($origin, $destination, $apiKey);
     if ($courier['distance'] !== false) {
         // Calculate shipping price based on distance and delivery type
-            // Determine base rate and additional rate per kilometer based on delivery type
-    switch ($deliveryType) {
-        case 'SAME DAY (1PM to 4PM)':
-            $baseRate = 10.00;
-            $additionalRatePerKm = 0.55;
-            break;
-        case 'SAME DAY (BEFORE 5PM)':
-            $baseRate = 10.00;
-            $additionalRatePerKm = 0.50;
-            break;
-        case 'RUSH (4 HOURS)':
-            $baseRate = 10.00;
-            $additionalRatePerKm = 0.55;
-            break;
-        case 'RUSH (3 HOURS)':
-            $baseRate = 15.00;
-            $additionalRatePerKm = 0.70;
-            break;
-        case 'RUSH (2 HOURS)':
-            $baseRate = 20.00;
-            $additionalRatePerKm = 0.75;
-            break;
-        case 'URGENT (90 MINUTES)':
-            $baseRate = 25.00;
-            $additionalRatePerKm = 0.75;
-            break;
-        case 'NEXT DAY (BEFORE 5PM)':
-            $baseRate = 5.00;
-            $additionalRatePerKm = 0.55;
-            break;
-        case 'NEXT DAY (BEFORE 2PM)':
-            $baseRate = 7.00;
-            $additionalRatePerKm = 0.55;
-            break;
-        case 'NEXT DAY (BEFORE 11:30AM)':
-            $baseRate = 10.00;
-            $additionalRatePerKm = 0.75;
-            break;
-        case 'NEXT DAY (BEFORE 10:30AM)':
-            $baseRate = 15.00;
-            $additionalRatePerKm = 0.75;
-            break;
-        default:
-             return "Invalid delivery type";
-      }
+        $rates = getRatesByDeliveryTypeAndBusinessType($deliveryType, $business_type);
+        if ($rates) {
+            $baseRate = $rates['baseRate'];
+            $additionalRatePerKm = $rates['additionalRatePerKm'];
+            $baseKm = $rates['baseKm'];
 
-        if($business_type == 'law_office' || $business_type == 'pharmacy'){
-            $baseRate = '5';
+            $courier['baseRate'] = $baseRate;
+            $courier['shipmentfee'] = calculateShippingPrice($courier['distance'], $baseRate, $additionalRatePerKm, $baseKm);
+            echo json_encode($courier);
+        } else {
+            echo "<p>Invalid delivery type or business type.</p>";
         }
-        $courier['baseRate'] = $baseRate;
-        $courier['shipmentfee'] = calculateShippingPrice($courier['distance'], $deliveryType);
-        // print_r($courier); die();
-        echo json_encode($courier);
     } else {
         echo "<p>Error calculating distance.</p>";
     }
@@ -83,9 +42,8 @@ if (isset($_POST["origin"]) && isset($_POST["destination"]) && isset($_POST["del
 function calculateDistance($origin, $destination, $apiKey) {
     $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$origin&destinations=$destination&key=$apiKey";
     $response = file_get_contents($url);
-   
     $data = json_decode($response, true);
-   // print_r($data);exit;
+
     // Check if API request was successful
     if ($data['status'] == 'OK') {
         // Extract distance in meters
@@ -94,7 +52,7 @@ function calculateDistance($origin, $destination, $apiKey) {
         }else{
             $distance = $data['rows'][0]['elements'][0]['distance']['value'];
         }
-        
+
         // Convert meters to kilometers
         return $distance / 1000;
     } else {
@@ -103,59 +61,68 @@ function calculateDistance($origin, $destination, $apiKey) {
     }
 }
 
-// Function to calculate shipping price based on distance and delivery type
-function calculateShippingPrice($distance, $deliveryType) {
-    $baseRate = 0;
-    $additionalRatePerKm = 0;
+// Function to get rates based on delivery type and business type
+function getRatesByDeliveryTypeAndBusinessType($deliveryType, $businessType) {
+    $rates = [
+        'default' => [
+            'SAME DAY (1PM to 4PM)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 10],
+            'SAME DAY (BEFORE 5PM)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.50, 'baseKm' => 10],
+            'RUSH (4 HOURS)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 10],
+            'RUSH (3 HOURS)' => ['baseRate' => 15.00, 'additionalRatePerKm' => 0.70, 'baseKm' => 10],
+            'RUSH (2 HOURS)' => ['baseRate' => 20.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 10],
+            'URGENT (90 MINUTES)' => ['baseRate' => 25.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 10],
+            'NEXT DAY (BEFORE 5PM)' => ['baseRate' => 5.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 10],
+            'NEXT DAY (BEFORE 2PM)' => ['baseRate' => 7.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 10],
+            'NEXT DAY (BEFORE 11:30AM)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 10],
+            'NEXT DAY (BEFORE 10:30AM)' => ['baseRate' => 15.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 10]
+        ],
+        'law_firm' => [
+            'SAME DAY (1PM to 4PM)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 10],
+            'SAME DAY (BEFORE 5PM)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.50, 'baseKm' => 10],
+            'RUSH (4 HOURS)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 10],
+            'RUSH (3 HOURS)' => ['baseRate' => 15.00, 'additionalRatePerKm' => 0.70, 'baseKm' => 10],
+            'RUSH (2 HOURS)' => ['baseRate' => 20.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 10],
+            'URGENT (90 MINUTES)' => ['baseRate' => 25.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 10],
+            'NEXT DAY (BEFORE 5PM)' => ['baseRate' => 5.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 10],
+            'NEXT DAY (BEFORE 2PM)' => ['baseRate' => 7.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 10],
+            'NEXT DAY (BEFORE 11:30AM)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 10],
+            'NEXT DAY (BEFORE 10:30AM)' => ['baseRate' => 15.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 10]
+        ],
+        'pharmacy' => [
+            'SAME DAY (BEFORE 5PM)' => ['baseRate' => 5.00, 'additionalRatePerKm' => 0.50, 'baseKm' => 15],
+            'NEXT DAY (BEFORE 5PM)' => ['baseRate' => 5.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 15],
+            'RUSH (4 HOURS)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 15],
+            'RUSH (3 HOURS)' => ['baseRate' => 15.00, 'additionalRatePerKm' => 0.70, 'baseKm' => 15],
+            'RUSH (2 HOURS)' => ['baseRate' => 20.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 15],
+            'URGENT (90 MINUTES)' => ['baseRate' => 25.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 15],
+            'NEXT DAY (BEFORE 2PM)' => ['baseRate' => 7.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 15],
+            'NEXT DAY (BEFORE 11:30AM)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 15],
+            'NEXT DAY (BEFORE 10:30AM)' => ['baseRate' => 15.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 15]
+        ],
+        'flower_shop' => [
+            'SAME DAY (BEFORE 5PM)' => ['baseRate' => 5.00, 'additionalRatePerKm' => 0.50, 'baseKm' => 15],
+            'NEXT DAY (BEFORE 5PM)' => ['baseRate' => 5.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 15],
+            'RUSH (4 HOURS)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 15],
+            'RUSH (3 HOURS)' => ['baseRate' => 15.00, 'additionalRatePerKm' => 0.70, 'baseKm' => 15],
+            'RUSH (2 HOURS)' => ['baseRate' => 20.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 15],
+            'URGENT (90 MINUTES)' => ['baseRate' => 25.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 15],
+            'NEXT DAY (BEFORE 2PM)' => ['baseRate' => 7.00, 'additionalRatePerKm' => 0.55, 'baseKm' => 15],
+            'NEXT DAY (BEFORE 11:30AM)' => ['baseRate' => 10.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 15],
+            'NEXT DAY (BEFORE 10:30AM)' => ['baseRate' => 15.00, 'additionalRatePerKm' => 0.75, 'baseKm' => 15]
+        ]
+    ];
 
-    // Determine base rate and additional rate per kilometer based on delivery type
-    switch ($deliveryType) {
-        case 'SAME DAY (1PM to 4PM)':
-            $baseRate = 10.00;
-            $additionalRatePerKm = 0.55;
-            break;
-        case 'SAME DAY (BEFORE 5PM)':
-            $baseRate = 10.00;
-            $additionalRatePerKm = 0.50;
-            break;
-        case 'RUSH (4 HOURS)':
-            $baseRate = 10.00;
-            $additionalRatePerKm = 0.55;
-            break;
-        case 'RUSH (3 HOURS)':
-            $baseRate = 15.00;
-            $additionalRatePerKm = 0.70;
-            break;
-        case 'RUSH (2 HOURS)':
-            $baseRate = 20.00;
-            $additionalRatePerKm = 0.75;
-            break;
-        case 'URGENT (90 MINUTES)':
-            $baseRate = 25.00;
-            $additionalRatePerKm = 0.75;
-            break;
-        case 'NEXT DAY (BEFORE 5PM)':
-            $baseRate = 5.00;
-            $additionalRatePerKm = 0.55;
-            break;
-        case 'NEXT DAY (BEFORE 2PM)':
-            $baseRate = 7.00;
-            $additionalRatePerKm = 0.55;
-            break;
-        case 'NEXT DAY (BEFORE 11:30AM)':
-            $baseRate = 10.00;
-            $additionalRatePerKm = 0.75;
-            break;
-        case 'NEXT DAY (BEFORE 10:30AM)':
-            $baseRate = 15.00;
-            $additionalRatePerKm = 0.75;
-            break;
-        default:
-            return "Invalid delivery type";
+    if ($businessType == 'law_firm' || $businessType == 'pharmacy') {
+        return $rates[$businessType][$deliveryType] ?? null;
+    } else {
+        return $rates['default'][$deliveryType] ?? null;
     }
+}
 
-    // Calculate additional rate for distance beyond 10km
-    $additionalDistance = max(0, ($distance - 10));
+// Function to calculate shipping price based on distance, base rate, and additional rate per kilometer
+function calculateShippingPrice($distance, $baseRate, $additionalRatePerKm, $baseKm) {
+    // Calculate additional rate for distance beyond base kilometers
+    $additionalDistance = max(0, ($distance - $baseKm));
     $additionalCharge = $additionalDistance * $additionalRatePerKm;
 
     // Calculate total shipping price
