@@ -33,7 +33,7 @@
 </head>
 <body>
     <div class="terms-container">
-        <h1>Terms and Conditions</h1>
+        <h1>Terms and conditions for an online Huuneh account</h1>
         <p>1. Introduction</p>
         <p>These Terms and Conditions govern your use of the online courier services provided by Huuneh ("we," "us," or "our"). By creating an online courier account, you (the “client”) agree to comply with these Terms and Conditions.</p>
         
