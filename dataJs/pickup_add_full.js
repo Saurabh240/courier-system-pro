@@ -524,13 +524,13 @@ function calculateFinalTotal(element = null) {
   // $("#fixed_value_label").html(max_fixed_charge.toFixed(2));
   $("#fixed_value_label").html(baseRate);
   $("#fixed_value_ajax").val(baseRate);
-    var distanceHtml = parseFloat($('#distance').val()).toFixed(2)
+  var distanceHtml = parseFloat($('#distance').val()).toFixed(2)
   $("#total_distance").html(distanceHtml);
   //$("#insurance").html(total_seguro.toFixed(2));
   //$("#total_impuesto_aduanero").html(total_impuesto_aduanero.toFixed(2));
   var shipmentfee = localStorage.getItem('shipmentfee');
   $("#total_before_tax").html(Number(shipmentfee).toFixed(2));
-   var total_tax_value = parseFloat(parseFloat(shipmentfee) + (parseFloat(shipmentfee) * (13/100)));
+  var total_tax_value = parseFloat(parseFloat(shipmentfee) + (parseFloat(shipmentfee) * (13 / 100)));
   $("#total_after_tax").html(total_tax_value.toFixed(2));
   // alert(parseFloat(shipmentfee));
   // alert(parseFloat(total_envio.toFixed(2)));
@@ -538,9 +538,9 @@ function calculateFinalTotal(element = null) {
   // var subTotal = parseFloat(shipmentfee) + parseFloat(total_envio.toFixed(2));
   //$("#total_envio").html(shipmentfee);
   //$("#total_envio_ajax").html(shipmentfee);
- 
+
   $("#total_envio_ajax").val(shipmentfee);
- // $("#total_weight").html(sumador_libras.toFixed(2));
+  // $("#total_weight").html(sumador_libras.toFixed(2));
   //$("#total_vol_weight").html(sumador_volumetric.toFixed(2));
   $("#total_fixed").html(max_fixed_charge.toFixed(2));
   //$("#total_declared").html(shipmentfee);
@@ -663,7 +663,6 @@ function calculateFinalTotal(element = null) {
 }*/
 
 $("#invoice_form").on("submit", function (event) {
-  event.preventDefault();
   if (cdp_validateZiseFiles() == true) {
     alert("error files");
     return false;
@@ -798,27 +797,16 @@ $("#invoice_form").on("submit", function (event) {
 
   var data = new FormData();
 
-  
-  sender_address_id = $('#sender_address_id ').val();
-  
-  recipient_address_id=   $('#recipient_address_id').val();
 
-  if(!sender_address_id){
-    sender_address_id = $('#sender_address_id option:selected').text();
-  }
-  if(!recipient_address_id){
-    recipient_address_id =   $('#recipient_address_id option:selected').text();
-  }
-  
+  sender_address_id = $('#sender_address_id').val();
+
+  recipient_address_id = $('#recipient_address_id').val();
+
   deliveryType = document.getElementById('deliveryType').value;
   distance = window.distance;
 
-  var notes = $("#delivery_notes").val();
-
   data.append('delivery_type', deliveryType);
   data.append('distance', distance);
-
-  data.append("notes", notes);
 
   data.append("packages", JSON.stringify(packagesItems));
 
@@ -917,7 +905,7 @@ $("#invoice_form").on("submit", function (event) {
 
   if (deleted_file_ids) {
     data.append("deleted_file_ids", deleted_file_ids);
-  }
+  } add_pickup_ajax.php
 
   var total_order = $("#total_after_tax").text();
   data.append('total_order', total_order);
@@ -1011,40 +999,40 @@ function getTariffs() {
   //   },
   //   success: function (data) {
   //     if (data.success) {
-          var recipient_id = $("#recipient_id").val();
-          var recipient_address_id = $("#recipient_address_id").val();
-          var sender_id = $("#sender_id").val();
-          var sender_address_id = $("#sender_address_id").val();
-         
-          if(recipient_address_id == null){
-            Swal.fire({
-              title: "Error!",
-              text: "Recipent Address Not Found",
-              icon: "error",
-              confirmButtonText: "Ok",
-            });
-           
-          }else{
-            $("#table-totals").removeClass("d-none");
-            $("#create_invoice").attr("disabled", false);
-          }
-        
-        
-        // $("#price_lb").val(data.data.price);
-        // $("#price_lb_label").html(data.data.price);
-        calculateFinalTotal();
-//       } else {
-//         $("#table-totals").addClass("d-none");
-//         $("#create_invoice").attr("disabled", true);
-//         Swal.fire({
-//           title: "Error!",
-//           text: data.error,
-//           icon: "error",
-//           confirmButtonText: "Ok",
-//         });
-//       }
-//     },
-//   });
+  var recipient_id = $("#recipient_id").val();
+  var recipient_address_id = $("#recipient_address_id").val();
+  var sender_id = $("#sender_id").val();
+  var sender_address_id = $("#sender_address_id").val();
+
+  if (recipient_address_id == null) {
+    Swal.fire({
+      title: "Error!",
+      text: "Recipent Address Not Found",
+      icon: "error",
+      confirmButtonText: "Ok",
+    });
+
+  } else {
+    $("#table-totals").removeClass("d-none");
+    $("#create_invoice").attr("disabled", false);
+  }
+
+
+  // $("#price_lb").val(data.data.price);
+  // $("#price_lb_label").html(data.data.price);
+  calculateFinalTotal();
+  //       } else {
+  //         $("#table-totals").addClass("d-none");
+  //         $("#create_invoice").attr("disabled", true);
+  //         Swal.fire({
+  //           title: "Error!",
+  //           text: data.error,
+  //           icon: "error",
+  //           confirmButtonText: "Ok",
+  //         });
+  //       }
+  //     },
+  //   });
 }
 
 $("#calculate_invoice").on("click", getTariffs);
@@ -1088,26 +1076,26 @@ function cdp_preview_images() {
 
     $("#image_preview").append(
       '<div class="col-md-3" id="image_' +
-        i +
-        '">' +
-        '<img style="width: 180px; height: 180px;" class="img-thumbnail" src="' +
-        src +
-        '">' +
-        '<div class="row">' +
-        '<div class=" col-md-12 mt-2 mb-2">' +
-        "<span>" +
-        event.target.files[i].name +
-        "</span>" +
-        "</div>" +
-        "</div>" +
-        '<div class="row">' +
-        '<div class="  mb-2">' +
-        '<button type="button" class="btn btn-danger btn-sm pull-left" onclick="cdp_deletePreviewImage(' +
-        i +
-        ');"><i class="fa fa-trash"></i></button>' +
-        "</div>" +
-        "</div>" +
-        "</div>"
+      i +
+      '">' +
+      '<img style="width: 180px; height: 180px;" class="img-thumbnail" src="' +
+      src +
+      '">' +
+      '<div class="row">' +
+      '<div class=" col-md-12 mt-2 mb-2">' +
+      "<span>" +
+      event.target.files[i].name +
+      "</span>" +
+      "</div>" +
+      "</div>" +
+      '<div class="row">' +
+      '<div class="  mb-2">' +
+      '<button type="button" class="btn btn-danger btn-sm pull-left" onclick="cdp_deletePreviewImage(' +
+      i +
+      ');"><i class="fa fa-trash"></i></button>' +
+      "</div>" +
+      "</div>" +
+      "</div>"
     );
   }
 }
@@ -1148,11 +1136,11 @@ function cdp_validateZiseFiles() {
     if (size > 5242880) {
       $(".resultados_file").html(
         "<div class='alert alert-danger'>" +
-          "<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
-          "<strong>" +
-          validation_files_size +
-          " </strong>" +
-          "</div>"
+        "<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
+        "<strong>" +
+        validation_files_size +
+        " </strong>" +
+        "</div>"
       );
 
       $("#filesMultiple").val("");
@@ -1169,11 +1157,11 @@ function cdp_validateZiseFiles() {
   if (size > 5242880) {
     $(".resultados_file").html(
       "<div class='alert alert-danger'>" +
-        "<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
-        "<strong>" +
-        validation_files_size +
-        " </strong>" +
-        "</div>"
+      "<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
+      "<strong>" +
+      validation_files_size +
+      " </strong>" +
+      "</div>"
     );
 
     $("#filesMultiple").val("");
@@ -1225,7 +1213,7 @@ $("input[type=file]").on("change", function () {
 });
 
 function cdp_select2_init_sender() {
-  
+
   $("#sender_id")
     .select2({
       ajax: {
@@ -1440,211 +1428,211 @@ function cdp_select2_init_recipient_address() {
 // modal guardar cliente remitente formulario de envo, si activas el check adicionas contraseña al cliente
 
 $("#add_user_from_modal_shipments").on("submit", function (event) {
-    event.preventDefault(); // Evitar el envío del formulario por defecto
+  event.preventDefault(); // Evitar el envío del formulario por defecto
 
-    if ($.trim($("#fname").val()).length == 0) {
-        Swal.fire({
+  if ($.trim($("#fname").val()).length == 0) {
+    Swal.fire({
 
-              type: 'Error!',
-              title: 'Oops...',
-              text: message_error_form81,
-              icon: 'error',
-              confirmButtonColor: '#336aea'
-              
-        });
-        $("#fname").focus();
-        return false;
-    }
+      type: 'Error!',
+      title: 'Oops...',
+      text: message_error_form81,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
 
-    if ($.trim($("#lname").val()).length == 0) {
-        Swal.fire({
+    });
+    $("#fname").focus();
+    return false;
+  }
 
-              type: 'Error!',
-              title: 'Oops...',
-              text: message_error_form82,
-              icon: 'error',
-              confirmButtonColor: '#336aea'
-              
-        });
-        $("#lname").focus();
-        return false;
-    }
+  if ($.trim($("#lname").val()).length == 0) {
+    Swal.fire({
 
-    // Validación del correo electrónico en el lado del cliente
-    var email = $.trim($("#email").val());
-    if (email.length == 0) {
-        Swal.fire({
+      type: 'Error!',
+      title: 'Oops...',
+      text: message_error_form82,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+
+    });
+    $("#lname").focus();
+    return false;
+  }
+
+  // Validación del correo electrónico en el lado del cliente
+  var email = $.trim($("#email").val());
+  if (email.length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: message_error_form83,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#email").focus();
+    return false;
+  } else if (!isValidEmailAddress(email)) { // Función para validar el formato del correo electrónico
+    Swal.fire({
+      type: 'warning',
+      title: 'Oops...',
+      text: message_error_form84,
+      icon: 'warning',
+      confirmButtonColor: '#336aea'
+    });
+    $("#email").focus();
+    return false;
+  }
+
+  // Función para validar el formato del correo electrónico
+  function isValidEmailAddress(email) {
+    var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
+  }
+
+  if ($.trim($("#country_modal_user").val()).length == 0) {
+    Swal.fire({
+
+      type: 'Error!',
+      title: 'Oops...',
+      text: validation_country,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+
+    });
+    $("#country_modal_user").focus();
+    return false;
+  }
+
+  if ($.trim($("#state_modal_user").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_state,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#state_modal_user").focus();
+    return false;
+  }
+
+  if ($.trim($("#city_modal_user").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_city,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#city_modal_user").focus();
+    return false;
+  }
+
+  if ($.trim($("#postal_modal_user").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_zip,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#postal_modal_user").focus();
+    return false;
+  }
+
+  if ($.trim($("#address_modal_user").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_address,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#address_modal_user").focus();
+    return false;
+  }
+
+  if (iti.isValidNumber()) {
+    var sender_id = $("#sender_id").val();
+    $("#save_data_user").attr("disabled", true);
+    var parametros = $(this).serialize();
+
+    $.ajax({
+      type: "POST",
+      url: "ajax/courier/add_users_ajax.php?sender=" + sender_id,
+      data: parametros,
+      success: function (response) {
+        if (response.status === 'success') {
+          Swal.fire({
+            type: 'success',
+            title: message_error_form80,
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(() => {
+            cdp_select2_init_sender();
+            $(".resultados_ajax_add_user_modal_sender").html(response.data);
+            $("#save_data_user").attr("disabled", false);
+            $("#myModalAddUser").modal("hide");
+
+            // Obtener la información del cliente y la dirección del cliente de la respuesta
+            var data = {
+              id: response.customer_data.id,
+              text: response.customer_data.fname + ' ' + response.customer_data.lname
+            };
+
+            var newOption = new Option(data.text, data.id, false, false);
+
+            $('#sender_id').append(newOption).trigger('change');
+            $('#sender_id').val(data.id).trigger('change');
+
+            var data_address = {
+              id: response.customer_address.id_addresses,
+              text: response.customer_address.address
+            };
+
+            var newOptionAddress = new Option(data_address.text, data_address.id, false, false);
+
+            $('#sender_address_id').append(newOptionAddress).trigger('change');
+            $('#sender_address_id').val(data_address.id).trigger('change');
+
+            $("#recipient_address_id").attr("disabled", true);
+            $("#add_address_recipient").attr("disabled", true);
+            $("#recipient_id").val(null).trigger('change');
+            $("#recipient_address_id").val(null).trigger('change');
+
+            window.setTimeout(function () {
+              $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+              });
+            }, 5000);
+          });
+        } else {
+          Swal.fire({
             type: 'error',
             title: 'Oops...',
-            text: message_error_form83,
+            text: response.message,
             icon: 'error',
             confirmButtonColor: '#336aea'
-        });
-        $("#email").focus();
-        return false;
-    } else if (!isValidEmailAddress(email)) { // Función para validar el formato del correo electrónico
+          });
+          $("#save_data_user").attr("disabled", false);
+        }
+      },
+      error: function () {
         Swal.fire({
-            type: 'warning',
-            title: 'Oops...',
-            text: message_error_form84,
-            icon: 'warning',
-            confirmButtonColor: '#336aea'
+          type: 'error',
+          title: 'Oops...',
+          text: message_error_form19,
+          icon: 'error',
+          confirmButtonColor: '#336aea'
         });
-        $("#email").focus();
-        return false;
-    }
-
-    // Función para validar el formato del correo electrónico
-    function isValidEmailAddress(email) {
-        var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return pattern.test(email);
-    }
-
-    if ($.trim($("#country_modal_user").val()).length == 0) {
-        Swal.fire({
-
-              type: 'Error!',
-              title: 'Oops...',
-              text: validation_country,
-              icon: 'error',
-              confirmButtonColor: '#336aea'
-              
-        });
-        $("#country_modal_user").focus();
-        return false;
-    }
-
-    if ($.trim($("#state_modal_user").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_state,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#state_modal_user").focus();
-        return false;
-    }
-
-    if ($.trim($("#city_modal_user").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_city,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#city_modal_user").focus();
-        return false;
-    }
-
-    if ($.trim($("#postal_modal_user").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_zip,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#postal_modal_user").focus();
-        return false;
-    }
-
-    if ($.trim($("#address_modal_user").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_address,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#address_modal_user").focus();
-        return false;
-    }
-
-    if (iti.isValidNumber()) {
-        var sender_id = $("#sender_id").val();
-        $("#save_data_user").attr("disabled", true);
-        var parametros = $(this).serialize();
-
-        $.ajax({
-            type: "POST",
-            url: "ajax/courier/add_users_ajax.php?sender=" + sender_id,
-            data: parametros,
-            success: function (response) {
-                if (response.status === 'success') {
-                  Swal.fire({
-                      type: 'success',
-                      title: message_error_form80,
-                      icon: 'success',
-                      showConfirmButton: false,
-                      timer: 1500
-                  }).then(() => {
-                     cdp_select2_init_sender();
-                    $(".resultados_ajax_add_user_modal_sender").html(response.data);
-                    $("#save_data_user").attr("disabled", false);
-                    $("#myModalAddUser").modal("hide");
-
-                    // Obtener la información del cliente y la dirección del cliente de la respuesta
-                    var data = {
-                        id: response.customer_data.id,
-                        text: response.customer_data.fname + ' ' + response.customer_data.lname
-                    };
-
-                    var newOption = new Option(data.text, data.id, false, false);
-
-                    $('#sender_id').append(newOption).trigger('change');
-                    $('#sender_id').val(data.id).trigger('change');
-
-                     var data_address = {
-                          id: response.customer_address.id_addresses,
-                          text: response.customer_address.address
-                    };
-
-                    var newOptionAddress = new Option(data_address.text, data_address.id, false, false);
-
-                    $('#sender_address_id').append(newOptionAddress).trigger('change');
-                    $('#sender_address_id').val(data_address.id).trigger('change');
-
-                    $("#recipient_address_id").attr("disabled", true);
-                    $("#add_address_recipient").attr("disabled", true);
-                    $("#recipient_id").val(null).trigger('change');
-                    $("#recipient_address_id").val(null).trigger('change');
-
-                      window.setTimeout(function () {
-                          $(".alert").fadeTo(500, 0).slideUp(500, function () {
-                              $(this).remove();
-                          });
-                      }, 5000);
-                  });
-                } else {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: response.message,
-                        icon: 'error',
-                        confirmButtonColor: '#336aea'
-                    });
-                    $("#save_data_user").attr("disabled", false);
-                }
-            },
-            error: function () {
-                Swal.fire({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: message_error_form19,
-                    icon: 'error',
-                    confirmButtonColor: '#336aea'
-                });
-                $("#save_data_user").attr("disabled", false);
-            }
-        });
-     } else {
-      input.classList.add("error");
-      var errorCode = iti.getValidationError();
-      errorMsgSender.innerHTML = errorMap[errorCode];
-      errorMsgSender.classList.remove("hide");
-    }
+        $("#save_data_user").attr("disabled", false);
+      }
+    });
+  } else {
+    input.classList.add("error");
+    var errorCode = iti.getValidationError();
+    errorMsgSender.innerHTML = errorMap[errorCode];
+    errorMsgSender.classList.remove("hide");
+  }
 });
 
 
@@ -1653,289 +1641,289 @@ $("#add_user_from_modal_shipments").on("submit", function (event) {
 // modal guardar cliente destinatario formulario de envios
 
 $("#add_recipient_from_modal_shipments").on("submit", function (event) {
-    event.preventDefault(); // Evitar el envío del formulario por defecto
+  event.preventDefault(); // Evitar el envío del formulario por defecto
 
-    if ($.trim($("#fname_recipient").val()).length == 0) {
-        Swal.fire({
+  if ($.trim($("#fname_recipient").val()).length == 0) {
+    Swal.fire({
 
-              type: 'Error!',
-              title: 'Oops...',
-              text: translate_label_firstname,
-              icon: 'error',
-              confirmButtonColor: '#336aea'
-              
-        });
-        $("#fname_recipient").focus();
-        return false;
-    }
+      type: 'Error!',
+      title: 'Oops...',
+      text: translate_label_firstname,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
 
-    if ($.trim($("#lname_recipient").val()).length == 0) {
-        Swal.fire({
+    });
+    $("#fname_recipient").focus();
+    return false;
+  }
 
-              type: 'Error!',
-              title: 'Oops...',
-              text: translate_label_lastname,
-              icon: 'error',
-              confirmButtonColor: '#336aea'
-              
-        });
-        $("#lname_recipient").focus();
-        return false;
-    }
+  if ($.trim($("#lname_recipient").val()).length == 0) {
+    Swal.fire({
 
-    // Validación del correo electrónico en el lado del cliente
-    var email = $.trim($("#email_recipient").val());
-    if (email.length == 0) {
-        Swal.fire({
+      type: 'Error!',
+      title: 'Oops...',
+      text: translate_label_lastname,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+
+    });
+    $("#lname_recipient").focus();
+    return false;
+  }
+
+  // Validación del correo electrónico en el lado del cliente
+  var email = $.trim($("#email_recipient").val());
+  if (email.length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: translate_label_email,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#email_recipient").focus();
+    return false;
+  } else if (!isValidEmailAddress(email)) { // Función para validar el formato del correo electrónico
+    Swal.fire({
+      type: 'warning',
+      title: 'Oops...',
+      text: message_error_form84,
+      icon: 'warning',
+      confirmButtonColor: '#336aea'
+    });
+    $("#email_recipient").focus();
+    return false;
+  }
+
+  // Función para validar el formato del correo electrónico
+  function isValidEmailAddress(email) {
+    var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
+  }
+
+  if ($.trim($("#country_modal_recipient").val()).length == 0) {
+    Swal.fire({
+
+      type: 'Error!',
+      title: 'Oops...',
+      text: validation_country,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+
+    });
+    $("#country_modal_recipient").focus();
+    return false;
+  }
+
+  if ($.trim($("#state_modal_recipient").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_state,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#state_modal_recipient").focus();
+    return false;
+  }
+
+  if ($.trim($("#city_modal_recipient").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_city,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#city_modal_recipient").focus();
+    return false;
+  }
+
+  if ($.trim($("#postal_modal_recipient").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_zip,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#postal_modal_recipient").focus();
+    return false;
+  }
+
+  if ($.trim($("#address_modal_recipient").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_address,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#address_modal_recipient").focus();
+    return false;
+  }
+
+  if (iti_recipient.isValidNumber()) {
+    var sender_id = $("#sender_id").val();
+    $("#save_data_recipient").attr("disabled", true);
+    var parametros = $(this).serialize();
+
+    $.ajax({
+      type: "POST",
+      url: "ajax/courier/add_recipients_ajax.php?sender=" + sender_id,
+      data: parametros,
+      success: function (response) {
+        if (response.status === 'success') {
+          Swal.fire({
+            type: 'success',
+            title: message_error_form80,
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(() => {
+            // Acciones después de un éxito
+            cdp_select2_init_sender();
+            $(".resultados_ajax_add_user_modal_recipient").html(response.data);
+            $("#save_data_recipient").attr("disabled", false);
+            $("#myModalAddRecipient").modal("hide");
+
+            // Actualizar campos de select
+            var data = {
+              id: response.customer_data.id,
+              text: response.customer_data.fname + ' ' + response.customer_data.lname
+            };
+
+            var newOption = new Option(data.text, data.id, false, false);
+
+            $('#recipient_id').append(newOption).trigger('change');
+            $('#recipient_id').val(data.id).trigger('change');
+
+            var data_address = {
+              id: response.customer_address.id_addresses,
+              text: response.customer_address.address
+            };
+
+            var newOption = new Option(data_address.text, data_address.id, false, false);
+
+            $('#recipient_address_id').append(newOption).trigger('change');
+            $('#recipient_address_id').val(data_address.id).trigger('change');
+
+            // Ocultar mensaje de alerta
+            window.setTimeout(function () {
+              $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+              });
+            }, 5000);
+          });
+        } else {
+          // Manejo de errores si la respuesta no es exitosa
+          Swal.fire({
             type: 'error',
             title: 'Oops...',
-            text: translate_label_email,
+            text: response.message,
             icon: 'error',
             confirmButtonColor: '#336aea'
-        });
-        $("#email_recipient").focus();
-        return false;
-    } else if (!isValidEmailAddress(email)) { // Función para validar el formato del correo electrónico
+          });
+          $("#save_data_recipient").attr("disabled", false);
+        }
+      },
+      error: function () {
+        // Manejo de errores si la solicitud falla
         Swal.fire({
-            type: 'warning',
-            title: 'Oops...',
-            text: message_error_form84,
-            icon: 'warning',
-            confirmButtonColor: '#336aea'
+          type: 'error',
+          title: 'Oops...',
+          text: message_error_form19,
+          icon: 'error',
+          confirmButtonColor: '#336aea'
         });
-        $("#email_recipient").focus();
-        return false;
-    }
+        $("#save_data_recipient").attr("disabled", false);
+      }
+    });
 
-    // Función para validar el formato del correo electrónico
-    function isValidEmailAddress(email) {
-        var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return pattern.test(email);
-    }
-
-    if ($.trim($("#country_modal_recipient").val()).length == 0) {
-        Swal.fire({
-
-              type: 'Error!',
-              title: 'Oops...',
-              text: validation_country,
-              icon: 'error',
-              confirmButtonColor: '#336aea'
-              
-        });
-        $("#country_modal_recipient").focus();
-        return false;
-    }
-
-    if ($.trim($("#state_modal_recipient").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_state,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#state_modal_recipient").focus();
-        return false;
-    }
-
-    if ($.trim($("#city_modal_recipient").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_city,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#city_modal_recipient").focus();
-        return false;
-    }
-
-    if ($.trim($("#postal_modal_recipient").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_zip,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#postal_modal_recipient").focus();
-        return false;
-    }
-
-    if ($.trim($("#address_modal_recipient").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_address,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#address_modal_recipient").focus();
-        return false;
-    }
-
-    if (iti_recipient.isValidNumber()) {
-        var sender_id = $("#sender_id").val();
-        $("#save_data_recipient").attr("disabled", true);
-        var parametros = $(this).serialize();
-
-        $.ajax({
-            type: "POST",
-            url: "ajax/courier/add_recipients_ajax.php?sender=" + sender_id,
-            data: parametros,
-            success: function (response) {
-                if (response.status === 'success') {
-                    Swal.fire({
-                        type: 'success',
-                        title: message_error_form80,
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(() => {
-                        // Acciones después de un éxito
-                        cdp_select2_init_sender();
-                        $(".resultados_ajax_add_user_modal_recipient").html(response.data);
-                        $("#save_data_recipient").attr("disabled", false);
-                        $("#myModalAddRecipient").modal("hide");
-
-                        // Actualizar campos de select
-                        var data = {
-                            id: response.customer_data.id,
-                            text: response.customer_data.fname + ' ' + response.customer_data.lname
-                        };
-
-                        var newOption = new Option(data.text, data.id, false, false);
-
-                        $('#recipient_id').append(newOption).trigger('change');
-                        $('#recipient_id').val(data.id).trigger('change');
-
-                        var data_address = {
-                            id: response.customer_address.id_addresses,
-                            text: response.customer_address.address
-                        };
-
-                        var newOption = new Option(data_address.text, data_address.id, false, false);
-
-                        $('#recipient_address_id').append(newOption).trigger('change');
-                        $('#recipient_address_id').val(data_address.id).trigger('change');
-
-                        // Ocultar mensaje de alerta
-                        window.setTimeout(function () {
-                            $(".alert").fadeTo(500, 0).slideUp(500, function () {
-                                $(this).remove();
-                            });
-                        }, 5000);
-                    });
-                } else {
-                    // Manejo de errores si la respuesta no es exitosa
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: response.message,
-                        icon: 'error',
-                        confirmButtonColor: '#336aea'
-                    });
-                    $("#save_data_recipient").attr("disabled", false);
-                }
-            },
-            error: function () {
-                // Manejo de errores si la solicitud falla
-                Swal.fire({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: message_error_form19,
-                    icon: 'error',
-                    confirmButtonColor: '#336aea'
-                });
-                $("#save_data_recipient").attr("disabled", false);
-            }
-        });
-
-    } else {
-      input_recipient.classList.add("error");
-      var errorCode = iti_recipient.getValidationError();
-      errorMsgRecipient.innerHTML = errorMap[errorCode];
-      errorMsgRecipient.classList.remove("hide");
-    }
+  } else {
+    input_recipient.classList.add("error");
+    var errorCode = iti_recipient.getValidationError();
+    errorMsgRecipient.innerHTML = errorMap[errorCode];
+    errorMsgRecipient.classList.remove("hide");
+  }
 });
 
 var senderadd = "";
-  var receiveradd = "";
-  var deliveryType = "";
+var receiveradd = "";
+var deliveryType = "";
 
 $('#sender_address_id').on('select2:select', function (e) {
   // Get the selected data
   var selectedData = e.params.data;
-  
+
   // Get the selected value and text
   // var selectedValue = selectedData.id;
   senderadd = selectedData.text;
 
   // Display the selected value and text
   console.log("Selected sender value:", senderadd);
-  calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
+  calculateAndDisplayDistance(senderadd, receiveradd, deliveryType);
 
 });
 
 $('#recipient_address_id').on('select2:select', function (e) {
   // Get the selected data
   var selectedData = e.params.data;
-  
+
   // Get the selected value and text
   // var selectedValue = selectedData.id;
-   receiveradd = selectedData.text;
+  receiveradd = selectedData.text;
 
   console.log("Selected receiver value:", receiveradd);
   // Display the selected value and text
-  calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
-  
-  
+  calculateAndDisplayDistance(senderadd, receiveradd, deliveryType);
+
+
 });
 
-$('#deliveryType').on('change',function(){
-  deliveryType =  $(this).val();
-  
+$('#deliveryType').on('change', function () {
+  deliveryType = $(this).val();
+
   console.log("Selected delivery value:", deliveryType);
-  
-  calculateAndDisplayDistance(senderadd, receiveradd,deliveryType);
+
+  calculateAndDisplayDistance(senderadd, receiveradd, deliveryType);
 })
 
 //Function to calculate distance between two coordinates and update distance input
-  function calculateAndDisplayDistance(origin, destination, deliveryType) {
-    if(!origin){
-      origin = $('#sender_address_id option:selected').text();
+function calculateAndDisplayDistance(origin, destination, deliveryType) {
+  if (!origin) {
+    origin = $('#sender_address_id option:selected').text();
+  }
+  if (!destination) {
+    destination = $('#recipient_address_id option:selected').text();
+  }
+  if (!deliveryType) {
+    deliveryType = document.getElementById('deliveryType').value;
+  }
+  // AJAX request to calculate distance
+  $.ajax({
+    type: 'POST',
+    url: 'ajax/courier/calculate_distance.php', // Replace with your PHP script for calculating distance
+    data: { 'origin': origin, 'destination': destination, 'deliveryType': deliveryType },
+    dataType: 'json',
+    success: function (data) {
+      console.log("All", data);
+      // Update distance input with calculated distance
+      $('#distance').val(data.distance);
+      // $('.fixed_value').val(data.shipmentfee);
+      $('.fixed_value').val(data.baseRate);
+      window.distance = data.distance;
+      localStorage.setItem('baseRate', data.baseRate)
+      localStorage.setItem('shipmentfee', data.shipmentfee)
+
+
+    },
+    error: function () {
+      // Handle error
+      // alert('Error calculating distance.');
     }
-    if(!destination){
-      destination =   $('#recipient_address_id option:selected').text();
-    }
-    if(!deliveryType){
-      deliveryType = document.getElementById('deliveryType').value;
-    }
-    // AJAX request to calculate distance
-    $.ajax({
-        type: 'POST',
-        url: 'ajax/courier/calculate_distance.php', // Replace with your PHP script for calculating distance
-        data: { 'origin': origin, 'destination': destination, 'deliveryType':deliveryType },
-        dataType: 'json',
-        success: function(data) {
-            console.log("All",data);
-            // Update distance input with calculated distance
-            $('#distance').val(data.distance);
-            // $('.fixed_value').val(data.shipmentfee);
-            $('.fixed_value').val(data.baseRate);
-            window.distance = data.distance;
-            localStorage.setItem('baseRate', data.baseRate)
-            localStorage.setItem('shipmentfee', data.shipmentfee)
-            
-            
-        },
-        error: function() {
-            // Handle error
-           // alert('Error calculating distance.');
-        }
-    });
-  } 
+  });
+}
 
 
 
@@ -1944,268 +1932,332 @@ $('#deliveryType').on('change',function(){
 // modal guardar direccion cliente remitente 
 
 $("#add_address_users_from_modal_shipments").on("submit", function (event) {
-    event.preventDefault(); // Evitar el envío del formulario por defecto
+  event.preventDefault(); // Evitar el envío del formulario por defecto
 
-    if ($.trim($("#country_modal_user_address").val()).length == 0) {
+  if ($.trim($("#country_modal_user_address").val()).length == 0) {
+    Swal.fire({
+
+      type: 'Error!',
+      title: 'Oops...',
+      text: validation_country,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+
+    });
+    $("#country_modal_user_address").focus();
+    return false;
+  }
+
+  if ($.trim($("#state_modal_user_address").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_state,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#state_modal_user_address").focus();
+    return false;
+  }
+
+  if ($.trim($("#city_modal_user_address").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_city,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#city_modal_user_address").focus();
+    return false;
+  }
+
+  if ($.trim($("#postal_modal_user_address").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_zip,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#postal_modal_user_address").focus();
+    return false;
+  }
+
+  if ($.trim($("#address_modal_user_address").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_address,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#address_modal_user_address").focus();
+    return false;
+  }
+
+
+  var sender_id = $("#sender_id").val();
+  $("#save_data_address_users").attr("disabled", true);
+  var parametros = $(this).serialize();
+
+  $.ajax({
+    type: "POST",
+    url: "ajax/courier/add_address_users_ajax.php?sender=" + sender_id,
+    data: parametros,
+    success: function (response) {
+      if (response.status === 'success') {
         Swal.fire({
+          type: 'success',
+          title: message_error_form80,
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
 
-              type: 'Error!',
-              title: 'Oops...',
-              text: validation_country,
-              icon: 'error',
-              confirmButtonColor: '#336aea'
-              
+          $("#save_data_address_users").attr("disabled", false);
+          $(".resultados_ajax_add_user_modal_sender").html(response.data);
+          $("#myModalAddUserAddresses").modal("hide");
+
+
+          var data_address = {
+            id: response.customer_address.id_addresses,
+            text: response.customer_address.address
+          };
+
+          var newOptionAddress = new Option(data_address.text, data_address.id, false, false);
+
+          $('#sender_address_id').append(newOptionAddress).trigger('change');
+          $('#sender_address_id').val(data_address.id).trigger('change');
+
+          window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+              $(this).remove();
+            });
+          }, 5000);
         });
-        $("#country_modal_user_address").focus();
-        return false;
-    }
-
-    if ($.trim($("#state_modal_user_address").val()).length == 0) {
+      } else {
         Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_state,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
+          type: 'error',
+          title: 'Oops...',
+          text: response.message,
+          icon: 'error',
+          confirmButtonColor: '#336aea'
         });
-        $("#state_modal_user_address").focus();
-        return false;
-    }
-
-    if ($.trim($("#city_modal_user_address").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_city,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#city_modal_user_address").focus();
-        return false;
-    }
-
-    if ($.trim($("#postal_modal_user_address").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_zip,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#postal_modal_user_address").focus();
-        return false;
-    }
-
-    if ($.trim($("#address_modal_user_address").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_address,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#address_modal_user_address").focus();
-        return false;
-    }
-
-
-      var sender_id = $("#sender_id").val();
-      $("#save_data_address_users").attr("disabled", true);
-      var parametros = $(this).serialize();
-
-      $.ajax({
-          type: "POST",
-          url: "ajax/courier/add_address_users_ajax.php?sender=" + sender_id,
-          data: parametros,
-          success: function (response) {
-              if (response.status === 'success') {
-                Swal.fire({
-                    type: 'success',
-                    title: message_error_form80,
-                    icon: 'success',
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then(() => {
-                  
-                  $("#save_data_address_users").attr("disabled", false);
-                  $(".resultados_ajax_add_user_modal_sender").html(response.data);
-                  $("#myModalAddUserAddresses").modal("hide");
-
-
-                   var data_address = {
-                        id: response.customer_address.id_addresses,
-                        text: response.customer_address.address
-                  };
-
-                  var newOptionAddress = new Option(data_address.text, data_address.id, false, false);
-
-                  $('#sender_address_id').append(newOptionAddress).trigger('change');
-                  $('#sender_address_id').val(data_address.id).trigger('change');
-
-                    window.setTimeout(function () {
-                        $(".alert").fadeTo(500, 0).slideUp(500, function () {
-                            $(this).remove();
-                        });
-                    }, 5000);
-                });
-              } else {
-                  Swal.fire({
-                      type: 'error',
-                      title: 'Oops...',
-                      text: response.message,
-                      icon: 'error',
-                      confirmButtonColor: '#336aea'
-                  });
-                  $("#save_data_address_users").attr("disabled", false);
-              }
-          },
-          error: function () {
-              Swal.fire({
-                  type: 'error',
-                  title: 'Oops...',
-                  text: message_error_form19,
-                  icon: 'error',
-                  confirmButtonColor: '#336aea'
-              });
-              $("#save_data_address_users").attr("disabled", false);
-          }
+        $("#save_data_address_users").attr("disabled", false);
+      }
+    },
+    error: function () {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: message_error_form19,
+        icon: 'error',
+        confirmButtonColor: '#336aea'
       });
-     
+      $("#save_data_address_users").attr("disabled", false);
+    }
+  });
+
 });
 
 
+function initAutocomplete() {
+
+  const address_fields = [document.querySelector("#address_modal_user_address"), document.querySelector("#address_modal_recipient")];
+  //var country_array = ["AFG","ALB","DZA","AND","AGO","ATG","ARG","ARM","AUS","AUT","AZE","BHS","BHR","BGD","BRB","BLR","BEL","BLZ","BEN","BMU","BTN","BOL","BIH","BWA","BRA","BRN","BGR","BFA","BDI","KHM","CMR","CAN","CPV","CAF","TCD","CHL","CHN","COL","COM","COG","COD","CRI","CIV","HRV","CUB","CYP","CZE","DNK","DJI","DMA","DOM","TLS","ECU","EGY","SLV","GNQ","ERI","EST","ETH","FJI","FIN","FRA","GAB","GMB","GEO","DEU","GHA","GRC","GRD","GTM","GIN","GNB","GUY","HTI","HND","HKG","HUN","ISL","IND","IDN","IRN","IRQ","IRL","ISR","ITA","JAM","JPN","JOR","KAZ","KEN","KIR","PRK","KOR","KWT","KGZ","LAO","LVA","LBN","LSO","LBR","LBY","LIE","LTU","LUX","MKD","MDG","MWI","MYS","MDV","MLI","MLT","MHL","MRT","MUS","MEX","FSM","MDA","MCO","MNG","MNE","MAR","MOZ","MMR","NAM","NRU","NPL","BES","NLD","NZL","NIC","NER","NGA","NOR","OMN","PAK","PLW","PAN","PNG","PRY","PER","PHL","POL","PRT","PRI","QAT","ROU","RUS","RWA","KNA","LCA","VCT","WSM","SMR","STP","SAU","SEN","SRB","SYC","SLE","SGP","SVK","SVN","SLB","SOM","ZAF","SSD","ESP","LKA","SDN","SUR","SWZ","SWE","CHE","SYR","TWN","TJK","TZA","THA","TGO","TON","TTO","TUN","TUR","TKM","TUV","UGA","UKR","ARE","GBR","USA","URY","UZB","VUT","VEN","VNM","VIR","YEM","ZMB","ZWE","XKX","test","HA","ISM","MAR","YU","YU"];
+
+  address_fields.forEach(address => {
+    let autocomplete = new google.maps.places.Autocomplete(address, {
+      // componentRestrictions: { country: new_country_array },
+      fields: ["address_components", "geometry"],
+      types: ["address"],
+      strictBounds: false,
+    });
+    address.focus();
+    // When the user selects an address from the drop-down, populate the
+    // address fields in the form.
+    autocomplete.addListener("place_changed", fillInAddress);
+  })
+  // Create the autocomplete object, restricting the search predictions to
+  // addresses in the US and Canada.
+  // autocomplete = new google.maps.places.Autocomplete(address_field, {
+  //   // componentRestrictions: { country: new_country_array },
+  //   fields: ["address_components", "geometry"],
+  //   types: ["address"],
+  //   strictBounds: false,
+  // });
+  // address_field.focus();
+  // // When the user selects an address from the drop-down, populate the
+  // // address fields in the form.
+  // autocomplete.addListener("place_changed", fillInAddress);
+
+}
+
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  const place = autocomplete.getPlace();
+  let address1 = "";
+  let postcode = "";
+
+  // Get each component of the address from the place details,
+  // and then fill-in the corresponding field on the form.
+  // place.address_components are google.maps.GeocoderAddressComponent objects
+  // which are documented at http://goo.gle/3l5i5Mr
+  for (const component of place.address_components) {
+    // @ts-ignore remove once typings fixed
+    const componentType = component.types[0];
+
+    switch (componentType) {
+      case "street_number": {
+        address1 = `${component.long_name} ${address1}`;
+        break;
+      }
+
+      case "route": {
+        address1 += component.short_name;
+        break;
+      }
+
+    }
+
+    address_field.value = address1;
+  }
+}
+
+window.initAutocomplete = initAutocomplete;
 
 
 // modal guardar direccion cliente destinatario 
 
 $("#add_address_recipients_from_modal_shipments").on("submit", function (event) {
-    event.preventDefault(); // Evitar el envío del formulario por defecto
+  event.preventDefault(); // Evitar el envío del formulario por defecto
 
-    if ($.trim($("#country_modal_recipient_address").val()).length == 0) {
+  if ($.trim($("#country_modal_recipient_address").val()).length == 0) {
+    Swal.fire({
+
+      type: 'Error!',
+      title: 'Oops...',
+      text: validation_country,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+
+    });
+    $("#country_modal_recipient_address").focus();
+    return false;
+  }
+
+  if ($.trim($("#state_modal_recipient_address").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_state,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#state_modal_recipient_address").focus();
+    return false;
+  }
+
+  if ($.trim($("#city_modal_recipient_address").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_city,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#city_modal_recipient_address").focus();
+    return false;
+  }
+
+  if ($.trim($("#postal_modal_recipient_address").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_zip,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#postal_modal_recipient_address").focus();
+    return false;
+  }
+
+  if ($.trim($("#address_modal_recipient_address").val()).length == 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: validation_address,
+      icon: 'error',
+      confirmButtonColor: '#336aea'
+    });
+    $("#address_modal_recipient_address").focus();
+    return false;
+  }
+
+
+  var recipient_id = $("#recipient_id").val();
+  $("#save_data_address_recipients").attr("disabled", true);
+  var parametros = $(this).serialize();
+
+  $.ajax({
+    type: "POST",
+    url: "ajax/courier/add_address_recipients_ajax.php?recipient=" + recipient_id,
+    data: parametros,
+    success: function (response) {
+      if (response.status === 'success') {
         Swal.fire({
+          type: 'success',
+          title: message_error_form80,
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
 
-              type: 'Error!',
-              title: 'Oops...',
-              text: validation_country,
-              icon: 'error',
-              confirmButtonColor: '#336aea'
-              
+          $("#save_data_address_recipients").attr("disabled", false);
+          $(".resultados_ajax_add_user_modal_recipient").html(response.data);
+          $("#myModalAddRecipientAddresses").modal("hide");
+
+
+          var data_address = {
+            id: response.customer_address.id_addresses,
+            text: response.customer_address.address
+          };
+
+          var newOptionAddress = new Option(data_address.text, data_address.id, false, false);
+
+          $('#recipient_address_id').append(newOptionAddress).trigger('change');
+          $('#recipient_address_id').val(data_address.id).trigger('change');
+
+          window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+              $(this).remove();
+            });
+          }, 5000);
         });
-        $("#country_modal_recipient_address").focus();
-        return false;
-    }
-
-    if ($.trim($("#state_modal_recipient_address").val()).length == 0) {
+      } else {
         Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_state,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
+          type: 'error',
+          title: 'Oops...',
+          text: response.message,
+          icon: 'error',
+          confirmButtonColor: '#336aea'
         });
-        $("#state_modal_recipient_address").focus();
-        return false;
-    }
-
-    if ($.trim($("#city_modal_recipient_address").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_city,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#city_modal_recipient_address").focus();
-        return false;
-    }
-
-    if ($.trim($("#postal_modal_recipient_address").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_zip,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#postal_modal_recipient_address").focus();
-        return false;
-    }
-
-    if ($.trim($("#address_modal_recipient_address").val()).length == 0) {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: validation_address,
-            icon: 'error',
-            confirmButtonColor: '#336aea'
-        });
-        $("#address_modal_recipient_address").focus();
-        return false;
-    }
-
-
-      var recipient_id = $("#recipient_id").val();
-      $("#save_data_address_recipients").attr("disabled", true);
-      var parametros = $(this).serialize();
-
-      $.ajax({
-          type: "POST",
-          url: "ajax/courier/add_address_recipients_ajax.php?recipient=" +recipient_id,
-          data: parametros,
-          success: function (response) {
-              if (response.status === 'success') {
-                Swal.fire({
-                    type: 'success',
-                    title: message_error_form80,
-                    icon: 'success',
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then(() => {
-
-                  $("#save_data_address_recipients").attr("disabled", false);
-                  $(".resultados_ajax_add_user_modal_recipient").html(response.data);
-                  $("#myModalAddRecipientAddresses").modal("hide");
-
-
-                   var data_address = {
-                        id: response.customer_address.id_addresses,
-                        text: response.customer_address.address
-                  };
-
-                  var newOptionAddress = new Option(data_address.text, data_address.id, false, false);
-
-                  $('#recipient_address_id').append(newOptionAddress).trigger('change');
-                  $('#recipient_address_id').val(data_address.id).trigger('change');
-
-                    window.setTimeout(function () {
-                        $(".alert").fadeTo(500, 0).slideUp(500, function () {
-                            $(this).remove();
-                        });
-                    }, 5000);
-                });
-              } else {
-                  Swal.fire({
-                      type: 'error',
-                      title: 'Oops...',
-                      text: response.message,
-                      icon: 'error',
-                      confirmButtonColor: '#336aea'
-                  });
-                  $("#save_data_address_recipients").attr("disabled", false);
-              }
-          },
-          error: function () {
-              Swal.fire({
-                  type: 'error',
-                  title: 'Oops...',
-                  text: message_error_form19,
-                  icon: 'error',
-                  confirmButtonColor: '#336aea'
-              });
-              $("#save_data_address_recipients").attr("disabled", false);
-          }
+        $("#save_data_address_recipients").attr("disabled", false);
+      }
+    },
+    error: function () {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: message_error_form19,
+        icon: 'error',
+        confirmButtonColor: '#336aea'
       });
-     
+      $("#save_data_address_recipients").attr("disabled", false);
+    }
+  });
+
 });
 
 var errorMsg = document.querySelector("#error-msg-sender");
@@ -2226,7 +2278,7 @@ var errorMap = [
 var input = document.querySelector("#phone_custom");
 var iti = window.intlTelInput(input, {
   geoIpLookup: function (callback) {
-    $.get("http://ipinfo.io", function () {}, "jsonp").always(function (resp) {
+    $.get("http://ipinfo.io", function () { }, "jsonp").always(function (resp) {
       var countryCode = resp && resp.country ? resp.country : "";
       callback(countryCode);
     });
@@ -2241,7 +2293,7 @@ var iti = window.intlTelInput(input, {
 var reset = function () {
   input.classList.remove("error");
   input_recipient.classList.remove("error");
-  
+
   errorMsg.innerHTML = "";
   errorMsg.classList.add("hide");
   validMsg.classList.add("hide");
@@ -2308,7 +2360,7 @@ input.addEventListener("keypress", function (event) {
 var input_recipient = document.querySelector("#phone_custom_recipient");
 var iti_recipient = window.intlTelInput(input_recipient, {
   geoIpLookup: function (callback) {
-    $.get("http://ipinfo.io", function () {}, "jsonp").always(function (resp) {
+    $.get("http://ipinfo.io", function () { }, "jsonp").always(function (resp) {
       var countryCode = resp && resp.country ? resp.country : "";
       callback(countryCode);
     });
@@ -2442,6 +2494,6 @@ function cdp_showSuccess(messages, shipment_id) {
   event.preventDefault();
 });*/
 
-$("#deliveryType").on('change', function(){
+$("#deliveryType").on('change', function () {
   calculateAndDisplayDistance();
 })

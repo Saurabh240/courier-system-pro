@@ -733,10 +733,12 @@ $moderow = $core->cdp_getShipmode();
                                     $dir = 'doc_signs/shipments_courier/' . $row_order->order_id . '.png';
 
                                     ?>
+                                    <div id="row_order" style="display:none;"><?php var_dump($row_order);?></div>
                                     <div class="row">
                                         <div class=" col-sm-12 col-md-6 mb-2">
                                             <h5> &nbsp;<b> <?php echo $lang['leftorder54'] ?></b></h5>
-                                            <img src="doc_signs/shipments_courier/<?php echo $row_order->order_id; ?>.png" style="max-width:100%;width:auto;height:auto;">
+                                            <a href="doc_signs/shipments_courier/<?php echo $row_order->order_id; ?>.png" target="_blank"><?php echo $lang['leftorder54'] ?></a>
+                                            <!-- <img src="doc_signs/shipments_courier/<?php echo $row_order->order_id; ?>.png" style="max-width:100%;width:auto;height:auto;"> -->
                                         </div>
                                         <?php
 
@@ -744,7 +746,8 @@ $moderow = $core->cdp_getShipmode();
 
                                             <div class=" col-sm-12 col-md-6 mb-2">
                                                 <h5> &nbsp;<b> <?php echo $lang['leftorder55'] ?></b></h5>
-                                                <img src="<?php echo $row_order->photo_delivered; ?>" width="400" height="250" style="max-width:100%;width:auto;height:auto;">
+                                                <a href="<?php echo $row_order->photo_delivered; ?>" target="_blank"><?php echo $lang['leftorder55'] ?></a>
+                                                <!-- <img src="<?php echo $row_order->photo_delivered; ?>" width="400" height="250" style="max-width:100%;width:auto;height:auto;"> -->
                                             </div>
                                         <?php
                                         } ?>
