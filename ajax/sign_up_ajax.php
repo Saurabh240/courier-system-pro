@@ -38,10 +38,10 @@ $error = "";
 //$requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'email', 'phone', 'fname', 'lname', 'document_number', 'document_type');
 $account_type= $_POST['account_type'];
 if($account_type == 'business'){
-    $requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'email', 'phone', 'fname', 'lname','business_name','business_type');
+    $requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'phone', 'fname','business_name','business_type');
 
 }else{
-    $requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'email', 'phone', 'fname', 'lname');
+    $requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'phone', 'fname');
 
 }
 foreach ($requiredFields as $field) {
@@ -67,9 +67,9 @@ if ($cedulaExists) {
 }*/
 
 // Validar formato de correo electrónico
-if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    $error = $lang['messagesform79'];
-}
+// if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+//     $error = $lang['messagesform79'];
+// }
 
 
 // Verificar disponibilidad de correo electrónico
@@ -78,9 +78,9 @@ if ($emailExists) {
     $error = $lang['messagesform78'];
 }
 
-if (!$user->cdp_isValidEmail($_POST['email']))
+// if (!$user->cdp_isValidEmail($_POST['email']))
 
-    $error = $lang['messagesform77'];
+//     $error = $lang['messagesform77'];
 
 
 if (empty($_POST['pass']))
@@ -423,7 +423,8 @@ if (empty($error)) {
         }
 
 
-        $messages[] = $lang['messagesform71']. " " . $prefixlk . ' ' . $_POST['locker'] . " ".$lang['messagesform72'];
+        // $messages[] = $lang['messagesform71']. " " . $prefixlk . ' ' . $_POST['locker'] . " ".$lang['messagesform72'];
+        $messages[] = $lang['messagesform71'];
     } else {
         $error['critical_error'] = "An error occurred during the registration process. Contact the administrator ...";
     }
