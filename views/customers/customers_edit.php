@@ -210,66 +210,7 @@ $user_addreses = $db->cdp_registros();
                                                 <?php }  ?>
 
                                                 <?php if ($userData->userlevel == 9 || $userData->userlevel == 2) { ?>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="phoneNumber1"><?php echo $lang['leftorder164'] ?></label>
-                                                            <select class="custom-select form-control" id="document_type" name="document_type" value="<?php echo $row->document_type; ?>">
-
-
-                                                                <option value="DNI" <?php if ($row->document_type == 'DNI') {
-                                                                                        echo 'selected';
-                                                                                    } ?>><?php echo $lang['leftorder165'] ?></option>
-
-                                                                <option value="RIC" <?php if ($row->document_type == 'RIC') {
-                                                                                        echo 'selected';
-                                                                                    } ?>><?php echo $lang['leftorder166'] ?></option>
-
-                                                                <option value="CI" <?php if ($row->document_type == 'CI') {
-                                                                                        echo 'selected';
-                                                                                    } ?>><?php echo $lang['leftorder167'] ?></option>
-
-                                                                <option value="CIE" <?php if ($row->document_type == 'CIE') {
-                                                                                        echo 'selected';
-                                                                                    } ?>><?php echo $lang['leftorder168'] ?></option>
-
-                                                                <option value="CIN" <?php if ($row->document_type == 'CIN') {
-                                                                                        echo 'selected';
-                                                                                    } ?>><?php echo $lang['leftorder169'] ?></option>
-
-                                                                <option value="CIE" <?php if ($row->document_type == 'CIE') {
-                                                                                        echo 'selected';
-                                                                                    } ?>><?php echo $lang['leftorder170'] ?></option>
-
-                                                                <option value="CC" <?php if ($row->document_type == 'CC') {
-                                                                                        echo 'selected';
-                                                                                    } ?>><?php echo $lang['leftorder171'] ?></option>
-
-                                                                <option value="TI" <?php if ($row->document_type == 'TI') {
-                                                                                        echo 'selected';
-                                                                                    } ?>><?php echo $lang['leftorder172'] ?></option>
-
-                                                                <option value="PSP" <?php if ($row->document_type == 'PSP') {
-                                                                                        echo 'selected';
-                                                                                    } ?>><?php echo $lang['leftorder174'] ?></option>
-
-
-                                                                <option value="NIT" <?php if ($row->document_type == 'NIT') {
-                                                                                        echo 'selected';
-                                                                                    } ?>><?php echo $lang['leftorder1745'] ?></option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="phoneNumber1"><?php echo $lang['leftorder175'] ?></label>
-                                                            <input type="text" class="form-control" id="document_number" name="document_number" value="<?php echo $row->document_number; ?>" placeholder="<?php echo $lang['leftorder175'] ?>">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
+                                                
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -324,7 +265,52 @@ $user_addreses = $db->cdp_registros();
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="account_type"><?php echo "Account Type" ?></label>
+                                                            <input type="text" class="form-control" id="account_type" name="account_type" value="<?php echo $row->account_type; ?>" readonly>
+                                                        </div>
+                                                    </div>
                                                 </div>
+
+                                                
+                                                <?php if(  $row->account_type !== 'personal') { ?>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="business_type"><?php echo "Business Type" ?></label>
+                                                                <input type="text" class="form-control" id="business_type" name="business_type" value="<?php echo $row->business_type; ?>" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="business_name"><?php echo "Business Name" ?></label>
+                                                                <input type="text" class="form-control" id="business_name" name="business_name" value="<?php echo $row->business_name; ?>" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="billing_choice"><?php echo "Billing Choice" ?></label>
+                                                                <input type="text" class="form-control" id="billing_choice" name="billing_choice" value="<?php echo $row->billing_choice; ?>" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="address_line_2 "><?php echo "Address Line 2" ?></label>
+                                                                <input type="text" class="form-control" id="address_line_2 " name="address_line_2 " value="<?php echo $row->address_line_2 ; ?>" readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="address_line_2 "><?php echo "Address Line 2" ?></label>
+                                                                <input type="text" class="form-control" id="address_line_2 " name="address_line_2 " value="<?php echo $row->address_line_2 ; ?>" readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
 
                                                 <hr>
 

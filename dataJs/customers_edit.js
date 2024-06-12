@@ -15,7 +15,7 @@ var errorMap = [
 var input = document.querySelector("#phone_custom");
 var iti = window.intlTelInput(input, {
   geoIpLookup: function (callback) {
-    $.get("http://ipinfo.io", function () {}, "jsonp").always(function (resp) {
+    $.get("http://ipinfo.io", function () { }, "jsonp").always(function (resp) {
       var countryCode = resp && resp.country ? resp.country : "";
       callback(countryCode);
     });
@@ -262,101 +262,101 @@ $(function () {
     cdp_load_states(count);
     cdp_load_cities(count);
   });
- 
 
-// Función para confirmar eliminación
-function confirmDelete(addressId, rowId) {
+
+  // Función para confirmar eliminación
+  function confirmDelete(addressId, rowId) {
     Swal.fire({
-        title: translate_delete_address,
-        html: `<p class="messi-warning">${message_delete_confirm}<br /><strong>${message_delete_confirm2}</strong></p>`,
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#336aea',
-        cancelButtonColor: '#eb644c',
-        confirmButtonText: message_delete_confirm1,
-        showLoaderOnConfirm: true,
-        preConfirm: function () {
-            return $.ajax({
-                type: 'post',
-                url: './ajax/customers/customers_delete_address_ajax.php',
-                dataType: 'json',
-                data: {
-                    id: addressId,
-                },
-                beforeSend: function () {
-                    $("#div_parent_" + rowId).animate({
-                        backgroundColor: "#FFBFBF",
-                    }, 400);
-                    $("#resultados_ajax").html("");
-                },
-            });
-        },
-     }).then(function (result) {
-        if (result.value.success) {
-            cdp_showSuccess(result.value.messages);
-            count--;
-            $("#div_parent_" + rowId).fadeOut(400, function () {
-                $("#div_parent_" + rowId).remove();
-            });
-            $("#total_address").val(count);
-            
-        } else {
-            cdp_showError(result.value.errors);
-            
-        }
-    });
-}
+      title: translate_delete_address,
+      html: `<p class="messi-warning">${message_delete_confirm}<br /><strong>${message_delete_confirm2}</strong></p>`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#336aea',
+      cancelButtonColor: '#eb644c',
+      confirmButtonText: message_delete_confirm1,
+      showLoaderOnConfirm: true,
+      preConfirm: function () {
+        return $.ajax({
+          type: 'post',
+          url: './ajax/customers/customers_delete_address_ajax.php',
+          dataType: 'json',
+          data: {
+            id: addressId,
+          },
+          beforeSend: function () {
+            $("#div_parent_" + rowId).animate({
+              backgroundColor: "#FFBFBF",
+            }, 400);
+            $("#resultados_ajax").html("");
+          },
+        });
+      },
+    }).then(function (result) {
+      if (result.value.success) {
+        cdp_showSuccess(result.value.messages);
+        count--;
+        $("#div_parent_" + rowId).fadeOut(400, function () {
+          $("#div_parent_" + rowId).remove();
+        });
+        $("#total_address").val(count);
 
-// Evento click en el botón de eliminar dirección
-$(document).on("click", ".remove_row", function () {
+      } else {
+        cdp_showError(result.value.errors);
+
+      }
+    });
+  }
+
+  // Evento click en el botón de eliminar dirección
+  $(document).on("click", ".remove_row", function () {
     var row_id = $(this).attr("id");
     var address_id = $("#address_id" + row_id).val();
 
     if (address_id) {
-        confirmDelete(address_id, row_id);
+      confirmDelete(address_id, row_id);
     } else {
-        count--;
-        $("#div_parent_" + row_id).fadeOut(400, function () {
-            $("#div_parent_" + row_id).remove();
-        });
-        $("#total_address").val(count);
+      count--;
+      $("#div_parent_" + row_id).fadeOut(400, function () {
+        $("#div_parent_" + row_id).remove();
+      });
+      $("#total_address").val(count);
     }
-});
+  });
 
 
 
 });
 
- 
+
 
 
 $("#edit_user").on("submit", function (event) {
-      var count = $('#total_address').val();
+  var count = $('#total_address').val();
 
-      // Validación de direcciones
-      for (var no = 1; no <= count; no++) {
-          var addressField = $('#address' + no);
-          var countryField = $('#country' + no);
-          var stateField = $('#state' + no);
-          var cityField = $('#city' + no);
-          var postalField = $('#postal' + no);
+  // Validación de direcciones
+  for (var no = 1; no <= count; no++) {
+    var addressField = $('#address' + no);
+    var countryField = $('#country' + no);
+    var stateField = $('#state' + no);
+    var cityField = $('#city' + no);
+    var postalField = $('#postal' + no);
 
-          if ($.trim(addressField.val()).length === 0 ||
-              $.trim(countryField.val()).length === 0 ||
-              $.trim(stateField.val()).length === 0 ||
-              $.trim(cityField.val()).length === 0 ||
-              $.trim(postalField.val()).length === 0) {
-              Swal.fire({
-                  type: 'error',
-                  title: message_error_form1,
-                  text: message_error_form2,
-                  confirmButtonColor: '#336aea',
-                  showConfirmButton: true,
-              });
-              addressField.focus();
-              return false;
-          }
-      }
+    if ($.trim(addressField.val()).length === 0 ||
+      $.trim(countryField.val()).length === 0 ||
+      $.trim(stateField.val()).length === 0 ||
+      $.trim(cityField.val()).length === 0 ||
+      $.trim(postalField.val()).length === 0) {
+      Swal.fire({
+        type: 'error',
+        title: message_error_form1,
+        text: message_error_form2,
+        confirmButtonColor: '#336aea',
+        showConfirmButton: true,
+      });
+      addressField.focus();
+      return false;
+    }
+  }
 
   if (iti.isValidNumber()) {
 
@@ -366,8 +366,8 @@ $("#edit_user").on("submit", function (event) {
 
     var username = $("#username").val();
     var email = $("#email").val();
-    var document_type = $("#document_type").val();
-    var document_number = $("#document_number").val();
+    var document_type = " ";
+    var document_number = " ";
     var fname = $("#fname").val();
     var lname = $("#lname").val();
     var notes = $("#notes").val();
@@ -400,117 +400,117 @@ $("#edit_user").on("submit", function (event) {
 
     // Verifica si hay campos faltantes
     if (missingFields.length > 0) {
-        // Construye el mensaje de alerta
-        var alertMessage = message_error_form5;
-        alertMessage += '\n\n- ' + missingFields.join('\n- ');
+      // Construye el mensaje de alerta
+      var alertMessage = message_error_form5;
+      alertMessage += '\n\n- ' + missingFields.join('\n- ');
 
-        // Muestra el mensaje de alerta
-        Swal.fire({
+      // Muestra el mensaje de alerta
+      Swal.fire({
+        type: 'error',
+        title: message_error_form1,
+        text: alertMessage,
+        confirmButtonColor: '#336aea',
+        showConfirmButton: true,
+      });
+
+    } else {
+
+      var data = new FormData();
+
+      data.append("username", username);
+      data.append("password", password);
+      data.append("document_number", document_number);
+      data.append("document_type", document_type);
+      data.append("fname", fname);
+      data.append("lname", lname);
+      data.append("email", email);
+      data.append("phone", phone);
+      data.append("gender", gender);
+      data.append("active", active);
+      data.append("newsletter", newsletter);
+      data.append("notes", notes);
+      data.append("notify", notify);
+      data.append("total_address", total_address);
+      data.append("id", id);
+
+      for (var a of address) {
+        data.append("address[]", a.value);
+      }
+      for (var c of country) {
+        data.append("country[]", c.value);
+      }
+      for (var c of state) {
+        data.append("state[]", c.value);
+      }
+      for (var ci of city) {
+        data.append("city[]", ci.value);
+      }
+      for (var p of postal) {
+        data.append("postal[]", p.value);
+      }
+      for (var ai of address_id) {
+        data.append("address_id[]", ai.value);
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "ajax/customers/customers_edit_ajax.php",
+        data: data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function (objeto) {
+
+          Swal.fire({
+            title: message_error_form6,
+            text: message_error_form14,
+            type: 'info',
+            showCancelButton: false,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+              Swal.showLoading();
+            },
+          });
+        },
+
+        success: function (response) {
+          Swal.close();
+          if (response.status === 'success') {
+            Swal.fire({
+              type: 'success',
+              title: message_error_form15,
+              showConfirmButton: false,
+              timer: 1500,
+              timerProgressBar: true,
+            }).then(() => {
+              // Redirigir al listado de clientes
+              window.location.href = 'customers_list.php';
+            });
+          } else {
+            Swal.fire({
+              type: 'error',
+              title: message_error_form18,
+              text: response.message || message_error_form17,
+              confirmButtonColor: '#336aea',
+              showConfirmButton: true,
+            });
+          }
+        },
+        error: function () {
+          Swal.close();
+          Swal.fire({
             type: 'error',
-            title: message_error_form1,
-            text: alertMessage,
+            title: message_error_form18,
+            text: message_error_form19,
             confirmButtonColor: '#336aea',
             showConfirmButton: true,
-        });
-
-    } else { 
-
-    var data = new FormData();
-
-    data.append("username", username);
-    data.append("password", password);
-    data.append("document_number", document_number);
-    data.append("document_type", document_type);
-    data.append("fname", fname);
-    data.append("lname", lname);
-    data.append("email", email);
-    data.append("phone", phone);
-    data.append("gender", gender);
-    data.append("active", active);
-    data.append("newsletter", newsletter);
-    data.append("notes", notes);
-    data.append("notify", notify);
-    data.append("total_address", total_address);
-    data.append("id", id);
-
-    for (var a of address) {
-      data.append("address[]", a.value);
-    }
-    for (var c of country) {
-      data.append("country[]", c.value);
-    }
-    for (var c of state) {
-      data.append("state[]", c.value);
-    }
-    for (var ci of city) {
-      data.append("city[]", ci.value);
-    }
-    for (var p of postal) {
-      data.append("postal[]", p.value);
-    }
-    for (var ai of address_id) {
-      data.append("address_id[]", ai.value);
-    }
- 
-    $.ajax({
-      type: "POST",
-      url: "ajax/customers/customers_edit_ajax.php",
-      data: data,
-      contentType: false,
-      cache: false,
-      processData: false,
-      beforeSend: function (objeto) {
-
-        Swal.fire({
-              title: message_error_form6,
-              text: message_error_form14,
-              type: 'info',
-              showCancelButton: false,
-              showConfirmButton: false,
-              allowOutsideClick: false,
-              onBeforeOpen: () => {
-                  Swal.showLoading();
-              },
           });
-      },
-
-      success: function(response) {
-            Swal.close();
-            if (response.status === 'success') {
-                Swal.fire({
-                    type: 'success',
-                    title: message_error_form15,
-                    showConfirmButton: false,
-                    timer: 1500,
-                    timerProgressBar: true,
-                }).then(() => {
-                    // Redirigir al listado de clientes
-                    window.location.href = 'customers_list.php';
-                });
-            } else {
-                Swal.fire({
-                    type: 'error',
-                    title: message_error_form18,
-                    text: response.message || message_error_form17,
-                    confirmButtonColor: '#336aea',
-                    showConfirmButton: true,
-                });
-            }
-        },
-        error: function() {
-            Swal.close();
-            Swal.fire({
-                type: 'error',
-                title: message_error_form18,
-                text: message_error_form19,
-                confirmButtonColor: '#336aea',
-                showConfirmButton: true,
-            });
         },
 
-    });
+      });
 
-  }
+    }
 
   } else {
     input.classList.add("error");
@@ -523,52 +523,52 @@ $("#edit_user").on("submit", function (event) {
 
 
 
-$(document).ready(function() {
-    $('#edit_avatar_form').on('submit', function(event) {
-        event.preventDefault(); // Evita que el formulario se envíe de forma convencional
-        updateAvatar();
-    });
+$(document).ready(function () {
+  $('#edit_avatar_form').on('submit', function (event) {
+    event.preventDefault(); // Evita que el formulario se envíe de forma convencional
+    updateAvatar();
+  });
 
-    function updateAvatar() {
-        var formData = new FormData($('#edit_avatar_form')[0]);
+  function updateAvatar() {
+    var formData = new FormData($('#edit_avatar_form')[0]);
 
-        $.ajax({
-            type: 'POST',
-            url: './ajax/customers/customers_avatar_edit_ajax.php',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                // Manejar la respuesta del servidor
-                 if (response.success) {
-                    // Mostrar SweetAlert2 de éxito
-                    Swal.fire({
-                        type: 'success',
-                        title: 'Avatar updated',
-                        text: response.message
-                    }).then(() => {
-                        // Redirigir al mismo sitio
-                        window.location.href = window.location.href;
-                    });
-                } else {
-                    // Mostrar SweetAlert2 de error
-                    Swal.fire({
-                         type: 'error',
-                        title: 'Avatar Update Error',
-                        text: response.message
-                    });
-                }
-            },
-            error: function() {
-                // Manejar errores de conexión u otros errores
-                Swal.fire({
-                    type: 'error',
-                    title: 'Error',
-                    text: 'Connection or processing error on the server.'
-                });
-            }
+    $.ajax({
+      type: 'POST',
+      url: './ajax/customers/customers_avatar_edit_ajax.php',
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        // Manejar la respuesta del servidor
+        if (response.success) {
+          // Mostrar SweetAlert2 de éxito
+          Swal.fire({
+            type: 'success',
+            title: 'Avatar updated',
+            text: response.message
+          }).then(() => {
+            // Redirigir al mismo sitio
+            window.location.href = window.location.href;
+          });
+        } else {
+          // Mostrar SweetAlert2 de error
+          Swal.fire({
+            type: 'error',
+            title: 'Avatar Update Error',
+            text: response.message
+          });
+        }
+      },
+      error: function () {
+        // Manejar errores de conexión u otros errores
+        Swal.fire({
+          type: 'error',
+          title: 'Error',
+          text: 'Connection or processing error on the server.'
         });
-    }
+      }
+    });
+  }
 });
 
 

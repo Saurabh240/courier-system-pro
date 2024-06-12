@@ -38,10 +38,10 @@ $error = "";
 //$requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'email', 'phone', 'fname', 'lname', 'document_number', 'document_type');
 $account_type= $_POST['account_type'];
 if($account_type == 'business'){
-    $requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'email', 'phone', 'fname', 'lname','business_name','business_type');
+    $requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'phone', 'fname','business_name','business_type');
 
 }else{
-    $requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'email', 'phone', 'fname', 'lname');
+    $requiredFields = array('terms', 'country', 'state', 'city', 'address', 'postal', 'username', 'phone', 'fname');
 
 }
 foreach ($requiredFields as $field) {
@@ -67,9 +67,9 @@ if ($cedulaExists) {
 }*/
 
 // Validar formato de correo electrónico
-if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    $error = $lang['messagesform79'];
-}
+// if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+//     $error = $lang['messagesform79'];
+// }
 
 
 // Verificar disponibilidad de correo electrónico
@@ -78,9 +78,9 @@ if ($emailExists) {
     $error = $lang['messagesform78'];
 }
 
-if (!$user->cdp_isValidEmail($_POST['email']))
+// if (!$user->cdp_isValidEmail($_POST['email']))
 
-    $error = $lang['messagesform77'];
+//     $error = $lang['messagesform77'];
 
 
 if (empty($_POST['pass']))
@@ -132,7 +132,7 @@ if (empty($error)) {
         'phone' => cdp_sanitize($_POST['phone']),
         'userlevel' => 1,
         'active' => 1,
-
+        'address_line_2' => isset($_POST['address2'] ) ? cdp_sanitize( $_POST['address2']) : "",
     );
 
 
@@ -199,8 +199,8 @@ if (empty($error)) {
             created,
             phone,
             active,
-            terms
-            
+            terms,
+            address_line_2
         )
 
         VALUES (
@@ -218,7 +218,8 @@ if (empty($error)) {
             :created,
             :phone,
             :active,
-            :terms
+            :terms,
+            :address_line_2
         )');
 
 
@@ -229,6 +230,7 @@ if (empty($error)) {
     $db->bind(':email', $datos['email']);
     $db->bind(':fname', $datos['fname']);
     $db->bind(':lname', $datos['lname']);
+    $db->bind(':address_line_2', $datos['address_line_2']);
     $db->bind(':account_type', $datos['account_type']);
     $db->bind(':business_name', $datos['business_name']);
     $db->bind(':business_type', $datos['business_type']);
@@ -239,11 +241,12 @@ if (empty($error)) {
     $db->bind(':phone', $datos['phone']);
     $db->bind(':active', $datos['active']);
     $db->bind(':terms', $datos['terms']);
-    
-    
 
     $insert = $db->cdp_execute();
-
+    
+    if ( $_POST['address2'] === "de" ) {
+        var_dump($insert, $db, $datos, $datos['address_line_2']);die;
+    }
     $user_created_id = $db->dbh->lastInsertId();
 
     if ($user_created_id !== null) {
@@ -422,8 +425,8 @@ if (empty($error)) {
             }
         }
 
-
-        $messages[] = $lang['messagesform71']. " " . $prefixlk . ' ' . $_POST['locker'] . " ".$lang['messagesform72'];
+        // $messages[] = $lang['messagesform71']. " " . $prefixlk . ' ' . $_POST['locker'] . " ".$lang['messagesform72'];
+        $messages[] = $lang['messagesform71'];
     } else {
         $error['critical_error'] = "An error occurred during the registration process. Contact the administrator ...";
     }

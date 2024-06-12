@@ -147,9 +147,11 @@ if (empty($errors)) {
         $date_ship   = date("Y-m-d H:i:s a");
 
         $app_url = $settings->site_url . 'track.php?order_track=' . $fullshipment;
-        $subject = $lang['notification_shipment14'] . $lang['notification_shipment3'] . $fullshipment;
+        // $subject = $lang['notification_shipment14'] . $lang['notification_shipment3'] . $fullshipment;
+        $subject = $lang['notification_shipment32'] . ' ' . $lang['notification_shipment3'] .  $fullshipment;
 
-        $email_template = cdp_getEmailTemplatesdg1i4(10);
+
+        $email_template = cdp_getEmailTemplatesdg1i4(18);
 
         $body = str_replace(
             array(

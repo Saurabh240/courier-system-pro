@@ -355,12 +355,19 @@
                                             <div class="col-md-12">
                                                 <div class="mb-3">
                                                     <div class="form-check">
-
                                                         <input type="checkbox" class="form-check-input" id="terms" name="terms" value="yes">
-                                                        <label class="form-check-label" for="flexCheckDefault"><?php echo $lang['left164'] ?> <a href="#" class="text-primary"> <?php echo $lang['left165'] ?></a></label>
+                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                            <?php echo $lang['left164'] ?>
+                                                            <a href="views/terms_and_condition.php" target="_blank" class="text-primary">
+                                                                <?php echo $lang['left165'] ?>
+                                                            </a>
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
+
+
+
                                             <!--end col-->
 
                                             <div class="col-md-12">
@@ -436,8 +443,7 @@
 
     <script src="assets/template/assets/libs/select2/dist/js/select2.full.min.js"></script>
     <script src="assets/template/assets/libs/select2/dist/js/select2.min.js"></script>
-    <script src="assets/template/assets/libs/sweetalert2/sweetalert2.min.js"></script>
-    
+    <script src="assets/template/assets/libs/sweetalert2/sweetalert2.min.js"></script>    
 
     <script> 
         function cdp_validateLockerNumber(value, lockDigits) {

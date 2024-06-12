@@ -305,7 +305,9 @@ if (empty($errors)) {
         $date_ship   = date("Y-m-d H:i:s a");
 
         $app_url = $settings->site_url . 'track.php?order_track=' . $fullshipment;
-        $subject = $lang['notification_shipment2'] . $lang['notification_shipment6'] .  $fullshipment;
+        // $subject = $lang['notification_shipment2'] . $lang['notification_shipment6'] .  $fullshipment;
+        $subject = $lang['notification_shipment2'] . $lang['notification_shipment3'] . $fullshipment;
+
 
         $email_template = cdp_getEmailTemplatesdg1i4(16);
 
@@ -369,6 +371,8 @@ if (empty($errors)) {
             $mail->From = $site_email; // Email desde donde envío el correo.
             $mail->FromName = $names_info;
             $mail->AddAddress($destinatario); // Esta es la dirección a donde enviamos los datos del formulario
+            $mail->addCC($site_email);
+
 
             $mail->Subject = $subject; // Este es el titulo del email.
             $mail->Body = "

@@ -118,7 +118,7 @@ $lang = array(
 	"messagesform68" 			=> "Passwords do not match",
 	"messagesform69" 			=> "Weak password",
 	"messagesform70" 			=> "Please choose a stronger password",
-	"messagesform71" 			=> "Your membership was successfully created! Membership number",
+	"messagesform71" 			=> "Welcome to Huuneh! Your account was successfully created!",
 	"messagesform72" 			=> "<br>We sent your credentials to the email",
 	"messagesform73" 			=> "A new user from the web was registered",
 	"messagesform74" 			=> "Your password does not match the confirmed password!",
@@ -495,7 +495,8 @@ $lang = array(
 	"notification_title7" => "Mark all as read",
 
 	"notification_shipment" => "There is a new shipment, please check it.",
-	"notification_shipment2" => "a new shipment has been registered, ",
+// 	"notification_shipment2" => "a new shipment has been registered, ",
+    "notification_shipment2" => "Huuneh - Your order is confirmed! ",
 	"notification_shipment-22" => "a new shipper has been registered, ",
 	"notification_shipment3" => "*Tracking # ",
 	"notification_shipment4" => " *to your package by entering the following link and you will have detailed information on the status of your packages ",
@@ -528,6 +529,8 @@ $lang = array(
 	"notification_shipment28" => "Consolidation created",
 	"notification_shipment29" => "There is a new consolidated shipment, please check it",
 	"notification_shipment30" => "Updated Consolidation",
+	"notification_shipment31" => "Huuneh - Your order is picked up!",
+	"notification_shipment32" => "Huuneh - Your order is delivered!",
 
 
 
@@ -1000,7 +1003,7 @@ $lang = array(
 	"tooledit" => "Edit Shipment",
 	"toolprint" => "Print Shipment",
 	"toollabel" => "Print Label",
-	"toolupdate" => "Shipment tracking",
+	"toolupdate" => "Update Shipment Status",
 	"tooldeliver" => "Deliver the shipment",
 	"tooldelete" => "Delete Shipment",
 	"cardtitle" => "Pending mailing list to approve",
@@ -1323,8 +1326,8 @@ $lang = array(
 	"leftorder51" => "Delivery Date",
 	"leftorder52" => "Delivered By",
 	"leftorder53" => "Received by",
-	"leftorder54" => "Sender Signature",
-	"leftorder55" => "Photo left",
+	"leftorder54" => "Signature",
+	"leftorder55" => "Delivery Proof",
 	"leftorder56" => "Attachment details",
 	"leftorder57" => "File",
 	"leftorder58" => "Added",

@@ -206,7 +206,7 @@ $user_addreses = $db->cdp_registros();
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
+                                                <!-- <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="phoneNumber1"><?php echo $lang['leftorder164'] ?></label>
@@ -220,7 +220,7 @@ $user_addreses = $db->cdp_registros();
                                                             <input type="text" class="form-control" id="document_number" name="document_number" value="<?php echo $row->document_number; ?>" placeholder="<?php echo $lang['leftorder175'] ?>" readonly>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
 
                                                 <div class="row">
@@ -278,9 +278,54 @@ $user_addreses = $db->cdp_registros();
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="account_type"><?php echo "Account Type" ?></label>
+                                                            <input type="text" class="form-control" id="account_type" name="account_type" value="<?php echo $row->account_type; ?>" readonly>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
-                                                
+                                                <?php if(  $row->account_type !== 'personal') { ?>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="business_type"><?php echo "Business Type" ?></label>
+                                                                <input type="text" class="form-control" id="business_type" name="business_type" value="<?php echo $row->business_type; ?>" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="business_name"><?php echo "Business Name" ?></label>
+                                                                <input type="text" class="form-control" id="business_name" name="business_name" value="<?php echo $row->business_name; ?>" readonly>
+                                                            </div>
+                                                        </div>
+													</div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="billing_choice"><?php echo "Billing Choice" ?></label>
+                                                                <input type="text" class="form-control" id="billing_choice" name="billing_choice" value="<?php echo $row->billing_choice; ?>" readonly>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="address_line_2 "><?php echo "Address Line 2" ?></label>
+                                                                <input type="text" class="form-control" id="address_line_2 " name="address_line_2 " value="<?php echo $row->address_line_2 ; ?>" readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="address_line_2 "><?php echo "Address Line 2" ?></label>
+                                                                <input type="text" class="form-control" id="address_line_2 " name="address_line_2 " value="<?php echo $row->address_line_2 ; ?>" readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
                                                 <hr>
                                                 <!-- <h4><?php echo $lang['leftorder176'] ?></h4> -->
                                                 <br>
