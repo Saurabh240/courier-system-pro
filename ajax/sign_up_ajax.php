@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 // *************************************************************************
 // *                                                                       *
@@ -132,7 +133,7 @@ if (empty($error)) {
         'phone' => cdp_sanitize($_POST['phone']),
         'userlevel' => 1,
         'active' => 1,
-        'address_line_2' => isset($_POST['address2'] ) ? cdp_sanitize( $_POST['address2']) : "",
+
     );
 
 
@@ -199,8 +200,8 @@ if (empty($error)) {
             created,
             phone,
             active,
-            terms,
-            address_line_2
+            terms
+            
         )
 
         VALUES (
@@ -218,8 +219,7 @@ if (empty($error)) {
             :created,
             :phone,
             :active,
-            :terms,
-            :address_line_2
+            :terms
         )');
 
 
@@ -230,7 +230,6 @@ if (empty($error)) {
     $db->bind(':email', $datos['email']);
     $db->bind(':fname', $datos['fname']);
     $db->bind(':lname', $datos['lname']);
-    $db->bind(':address_line_2', $datos['address_line_2']);
     $db->bind(':account_type', $datos['account_type']);
     $db->bind(':business_name', $datos['business_name']);
     $db->bind(':business_type', $datos['business_type']);
@@ -241,12 +240,11 @@ if (empty($error)) {
     $db->bind(':phone', $datos['phone']);
     $db->bind(':active', $datos['active']);
     $db->bind(':terms', $datos['terms']);
+    
+    
 
     $insert = $db->cdp_execute();
-    
-    if ( $_POST['address2'] === "de" ) {
-        var_dump($insert, $db, $datos, $datos['address_line_2']);die;
-    }
+
     $user_created_id = $db->dbh->lastInsertId();
 
     if ($user_created_id !== null) {
@@ -425,6 +423,7 @@ if (empty($error)) {
             }
         }
 
+
         // $messages[] = $lang['messagesform71']. " " . $prefixlk . ' ' . $_POST['locker'] . " ".$lang['messagesform72'];
         $messages[] = $lang['messagesform71'];
     } else {
@@ -447,3 +446,4 @@ if (!empty($error)) {
         'messages' => $messages,
     ]);
 }
+>>>>>>> cf8c0f69afe25a094e0ca781fe5cce3381d3e5e5
