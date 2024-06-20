@@ -668,6 +668,7 @@ $("#invoice_form").on("submit", function (event) {
     alert("error files");
     return false;
   }
+  event.preventDefault();
   // sweealert 2, alerta error informacion de paquetes
 
   /* for (let [i, val] of packagesItems.entries()) {
@@ -767,10 +768,12 @@ $("#invoice_form").on("submit", function (event) {
   var order_no = $("#order_no").val();
   var agency = $("#agency").val();
   var origin_off = $("#origin_off").val();
-  var sender_id = $("#sender_id").val();
-  var sender_address_id = $("#sender_address_id").val();
-  var recipient_id = $("#recipient_id").val();
-  var recipient_address_id = $("#recipient_address_id").val();
+  // var sender_id = $("#sender_id").val();
+  var sender_id = $("#sender_id option:selected").val();
+  var sender_address_id = $("#sender_address_id option:selected").val();
+  var recipient_id = $("#recipient_id option:selected").val();
+  var recipient_address_id = $("#recipient_address_id option:selected").val();
+  console.log(sender_id, sender_address_id, recipient_id, recipient_address_id);
   var order_item_category = $("#order_item_category").val();
   var order_courier = $("#order_courier").val();
   var order_service_options = $("#order_service_options").val();
@@ -906,7 +909,6 @@ $("#invoice_form").on("submit", function (event) {
   if (deleted_file_ids) {
     data.append("deleted_file_ids", deleted_file_ids);
   }
-  add_pickup_ajax.php;
 
   var total_order = $("#total_after_tax").text();
   data.append("total_order", total_order);
@@ -949,8 +951,6 @@ $("#invoice_form").on("submit", function (event) {
       }
     },
   });
-
-  event.preventDefault();
 });
 
 $(function () {
@@ -1918,11 +1918,14 @@ function calculateAndDisplayDistance(origin, destination, deliveryType) {
       console.log("All", data);
       // Update distance input with calculated distance
       $("#distance").val(data.distance);
+      var distanceHtml = parseFloat(data.distance).toFixed(2);
+      $("#total_distance").html(distanceHtml);
       // $('.fixed_value').val(data.shipmentfee);
       $(".fixed_value").val(data.baseRate);
       window.distance = data.distance;
       localStorage.setItem("baseRate", data.baseRate);
       localStorage.setItem("shipmentfee", data.shipmentfee);
+      calculateFinalTotal();
     },
     error: function () {
       // Handle error
