@@ -2220,4 +2220,8 @@ function getTariffs() {
 
 $("#calculate_invoice").on("click", getTariffs);
 
-$("#deliveryType").on('change', getTariffs);
+$("#deliveryType").on('input', getTariffs);
+
+$(document).ready(function(){
+  getTariffs();
+})
